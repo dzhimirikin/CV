@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Redirecting...</title>
+    <script>
+document.addEventListener("DOMContentLoaded", function () {
+    // Проверка разрешения экрана
+    if (window.screen.width < 1920 || window.screen.height < 1080) {
+        alert("The website is optimized for a screen resolution of 1920x1080 or higher. Please adjust your screen resolution/Сайт оптимизирован для разрешения экрана 1920х1080 или лучше. Измените разрешение экрана");
+    }
+
+    // Определяем язык пользователя
+    let userLang = localStorage.getItem('selectedLanguage') || 
+                   (navigator.language || navigator.userLanguage).slice(0, 2);
+
+    // Сохраняем выбор языка в localStorage (если его там нет)
+    localStorage.setItem('selectedLanguage', userLang);
+
+    // Название репозитория (для корректных путей на GitHub Pages)
+    const repoName = window.location.pathname.includes("/CV/") ? "CV" : "";
+
+    // Определяем маршруты с учетом репозитория
+    const languageRoutes = {
+        "ru": `/${repoName}/ru/index_ru.html`,
+        "en": `/${repoName}/en/index_en.html`,
+        "ee": `/${repoName}/ee/index_ee.html`
+    };
+
+    // Получаем текущий путь
+    const currentPath = window.location.pathname;
+
+    // Определяем текущий язык из пути
+    const currentLang = currentPath.split("/")[2];  // Извлекаем язык из пути
+
+    // Если текущий язык не совпадает с выбранным, редиректим
+    if (currentLang !== userLang) {
+        // Редиректим на нужную страницу с выбранным языком
+        window.location.replace(languageRoutes[userLang]);
+    }
+});
+    </script>
+</head>
+<body>
+    <p>Redirecting...</p>
+</body>
+</html>

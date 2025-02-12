@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="ru">
+    <base href="https://dzhimirikin.github.io/CV/">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Мой Сайт - Главная</title>
+    <!-- Используем абсолютный путь для стилей -->
+    <link rel="stylesheet" href="global-assets/styles_home.css">
+</head>
+<body>
+
+<div class="language-switcher">
+    <a href="#" title="Русский" data-lang="ru"><img src="global-assets/FLAGS/RUS.png" alt="Русский" class="flag-icon" style="width: 40px; height: auto;"></a>
+    <a href="#" title="English" data-lang="en"><img src="global-assets/FLAGS/ENG.png" alt="English" class="flag-icon" style="width: 40px; height: auto;"></a>
+    <a href="#" title="Eesti" data-lang="ee"><img src="global-assets/FLAGS/EST.png" alt="Eesti" class="flag-icon" style="width: 40px; height: auto;"></a>
+</div>
+
+<!-- Меню -->
+<nav>
+    <a href="ru/index_ru.html">Главная</a>
+    <a href="ru/tools_ru.html">Рабочие инструменты</a>
+    <a href="ru/portfolio_ru.html">Портфолио</a>
+    <a href="ru/contacts_ru.html">Контакты</a>
+    <a href="ru/PDF/Zhimirikin_CV_08.02.2025_RUS.pdf" target="_blank">Резюме</a>
+</nav>
+
+<!-- Главная секция -->
+<section id="home">
+    <div class="foreground-image"></div> <!-- Фон, который не изменяется -->
+    <div class="text-container">
+        <h1>Добро пожаловать на мой сайт</h1>
+        <h1>Дмитрий Жимирикин</h1>
+        <br><br>
+        <p class="text-left">Сертифицированный строительный инженер, специализация Светопрозрачные конструкции, Уровень 6</p>
+        <p class="text-left"><a href="https://www.kutseregister.ee/ctrl/et/Tunnistused/vaata/10865248/1" target="_blank">(Сертификат Eesti Ehitusinseneride Liit, 2025-2032)</a></p>
+        <p class="text-left">Прикладное Высшее образование, Ленинградский Механический Институт (1990), степень Магистра</p>
+        <p class="text-left">Диплом подтвержден Эстонским центром ENIC/NARIC</p>
+        <br><br>
+        <p class="text-left">Выполнение работ в области строительного проектирования - Строительные конструкции - более 3 лет</p>
+        <p class="text-left">Выполнение работ по проектированию и приемке документации на светопрозрачные конструкции - более 10 лет</p>
+        <p class="text-left">Опыт работы в штате компаний-системодержателей REYNAERS, АЛЮТЕХ, ИНИЦИАЛ - 6 лет</p>
+        <p class="text-left">Более подробная информация - смотри CV</p>
+        <br><br>
+        <p class="text-left">Я выполняю:</p>
+        <p class="text-left">-Предпроектные изыскания: тендерные чертежи, расчет объемов работ, составление тендерных спецификаций</p>
+        <p class="text-left">-Рабочую документацию на светопрозрачные конструкции (стадия КМ, КМД)</p>
+        <p class="text-left">-Прочностные расчеты элементов конструкций</p>
+
+<!-- Контейнер для кнопки -->
+<div class="button-container">
+    <!-- Кнопка "Образцы работ" -->
+    <button class="details-btn" id="show-modal-btn">Образцы работ</button>
+</div>
+
+<!-- Ссылка на файл для скачивания (она скрыта, чтобы не мешала пользовательскому интерфейсу) -->
+<a id="download-link" href="https://mega.nz/file/F4Im2AjC#HVaUFyE1lb0wi1vLYhpr3Qmd-YpoqqTX1MfGPlX2mmk" download style="display:none;" onclick="returnBack()">Скачать</a>
+
+<!-- Модальное окно -->
+<div class="modal" id="password-modal">
+    <div class="modal-content">
+        <h2>Введите пароль</h2>
+        
+        <!-- Контейнер для 6 квадратиков ввода -->
+        <div class="input-container">
+            <input type="text" id="input1" maxlength="1" class="password-input" />
+            <input type="text" id="input2" maxlength="1" class="password-input" />
+            <input type="text" id="input3" maxlength="1" class="password-input" />
+            <input type="text" id="input4" maxlength="1" class="password-input" />
+            <input type="text" id="input5" maxlength="1" class="password-input" />
+            <input type="text" id="input6" maxlength="1" class="password-input" />
+        </div>
+
+        <!-- Кнопка подтверждения -->
+        <button class="modal-btn" id="submit-password">Подтвердить</button>
+
+        <!-- Сообщение об ошибке -->
+        <p id="error-message" class="error-message"></p>
+    </div>
+</div>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer>
+    <p>Dmitry Zhimirikin, <span id="year"></span></p>
+</footer>
+
+<!-- Table with Raster Logos -->
+<section id="logos-table">
+    <table>
+        <tr>
+            <td><img src="global-assets/LOGOS/reynaers.png" /></td>
+            <td><img src="global-assets/LOGOS/schuco.png" /></td>
+            <td><img src="global-assets/LOGOS/alutech.png" /></td>
+            <td><img src="global-assets/LOGOS/larta_glass.png" /></td>
+            <td><img src="global-assets/LOGOS/logikal.png" /></td>
+        </tr>
+        <!-- Add additional rows if needed -->
+    </table>
+</section>
+
+<script src="ru/scripts_home_ru.js"></script>
+
+</body>
+</html>
