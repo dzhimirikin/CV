@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="et">
+    <base href="https://dzhimirikin.github.io/CV/">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kontaktid</title>
+    <link rel="stylesheet" href="global-assets/styles_contacts.css">
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            // Получаем сохранённое разрешение экрана из localStorage
+            let prevWidth = parseInt(localStorage.getItem("screenWidth"));
+            let prevHeight = parseInt(localStorage.getItem("screenHeight"));
+
+            // Определяем, какой CSS-файл загружать
+            let cssFile = (prevWidth >= 1920 && prevHeight >= 1080) 
+                          ? "global-assets/styles_contacts.css" 
+                          : "global-assets/styles_contacts_lowres.css";
+
+            // Добавляем <link> для нужного CSS
+            let link = document.createElement("link");
+            link.rel = "stylesheet";
+            link.href = cssFile;
+            document.head.appendChild(link);
+
+            // Проверяем изменение разрешения экрана в реальном времени
+            window.addEventListener("resize", function () {
+                let newWidth = window.screen.width * window.devicePixelRatio;
+                let newHeight = window.screen.height * window.devicePixelRatio;
+
+                if (newWidth !== prevWidth || newHeight !== prevHeight) {
+                    localStorage.setItem("screenWidth", newWidth);
+                    localStorage.setItem("screenHeight", newHeight);
+                    location.reload();  // Перезагружаем страницу для применения нового CSS
+                }
+            });
+        });
+    </script>
+</head>
+<body>
+
+<!-- Menüü -->
+<nav>
+    <a href="ee/index_ee.html">Avaleht</a>
+    <a href="ee/tools_ee.html">Programmid</a>
+    <a href="ee/portfolio_ee.html">Portfoolio</a>
+    <a href="ee/contacts_ee.html">Kontaktid</a>
+    <a href="ee/PDF/Zhimirikin_CV_08.02.2025_EST.pdf" target="_blank">CV</a>
+</nav>
+
+<!-- Kontaktid -->
+<section id="contacts">
+    <h2>Kontaktid</h2>
+    <p>Telefon, WhatsApp: +372 53235078 e-post: d.zhimirikin@gmail.com</p>
+    <p>Jätke sõnum ja ma võtan teiega ühendust.</p>
+
+    <!-- Formulaar sõnumite saatmiseks läbi Formspree -->
+    <form id="contact-form" action="https://formspree.io/f/xgvozrjd" method="POST">
+        <label for="name">Teie nimi:</label>
+        <input type="text" id="name" name="name" required>
+
+        <label for="email">Teie e-post:</label>
+        <input type="email" id="email" name="email" required>
+
+        <label for="message">Sõnum:</label>
+        <textarea id="message" name="message" rows="20" required></textarea>
+
+        <button type="submit">Saada</button>
+    </form>
+
+    <!-- Sõnum edukast saatmisest -->
+    <div id="confirmation-message" style="display: none; color: green;">
+        Teie sõnum on saadetud.
+    </div>
+</section>
+
+<!-- Allkiri all -->
+<footer>
+    <p>Dmitry Zhimirikin, <span id="year"></span></p>
+</footer>
+
+<!-- Väline skript -->
+<script src="ee/scripts_contacts_ee.js"></script>
+
+</body>
+</html>
