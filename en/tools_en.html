@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+    <base href="https://dzhimirikin.github.io/CV/">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Мой Сайт - Главная</title>
+    <link rel="stylesheet" href="global-assets/styles_contacts.css">
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            // Получаем сохранённое разрешение экрана из localStorage
+            let prevWidth = parseInt(localStorage.getItem("screenWidth"));
+            let prevHeight = parseInt(localStorage.getItem("screenHeight"));
+
+            // Определяем, какой CSS-файл загружать
+            let cssFile = (prevWidth >= 1920 && prevHeight >= 1080) 
+                          ? "global-assets/styles_tools.css" 
+                          : "global-assets/styles_tools_lowres.css";
+
+            // Добавляем <link> для нужного CSS
+            let link = document.createElement("link");
+            link.rel = "stylesheet";
+            link.href = cssFile;
+            document.head.appendChild(link);
+
+            // Проверяем изменение разрешения экрана в реальном времени
+            window.addEventListener("resize", function () {
+                let newWidth = window.screen.width * window.devicePixelRatio;
+                let newHeight = window.screen.height * window.devicePixelRatio;
+
+                if (newWidth !== prevWidth || newHeight !== prevHeight) {
+                    localStorage.setItem("screenWidth", newWidth);
+                    localStorage.setItem("screenHeight", newHeight);
+                    location.reload();  // Перезагружаем страницу для применения нового CSS
+                }
+            });
+        });
+    </script>
+</head>
+
+<body>
+
+<!-- Menu -->
+<nav>
+    <a href="en/index_en.html">Home</a>
+    <a href="en/tools_en.html">Tools</a>
+    <a href="en/portfolio_en.html">Portfolio</a>
+    <a href="en/contacts_en.html">Contacts</a>
+    <a href="en/PDF/Zhimirikin_CV_08.02.2025_ENG.pdf" target="_blank">Resume</a>
+</nav>
+
+<!-- Work Tools Section -->
+<section id="tools">
+    <h2>I use this Software</h2>
+    <p></p>
+
+    <!-- CAD/CAM/CAE -->
+    <h3>CAD/CAM/CAE</h3>
+    <div class="progress-container">
+        <div class="progress-bar">
+            <span>AutoCAD</span>
+            <div class="progress">
+                <div class="fill" data-width="90" style="width: 90%;"></div>
+            </div>
+            <span class="progress-value">90%</span>
+        </div>
+
+        <div class="progress-bar">
+            <span>Inventor</span>
+            <div class="progress">
+                <div class="fill" data-width="70" style="width: 70%;"></div>
+            </div>
+            <span class="progress-value">70%</span>
+        </div>
+
+        <div class="progress-bar">
+            <span>LogiKAL</span>
+            <div class="progress">
+                <div class="fill" data-width="90" style="width: 90%;"></div>
+            </div>
+            <span class="progress-value">90%</span>
+        </div>
+
+        <div class="progress-bar">
+            <span>Kompas3D</span>
+            <div class="progress">
+                <div class="fill" data-width="70" style="width: 70%;"></div>
+            </div>
+            <span class="progress-value">70%</span>
+        </div>
+    </div>
+
+    <!-- FEM -->
+    <h3>FEM</h3>
+    <div class="progress-container">
+        <div class="progress-bar">
+            <span>SCAD</span>
+            <div class="progress">
+                <div class="fill" data-width="70" style="width: 70%;"></div>
+            </div>
+            <span class="progress-value">70%</span>
+        </div>
+    </div>
+
+    <!-- PDM -->
+    <h3>PDM</h3>
+    <div class="progress-container">
+        <div class="progress-bar">
+            <span>BAUHUB</span>
+            <div class="progress">
+                <div class="fill" data-width="90" style="width: 90%;"></div>
+            </div>
+            <span class="progress-value">90%</span>
+        </div>
+    </div>
+
+    <!-- OFFICE -->
+    <h3>MS Office</h3>
+    <div class="progress-container">
+        <div class="progress-bar">
+            <span>MS_Word</span>
+            <div class="progress">
+                <div class="fill" data-width="90" style="width: 90%;"></div>
+            </div>
+            <span class="progress-value">90%</span>
+        </div>
+        <div class="progress-bar">
+            <span>MS_Excel</span>
+            <div class="progress">
+                <div class="fill" data-width="90" style="width: 90%;"></div>
+            </div>
+            <span class="progress-value">90%</span>
+        </div>
+        <div class="progress-bar">
+            <span>MS_PowerPoint</span>
+            <div class="progress">
+                <div class="fill" data-width="90" style="width: 90%;"></div>
+            </div>
+            <span class="progress-value">90%</span>
+        </div>
+        <div class="progress-bar">
+            <span>MS_Project</span>
+            <div class="progress">
+                <div class="fill" data-width="80" style="width: 80%;"></div>
+            </div>
+            <span class="progress-value">70%</span>
+        </div>
+    </div>
+
+    <!-- BIM -->
+    <h3>BIM</h3>
+    <div class="progress-container">
+        <div class="progress-bar">
+            <span>ArchiCAD</span>
+            <div class="progress">
+                <div class="fill" data-width="70" style="width: 70%;"></div>
+            </div>
+            <span class="progress-value">90%</span>
+        </div>
+        <div class="progress-bar">
+            <span>Revit</span>
+            <div class="progress">
+                <div class="fill" data-width="30" style="width: 30%;"></div>
+            </div>
+            <span class="progress-value">90%</span>
+        </div>
+    </div>
+
+    <!-- Graphic Editors -->
+    <h3>Graphic Editors</h3>
+    <div class="progress-container">
+        <div class="progress-bar">
+            <span>Adobe Photoshop</span>
+            <div class="progress">
+                <div class="fill" data-width="50" style="width: 50%;"></div>
+            </div>
+            <span class="progress-value">50%</span>
+        </div>
+    </div>
+
+    <!-- WEB -->
+    <h3>WEB</h3>
+    <div class="progress-container">
+        <div class="progress-bar">
+            <span>HTML, Java</span>
+            <div class="progress">
+                <div class="fill" data-width="10" style="width: 10%;"></div>
+            </div>
+            <span class="progress-value">50%</span>
+        </div>
+
+</section>
+
+<!-- Footer -->
+<footer>
+    <p>Dmitry Zhimirikin, <span id="year"></span></p>
+</footer>
+
+<script src="en/scripts_tools_en.js"></script> 
+</body>
+</html>
