@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="et">
+    <base href="https://dzhimirikin.github.io/CV/">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Мой Сайт - Главная</title>
+    <link rel="stylesheet" href="global-assets/styles_contacts.css">
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            // Получаем сохранённое разрешение экрана из localStorage
+            let prevWidth = parseInt(localStorage.getItem("screenWidth"));
+            let prevHeight = parseInt(localStorage.getItem("screenHeight"));
+
+            // Определяем, какой CSS-файл загружать
+            let cssFile = (prevWidth >= 1920 && prevHeight >= 1080) 
+                          ? "global-assets/styles_home.css" 
+                          : "global-assets/styles_home_lowres.css";
+
+            // Добавляем <link> для нужного CSS
+            let link = document.createElement("link");
+            link.rel = "stylesheet";
+            link.href = cssFile;
+            document.head.appendChild(link);
+
+            // Проверяем изменение разрешения экрана в реальном времени
+            window.addEventListener("resize", function () {
+                let newWidth = window.screen.width * window.devicePixelRatio;
+                let newHeight = window.screen.height * window.devicePixelRatio;
+
+                if (newWidth !== prevWidth || newHeight !== prevHeight) {
+                    localStorage.setItem("screenWidth", newWidth);
+                    localStorage.setItem("screenHeight", newHeight);
+                    location.reload();  // Перезагружаем страницу для применения нового CSS
+                }
+            });
+        });
+    </script>
+</head>
+<body>
+
+<div class="language-switcher">
+    <a href="#" title="Русский" data-lang="ru"><img src="global-assets/FLAGS/RUS.png" alt="Русский" class="flag-icon" style="width: 40px; height: auto;"></a>
+    <a href="#" title="English" data-lang="en"><img src="global-assets/FLAGS/ENG.png" alt="English" class="flag-icon" style="width: 40px; height: auto;"></a>
+    <a href="#" title="Eesti" data-lang="ee"><img src="global-assets/FLAGS/EST.png" alt="Eesti" class="flag-icon" style="width: 40px; height: auto;"></a>
+</div>
+
+<!-- Menüüs -->
+<nav>
+    <a href="ee/index_ee.html">Avaleht</a>
+    <a href="ee/tools_ee.html">Programmid</a>
+    <a href="ee/portfolio_ee.html">Portfoolio</a>
+    <a href="ee/contacts_ee.html">Kontaktid</a>
+    <a href="ee/PDF/Zhimirikin_CV_08.02.2025_EST.pdf" target="_blank">CV</a>
+</nav>
+
+<!-- Peamine sektsioon -->
+<section id="home">
+    <div class="foreground-image"></div> <!-- Taust, mis ei muutu -->
+    <div class="text-container">
+        <h1>Tere tulemast minu veebisaidile</h1>
+        <h1>Dmitri Zhimirikin</h1>
+        <br>
+        <p class="text-left">Tunnustatud ehitusinsener, spetsialiseerumine Läbipaistvad konstruktsioonid, Tase 6</p>
+        <p class="text-left"><a href="https://www.kutseregister.ee/ctrl/et/Tunnistused/vaata/10865248/1" target="_blank">(Tunnistus Eesti Ehitusinseneride Liidult, 2025-2032)</a></p>
+        <p class="text-left">Rakenduslik kõrgharidus, Leningradi Mehaanika Instituut (1990), magistrikraad</p>
+        <p class="text-left">Diplom on kinnitatud Eesti ENIC/NARIC keskuse poolt</p>
+        <br>
+        <p class="text-left">Kogemus ehitusprojekti alal - Ehitusstruktuurid - üle 3 aasta</p>
+        <p class="text-left">Kogemus läbipaistvate konstruktsioonide projekteerimise ja dokumentatsiooni vastuvõtmise alal - üle 10 aasta</p>
+        <p class="text-left">Kogemus töötades ettevõtetes REYNAERS, ALUTECH, INICIAL - 6 aastat</p>
+        <p class="text-left">Rohkem teavet - vaata CV-d</p>
+        <br>
+        <p class="text-left">Teen järgmisi teenuseid:</p>
+        <p class="text-left">-Eelprojekti uuringud: pakkumisdokumendid, töömahude arvutused, pakkumisspetsiifikatsioonide koostamine</p>
+        <p class="text-left">-Tööprojektide koostamine läbipaistvate konstruktsioonide jaoks (KM, KMD etapid)</p>
+        <p class="text-left">-Konstruktsioonielementide tugevusarvutused</p>
+
+<!-- Nuppude konteiner -->
+<div class="button-container">
+    <!-- "Töönäidised" nupp -->
+    <button class="details-btn" id="show-modal-btn">Töönäidised</button>
+</div>
+
+<!-- Peidetud allalaadimislink -->
+<a id="download-link" href="https://mega.nz/file/F4Im2AjC#HVaUFyE1lb0wi1vLYhpr3Qmd-YpoqqTX1MfGPlX2mmk" download style="display:none;" onclick="returnBack()">Laadi alla</a>
+
+<!-- Moodal aken -->
+<div class="modal" id="password-modal">
+    <div class="modal-content">
+        <h2>Parool</h2>
+        
+        <!-- 6 sisendruudu konteiner -->
+        <div class="input-container">
+            <input type="text" id="input1" maxlength="1" class="password-input" />
+            <input type="text" id="input2" maxlength="1" class="password-input" />
+            <input type="text" id="input3" maxlength="1" class="password-input" />
+            <input type="text" id="input4" maxlength="1" class="password-input" />
+            <input type="text" id="input5" maxlength="1" class="password-input" />
+            <input type="text" id="input6" maxlength="1" class="password-input" />
+        </div>
+
+        <!-- Kinnitamisnupp -->
+        <button class="modal-btn" id="submit-password">Kinnita</button>
+
+        <!-- Vigade teadete kuvamine -->
+        <p id="error-message" class="error-message"></p>
+    </div>
+</div>
+    </div>
+</section>
+
+<!-- Jaluse osa -->
+<footer>
+    <p>Dmitry Zhimirikin, <span id="year"></span></p>
+</footer>
+
+<!-- Tabel rasterlogodega -->
+<section id="logos-table">
+    <table>
+        <tr>
+            <td><img src="global-assets/LOGOS/reynaers.png" /></td>
+            <td><img src="global-assets/LOGOS/schuco.png" /></td>
+            <td><img src="global-assets/LOGOS/alutech.png" /></td>
+            <td><img src="global-assets/LOGOS/larta_glass.png" /></td>
+            <td><img src="global-assets/LOGOS/logikal.png" /></td>
+        </tr>
+        <!-- Lisa täiendavad read, kui on vaja -->
+    </table>
+</section>
+
+<script src="ee/scripts_home_ee.js"></script>
+
+</body>
+</html>
