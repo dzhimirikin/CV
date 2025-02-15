@@ -70,7 +70,6 @@ nav a:hover {
     position: relative;
     min-height: 100vh; /* Заменено на min-height для гибкости */
     color: #fff;
-    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.6);
     border-radius: 8px;
     overflow: hidden; /* Предотвращает прокрутку внутри блока */
     background-color: #3a7bd5; /* Однотонный цвет фона */
