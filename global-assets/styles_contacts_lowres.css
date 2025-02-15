@@ -78,6 +78,7 @@ button:hover {
 
 /* Футер */
 footer {
+    position: fixed;
     text-align: center;
     padding: 10px; /* Уменьшенный отступ */
     background-color: white; /* Белая заливка */
