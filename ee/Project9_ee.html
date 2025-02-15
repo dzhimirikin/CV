@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="et">
+    <base href="https://dzhimirikin.github.io/CV/">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Narva Lasteaed Punamütsike - Galerii</title>
+    <link rel="stylesheet" href="global-assets/styles_contacts.css">
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            // Получаем сохранённое разрешение экрана из localStorage
+            let prevWidth = parseInt(localStorage.getItem("screenWidth"));
+            let prevHeight = parseInt(localStorage.getItem("screenHeight"));
+
+            // Определяем, какой CSS-файл загружать
+            let cssFile = (prevWidth >= 1920 && prevHeight >= 1080) 
+                          ? "global-assets/styles_project.css" 
+                          : "global-assets/styles_project_lowres.css";
+
+            // Добавляем <link> для нужного CSS
+            let link = document.createElement("link");
+            link.rel = "stylesheet";
+            link.href = cssFile;
+            document.head.appendChild(link);
+
+            // Проверяем изменение разрешения экрана в реальном времени
+            window.addEventListener("resize", function () {
+                let newWidth = window.screen.width * window.devicePixelRatio;
+                let newHeight = window.screen.height * window.devicePixelRatio;
+
+                if (newWidth !== prevWidth || newHeight !== prevHeight) {
+                    localStorage.setItem("screenWidth", newWidth);
+                    localStorage.setItem("screenHeight", newHeight);
+                    location.reload();  // Перезагружаем страницу для применения нового CSS
+                }
+            });
+        });
+    </script>
+</head>
+
+<body>
+
+<!-- Menüü -->
+<nav>
+    <a href="ee/index_ee.html">Avaleht</a>
+    <a href="ee/tools_ee.html">Programmid</a>
+    <a href="ee/portfolio_ee.html">Portfoolio</a>
+    <a href="ee/contacts_ee.html">Kontaktid</a>
+    <a href="ee/PDF/Zhimirikin_CV_08.02.2025_EST.pdf" target="_blank">CV</a>
+</nav>
+
+<!-- Projekti pealkiri -->
+<section id="project-gallery">
+    <h1>Narva Lasteaed Punamütsike - Galerii</h1>
+    <p>   </p>
+
+<!-- Fotode tabel -->
+    <div class="photo-container">
+        <table class="photo-table">
+        <tr>
+            <td><img src="global-assets/009_NEL/NELA_01.png" alt="Foto 1"></td>
+        </tr>
+        <tr>
+            <td><img src="global-assets/009_NEL/NELA_02.png" alt="Foto 2"></td>
+        </tr>
+        <tr>
+            <td><img src="global-assets/009_NEL/NELA_03.png" alt="Foto 3"></td>
+        </tr>
+        <tr>
+            <td><img src="global-assets/009_NEL/NELA_04.png" alt="Foto 4"></td>
+        </tr>
+        <tr>
+            <td><img src="global-assets/009_NEL/NELA_05.png" alt="Foto 5"></td>
+        </tr>
+        <tr>
+            <td><img src="global-assets/009_NEL/NELA_06.png" alt="Foto 6"></td>
+        </tr>
+        <tr>
+            <td><img src="global-assets/009_NEL/NELA_07.png" alt="Foto 7"></td>
+        </tr>
+        <tr>
+            <td><img src="global-assets/009_NEL/NELA_08.png" alt="Foto 8"></td>
+        </tr>
+        <tr>
+            <td><img src="global-assets/009_NEL/NELA_09.png" alt="Foto 9"></td>
+        </tr>
+        <tr>
+            <td><img src="global-assets/009_NEL/NELA_10.png" alt="Foto 10"></td>
+        </tr>
+        <tr>
+            <td><img src="global-assets/009_NEL/NELA_11.png" alt="Foto 11"></td>
+        </tr>
+        <tr>
+            <td><img src="global-assets/009_NEL/NELA_12.png" alt="Foto 12"></td>
+        </tr>
+        <tr>
+            <td><img src="global-assets/009_NEL/NELA_13.png" alt="Foto 13"></td>
+        </tr>
+        </table>
+    </div>
+</section>
+
+<!-- Jalus -->
+<footer>
+    <p>Dmitry Zhimirikin, <span id="year"></span></p>
+</footer>
+
+<script src="ee/scripts_project_ee.js"></script>
+</body>
+</html>
