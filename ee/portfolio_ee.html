@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="et">
+    <base href="https://dzhimirikin.github.io/CV/">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfoolio</title>
+    <link rel="stylesheet" href="global-assets/styles_contacts.css">
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            // Получаем сохранённое разрешение экрана из localStorage
+            let prevWidth = parseInt(localStorage.getItem("screenWidth"));
+            let prevHeight = parseInt(localStorage.getItem("screenHeight"));
+
+            // Определяем, какой CSS-файл загружать
+            let cssFile = (prevWidth >= 1920 && prevHeight >= 1080) 
+                          ? "global-assets/styles_portfolio.css" 
+                          : "global-assets/styles_portfolio_lowres.css";
+
+            // Добавляем <link> для нужного CSS
+            let link = document.createElement("link");
+            link.rel = "stylesheet";
+            link.href = cssFile;
+            document.head.appendChild(link);
+
+            // Проверяем изменение разрешения экрана в реальном времени
+            window.addEventListener("resize", function () {
+                let newWidth = window.screen.width * window.devicePixelRatio;
+                let newHeight = window.screen.height * window.devicePixelRatio;
+
+                if (newWidth !== prevWidth || newHeight !== prevHeight) {
+                    localStorage.setItem("screenWidth", newWidth);
+                    localStorage.setItem("screenHeight", newHeight);
+                    location.reload();  // Перезагружаем страницу для применения нового CSS
+                }
+            });
+        });
+    </script>
+</head>
+
+<body>
+<!-- Menüü -->
+<nav>
+    <a href="ee/index_ee.html">Avaleht</a>
+    <a href="ee/tools_ee.html">Programmid</a>
+    <a href="ee/portfolio_ee.html">Portfoolio</a>
+    <a href="ee/contacts_ee.html">Kontaktid</a>
+    <a href="ee/PDF/Zhimirikin_CV_08.02.2025_EST.pdf" target="_blank">CV</a>
+</nav>
+
+<!-- Portfoolio -->
+<section id="portfolio">
+    <h2>Portfoolio</h2>
+    <p>   </p>
+
+    <!-- Table ja nupud -->
+    <div class="portfolio-container">
+        <!-- Table -->
+        <table class="portfolio-table">
+            <thead>
+                <tr>
+                    <th>Aasta</th>
+                    <th>Projekt</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>2012</td>
+                    <td>Trepp, Kosmose Kaubandus- ja Meelelahutuskeskus, Peterburi</td>
+                    <td><button class="details-btn">Rohkem teavet projektist</button></td>
+                </tr>
+                <tr>
+                    <td>2014</td>
+                    <td>Metsaline Formul Residenss</td>
+                    <td><button class="details-btn">Rohkem teavet projektist</button></td>
+                </tr>
+                <tr>
+                    <td>2014</td>
+                    <td>Apart-hotell/Residenss K12, Peterburi</td>
+                    <td><button class="details-btn">Rohkem teavet projektist</button></td>
+                </tr>
+                <tr>
+                    <td>2016</td>
+                    <td>Jahtklubi Yavara-Neva. Hoonekompleks Bõtši saarel, Peterburi</td>
+                    <td><button class="details-btn">Rohkem teavet projektist</button></td>
+                </tr>
+                <tr>
+                    <td>2018</td>
+                    <td>Lahte-Tsentri mitmeotstarbeline hoone, Peterburi</td>
+                    <td><button class="details-btn">Rohkem teavet projektist</button></td>
+                </tr>
+                <tr>
+                    <td>2021</td>
+                    <td>Sillamäe Vanalinna kool", Sillamäe</td>
+                    <td><button class="details-btn">Rohkem teavet projektist</button></td>
+                </tr>
+                <tr>
+                    <td>2021</td>
+                    <td>Kultuurikeskus Muhu Maja</td>
+                    <td><button class="details-btn">Rohkem teavet projektist</button></td>
+                </tr>
+                <tr>
+                    <td>2022</td>
+                    <td>Narva Riigigümnaasium, Narva</td>
+                    <td><button class="details-btn">Rohkem teavet projektist</button></td>
+                </tr>
+                <tr>
+                    <td>2023</td>
+                    <td>Narva Eesti kool, Narva</td>
+                    <td><button class="details-btn">Rohkem teavet projektist</button></td>
+                </tr>
+                <tr>
+                    <td>2023</td>
+                    <td>Narva Lasteaed Punamütsike, Narva</td>
+                    <td><button class="details-btn">Rohkem teavet projektist</button></td>
+                </tr>
+                <tr>
+                    <td>2024</td>
+                    <td>Magdaleena Lasteaed, Tallinn</td>
+                    <td><button class="details-btn">Rohkem teavet projektist</button></td>
+                </tr>
+                <tr>
+                    <td>2024</td>
+                    <td>Lootsi 8 keskus, vertikaalsed žaluusi, Tallinn</td>
+                    <td><button class="details-btn">Rohkem teavet projektist</button></td>
+                </tr>
+                <tr>
+                    <td>2024</td>
+                    <td>Autosaloon Mercedes - VEHO, Tallinn</td>
+                    <td><button class="details-btn">Rohkem teavet projektist</button></td>
+                </tr>
+                <tr>
+                    <td>2024</td>
+                    <td>Hiline-hotell GREEN FLOW Baikal, Venemaa</td>
+                    <td><button class="details-btn">Rohkem teavet projektist</button></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</section>
+
+<!-- Jalus -->
+<footer>
+    <p>Dmitry Zhimirikin, <span id="year"></span></p>
+</footer>
+
+
+<script src="ee/scripts_portfolio_ee.js"></script> 
+
+</body>
+</html>
