@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+    <base href="https://dzhimirikin.github.io/CV/">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio</title>
+    <link rel="stylesheet" href="global-assets/styles_contacts.css">
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            // Retrieve saved screen resolution from localStorage
+            let prevWidth = parseInt(localStorage.getItem("screenWidth"));
+            let prevHeight = parseInt(localStorage.getItem("screenHeight"));
+
+            // Determine which CSS file to load
+            let cssFile = (prevWidth >= 1920 && prevHeight >= 1080) 
+                          ? "global-assets/styles_portfolio.css" 
+                          : "global-assets/styles_portfolio_lowres.css";
+
+            // Add <link> for the appropriate CSS
+            let link = document.createElement("link");
+            link.rel = "stylesheet";
+            link.href = cssFile;
+            document.head.appendChild(link);
+
+            // Check for screen resolution change in real time
+            window.addEventListener("resize", function () {
+                let newWidth = window.screen.width * window.devicePixelRatio;
+                let newHeight = window.screen.height * window.devicePixelRatio;
+
+                if (newWidth !== prevWidth || newHeight !== prevHeight) {
+                    localStorage.setItem("screenWidth", newWidth);
+                    localStorage.setItem("screenHeight", newHeight);
+                    location.reload();  // Reload the page to apply the new CSS
+                }
+            });
+        });
+    </script>
+</head>
+
+<body>
+<!-- Menu -->
+<nav>
+    <a href="en/index_ee.html">Home</a>
+    <a href="en/tools_ee.html">Programs</a>
+    <a href="en/portfolio_ee.html">Portfolio</a>
+    <a href="en/contacts_ee.html">Contacts</a>
+    <a href="en/PDF/Zhimirikin_CV_08.02.2025_ENG.pdf" target="_blank">CV</a>
+</nav>
+
+<!-- Portfolio -->
+<section id="portfolio">
+    <h2>Portfolio</h2>
+    <p>   </p>
+
+    <!-- Table and buttons -->
+    <div class="portfolio-container">
+        <!-- Table -->
+        <table class="portfolio-table">
+            <thead>
+                <tr>
+                    <th>Year</th>
+                    <th>Project</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>2012</td>
+                    <td>Stair, Cosmos Mall and Entertainment Complex, St. Petersburg</td>
+                    <td><button class="details-btn">More information about the project</button></td>
+                </tr>
+                <tr>
+                    <td>2014</td>
+                    <td>Lesnaya Formula Residence</td>
+                    <td><button class="details-btn">More information about the project</button></td>
+                </tr>
+                <tr>
+                    <td>2014</td>
+                    <td>Apart-hotel/Residence K12, St. Petersburg</td>
+                    <td><button class="details-btn">More information about the project</button></td>
+                </tr>
+                <tr>
+                    <td>2016</td>
+                    <td>Yawara-Neva Yacht Club, St. Petersburg</td>
+                    <td><button class="details-btn">More information about the project</button></td>
+                </tr>
+                <tr>
+                    <td>2018</td>
+                    <td>Lachta Center. Multifunctional building, St. Petersburg</td>
+                    <td><button class="details-btn">More information about the project</button></td>
+                </tr>
+                <tr>
+                    <td>2021</td>
+                    <td>Sillamäe Old Town School/"Vanalinn" Gymnasium, Sillamäe, Estonia</td>
+                    <td><button class="details-btn">More information about the project</button></td>
+                </tr>
+                <tr>
+                    <td>2021</td>
+                    <td>Muhu Maja Cultural Center, Muhu island, Estonia</td>
+                    <td><button class="details-btn">More information about the project</button></td>
+                </tr>
+                <tr>
+                    <td>2022</td>
+                    <td>Narva State Gymnasium, Narva, Estonia</td>
+                    <td><button class="details-btn">More information about the project</button></td>
+                </tr>
+                <tr>
+                    <td>2023</td>
+                    <td>Narva Estonian School, Narva, Estonia</td>
+                    <td><button class="details-btn">More information about the project</button></td>
+                </tr>
+                <tr>
+                    <td>2023</td>
+                    <td>Narva Kindergarten Punamütsike, Narva, Estonia</td>
+                    <td><button class="details-btn">More information about the project</button></td>
+                </tr>
+                <tr>
+                    <td>2024</td>
+                    <td>Magdaleena Kindergarten, Tallinn, Estonia</td>
+                    <td><button class="details-btn">More information about the project</button></td>
+                </tr>
+                <tr>
+                    <td>2024</td>
+                    <td>Lootsi 8Commercial Center Laagri, vertical blinds, Tallinn, Estonia</td>
+                    <td><button class="details-btn">More information about the project</button></td>
+                </tr>
+                <tr>
+                    <td>2024</td>
+                    <td>Mercedes Showroom - VEHO, Tallinn, Estonia</td>
+                    <td><button class="details-btn">More information about the project</button></td>
+                </tr>
+                <tr>
+                    <td>2024</td>
+                    <td>Healing Hotel GREEN FLOW Baikal, Russia</td>
+                    <td><button class="details-btn">More information about the project</button></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer>
+    <p>Dmitry Zhimirikin, <span id="year"></span></p>
+</footer>
+
+<script src="en/scripts_portfolio_en.js"></script> 
+
+</body>
+</html>
