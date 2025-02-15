@@ -1,0 +1,158 @@
+/* Общие стили */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+    background-color: #3a7bd5;
+    color: white;
+}
+
+/* Языковой переключатель */
+.language-switcher {
+    display: flex;
+    justify-content: flex-end;
+    padding: 10px;
+    background-color: #003d76;
+}
+
+.language-switcher a {
+    margin: 0 5px;
+    color: white;
+}
+
+.language-switcher img {
+    width: 40px;
+    height: auto;
+}
+
+/* Меню */
+nav {
+    display: flex;
+    justify-content: space-around;
+    background-color: white;
+    padding: 10px;
+}
+
+nav a {
+    color: black;
+    text-decoration: none;
+    padding: 10px;
+    font-size: 16px;
+}
+
+/* Заголовок */
+.text-container h1 {
+    font-size: 32px;
+    margin-bottom: 20px;
+    color: white;
+    background-color: #3a7bd5;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+/* Главная секция */
+#home {
+    position: relative;
+    padding: 20px;
+    text-align: center;
+    background-color: #3a7bd5;
+}
+
+/* Контейнер для текста */
+.text-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    text-align: left;
+    background-color: #3a7bd5;
+}
+
+.text-container p {
+    font-size: 16px;
+    margin-bottom: 15px;
+    color: white; /* Белый текст */
+}
+
+/* Кнопка "Образцы работ" */
+.button-container {
+    margin-top: 20px;
+}
+
+.details-btn {
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #003d76;
+    color: white;
+    border: 2px solid #003d76;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+    width: 100%;
+}
+
+.details-btn:hover {
+    background-color: #00bfff;
+    color: black;
+}
+
+/* Таблица в вертикальном формате */
+.table-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 15px;
+    background-color: white;
+    color: black;
+    border-radius: 5px;
+    max-width: 90%;
+    margin: auto;
+}
+
+.table-item {
+    padding: 10px;
+    background-color: #f3f3f3;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Футер */
+footer {
+    text-align: center;
+    padding: 10px; /* Уменьшенный отступ */
+    background-color: white; /* Белая заливка */
+    color: black; /* Черный текст */
+    margin-top: 20px;
+    box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.2); /* Тень сверху */
+}
+
+footer p {
+    margin: 0; /* Убираем отступы у текста */
+}
+
+/* Адаптация для мобильных устройств */
+@media (max-width: 768px) {
+    .table-container {
+        max-width: 100%;
+        padding: 10px;
+    }
+    
+    .text-container h1 {
+        font-size: 24px;
+    }
+    
+    .text-container p {
+        font-size: 14px;
+    }
+    
+    nav {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    nav a {
+        width: 100%;
+        text-align: center;
+        border-bottom: 1px solid #444;
+    }
+}
