@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <base href="https://dzhimirikin.github.io/CV/"> <!-- Восстановленная строка -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Мой сайт-Контакты</title>
+    <link rel="stylesheet" href="global-assets/styles_contacts.css">
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            // Получаем сохранённое разрешение экрана из localStorage
+            let prevWidth = parseInt(localStorage.getItem("screenWidth"));
+            let prevHeight = parseInt(localStorage.getItem("screenHeight"));
+
+            // Определяем, какой CSS-файл загружать
+            let cssFile = (prevWidth >= 1920 && prevHeight >= 1080) 
+                          ? "global-assets/styles_contacts.css" 
+                          : "global-assets/styles_contacts_lowres.css";
+
+            // Добавляем <link> для нужного CSS
+            let link = document.createElement("link");
+            link.rel = "stylesheet";
+            link.href = cssFile;
+            document.head.appendChild(link);
+
+            // Проверяем изменение разрешения экрана в реальном времени
+            window.addEventListener("resize", function () {
+                let newWidth = window.screen.width * window.devicePixelRatio;
+                let newHeight = window.screen.height * window.devicePixelRatio;
+
+                if (newWidth !== prevWidth || newHeight !== prevHeight) {
+                    localStorage.setItem("screenWidth", newWidth);
+                    localStorage.setItem("screenHeight", newHeight);
+                    location.reload();  // Перезагружаем страницу для применения нового CSS
+                }
+            });
+        });
+    </script>
+</head>
+
+<body>
+
+<!-- Меню -->
+<nav>
+    <a href="ru/index_ru.html">Главная</a>
+    <a href="ru/tools_ru.html">Рабочие инструменты</a>
+    <a href="ru/portfolio_ru.html">Портфолио</a>
+    <a href="ru/contacts_ru.html">Контакты</a>
+    <a href="ru/PDF/Zhimirikin_CV_08.02.2025_RUS.pdf" target="_blank">Резюме</a>
+</nav>
+
+<!-- Контакты -->
+<section id="contacts">
+    <h2>Контакты</h2>
+    <p>Тел., WhatsApp: +7931 3166455 e-mail: d.zhimirikin@gmail.com</p>
+    <p>Оставьте сообщение, и я свяжусь с вами.</p>
+
+    <!-- Контейнер для формы -->
+    <div class="contact-form-container">
+        <!-- Форма для отправки сообщений через Formspree -->
+        <form id="contact-form" action="https://formspree.io/f/xgvozrjd" method="POST">
+            <div class="form-field">
+                <label for="name">Ваше имя:</label>
+                <input type="text" id="name" name="name" required>
+            </div>
+
+            <div class="form-field">
+                <label for="email">Ваш Email:</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+
+            <div class="form-field">
+                <label for="message">Сообщение:</label>
+                <textarea id="message" name="message" rows="10" required></textarea>
+            </div>
+
+            <button type="submit">Отправить</button>
+        </form>
+    </div>
+
+    <!-- Сообщение об успешной отправке -->
+    <div id="confirmation-message" style="display: none; color: green;">
+        Ваше сообщение отправлено.
+    </div>
+</section>
+
+<!-- Подпись внизу -->
+<footer>
+    <p>Dmitry Zhimirikin, <span id="year"></span></p>
+</footer>
+
+<!-- Подключаем внешний скрипт -->
+<script src="ru/scripts_contacts_ru.js"></script>
+
+</body>
+</html>
