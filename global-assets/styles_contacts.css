@@ -1,0 +1,139 @@
+/* Общий стиль */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f9fafc; /* Белый цвет фона */
+    padding-bottom: 50px; /* Отступ снизу для футера */
+}
+
+/* Меню */
+nav {
+    text-align: center;
+    background-color: #f9fafc;
+    padding: 15px;
+    position: relative;
+    z-index: 3;
+}
+
+nav a {
+    color: black;
+    text-decoration: none;
+    margin: 0 15px;
+    font-size: 18px;
+}
+
+nav a:hover {
+    text-decoration: underline;
+}
+
+/* Контакты */
+#contacts {
+    padding: 15px;
+    margin: 20px auto;
+    max-width: 600px;
+    height: auto;
+    color: #fff;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.6);
+    border-radius: 8px;
+    text-align: center;
+}
+
+/* Фон с градиентом */
+#contacts::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: linear-gradient(to right, #3a7bd5 60%, rgba(58, 123, 213, 0.6) 70%, rgba(58, 123, 213, 0) 100%), 
+                url('../global-assets/JPG/background-image.jpg') center/cover no-repeat;
+    z-index: -1;
+}
+
+/* Заголовки и текст */
+h1 {
+    font-size: 28px;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 10px;
+    color: #fff;
+}
+
+p {
+    font-size: 18px;
+    text-align: center;
+    margin-bottom: 10px;
+    color: #fff;
+}
+
+
+/* Форма */
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* Выравнивание по левому краю */
+    gap: 15px;
+    width: 100%;
+    max-width: 600px; /* Максимальная ширина формы */
+    margin: 0 auto;
+}
+
+/* Поля ввода и текст в них */
+input, textarea {
+    font-family: inherit;  /* Наследуем шрифт из body (как у p) */
+    font-size: inherit;  /* Наследуем размер шрифта из body */
+    color: inherit; /* Наследуем цвет текста из body (как у p) */
+    padding: 14px; /* Немного больше отступа для улучшенного восприятия */
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    background-color: white;
+    width: 100%; /* Поля одинаковой ширины */
+    box-sizing: border-box; /* Учитывает padding в ширину поля */
+}
+
+/* Для textarea: Увеличиваем высоту */
+textarea {
+    resize: vertical; /* Позволяет пользователю изменять высоту поля */
+    min-height: 150px; /* Минимальная высота текстового поля */
+}
+
+/* Названия полей ввода */
+label {
+    font-size: inherit;  /* Наследуем размер шрифта из body (как у p) */
+    font-weight: bold; /* Сделать текст жирным */
+    margin-bottom: 5px; /* Отступ между меткой и полем ввода */
+    color: #fff; /* Цвет текста, как у параграфа */
+}
+
+/* Кнопка */
+button {
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #003d76;
+    color: white;
+    border: 2px solid #003d76;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s ease;
+    margin-top: 10px; /* Немного отступа сверху */
+}
+
+button:hover {
+    background-color: #00bfff;
+    color: black;
+    border-color: #00bfff;
+}
+
+/* Футер */
+footer {
+    text-align: center;
+    padding: 5px; /* Уменьшенный отступ */
+    background-color: #f9fafc;
+    color: black;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    z-index: 9999; /* Всегда на переднем плане */
+}
