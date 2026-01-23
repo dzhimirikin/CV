@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="et">
+<head>
+<meta charset="UTF-8">
+<title>Dmitri Žimirikin — Insenerportfoolio</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<header>
+  <div class="header-inner">
+    <div class="logo">Dmitri Žimirikin</div>
+
+    <nav>
+      <ul id="menu">
+        <li><a href="#about">Profiil</a></li>
+        <li><a href="#skills">Oskused</a></li>
+        <li><a href="#projects">Projektid</a></li>
+        <li><a href="#gallery">Galerii</a></li>
+        <li><a href="#contacts">Kontakt</a></li>
+      </ul>
+    </nav>
+
+    <div class="burger" onclick="toggleMenu()">
+      <div></div><div></div><div></div>
+    </div>
+
+    <div class="lang">
+      <a href="index.html">EN</a> |
+      <a href="index_ru.html">RU</a> |
+      <strong>EE</strong>
+    </div>
+  </div>
+</header>
+
+<div class="hero">
+  <div class="hero-overlay">
+    <div class="hero-inner">
+      <img src="photo.png" alt="Dmitri Žimirikin" class="hero-photo">
+
+      <div>
+        <h1>Dmitri Žimirikin</h1>
+        <p>
+          Fassaadi- ja konstruktsioonide projekteerimise insener. Kogemus elamu- ja
+          büroohoonetega, konstruktsioonide ja detailse projekteerimise (K2–K3) staadiumid,
+          detailide koostamine ja paigaldamise tugi.
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<section id="about">
+  <div class="card">
+    <h2>Profiil</h2>
+    <p>
+      Insenerlik lähenemine projekteerimisele, koostöö arhitektide, tootjate ja paigaldajatega.
+      Selge dokumentatsioon, ratsionaalsed lahendused ja tähelepanu paigaldusdetailidele.
+    </p>
+  </div>
+</section>
+
+<section id="skills">
+  <h2>Oskused tarkvaras</h2>
+
+  <div class="skill">
+    <span class="skill-name">AutoCAD</span>
+    <div class="skill-bar"><div class="skill-progress" style="width:90%;"></div></div>
+    <span class="skill-percent">90%</span>
+  </div>
+
+  <div class="skill">
+    <span class="skill-name">SchüCal / Schüco Systems</span>
+    <div class="skill-bar"><div class="skill-progress" style="width:85%;"></div></div>
+    <span class="skill-percent">85%</span>
+  </div>
+
+  <div class="skill">
+    <span class="skill-name">Revit</span>
+    <div class="skill-bar"><div class="skill-progress" style="width:75%;"></div></div>
+    <span class="skill-percent">75%</span>
+  </div>
+
+  <div class="skill">
+    <span class="skill-name">Compass 3D</span>
+    <div class="skill-bar"><div class="skill-progress" style="width:80%;"></div></div>
+    <span class="skill-percent">80%</span>
+  </div>
+
+</section>
+
+<section id="projects">
+  <h2>Projektid</h2>
+  <div class="projects">
+    <div class="card project">
+      <img src="001_IL/001_IL_1.jpg" alt="Elamuhoone IL">
+      <h3>Elamuhoone IL</h3>
+      <p>Alumiiniumfassaadid. Projektietapid K2–K3, detailide koostamine ja paigaldustoetus.</p>
+    </div>
+
+    <div class="card project">
+      <img src="002_KR/002_KR_1.jpg" alt="Büroohoone KR">
+      <h3>Büroohoone KR</h3>
+      <p>Vitrüüni fassaadi projekteerimine, detailide koostamine, koostöö konstruktsiooniengineeridega.</p>
+    </div>
+  </div>
+</section>
+
+<section id="gallery">
+  <h2>Galerii</h2>
+  <div class="gallery">
+    <img src="001_IL/001_IL_2.jpg" alt="Elamuhoone IL – Detail">
+    <img src="001_IL/001_IL_3.jpg" alt="Elamuhoone IL – Paigaldus">
+    <img src="002_KR/002_KR_2.jpg" alt="Büroohoone KR – Detail">
+    <img src="002_KR/002_KR_3.jpg" alt="Büroohoone KR – Paigaldus">
+  </div>
+</section>
+
+<section id="contacts">
+  <div class="card">
+    <h2>Kontakt</h2>
+    <p>Email: your@email.com</p>
+    <p>Telefon: +372 …</p>
+  </div>
+</section>
+
+<footer>
+  © 2026 Dmitri Žimirikin — Insenerportfoolio
+</footer>
+
+<script>
+function toggleMenu(){document.getElementById("menu").classList.toggle("active");}
+</script>
+
+</body>
+</html>

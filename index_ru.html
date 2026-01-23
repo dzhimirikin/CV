@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<title>Дмитрий Жимирикин — Инженерное портфолио</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<header>
+  <div class="header-inner">
+    <div class="logo">Дмитрий Жимирикин</div>
+
+    <nav>
+      <ul id="menu">
+        <li><a href="#about">Обо мне</a></li>
+        <li><a href="#skills">Навыки</a></li>
+        <li><a href="#projects">Объекты</a></li>
+        <li><a href="#gallery">Галерея</a></li>
+        <li><a href="#contacts">Контакты</a></li>
+      </ul>
+    </nav>
+
+    <div class="burger" onclick="toggleMenu()">
+      <div></div><div></div><div></div>
+    </div>
+
+    <div class="lang">
+      <a href="index.html">EN</a> |
+      <strong>RU</strong> |
+      <a href="index_ee.html">EE</a>
+    </div>
+  </div>
+</header>
+
+<div class="hero">
+  <div class="hero-overlay">
+    <div class="hero-inner">
+      <img src="photo.png" alt="Дмитрий Жимирикин" class="hero-photo">
+
+      <div>
+        <h1>Дмитрий Жимирикин</h1>
+        <p>
+          Инженер-проектировщик фасадных и алюминиевых конструкций. Опыт работы с жилыми и коммерческими объектами,
+          стадии КМ–КМД, разработка узлов и сопровождение монтажа.
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<section id="about">
+  <div class="card">
+    <h2>Профиль</h2>
+    <p>
+      Инженерный подход к проектированию, координация с архитекторами, производителями и подрядчиками.
+      Четкая документация, рациональные решения и внимание к монтажной части.
+    </p>
+  </div>
+</section>
+
+<section id="skills">
+  <h2>Навыки работы с ПО</h2>
+
+  <div class="skill">
+    <span class="skill-name">AutoCAD</span>
+    <div class="skill-bar"><div class="skill-progress" style="width:90%;"></div></div>
+    <span class="skill-percent">90%</span>
+  </div>
+
+  <div class="skill">
+    <span class="skill-name">SchüCal / Schüco Systems</span>
+    <div class="skill-bar"><div class="skill-progress" style="width:85%;"></div></div>
+    <span class="skill-percent">85%</span>
+  </div>
+
+  <div class="skill">
+    <span class="skill-name">Revit</span>
+    <div class="skill-bar"><div class="skill-progress" style="width:75%;"></div></div>
+    <span class="skill-percent">75%</span>
+  </div>
+
+  <div class="skill">
+    <span class="skill-name">Compass 3D</span>
+    <div class="skill-bar"><div class="skill-progress" style="width:80%;"></div></div>
+    <span class="skill-percent">80%</span>
+  </div>
+
+</section>
+
+<section id="projects">
+  <h2>Выполненные объекты</h2>
+  <div class="projects">
+    <div class="card project">
+      <img src="001_IL/001_IL_1.jpg" alt="Жилой дом IL">
+      <h3>Жилой дом IL</h3>
+      <p>Фасадные системы из алюминия. Стадии КМ–КМД, разработка узлов, сопровождение монтажа.</p>
+    </div>
+
+    <div class="card project">
+      <img src="002_KR/002_KR_1.jpg" alt="Офисное здание KR">
+      <h3>Офисное здание KR</h3>
+      <p>Проектирование витражных фасадов, узлы, координация со структурными инженерами.</p>
+    </div>
+  </div>
+</section>
+
+<section id="gallery">
+  <h2>Галерея</h2>
+  <div class="gallery">
+    <img src="001_IL/001_IL_2.jpg" alt="Жилой дом IL – Деталь">
+    <img src="001_IL/001_IL_3.jpg" alt="Жилой дом IL – Монтаж">
+    <img src="002_KR/002_KR_2.jpg" alt="Офисное здание KR – Деталь">
+    <img src="002_KR/002_KR_3.jpg" alt="Офисное здание KR – Монтаж">
+  </div>
+</section>
+
+<section id="contacts">
+  <div class="card">
+    <h2>Контакты</h2>
+    <p>Email: your@email.com</p>
+    <p>Телефон: +372 …</p>
+  </div>
+</section>
+
+<footer>
+  © 2026 Дмитрий Жимирикин — Инженерное портфолио
+</footer>
+
+<script>
+function toggleMenu(){document.getElementById("menu").classList.toggle("active");}
+</script>
+
+</body>
+</html>
