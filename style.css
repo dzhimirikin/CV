@@ -134,13 +134,15 @@ footer{background:#1f2933;color:#fff;text-align:center;padding:25px;margin-top:4
 
 /* ===== MOBILE: SKILLS TEXT ONLY ===== */
 @media (max-width: 768px) {
-  .skill-bar {
-    display: none;
-  }
 
   .skill {
+    flex-wrap: nowrap;      /* ← КЛЮЧЕВО */
     flex-direction: row;
     align-items: baseline;
+  }
+
+  .skill-bar {
+    display: none;
   }
 
   .skill-name {
