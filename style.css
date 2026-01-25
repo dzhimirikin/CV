@@ -132,8 +132,23 @@ footer{background:#1f2933;color:#fff;text-align:center;padding:25px;margin-top:4
     background: #11171a;
 }
 
+/* ===== MOBILE: SKILLS TEXT ONLY ===== */
 @media (max-width: 768px) {
-  .skill-progress {
-    transition: none !important;
+  .skill-bar {
+    display: none;
+  }
+
+  .skill {
+    flex-direction: row;
+    align-items: baseline;
+  }
+
+  .skill-name {
+    flex: none;
+  }
+
+  .skill-percent {
+    margin-left: auto;
+    font-weight: normal;
   }
 }
