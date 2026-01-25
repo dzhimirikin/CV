@@ -9,16 +9,18 @@
 
 <body>
 
+<!-- HEADER -->
 <header>
   <div class="header-inner">
     <div class="logo">Дмитрий Жимирикин</div>
 
     <nav>
       <ul id="menu">
-        <li><a href="#about">Обо мне</a></li>
+        <li><a href="#about">О себе</a></li>
         <li><a href="#skills">Навыки</a></li>
-        <li><a href="#projects">Объекты</a></li>
+        <li><a href="#projects">Проекты</a></li>
         <li><a href="#gallery">Галерея</a></li>
+        <li><a href="#cv">Резюме</a></li> 
         <li><a href="#contacts">Контакты</a></li>
       </ul>
     </nav>
@@ -35,102 +37,361 @@
   </div>
 </header>
 
+<!-- HERO -->
 <div class="hero">
   <div class="hero-overlay">
     <div class="hero-inner">
       <img src="photo.png" alt="Дмитрий Жимирикин" class="hero-photo">
-
       <div>
         <h1>Дмитрий Жимирикин</h1>
         <p>
-          Инженер-проектировщик фасадных и алюминиевых конструкций. Опыт работы с жилыми и коммерческими объектами,
-          стадии КМ–КМД, разработка узлов и сопровождение монтажа.
+          Инженер по конструкциям и фасадам с опытом работы над жилыми и коммерческими проектами. 
+          Специализируется на алюминиевых и фасадных системах, этапах проектирования KM&KМД, 
+          технической деталировке и поддержке на стройплощадке.
         </p>
       </div>
     </div>
   </div>
 </div>
 
+<!-- ABOUT -->
 <section id="about">
   <div class="card">
     <h2>Профиль</h2>
     <p>
-      Инженерный подход к проектированию, координация с архитекторами, производителями и подрядчиками.
-      Четкая документация, рациональные решения и внимание к монтажной части.
+      Инженерный подход к проектированию, координация с архитекторами, производителями и подрядчиками. 
+      Чёткая документация, рациональные решения и внимание к технологичности.
     </p>
   </div>
 </section>
 
+<!-- SOFTWARE SKILLS -->
 <section id="skills">
-  <h2>Навыки работы с ПО</h2>
+  <h2>Навыки работы с программами</h2>
 
+  <h3><u>CAD/CAM/CAE</u></h3>
   <div class="skill">
     <span class="skill-name">AutoCAD</span>
-    <div class="skill-bar"><div class="skill-progress" style="width:90%;"></div></div>
+    <div class="skill-bar"><div class="skill-progress" data-width="90%"></div></div>
+    <span class="skill-percent">90%</span>
+  </div>
+  <div class="skill">
+    <span class="skill-name">Inventor</span>
+    <div class="skill-bar"><div class="skill-progress" data-width="70%"></div></div>
+    <span class="skill-percent">70%</span>
+  </div>
+  <div class="skill">
+    <span class="skill-name">LogiKAL</span>
+    <div class="skill-bar"><div class="skill-progress" data-width="90%"></div></div>
+    <span class="skill-percent">90%</span>
+  </div>
+  <div class="skill">
+    <span class="skill-name">Kompas3D</span>
+    <div class="skill-bar"><div class="skill-progress" data-width="70%"></div></div>
+    <span class="skill-percent">70%</span>
+  </div>
+
+  <h3><u>FEM</u></h3>
+  <div class="skill">
+    <span class="skill-name">SCAD</span>
+    <div class="skill-bar"><div class="skill-progress" data-width="70%"></div></div>
+    <span class="skill-percent">70%</span>
+  </div>
+
+  <h3><u>PDM</u></h3>
+  <div class="skill">
+    <span class="skill-name">BAUHUB</span>
+    <div class="skill-bar"><div class="skill-progress" data-width="90%"></div></div>
     <span class="skill-percent">90%</span>
   </div>
 
+  <h3><u>MS Office</u></h3>
   <div class="skill">
-    <span class="skill-name">SchüCal / Schüco Systems</span>
-    <div class="skill-bar"><div class="skill-progress" style="width:85%;"></div></div>
-    <span class="skill-percent">85%</span>
+    <span class="skill-name">MS Word</span>
+    <div class="skill-bar"><div class="skill-progress" data-width="90%"></div></div>
+    <span class="skill-percent">90%</span>
   </div>
-
   <div class="skill">
-    <span class="skill-name">Revit</span>
-    <div class="skill-bar"><div class="skill-progress" style="width:75%;"></div></div>
-    <span class="skill-percent">75%</span>
+    <span class="skill-name">MS Excel</span>
+    <div class="skill-bar"><div class="skill-progress" data-width="90%"></div></div>
+    <span class="skill-percent">90%</span>
   </div>
-
   <div class="skill">
-    <span class="skill-name">Compass 3D</span>
-    <div class="skill-bar"><div class="skill-progress" style="width:80%;"></div></div>
+    <span class="skill-name">MS PowerPoint</span>
+    <div class="skill-bar"><div class="skill-progress" data-width="90%"></div></div>
+    <span class="skill-percent">90%</span>
+  </div>
+  <div class="skill">
+    <span class="skill-name">MS Project</span>
+    <div class="skill-bar"><div class="skill-progress" data-width="80%"></div></div>
     <span class="skill-percent">80%</span>
   </div>
 
+  <h3><u>BIM</u></h3>
+  <div class="skill">
+    <span class="skill-name">ArchiCAD</span>
+    <div class="skill-bar"><div class="skill-progress" data-width="70%"></div></div>
+    <span class="skill-percent">70%</span>
+  </div>
+  <div class="skill">
+    <span class="skill-name">Revit</span>
+    <div class="skill-bar"><div class="skill-progress" data-width="30%"></div></div>
+    <span class="skill-percent">30%</span>
+  </div>
+
+  <h3><u>Графические редакторы</u></h3>
+  <div class="skill">
+    <span class="skill-name">Adobe Photoshop</span>
+    <div class="skill-bar"><div class="skill-progress" data-width="50%"></div></div>
+    <span class="skill-percent">50%</span>
+  </div>
+
+  <h3><u>WEB</u></h3>
+  <div class="skill">
+    <span class="skill-name">HTML, Java</span>
+    <div class="skill-bar"><div class="skill-progress" data-width="10%"></div></div>
+    <span class="skill-percent">10%</span>
+  </div>
+
 </section>
 
+<!-- PROJECTS -->
 <section id="projects">
-  <h2>Выполненные объекты</h2>
+  <h2>Избранные проекты</h2>
   <div class="projects">
+
+    <!-- 000_STAIR -->
     <div class="card project">
-      <img src="001_IL/001_IL_1.jpg" alt="Жилой дом IL">
-      <h3>Жилой дом IL</h3>
-      <p>Фасадные системы из алюминия. Стадии КМ–КМД, разработка узлов, сопровождение монтажа.</p>
+      <img src="000_STAIR/000_STAIR_01.jpg" alt="000_STAIR">
+      <h3>000_STAIR</h3>
+      <p>Проектирование и детализация лестниц. Алюминиевые элементы и конструктивная поддержка.</p>
     </div>
 
+    <!-- 001_IL -->
     <div class="card project">
-      <img src="002_KR/002_KR_1.jpg" alt="Офисное здание KR">
-      <h3>Офисное здание KR</h3>
-      <p>Проектирование витражных фасадов, узлы, координация со структурными инженерами.</p>
+      <img src="001_IL/001_IL_1.jpg" alt="001_IL">
+      <h3>001_IL</h3>
+      <p>Жилой дом. Этапы проекта K2–K3, подготовка деталей и поддержка монтажа.</p>
     </div>
+
+    <!-- 002_KR -->
+    <div class="card project">
+      <img src="002_KR/002_KR_1.jpg" alt="002_KR">
+      <h3>002_KR</h3>
+      <p>Офисное здание. Проектирование фасада, подготовка деталей, сотрудничество с конструкторами.</p>
+    </div>
+
+    <!-- 003_BY -->
+    <div class="card project">
+      <img src="003_BY/003_BY_01.jpg" alt="003_BY">
+      <h3>003_BY</h3>
+      <p>Проектирование фасадной системы с алюминиевыми элементами и чертежами для производства.</p>
+    </div>
+
+    <!-- 004_LAKHTA -->
+    <div class="card project">
+      <img src="004_LAKHTA/004_LAKHTA_01.jpg" alt="004_LAKHTA">
+      <h3>004_LAKHTA</h3>
+      <p>Многоэтажный жилой проект. Проектирование и поддержка на стройплощадке.</p>
+    </div>
+
+    <!-- 005_SILLA -->
+    <div class="card project">
+      <img src="005_SILLA/005_SILLA_01.jpg" alt="005_SILLA">
+      <h3>005_SILLA</h3>
+      <p>Многоэтажный жилой проект. Проектирование и поддержка на стройплощадке.</p>
+    </div>
+
+    <!-- 006_MUHU -->
+    <div class="card project">
+      <img src="006_MUHU/006_MUHU_01.jpg" alt="006_MUHU">
+      <h3>006_MUHU</h3>
+      <p>High-rise residential project. Design and site support.</p>
+    </div>
+
+    <!-- 007_NRG -->
+    <div class="card project">
+      <img src="007_NRG/007_NRG_01.jpg" alt="007_NRG">
+      <h3>007_NRG</h3>
+      <p>High-rise residential project. Design and site support.</p>
+    </div>
+
+    <!-- 008_NEK -->
+    <div class="card project">
+      <img src="008_NEK/008_NEK_01.jpg" alt="008_NEK">
+      <h3>008_NEK</h3>
+      <p>High-rise residential project. Design and site support.</p>
+    </div>
+
+    <!-- 009_NEL -->
+    <div class="card project">
+      <img src="009_NEL/009_NEL_01.png" alt="009_NEL">
+      <h3>009_NEL</h3>
+      <p>High-rise residential project. Design and site support.</p>
+    </div>
+
+    <!-- 010_ML -->
+    <div class="card project">
+      <img src="010_ML/010_ML_01.jpg" alt="010_ML">
+      <h3>010_ML</h3>
+      <p>High-rise residential project. Design and site support.</p>
+    </div>
+
+    <!-- 011_LAAGRI -->
+    <div class="card project">
+      <img src="011_LAAGRI/011_LAAGRI_01.png" alt="011_LAAGRI">
+      <h3>011_LAAGRI</h3>
+      <p>High-rise residential project. Design and site support.</p>
+    </div>
+
+    <!-- 012_MERCEDES -->
+    <div class="card project">
+      <img src="012_MERCEDES/012_MERCEDES_01.jpg" alt="012_MERCEDES">
+      <h3>012_MERCEDES</h3>
+      <p>High-rise residential project. Design and site support.</p>
+    </div>
+
+    <!-- 013_GREENFL -->
+    <div class="card project">
+      <img src="013_GREENFL/013_GREENFL_01.jpg" alt="013_GREENFL">
+      <h3>013_GREENFL</h3>
+      <p>High-rise residential project. Design and site support.</p>
+    </div>
+
+    <!-- 014_KASTANI -->
+    <div class="card project">
+      <img src="014_KASTANI/014_KASTANI_01.jpg" alt="014_KASTANI">
+      <h3>014_KASTANI</h3>
+      <p>High-rise residential project. Design and site support.</p>
+    </div>
+
   </div>
 </section>
 
+<!-- GALLERY -->
 <section id="gallery">
-  <h2>Галерея</h2>
-  <div class="gallery">
-    <img src="001_IL/001_IL_2.jpg" alt="Жилой дом IL – Деталь">
-    <img src="001_IL/001_IL_3.jpg" alt="Жилой дом IL – Монтаж">
-    <img src="002_KR/002_KR_2.jpg" alt="Офисное здание KR – Деталь">
-    <img src="002_KR/002_KR_3.jpg" alt="Офисное здание KR – Монтаж">
+  <h2>Gallery</h2>
+  <div class="gallery-wrapper">
+    <div class="gallery">
+
+      <!-- 000_STAIR -->
+      <a href="000_STAIR/000_STAIR_01.jpg" target="_blank"><img src="000_STAIR/000_STAIR_01.jpg" alt="000_STAIR"></a>
+      <a href="000_STAIR/000_STAIR_02.jpg" target="_blank"><img src="000_STAIR/000_STAIR_02.jpg" alt="000_STAIR"></a>
+      <a href="000_STAIR/000_STAIR_03.jpg" target="_blank"><img src="000_STAIR/000_STAIR_03.jpg" alt="000_STAIR"></a>
+      <a href="000_STAIR/000_STAIR_04.jpg" target="_blank"><img src="000_STAIR/000_STAIR_04.jpg" alt="000_STAIR"></a>
+      <a href="000_STAIR/000_STAIR_05.jpg" target="_blank"><img src="000_STAIR/000_STAIR_05.jpg" alt="000_STAIR"></a>
+      <a href="000_STAIR/000_STAIR_06.jpg" target="_blank"><img src="000_STAIR/000_STAIR_06.jpg" alt="000_STAIR"></a>
+      <a href="000_STAIR/000_STAIR_07.jpg" target="_blank"><img src="000_STAIR/000_STAIR_07.jpg" alt="000_STAIR"></a>
+      <a href="000_STAIR/000_STAIR_08.jpg" target="_blank"><img src="000_STAIR/000_STAIR_08.jpg" alt="000_STAIR"></a>
+
+      <!-- 001_IL -->
+      <a href="001_IL/001_IL_1.jpg" target="_blank"><img src="001_IL/001_IL_1.jpg" alt="001_IL"></a>
+      <a href="001_IL/001_IL_2.jpg" target="_blank"><img src="001_IL/001_IL_2.jpg" alt="001_IL"></a>
+      <a href="001_IL/001_IL_3.jpg" target="_blank"><img src="001_IL/001_IL_3.jpg" alt="001_IL"></a>
+      <a href="001_IL/001_IL_4.jpg" target="_blank"><img src="001_IL/001_IL_4.jpg" alt="001_IL"></a>
+      <a href="001_IL/001_IL_5.jpg" target="_blank"><img src="001_IL/001_IL_5.jpg" alt="001_IL"></a>
+      <a href="001_IL/001_IL_6.jpg" target="_blank"><img src="001_IL/001_IL_6.jpg" alt="001_IL"></a>
+      <a href="001_IL/001_IL_7.jpg" target="_blank"><img src="001_IL/001_IL_7.jpg" alt="001_IL"></a>
+      <a href="001_IL/001_IL_8.jpg" target="_blank"><img src="001_IL/001_IL_8.jpg" alt="001_IL"></a>
+      <a href="001_IL/001_IL_9.jpg" target="_blank"><img src="001_IL/001_IL_9.jpg" alt="001_IL"></a>
+      <a href="001_IL/001_IL_10.jpg" target="_blank"><img src="001_IL/001_IL_10.jpg" alt="001_IL"></a>
+
+      <!-- 002_KR -->
+      <a href="002_KR/002_KR_1.jpg" target="_blank"><img src="002_KR/002_KR_1.jpg" alt="002_KR"></a>
+      <a href="002_KR/002_KR_2.jpg" target="_blank"><img src="002_KR/002_KR_2.jpg" alt="002_KR"></a>
+      <a href="002_KR/002_KR_3.jpg" target="_blank"><img src="002_KR/002_KR_3.jpg" alt="002_KR"></a>
+      <a href="002_KR/002_KR_4.jpg" target="_blank"><img src="002_KR/002_KR_4.jpg" alt="002_KR"></a>
+      <a href="002_KR/002_KR_5.jpg" target="_blank"><img src="002_KR/002_KR_5.jpg" alt="002_KR"></a>
+      <a href="002_KR/002_KR_6.jpg" target="_blank"><img src="002_KR/002_KR_6.jpg" alt="002_KR"></a>
+
+      <!-- 003_BY -->
+      <a href="003_BY/003_BY_01.jpg" target="_blank"><img src="003_BY/003_BY_01.jpg" alt="003_BY"></a>
+      <a href="003_BY/003_BY_02.jpg" target="_blank"><img src="003_BY/003_BY_02.jpg" alt="003_BY"></a>
+      <a href="003_BY/003_BY_03.jpg" target="_blank"><img src="003_BY/003_BY_03.jpg" alt="003_BY"></a>
+      <a href="003_BY/003_BY_04.jpg" target="_blank"><img src="003_BY/003_BY_04.jpg" alt="003_BY"></a>
+      <a href="003_BY/003_BY_05.jpg" target="_blank"><img src="003_BY/003_BY_05.jpg" alt="003_BY"></a>
+      <a href="003_BY/003_BY_06.jpg" target="_blank"><img src="003_BY/003_BY_06.jpg" alt="003_BY"></a>
+      <a href="003_BY/003_BY_07.jpg" target="_blank"><img src="003_BY/003_BY_07.jpg" alt="003_BY"></a>
+      <a href="003_BY/003_BY_08.jpg" target="_blank"><img src="003_BY/003_BY_08.jpg" alt="003_BY"></a>
+      <a href="003_BY/003_BY_09.jpg" target="_blank"><img src="003_BY/003_BY_09.jpg" alt="003_BY"></a>
+      <a href="003_BY/003_BY_10.jpg" target="_blank"><img src="003_BY/003_BY_10.jpg" alt="003_BY"></a>
+
+      <!-- 004_LAKHTA -->
+      <a href="004_LAKHTA/004_LAKHTA_01.jpg" target="_blank"><img src="004_LAKHTA/004_LAKHTA_01.jpg" alt="004_LAKHTA"></a>
+      <a href="004_LAKHTA/004_LAKHTA_02.jpg" target="_blank"><img src="004_LAKHTA/004_LAKHTA_02.jpg" alt="004_LAKHTA"></a>
+      <a href="004_LAKHTA/004_LAKHTA_03.jpg" target="_blank"><img src="004_LAKHTA/004_LAKHTA_03.jpg" alt="004_LAKHTA"></a>
+      <a href="004_LAKHTA/004_LAKHTA_04.jpg" target="_blank"><img src="004_LAKHTA/004_LAKHTA_04.jpg" alt="004_LAKHTA"></a>
+
+    </div>
   </div>
 </section>
 
+<!-- CV -->
+<section id="cv">
+  <div class="card">
+    <h2>Скачать резюме</h2>
+    <p>Вы можете скачать мое резюме здесь:</p>
+    <a href="Dmitry Zhimirikin_RUSSIA_05.2025.pdf" download class="cv-link">Скачать резюме (PDF)</a>
+  </div>
+</section>
+
+<!-- CONTACTS -->
 <section id="contacts">
   <div class="card">
     <h2>Контакты</h2>
-    <p>Email: your@email.com</p>
-    <p>Телефон: +372 …</p>
+    <p>Email: d.zhimirikin@gmail.com</p>
+    <p>Телефон (EST): +372-53235078</p>
+    <p>Телефон (RUS): +7-931-3166455</p>
+    <br>
+    <p>
+    <a href="https://www.linkedin.com/in/dzhimirikin/"
+       target="_blank"
+       rel="noopener noreferrer">
+      <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/linkedin.svg"
+           alt=""
+           width="24"
+           height="24">
+    </a>
+    </p>
   </div>
 </section>
 
+<!-- FOOTER -->
 <footer>
   © 2026 Дмитрий Жимирикин — Инженерное портфолио
 </footer>
 
 <script>
-function toggleMenu(){document.getElementById("menu").classList.toggle("active");}
+function toggleMenu() {
+  document.getElementById("menu").classList.toggle("active");
+}
+
+// Animate skill bars on scroll
+function animateSkills() {
+  const skills = document.querySelectorAll('.skill-progress');
+
+  // MOBILE: fill immediately, no animation
+  if (window.innerWidth <= 768) {
+    skills.forEach(skill => {
+      skill.style.width = skill.dataset.width;
+    });
+    return;
+  }
+
+  // DESKTOP: animate on scroll
+  const triggerBottom = window.innerHeight * 0.9;
+
+  skills.forEach(skill => {
+    const skillTop = skill.getBoundingClientRect().top;
+    if (skillTop < triggerBottom && !skill.classList.contains('filled')) {
+      skill.style.width = skill.dataset.width;
+      skill.classList.add('filled');
+    }
+  });
+}
+
+window.addEventListener('scroll', animateSkills);
+window.addEventListener('load', animateSkills);
 </script>
 
 </body>
