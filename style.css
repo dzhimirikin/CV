@@ -48,9 +48,26 @@ section h3{margin:20px 0 10px;}
 .skill-bar{flex:2 1 300px;height:14px;background:#ddd;border-radius:7px;overflow:hidden;}
 .skill-progress{height:100%;background:#1f2933;border-radius:7px 0 0 7px; width:0; transition: width 1.2s ease-in-out;}
 .skill-percent{width:40px;text-align:right;font-weight:bold;}
-@media(max-width:768px){
-  .skill{flex-direction:column;align-items:flex-start;}
-  .skill-percent{width:auto;margin-top:3px;}
+@media (max-width: 768px) {
+
+  .skill {
+    flex-wrap: nowrap;      /* ← КЛЮЧЕВО */
+    flex-direction: row;
+    align-items: baseline;
+  }
+
+  .skill-bar {
+    display: none;
+  }
+
+  .skill-name {
+    flex: none;
+  }
+
+  .skill-percent {
+    margin-left: auto;
+    font-weight: normal;
+  }
 }
 
 /* ============ FOOTER ============ */
@@ -130,27 +147,4 @@ footer{background:#1f2933;color:#fff;text-align:center;padding:25px;margin-top:4
 
 .cv-link:hover {
     background: #11171a;
-}
-
-/* ===== MOBILE: SKILLS TEXT ONLY ===== */
-@media (max-width: 768px) {
-
-  .skill {
-    flex-wrap: nowrap;      /* ← КЛЮЧЕВО */
-    flex-direction: row;
-    align-items: baseline;
-  }
-
-  .skill-bar {
-    display: none;
-  }
-
-  .skill-name {
-    flex: none;
-  }
-
-  .skill-percent {
-    margin-left: auto;
-    font-weight: normal;
-  }
 }
