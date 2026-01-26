@@ -71,90 +71,94 @@
 <section id="skills">
   <h2>Programmitarkvara oskused</h2>
 
+  <!-- CAD/CAM/CAE -->
   <h3><u>CAD/CAM/CAE</u></h3>
   <div class="skill">
     <span class="skill-name">AutoCAD</span>
     <div class="skill-bar"><div class="skill-progress" data-width="90%"></div></div>
-    <span class="skill-percent">90%</span>
+    <span class="skill-percent">0%</span>
   </div>
   <div class="skill">
     <span class="skill-name">Inventor</span>
     <div class="skill-bar"><div class="skill-progress" data-width="70%"></div></div>
-    <span class="skill-percent">70%</span>
+    <span class="skill-percent">0%</span>
   </div>
   <div class="skill">
     <span class="skill-name">LogiKAL</span>
     <div class="skill-bar"><div class="skill-progress" data-width="90%"></div></div>
-    <span class="skill-percent">90%</span>
+    <span class="skill-percent">0%</span>
   </div>
   <div class="skill">
     <span class="skill-name">Kompas3D</span>
     <div class="skill-bar"><div class="skill-progress" data-width="70%"></div></div>
-    <span class="skill-percent">70%</span>
+    <span class="skill-percent">0%</span>
   </div>
 
   <h3><u>FEM</u></h3>
   <div class="skill">
     <span class="skill-name">SCAD</span>
     <div class="skill-bar"><div class="skill-progress" data-width="70%"></div></div>
-    <span class="skill-percent">70%</span>
+    <span class="skill-percent">0%</span>
   </div>
 
   <h3><u>PDM</u></h3>
   <div class="skill">
     <span class="skill-name">BAUHUB</span>
     <div class="skill-bar"><div class="skill-progress" data-width="90%"></div></div>
-    <span class="skill-percent">90%</span>
+    <span class="skill-percent">0%</span>
   </div>
 
+  <!-- MS Office -->
   <h3><u>MS Office</u></h3>
   <div class="skill">
     <span class="skill-name">MS Word</span>
     <div class="skill-bar"><div class="skill-progress" data-width="90%"></div></div>
-    <span class="skill-percent">90%</span>
+    <span class="skill-percent">0%</span>
   </div>
   <div class="skill">
     <span class="skill-name">MS Excel</span>
     <div class="skill-bar"><div class="skill-progress" data-width="90%"></div></div>
-    <span class="skill-percent">90%</span>
+    <span class="skill-percent">0%</span>
   </div>
   <div class="skill">
     <span class="skill-name">MS PowerPoint</span>
     <div class="skill-bar"><div class="skill-progress" data-width="90%"></div></div>
-    <span class="skill-percent">90%</span>
+    <span class="skill-percent">0%</span>
   </div>
   <div class="skill">
     <span class="skill-name">MS Project</span>
     <div class="skill-bar"><div class="skill-progress" data-width="80%"></div></div>
-    <span class="skill-percent">80%</span>
+    <span class="skill-percent">0%</span>
   </div>
 
+  <!-- BIM -->
   <h3><u>BIM</u></h3>
   <div class="skill">
     <span class="skill-name">ArchiCAD</span>
     <div class="skill-bar"><div class="skill-progress" data-width="70%"></div></div>
-    <span class="skill-percent">70%</span>
+    <span class="skill-percent">0%</span>
   </div>
   <div class="skill">
     <span class="skill-name">Revit</span>
     <div class="skill-bar"><div class="skill-progress" data-width="30%"></div></div>
-    <span class="skill-percent">30%</span>
+    <span class="skill-percent">0%</span>
   </div>
 
-  <h3><u>Graafilised redaktorid</u></h3>
+  <!-- Graphic Editors -->
+  <h3><u>Graphic Editors</u></h3>
   <div class="skill">
     <span class="skill-name">Adobe Photoshop</span>
     <div class="skill-bar"><div class="skill-progress" data-width="50%"></div></div>
-    <span class="skill-percent">50%</span>
+    <span class="skill-percent">0%</span>
   </div>
 
+  <!-- Web -->
   <h3><u>WEB</u></h3>
   <div class="skill">
     <span class="skill-name">HTML, Java</span>
     <div class="skill-bar"><div class="skill-progress" data-width="10%"></div></div>
-    <span class="skill-percent">10%</span>
+    <span class="skill-percent">0%</span>
   </div>
-
 </section>
 
 <!-- PROJECTS -->
@@ -490,7 +494,6 @@ function toggleMenu() {
 // Animate skill bars on scroll
 function animateSkills() {
   const skills = document.querySelectorAll('.skill');
-
   const triggerBottom = window.innerHeight * 0.9;
 
   skills.forEach(skill => {
@@ -501,26 +504,23 @@ function animateSkills() {
 
       const progress = skill.querySelector('.skill-progress');
       const percent = skill.querySelector('.skill-percent');
+      const target = parseInt(progress.dataset.width); // число без %
 
-      const target = parseInt(progress.dataset.width); // например 90
-
-      // Запуск полосы
       progress.style.width = target + '%';
 
-      // Бегущие цифры
       let current = 0;
       const duration = 1200; // мс
-      const step = 20;
-      const increment = target / (duration / step);
+      const stepTime = 15; // интервал обновления
+      const increment = target / (duration / stepTime);
 
-      const timer = setInterval(() => {
+      const counter = setInterval(() => {
         current += increment;
         if (current >= target) {
           current = target;
-          clearInterval(timer);
+          clearInterval(counter);
         }
         percent.textContent = Math.round(current) + '%';
-      }, step);
+      }, stepTime);
     }
   });
 }
