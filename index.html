@@ -277,6 +277,15 @@
 <!-- GALLERY -->
 <section id="gallery">
   <h2>Gallery</h2>
+
+  <!-- Кнопка "Show all projects" -->
+  <div class="card show-all-card">
+    <p>Show all projects in the gallery:</p>
+    <button id="showAllProjectsBtn" type="button" class="cv-link">
+      Show all projects
+    </button>
+  </div>
+
   <div class="gallery-wrapper">
     <div class="gallery">
 
@@ -399,6 +408,56 @@ function animateSkills() {
 window.addEventListener('scroll', animateSkills);
 window.addEventListener('load', animateSkills);
 </script>
+
+<style>
+.project-active {
+  outline: 2px solid #000;
+}
+</style>
+
+<script>
+const projectCards = document.querySelectorAll('.card.project');
+const galleryImages = document.querySelectorAll('#gallery .gallery a');
+
+// Обработчики для карточек проектов
+projectCards.forEach(card => {
+  card.addEventListener('click', () => {
+
+    // снять подсветку со всех карточек
+    projectCards.forEach(c => c.classList.remove('project-active'));
+    card.classList.add('project-active');
+
+    // получить код проекта из src картинки: "001_IL/001_IL_1.jpg" → "001_IL"
+    const img = card.querySelector('img');
+    const projectCode = img.getAttribute('src').split('/')[0];
+
+    // фильтрация галереи
+    galleryImages.forEach(imgLink => {
+      const href = imgLink.getAttribute('href');
+      imgLink.style.display = href.startsWith(projectCode + '/') ? '' : 'none';
+    });
+
+    // прокрутка к галерее (только если нужно)
+    // document.getElementById('gallery').scrollIntoView({ behavior: 'smooth' });
+  });
+});
+
+// Обработчик кнопки "Show all projects"
+const showAllBtn = document.getElementById('showAllProjectsBtn');
+
+showAllBtn.addEventListener('click', () => {
+  // снять подсветку со всех проектов
+  projectCards.forEach(c => c.classList.remove('project-active'));
+
+  // показать все изображения
+  galleryImages.forEach(imgLink => {
+    imgLink.style.display = '';
+  });
+
+  // оставляем экран на текущем месте, без скролла
+});
+</script>
+
 
 </body>
 </html>
