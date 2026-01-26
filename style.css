@@ -170,3 +170,27 @@ footer{background:#1f2933;color:#fff;text-align:center;padding:25px;margin-top:4
   background: #11171a;
 }
 </style>
+
+
+/* ============ DRAWINGS LINKS ============ */
+.drawing-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;       /* расстояние между кнопками */
+    margin-top: 15px; /* отступ сверху от текста */
+}
+
+.drawing-links .cv-link {
+    display: inline-block;
+    padding: 10px 20px;
+    background: #1f2933;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 4px;
+    transition: background 0.3s;
+    font-size: 16px; /* одинаковый размер с Download CV */
+}
+
+.drawing-links .cv-link:hover {
+    background: #11171a;
+}
