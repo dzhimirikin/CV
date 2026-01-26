@@ -490,24 +490,38 @@ function toggleMenu() {
 
 // Animate skill bars on scroll
 function animateSkills() {
-  const skills = document.querySelectorAll('.skill-progress');
+  const skills = document.querySelectorAll('.skill');
 
-  // MOBILE: fill immediately, no animation
-  if (window.innerWidth <= 768) {
-    skills.forEach(skill => {
-      skill.style.width = skill.dataset.width;
-    });
-    return;
-  }
-
-  // DESKTOP: animate on scroll
   const triggerBottom = window.innerHeight * 0.9;
 
   skills.forEach(skill => {
     const skillTop = skill.getBoundingClientRect().top;
-    if (skillTop < triggerBottom && !skill.classList.contains('filled')) {
-      skill.style.width = skill.dataset.width;
-      skill.classList.add('filled');
+
+    if (skillTop < triggerBottom && !skill.classList.contains('animated')) {
+      skill.classList.add('animated');
+
+      const progress = skill.querySelector('.skill-progress');
+      const percent = skill.querySelector('.skill-percent');
+
+      const target = parseInt(progress.dataset.width); // например 90
+
+      // Запуск полосы
+      progress.style.width = target + '%';
+
+      // Бегущие цифры
+      let current = 0;
+      const duration = 1200; // мс
+      const step = 20;
+      const increment = target / (duration / step);
+
+      const timer = setInterval(() => {
+        current += increment;
+        if (current >= target) {
+          current = target;
+          clearInterval(timer);
+        }
+        percent.textContent = Math.round(current) + '%';
+      }, step);
     }
   });
 }
