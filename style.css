@@ -190,3 +190,8 @@ footer{background:#1f2933;color:#fff;text-align:center;padding:25px;margin-top:4
 .drawing-links .cv-link:hover {
     background: #11171a;
 }
+
+#about p {
+    margin-bottom: 1.5em;
+}
+
