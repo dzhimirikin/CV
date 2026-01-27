@@ -352,18 +352,21 @@
 
 <!-- GALLERY -->
 <section id="gallery">
-  <h2>Галерея</h2>
 
-  <!-- Кнопка "Show all projects" -->
-  <div class="card show-all-card">
-    <p>Показать все проекты в галерее:</p>
-    <button id="showAllProjectsBtn" type="button" class="cv-link">
-      Показать все проекты
-    </button>
-  </div>
+  <div class="card">
 
-  <div class="gallery-wrapper">
-    <div class="gallery">
+    <h2>Галерея</h2>
+
+    <!-- Кнопка "Показать все проекты" -->
+    <div class="show-all-card">
+      <p>Показать все проекты в галерее:</p>
+      <button id="showAllProjectsBtn" type="button" class="cv-link">
+        Показать все проекты
+      </button>
+    </div>
+
+    <div class="gallery-wrapper">
+      <div class="gallery">
 
       <!-- 000_STAIR -->
       <a href="000_STAIR/000_STAIR_01.jpg" target="_blank"><img src="000_STAIR/000_STAIR_01.jpg" alt="000_STAIR"></a>
@@ -646,47 +649,73 @@ window.addEventListener('load', animateSkills);
 
 
 <script>
-const projectCards = document.querySelectorAll('.card.project');
-const galleryImages = document.querySelectorAll('#gallery .gallery a');
+document.addEventListener('DOMContentLoaded', () => {
+  const projectCards = document.querySelectorAll('.card.project');
+  const galleryImages = document.querySelectorAll('#gallery .gallery a');
+  const gallerySection = document.getElementById('gallery');
+  const showAllBtn = document.getElementById('showAllProjectsBtn');
 
-// Обработчики для карточек проектов
-projectCards.forEach(card => {
-  card.addEventListener('click', () => {
-
-    // снять подсветку со всех карточек
-    projectCards.forEach(c => c.classList.remove('project-active'));
-    card.classList.add('project-active');
-
-    // получить код проекта из src картинки: "001_IL/001_IL_1.jpg" → "001_IL"
-    const img = card.querySelector('img');
-    const projectCode = img.getAttribute('src').split('/')[0];
-
-    // фильтрация галереи
+  // Функция фильтрации
+  function filterGallery(projectCode) {
     galleryImages.forEach(imgLink => {
       const href = imgLink.getAttribute('href');
       imgLink.style.display = href.startsWith(projectCode + '/') ? '' : 'none';
     });
+  }
 
-    // прокрутка к галерее (только если нужно)
-    // document.getElementById('gallery').scrollIntoView({ behavior: 'smooth' });
+  // Плавный скролл с управлением скоростью
+  function smoothScroll(target, duration = 800) {
+    const start = window.scrollY || window.pageYOffset;
+    const end = target.getBoundingClientRect().top + start - 20; // отступ сверху 20px
+    const distance = end - start;
+    let startTime = null;
+
+    function animation(currentTime) {
+      if (startTime === null) startTime = currentTime;
+      const timeElapsed = currentTime - startTime;
+      const progress = Math.min(timeElapsed / duration, 1);
+      const ease = 0.5 * (1 - Math.cos(Math.PI * progress)); // easing
+      window.scrollTo(0, start + distance * ease);
+      if (timeElapsed < duration) requestAnimationFrame(animation);
+    }
+
+    requestAnimationFrame(animation);
+  }
+
+  // Обработчики для карточек проектов
+  projectCards.forEach(card => {
+    card.addEventListener('click', () => {
+      // снять подсветку со всех карточек
+      projectCards.forEach(c => c.classList.remove('project-active'));
+      card.classList.add('project-active');
+
+      // получить код проекта из src картинки
+      const img = card.querySelector('img');
+      const projectCode = img.getAttribute('src').split('/')[0];
+
+      // фильтрация галереи
+      filterGallery(projectCode);
+
+      // плавный скролл к галерее
+      if (gallerySection) smoothScroll(gallerySection, 1000); // длительность 1000ms
+    });
   });
-});
 
-// Обработчик кнопки "Show all projects"
-const showAllBtn = document.getElementById('showAllProjectsBtn');
+  // Обработчик кнопки "Show all projects"
+  if (showAllBtn) {
+    showAllBtn.addEventListener('click', () => {
+      // снять подсветку со всех проектов
+      projectCards.forEach(c => c.classList.remove('project-active'));
 
-showAllBtn.addEventListener('click', () => {
-  // снять подсветку со всех проектов
-  projectCards.forEach(c => c.classList.remove('project-active'));
-
-  // показать все изображения
-  galleryImages.forEach(imgLink => {
-    imgLink.style.display = '';
-  });
-
-  // оставляем экран на текущем месте, без скролла
+      // показать все изображения
+      galleryImages.forEach(imgLink => {
+        imgLink.style.display = '';
+      });
+    });
+  }
 });
 </script>
+
 
 <script>
 const correctPassword = "+79313166455";
