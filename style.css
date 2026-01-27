@@ -191,6 +191,203 @@ footer{background:#1f2933;color:#fff;text-align:center;padding:25px;margin-top:4
     background: #11171a;
 }
 
-#about p {
-    margin-bottom: 1.5em;
+/* ============ HEADER ============ */
+* { box-sizing: border-box; margin:0; padding:0; font-family: Arial, Helvetica, sans-serif; }
+body { color:#222; background:#f4f4f4; line-height:1.6; }
+
+header { background:#1f2933; color:#fff; position:sticky; top:0; z-index:100; }
+.header-inner { max-width:1200px; margin:auto; padding:15px 20px; display:flex; align-items:center; justify-content:space-between; }
+.logo { font-weight:bold; font-size:18px; }
+nav ul { list-style:none; display:flex; gap:25px; }
+nav a { color:#fff; text-decoration:none; font-size:14px; }
+nav a:hover { text-decoration:underline; }
+
+.burger { display:none; flex-direction:column; gap:5px; cursor:pointer; }
+.burger div { width:25px; height:3px; background:white; }
+
+@media(max-width:768px){
+    nav ul { display:none; position:absolute; right:0; top:60px; background:#1f2933; flex-direction:column; width:220px; padding:15px; }
+    nav ul.active { display:flex; }
+    .burger { display:flex; }
+}
+
+/* ============ HERO ============ */
+.hero { background:url("hero.jpg") center center no-repeat; background-size:cover; }
+.hero-overlay { background:rgba(0,0,0,0.55); padding:80px 20px; }
+.hero-inner { max-width:1100px; margin:auto; display:flex; gap:40px; align-items:center; color:white; }
+.hero-photo { width:200px; height:200px; object-fit:cover; border:2px solid rgba(255,255,255,0.6); border-radius:4px; background:#ccc; }
+.hero h1 { font-size:32px; margin-bottom:10px; }
+.hero p { max-width:600px; }
+@media(max-width:768px){ .hero-inner{flex-direction:column;text-align:center;} }
+
+/* ============ SECTIONS ============ */
+section{max-width:1100px;margin:auto;padding:50px 20px;}
+section h2{margin-bottom:20px;}
+section h3{margin:20px 0 10px;}
+.card{background:white;padding:25px;border-radius:4px;box-shadow:0 2px 6px rgba(0,0,0,0.1);}
+
+/* ============ PROJECTS ============ */
+.projects{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px;}
+.project img{width:100%; height:180px; object-fit:cover; margin-bottom:10px; background:#ddd;}
+.project h3{margin-bottom:5px;}
+
+/* ============ SKILLS ============ */
+.skill{display:flex;align-items:center;margin-bottom:15px;gap:15px;flex-wrap:wrap;}
+.skill-name{flex:1 1 150px;font-weight:bold;}
+.skill-bar{flex:2 1 300px;height:14px;background:#ddd;border-radius:7px;overflow:hidden;}
+.skill-progress{height:100%;background:#1f2933;border-radius:7px 0 0 7px; width:0; transition: width 1.2s ease-in-out;}
+.skill-percent{width:40px;text-align:right;font-weight:bold;}
+@media (max-width: 768px) {
+
+  .skill {
+    flex-wrap: nowrap;      /* ← КЛЮЧЕВО */
+    flex-direction: row;
+    align-items: baseline;
+  }
+
+  .skill-bar {
+    display: none;
+  }
+
+  .skill-name {
+    flex: none;
+  }
+
+  .skill-percent {
+    margin-left: auto;
+    font-weight: normal;
+  }
+}
+
+/* ============ FOOTER ============ */
+footer{background:#1f2933;color:#fff;text-align:center;padding:25px;margin-top:40px;font-size:14px;}
+
+/* ============ LANGUAGE MENU ============ */
+.lang{font-size:13px;color:#ccc;}
+.lang a{text-decoration:none;color:#ccc;}
+.lang a:hover{color:#fff;}
+.lang strong{color:#fff;font-weight:normal;}
+
+/* ============ GALLERY HORIZONTAL SCROLL (ADAPTIVE) ============ */
+.gallery-wrapper {
+    overflow-x: auto;                /* Горизонтальная прокрутка */
+    padding-bottom: 10px;            /* Отступ снизу для скролла */
+    -webkit-overflow-scrolling: touch; /* Плавный скролл на iOS */
+}
+
+.gallery {
+    display: flex;                    /* Одна строка изображений */
+    flex-wrap: nowrap;                /* Без переноса */
+    gap: 10px;                        /* Расстояние между картинками */
+}
+
+.gallery a {
+    flex: 0 0 auto;                   /* Картинка не растягивается */
+    display: block;
+}
+
+.gallery img {
+    display: block;
+    height: 180px;                     /* Базовая высота */
+    width: auto;                        /* Сохраняем пропорции */
+    object-fit: cover;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: transform 0.3s;
+}
+
+.gallery img:hover {
+    transform: scale(1.05);
+}
+
+/* Скроллбар */
+.gallery-wrapper::-webkit-scrollbar {
+    height: 8px;
+}
+
+.gallery-wrapper::-webkit-scrollbar-thumb {
+    background-color: #aaa;
+    border-radius: 4px;
+}
+
+/* ============ MOBILE ADAPTATION ============ */
+@media(max-width:768px){
+    .gallery img {
+        height: 140px;                /* Немного меньше на телефоне */
+    }
+}
+
+@media(max-width:480px){
+    .gallery img {
+        height: 120px;                /* Ещё меньше для узких экранов */
+    }
+}
+
+
+.cv-link {
+    display: inline-block;
+    padding: 10px 20px;
+    background: #1f2933;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 4px;
+    transition: background 0.3s;
+}
+
+.cv-link:hover {
+    background: #11171a;
+}
+
+
+.show-all-card {
+  margin-bottom: 20px;      /* Отступ от заголовка и галереи */
+  text-align: left;         /* Кнопка слева */
+}
+
+.show-all-card .cv-link {
+  display: inline-block;
+  padding: 10px 20px;
+  background: #1f2933;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 4px;
+  transition: background 0.3s;
+  font-size: 16px;          /* размер шрифта как у Download CV */
+}
+
+.show-all-card .cv-link:hover {
+  background: #11171a;
+}
+
+
+
+/* ============ DRAWINGS LINKS ============ */
+.drawing-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;       /* расстояние между кнопками */
+    margin-top: 15px; /* отступ сверху от текста */
+}
+
+.drawing-links .cv-link {
+    display: inline-block;
+    padding: 10px 20px;
+    background: #1f2933;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 4px;
+    transition: background 0.3s;
+    font-size: 16px; /* одинаковый размер с Download CV */
+}
+
+.drawing-links .cv-link:hover {
+    background: #11171a;
+}
+
+#about .card p {
+    margin: 0 0 1.5em 0;
+}
+
+#about .card p:last-child {
+    margin-bottom: 0;
 }
