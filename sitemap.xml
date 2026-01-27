@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset
+      xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
+            http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+<!-- created with Free Online Sitemap Generator www.xml-sitemaps.com -->
+
+
+<url>
+  <loc>https://dzhimirikin.github.io/CV/</loc>
+  <lastmod>2026-01-27T20:34:45+00:00</lastmod>
+  <priority>1.00</priority>
+</url>
+<url>
+  <loc>https://dzhimirikin.github.io/CV/index_ru.html</loc>
+  <lastmod>2026-01-27T20:34:45+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://dzhimirikin.github.io/CV/index_ee.html</loc>
+  <lastmod>2026-01-27T20:34:45+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://dzhimirikin.github.io/CV/Dmitry%20Zhimirikin_EU_ENG_05.2025.pdf</loc>
+  <lastmod>2026-01-27T20:34:45+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://dzhimirikin.github.io/CV/index.html</loc>
+  <lastmod>2026-01-27T20:34:45+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://dzhimirikin.github.io/CV/Dmitry%20Zhimirikin_RUSSIA_05.2025.pdf</loc>
+  <lastmod>2026-01-27T20:34:45+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://dzhimirikin.github.io/CV/Dmitry%20Zhimirikin_ESTONIA_EST_05.2025.pdf</loc>
+  <lastmod>2026-01-27T20:34:45+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+
+
+</urlset>
