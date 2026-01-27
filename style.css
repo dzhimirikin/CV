@@ -34,9 +34,31 @@ section h3{margin:20px 0 10px;}
 .card{background:white;padding:25px;border-radius:4px;box-shadow:0 2px 6px rgba(0,0,0,0.1);}
 
 /* ============ PROJECTS ============ */
-.projects{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px;}
-.project img{width:100%; height:180px; object-fit:cover; margin-bottom:10px; background:#ddd;}
-.project h3{margin-bottom:5px;}
+.projects {
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+    gap:20px;
+}
+
+.project img {
+    width:100%;
+    height:180px;
+    object-fit:cover;
+    margin-bottom:10px;
+    background:#ddd;
+}
+
+.project h3 {
+    margin-bottom:5px;
+}
+
+/* === fix длинных заголовков и текста === */
+.project h3,
+.project p {
+    word-break: break-word;
+    overflow-wrap: break-word;
+}
+
 
 /* ============ SKILLS ============ */
 .skill{display:flex;align-items:center;margin-bottom:15px;gap:15px;flex-wrap:wrap;}
@@ -391,3 +413,4 @@ footer{background:#1f2933;color:#fff;text-align:center;padding:25px;margin-top:4
 #about .card p:last-child {
     margin-bottom: 0;
 }
+
