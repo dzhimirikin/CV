@@ -21,6 +21,7 @@
         <li><a href="#projects">Projektid</a></li>
         <li><a href="#gallery">Galerii</a></li>
         <li><a href="#cv">CV</a></li> 
+        <li><a href="#certificates">Tunnistused</a></li>
         <li><a href="#drawings">Joonised</a></li>
         <li><a href="#publications">Publikatsioonid</a></li>
         <li><a href="#contacts">Kontaktid</a></li>
@@ -102,8 +103,7 @@
       Inglise keel — B1 (tööalane, peamiselt suhtlustasandil),
       eesti keel — A2. Töökogemus nii venekeelsetes kui ka eestikeelsetes fassaadiettevõtetes.
     </p>
-
-	<p>
+    <p>
       Oma täisvarustusega töökoht
     </p>
 
@@ -534,6 +534,35 @@
   </div>
 </section>
 
+<!-- CERTIFICATES / TUNNISTUSED -->
+<section id="certificates">
+  <div class="card">
+    <h2>Tunnistused</h2>
+
+    <div class="carousel-container">
+      <div class="carousel" id="certCarousel">
+
+        <img src="Certificates/cert1.jpg" alt="Certificate 1">
+        <img src="Certificates/cert2.jpg" alt="Certificate 2">
+        <img src="Certificates/cert3.jpg" alt="Certificate 3">
+        <img src="Certificates/cert4.jpg" alt="Certificate 4">
+        <img src="Certificates/cert5.jpg" alt="Certificate 5">
+        <img src="Certificates/cert6.jpg" alt="Certificate 6">
+        <img src="Certificates/cert7.jpg" alt="Certificate 7">
+        <img src="Certificates/cert8.jpg" alt="Certificate 8">
+        <img src="Certificates/cert9.jpg" alt="Certificate 9">
+        <img src="Certificates/cert10.jpg" alt="Certificate 10">
+
+      </div>
+    </div>
+
+    <div class="carousel-controls">
+      <button onclick="rotateCarousel(-1)">‹</button>
+      <button onclick="rotateCarousel(1)">›</button>
+    </div>
+  </div>
+</section>
+
 <!-- DOWNLOAD DRAWINGS WITH PASSWORD -->
 <section id="drawings">
   <div class="card">
@@ -573,7 +602,6 @@
     </ul>
   </div>
 </section>
-
 
 
 <!-- CONTACTS -->
@@ -644,6 +672,7 @@ function animateSkills() {
 window.addEventListener('scroll', animateSkills);
 window.addEventListener('load', animateSkills);
 </script>
+
 
 <style>
 .project-active {
@@ -719,6 +748,8 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 </script>
 
+
+
 <script>
 const correctPassword = "+79313166455";
 
@@ -735,6 +766,51 @@ document.querySelectorAll('.password-link').forEach(link => {
 });
 </script>
 
+<script>
+const carousel = document.getElementById('certCarousel');
+const images = carousel.querySelectorAll('img');
+
+const count = images.length;
+const angle = 360 / count;
+
+let rotation = 0;
+
+function getRadius() {
+  return window.innerWidth < 768 ? 260 : 420;
+}
+
+function layoutCarousel() {
+  const radius = getRadius();
+
+  images.forEach((img, i) => {
+    img.style.transform =
+      `rotateY(${i * angle}deg) translateZ(${radius}px)`;
+  });
+}
+
+// инициализация
+layoutCarousel();
+
+// вращение кнопками
+function rotateCarousel(direction) {
+  rotation += direction * angle;
+  carousel.style.transform = `rotateY(${rotation}deg)`;
+}
+
+// пересчёт при ресайзе
+window.addEventListener('resize', layoutCarousel);
+
+// открыть сертификат
+images.forEach(img => {
+  img.addEventListener('click', () => {
+    window.open(img.src, '_blank');
+  });
+});
+</script>
+
+
+
+
+
 </body>
 </html>
-
