@@ -679,8 +679,13 @@
 
 <!-- FOOTER -->
 <footer>
-  © 2026 Dmitry Zhimirikin — Engineering Portfolio
+  © <span id="year"></span> Dmitry Zhimirikin — Engineering Portfolio
 </footer>
+
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+</script>
 
 <script>
 function toggleMenu() {
@@ -862,6 +867,7 @@ images.forEach(img => {
 
 </body>
 </html>
+
 
 
 
