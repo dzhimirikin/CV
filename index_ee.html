@@ -677,8 +677,12 @@
 
 <!-- FOOTER -->
 <footer>
-  © 2026 Dmitri Žimirikin — Inseneri portfell
+  © <span id="year"></span> Dmitri Žimirikin — Inseneri portfell
 </footer>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+</script>
 
 <script>
 function toggleMenu() {
@@ -858,6 +862,7 @@ images.forEach(img => {
 
 </body>
 </html>
+
 
 
 
