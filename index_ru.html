@@ -680,8 +680,12 @@
 
 <!-- FOOTER -->
 <footer>
-  © 2026 Дмитрий Жимирикин — Инженерное портфолио
+  © <span id="year"></span> Дмитрий Жимирикин — Инженерное портфолио
 </footer>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+</script>
 
 <script>
 function toggleMenu() {
@@ -863,6 +867,7 @@ images.forEach(img => {
 
 </body>
 </html>
+
 
 
 
