@@ -23,7 +23,7 @@
   <link rel="alternate" hreflang="x-default" href="https://dzhimirikin.github.io/CV/index.html">
 
   <meta charset="UTF-8">
-  <title>Dmitry Zhimirikin — Inseneri portfell</title>
+  <title>Dmitri Žimirikin — Inseneri portfell</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="style.css">
   </head>
@@ -67,7 +67,7 @@
     <div class="hero-inner">
       <img src="photo.png" alt="Dmitry Zhimirikin" class="hero-photo">
       <div>
-        <h1>Dmitri Žimirikin</h1>
+        <h1>Dmitry Zhimirikin</h1>
         <p>
 	Valgusläbilaskvate fassaadikonstruktsioonide insener enam kui 10-aastase kogemusega elamu-, äri- ja tööstushoonete fassaadide projekteerimisel ja realiseerimisel.
 	Spetsialiseerumine: alumiiniumist fassaadisüsteemid, projekteerimisstaadiumid K2 ja K3, tööjooniste koostamine ning tehniline tugi ehitusplatsil.
@@ -579,7 +579,7 @@
 <section id="cv">
   <div class="card">
     <h2>Laadi alla CV</h2>
-    <p>Saate minu CV (EST) alla laadida siit:</p>
+    <p>Saate minu CV (EE) alla laadida siit:</p>
     <a href="Dmitry Zhimirikin_ESTONIA_EST_05.2025.pdf" download class="cv-link">Laadi alla CV (PDF)</a>
   </div>
 </section>
@@ -685,11 +685,6 @@
 </script>
 
 <script>
-function toggleMenu() {
-  document.getElementById("menu").classList.toggle("active");
-}
-
-// Animate skill bars on scroll
 function animateSkills() {
   const skills = document.querySelectorAll('.skill');
   const triggerBottom = window.innerHeight * 0.9;
@@ -702,13 +697,25 @@ function animateSkills() {
 
       const progress = skill.querySelector('.skill-progress');
       const percent = skill.querySelector('.skill-percent');
-      const target = parseInt(progress.dataset.width); // число без %
+      const bar = skill.querySelector('.skill-bar');
 
+      const target = parseInt(progress.dataset.width);
+
+      // создаём серый движок один раз
+      if (!bar.querySelector('.skill-track')) {
+        const track = document.createElement('div');
+        track.className = 'skill-track';
+        bar.insertBefore(track, progress);
+        track.style.width = target + '%'; // серый сразу
+      }
+
+      // цветной — анимация
       progress.style.width = target + '%';
 
+      // анимируем цифры
       let current = 0;
-      const duration = 1200; // мс
-      const stepTime = 15; // интервал обновления
+      const duration = 1200;
+      const stepTime = 15;
       const increment = target / (duration / stepTime);
 
       const counter = setInterval(() => {
@@ -723,6 +730,7 @@ function animateSkills() {
   });
 }
 
+// события
 window.addEventListener('scroll', animateSkills);
 window.addEventListener('load', animateSkills);
 </script>
@@ -862,13 +870,3 @@ images.forEach(img => {
 
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
