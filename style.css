@@ -60,15 +60,64 @@ section h3{margin:20px 0 10px;}
 }
 
 /* ============ SKILLS ============ */
-.skill{display:flex;align-items:center;margin-bottom:15px;gap:15px;flex-wrap:wrap;}
-.skill-name{flex:1 1 150px;font-weight:bold;}
-.skill-bar{flex:2 1 300px;height:14px;background:#ddd;border-radius:7px;overflow:hidden;}
-.skill-progress{height:100%;background:#1f2933;border-radius:7px 0 0 7px; width:0; transition: width 1.2s ease-in-out;}
-.skill-percent{width:40px;text-align:right;font-weight:bold;}
+
+.skill{
+  display:flex;
+  align-items:center;
+  margin-bottom:15px;
+  gap:15px;
+  flex-wrap:wrap;
+}
+
+.skill-name{
+  flex:1 1 150px;
+  font-weight:bold;
+}
+
+/* контейнер бара */
+.skill-bar{
+  flex:2 1 300px;
+  height:14px;
+  position:relative;
+  background:transparent;   /* теперь фон не тут */
+  border-radius:7px;
+  overflow:hidden;
+}
+
+/* серый статичный движок */
+.skill-track{
+  position:absolute;
+  top:0;
+  left:0;
+  height:100%;
+  width:0;
+  background:#ddd;
+  border-radius:7px;
+}
+
+/* цветной анимируемый бар */
+.skill-progress{
+  position:absolute;
+  top:0;
+  left:0;
+  height:100%;
+  width:0;
+  background:#1f2933;
+  border-radius:7px;
+  transition: width 1.2s ease-in-out;
+}
+
+.skill-percent{
+  width:40px;
+  text-align:right;
+  font-weight:bold;
+}
+
+/* ====== MOBILE ====== */
 @media (max-width: 768px) {
 
   .skill {
-    flex-wrap: nowrap;      /* ← КЛЮЧЕВО */
+    flex-wrap: nowrap;
     flex-direction: row;
     align-items: baseline;
   }
@@ -86,6 +135,7 @@ section h3{margin:20px 0 10px;}
     font-weight: normal;
   }
 }
+
 
 
 
