@@ -90,7 +90,7 @@
     </p>
 
     <p>
-      Практика в Российской Федерации (С.-Петербург), с 2021 года — в Эстонии
+      Практика в Российской Федерации (Санкт-Петербург), с 2021 года — в Эстонии
       с ведением проектов как в Эстонии, так и в России.
     </p>
 
@@ -688,11 +688,6 @@
 </script>
 
 <script>
-function toggleMenu() {
-  document.getElementById("menu").classList.toggle("active");
-}
-
-// Animate skill bars on scroll
 function animateSkills() {
   const skills = document.querySelectorAll('.skill');
   const triggerBottom = window.innerHeight * 0.9;
@@ -705,13 +700,25 @@ function animateSkills() {
 
       const progress = skill.querySelector('.skill-progress');
       const percent = skill.querySelector('.skill-percent');
-      const target = parseInt(progress.dataset.width); // число без %
+      const bar = skill.querySelector('.skill-bar');
 
+      const target = parseInt(progress.dataset.width);
+
+      // создаём серый движок один раз
+      if (!bar.querySelector('.skill-track')) {
+        const track = document.createElement('div');
+        track.className = 'skill-track';
+        bar.insertBefore(track, progress);
+        track.style.width = target + '%'; // серый сразу
+      }
+
+      // цветной — анимация
       progress.style.width = target + '%';
 
+      // анимируем цифры
       let current = 0;
-      const duration = 1200; // мс
-      const stepTime = 15; // интервал обновления
+      const duration = 1200;
+      const stepTime = 15;
       const increment = target / (duration / stepTime);
 
       const counter = setInterval(() => {
@@ -726,15 +733,10 @@ function animateSkills() {
   });
 }
 
+// события
 window.addEventListener('scroll', animateSkills);
 window.addEventListener('load', animateSkills);
 </script>
-
-<style>
-.project-active {
-  outline: 2px solid #000;
-}
-</style>
 
 
 <script>
@@ -867,14 +869,3 @@ images.forEach(img => {
 
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
