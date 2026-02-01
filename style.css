@@ -443,3 +443,43 @@ footer{background:#1f2933;color:#fff;text-align:center;padding:25px;margin-top:4
     opacity: 1;
     transform: translateY(0);
 }
+
+/* ===== SHOW ALL / HISTORY BUTTONS ===== */
+.show-all-card {
+    display: flex;
+    flex-wrap: wrap;    /* кнопки переносятся на новую строку при маленьком экране */
+    gap: 15px;          /* расстояние между кнопками */
+    margin-top: 15px;   /* отступ сверху от текста */
+}
+
+.show-all-card .cv-link {
+    display: inline-block;
+    padding: 10px 20px; /* внутренние отступы кнопок */
+    background: #1f2933;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 4px;
+    font-size: 16px;
+    transition: background 0.3s;
+    text-align: center;
+}
+
+.show-all-card .cv-link:hover:not(:disabled) {
+    background: #11171a;
+}
+
+.show-all-card .cv-link.disabled,
+.show-all-card .cv-link:disabled {
+    background: #999;
+    cursor: not-allowed;
+    opacity: 0.5;
+    pointer-events: none;
+}
+
+/* Для стрелки на истории */
+.show-all-card .cv-link.history::after {
+    content: " ↗";
+    font-size: 14px;
+    margin-left: 6px;
+    opacity: 0.85;
+}
