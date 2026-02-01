@@ -287,7 +287,15 @@ footer{background:#1f2933;color:#fff;text-align:center;padding:25px;margin-top:4
   background: #11171a;
 }
 
-
+/* ===== CV BUTTON MOBILE ===== */
+@media(max-width: 768px) {
+    #cv .cv-link {
+        display: block;       /* кнопка растягивается на всю ширину */
+        width: 100%;
+        text-align: center;   /* текст по центру */
+        margin-bottom: 10px;  /* отступ снизу */
+    }
+}
 
 /* ============ DRAWINGS LINKS ============ */
 .drawing-links {
@@ -319,6 +327,21 @@ footer{background:#1f2933;color:#fff;text-align:center;padding:25px;margin-top:4
 #about .card p:last-child {
     margin-bottom: 0;
 }
+
+/* ===== MOBILE: растягиваем кнопки ===== */
+@media(max-width: 768px){
+    .drawing-links .cv-link {
+        display: block;       /* кнопка занимает всю ширину */
+        width: 100%;
+        text-align: center;   /* текст по центру */
+        margin-bottom: 10px;  /* отступ между кнопками */
+    }
+
+    .drawing-links .cv-link:last-child {
+        margin-bottom: 0;     /* убираем лишний отступ у последней */
+    }
+}
+
 
 /* ===== 3D CERTIFICATE CAROUSEL — FINAL ===== */
 
