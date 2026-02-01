@@ -170,6 +170,21 @@ section h3{margin:20px 0 10px;}
     background: #11171a;
 }
 
+/* ===== MOBILE: растягиваем кнопки ===== */
+@media(max-width: 768px){
+    .publications-list a {
+        display: block;       /* кнопка занимает всю ширину */
+        width: 100%;
+        text-align: center;   /* выравнивание текста по центру */
+        margin-bottom: 10px;  /* отступ между кнопками */
+    }
+
+    .publications-list a:last-child {
+        margin-bottom: 0;     /* убираем лишний отступ у последней */
+    }
+}
+
+
 
 
 /* ============ FOOTER ============ */
