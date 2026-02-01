@@ -453,8 +453,10 @@ footer{background:#1f2933;color:#fff;text-align:center;padding:25px;margin-top:4
 }
 
 .show-all-card .cv-link {
-    display: inline-block;
-    padding: 10px 20px; /* внутренние отступы кнопок */
+    display: flex;       /* flex вместо inline-block для корректного gap */
+    justify-content: center;
+    align-items: center;
+    padding: 10px 20px;  /* внутренние отступы кнопок */
     background: #1f2933;
     color: #fff;
     text-decoration: none;
@@ -483,3 +485,14 @@ footer{background:#1f2933;color:#fff;text-align:center;padding:25px;margin-top:4
     margin-left: 6px;
     opacity: 0.85;
 }
+
+/* ==== Адаптация для очень узких экранов (по желанию) ==== */
+@media(max-width: 480px) {
+    .show-all-card {
+        justify-content: flex-start; /* кнопки слева */
+    }
+    .show-all-card .cv-link {
+        flex: 1 1 100%;   /* каждая кнопка на всю ширину строки */
+    }
+}
+
