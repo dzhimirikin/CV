@@ -747,8 +747,6 @@
   </div>
 </section>
 
-
-
 <!-- CONTACTS -->
 <section id="contacts">
   <div class="card">
@@ -776,6 +774,13 @@
   © <span id="year"></span> Dmitry Zhimirikin — Engineering Portfolio
 </footer>
 
+
+<script>
+function toggleMenu() {
+  const menu = document.getElementById('menu');
+  menu.classList.toggle('active');
+}
+</script>
 
 <script>
   document.getElementById('year').textContent = new Date().getFullYear();
