@@ -298,50 +298,52 @@ footer{background:#1f2933;color:#fff;text-align:center;padding:25px;margin-top:4
 
 
 
-/* ============ DRAWINGS LINKS ============ */
+/* ============ DRAWINGS LINKS (единая схема 12 / 10) ============ */
+
 .drawing-links {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 15px;       /* расстояние между кнопками */
-    margin-top: 15px; /* отступ сверху от текста */
+    margin-top: 12px;        /* текст → первая кнопка */
+    margin-bottom: 0px;     /* после кнопок (desktop) */
 }
 
 .drawing-links .cv-link {
-    display: inline-block;
+    display: inline-block;  /* плоские кнопки */
     padding: 10px 20px;
+    margin-bottom: 10px;    /* расстояние между кнопками */
     background: #1f2933;
     color: #fff;
     text-decoration: none;
     border-radius: 4px;
     transition: background 0.3s;
-    font-size: 16px; /* одинаковый размер с Download CV */
+    font-size: 16px;
+    text-align: center;
+}
+
+.drawing-links .cv-link:last-child {
+    margin-bottom: 0;       /* без лишнего отступа внутри */
 }
 
 .drawing-links .cv-link:hover {
     background: #11171a;
 }
 
-#about .card p {
-    margin: 0 0 1.5em 0;
-}
+/* ===== MOBILE ===== */
+@media (max-width: 768px) {
+    .drawing-links {
+        margin-top: 10px;     /* текст → кнопка */
+        margin-bottom: 0px;  /* после кнопок */
+    }
 
-#about .card p:last-child {
-    margin-bottom: 0;
-}
-
-/* ===== MOBILE: растягиваем кнопки ===== */
-@media(max-width: 768px){
     .drawing-links .cv-link {
-        display: block;       /* кнопка занимает всю ширину */
+        display: block;      /* на всю ширину */
         width: 100%;
-        text-align: center;   /* текст по центру */
-        margin-bottom: 10px;  /* отступ между кнопками */
+        margin-bottom: 10px;
     }
 
     .drawing-links .cv-link:last-child {
-        margin-bottom: 0;     /* убираем лишний отступ у последней */
+        margin-bottom: 0;
     }
 }
+
 
 
 /* ===== 3D CERTIFICATE CAROUSEL — FINAL ===== */
