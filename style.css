@@ -486,17 +486,18 @@ footer{background:#1f2933;color:#fff;text-align:center;padding:25px;margin-top:4
 /* ===== SHOW ALL / HISTORY BUTTONS (плоские, как CV) ===== */
 
 .show-all-card {
-    margin-top: 12px;          /* разрыв текста → первая кнопка */
+    margin-top: 12px;        /* текст → первая кнопка */
+    margin-bottom: 12px;     /* после кнопок (desktop) */
 }
 
 .show-all-card p {
-    margin: 0 0 12px 0;        /* текст → кнопка = 12px */
+    margin: 0 0 12px 0;      /* текст → кнопка */
 }
 
 .show-all-card .cv-link {
-    display: inline-block;       /* плоская кнопка */
+    display: inline-block;  /* плоская кнопка */
     padding: 10px 20px;
-    margin-bottom: 10px;         /* расстояние между кнопками = 10px */
+    margin-bottom: 10px;    /* расстояние между кнопками */
     background: #1f2933;
     color: #fff;
     text-decoration: none;
@@ -507,15 +508,14 @@ footer{background:#1f2933;color:#fff;text-align:center;padding:25px;margin-top:4
 }
 
 .show-all-card .cv-link:last-child {
-    margin-bottom: 0;
+    margin-bottom: 0;       /* убираем лишний зазор внутри */
 }
 
-.show-all-card .cv-link:hover:not(:disabled) {
+.show-all-card .cv-link:hover:not(.disabled) {
     background: #11171a;
 }
 
-.show-all-card .cv-link.disabled,
-.show-all-card .cv-link:disabled {
+.show-all-card .cv-link.disabled {
     background: #999;
     cursor: not-allowed;
     opacity: 0.5;
@@ -530,23 +530,24 @@ footer{background:#1f2933;color:#fff;text-align:center;padding:25px;margin-top:4
     opacity: 0.85;
 }
 
-/* ==== MOBILE: растягиваем кнопку на всю ширину ==== */
-@media(max-width: 480px) {
+/* ===== MOBILE ===== */
+@media (max-width: 480px) {
     .show-all-card {
-        margin-top: 10px;          /* текст → кнопка = 10px на узких экранах */
+        margin-top: 10px;     /* текст → кнопка */
+        margin-bottom: 10px;  /* после кнопок */
     }
+
     .show-all-card p {
-        margin-bottom: 10px;       /* текст → кнопка = 10px */
+        margin-bottom: 10px;
     }
+
     .show-all-card .cv-link {
-        display: block;            /* растянуть на всю ширину */
+        display: block;      /* на всю ширину */
         width: 100%;
-        margin-bottom: 10px;       /* расстояние между кнопками = 10px */
+        margin-bottom: 10px;
     }
+
     .show-all-card .cv-link:last-child {
         margin-bottom: 0;
     }
 }
-
-
-
