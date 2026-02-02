@@ -252,50 +252,51 @@ footer{background:#1f2933;color:#fff;text-align:center;padding:25px;margin-top:4
 }
 
 
-.cv-link {
-    display: inline-block;
+/* ===== CV BUTTON ===== */
+#cv .cv-link {
+    display: inline-block;       /* как у Publications */
     padding: 10px 20px;
     background: #1f2933;
     color: #fff;
     text-decoration: none;
     border-radius: 4px;
+    font-size: 16px;
     transition: background 0.3s;
+    text-align: center;
+    margin-top: 12px;           /* разрыв между текстом и кнопкой */
 }
 
-.cv-link:hover {
+#cv .cv-link:hover {
     background: #11171a;
 }
 
-
-.show-all-card {
-  margin-bottom: 20px;      /* Отступ от заголовка и галереи */
-  text-align: left;         /* Кнопка слева */
+#cv .cv-link.disabled,
+#cv .cv-link:disabled {
+    background: #999;
+    cursor: not-allowed;
+    opacity: 0.5;
+    pointer-events: none;
 }
 
-.show-all-card .cv-link {
-  display: inline-block;
-  padding: 10px 20px;
-  background: #1f2933;
-  color: #fff;
-  text-decoration: none;
-  border-radius: 4px;
-  transition: background 0.3s;
-  font-size: 16px;          /* размер шрифта как у Download CV */
+/* Стрелка истории для CV */
+#cv .cv-link.history::after {
+    content: " ↗";
+    font-size: 14px;
+    margin-left: 6px;
+    opacity: 0.85;
 }
 
-.show-all-card .cv-link:hover {
-  background: #11171a;
-}
-
-/* ===== CV BUTTON MOBILE ===== */
-@media(max-width: 768px) {
+/* ===== MOBILE: растягиваем кнопку на всю ширину ===== */
+@media(max-width: 768px){
     #cv .cv-link {
-        display: block;       /* кнопка растягивается на всю ширину */
+        display: block;       /* кнопка занимает всю ширину */
         width: 100%;
-        text-align: center;   /* текст по центру */
-        margin-bottom: 10px;  /* отступ снизу */
+        text-align: center;
+        margin-top: 10px;     /* сохраняем разрыв сверху */
     }
 }
+
+
 
 /* ============ DRAWINGS LINKS ============ */
 .drawing-links {
@@ -441,60 +442,20 @@ footer{background:#1f2933;color:#fff;text-align:center;padding:25px;margin-top:4
 }
 
 
-/* ===== PROJECT HISTORY INDICATOR ===== */
-.project {
-    position: relative;
-}
+/* ===== SHOW ALL / HISTORY BUTTONS (плоские, как CV) ===== */
 
-/* Метка точки истории */
-.project.has-history::after {
-    content: "";
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    width: 10px;
-    height: 10px;
-    background: #1f2933;
-    border-radius: 50%;
-    box-shadow: 0 0 0 2px #fff;
-}
-
-/* Скрытый текст истории (берётся из HTML) */
-.project .history-label {
-    position: absolute;
-    top: 28px;
-    right: 10px;
-    font-size: 12px;
-    background: #1f2933;
-    color: #fff;
-    padding: 4px 8px;
-    border-radius: 4px;
-    white-space: nowrap;
-    opacity: 0;
-    pointer-events: none;
-    transform: translateY(-4px);
-    transition: opacity 0.2s, transform 0.2s;
-}
-
-/* Показать текст при наведении */
-.project.has-history:hover .history-label {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-/* ===== SHOW ALL / HISTORY BUTTONS ===== */
 .show-all-card {
-    display: flex;
-    flex-wrap: wrap;    /* кнопки переносятся на новую строку при маленьком экране */
-    gap: 15px;          /* расстояние между кнопками */
-    margin-top: 15px;   /* отступ сверху от текста */
+    margin-top: 12px;          /* разрыв текста → первая кнопка */
+}
+
+.show-all-card p {
+    margin: 0 0 12px 0;        /* текст → кнопка = 12px */
 }
 
 .show-all-card .cv-link {
-    display: flex;       /* flex вместо inline-block для корректного gap */
-    justify-content: center;
-    align-items: center;
-    padding: 10px 20px;  /* внутренние отступы кнопок */
+    display: inline-block;       /* плоская кнопка */
+    padding: 10px 20px;
+    margin-bottom: 10px;         /* расстояние между кнопками = 10px */
     background: #1f2933;
     color: #fff;
     text-decoration: none;
@@ -502,6 +463,10 @@ footer{background:#1f2933;color:#fff;text-align:center;padding:25px;margin-top:4
     font-size: 16px;
     transition: background 0.3s;
     text-align: center;
+}
+
+.show-all-card .cv-link:last-child {
+    margin-bottom: 0;
 }
 
 .show-all-card .cv-link:hover:not(:disabled) {
@@ -516,7 +481,7 @@ footer{background:#1f2933;color:#fff;text-align:center;padding:25px;margin-top:4
     pointer-events: none;
 }
 
-/* Для стрелки на истории */
+/* Стрелка истории */
 .show-all-card .cv-link.history::after {
     content: " ↗";
     font-size: 14px;
@@ -524,13 +489,23 @@ footer{background:#1f2933;color:#fff;text-align:center;padding:25px;margin-top:4
     opacity: 0.85;
 }
 
-/* ==== Адаптация для очень узких экранов (по желанию) ==== */
+/* ==== MOBILE: растягиваем кнопку на всю ширину ==== */
 @media(max-width: 480px) {
     .show-all-card {
-        justify-content: flex-start; /* кнопки слева */
+        margin-top: 10px;          /* текст → кнопка = 10px на узких экранах */
+    }
+    .show-all-card p {
+        margin-bottom: 10px;       /* текст → кнопка = 10px */
     }
     .show-all-card .cv-link {
-        flex: 1 1 100%;   /* каждая кнопка на всю ширину строки */
+        display: block;            /* растянуть на всю ширину */
+        width: 100%;
+        margin-bottom: 10px;       /* расстояние между кнопками = 10px */
+    }
+    .show-all-card .cv-link:last-child {
+        margin-bottom: 0;
     }
 }
+
+
 
