@@ -2,6 +2,20 @@
 <html lang="en">
 <head>
 
+	  <!-- Сразу блокировка -->
+<script>
+(function () {
+    const blocked = ["www.tootukassa.ee", "tootukassa.ee"];
+    const ref = document.referrer.toLowerCase();
+
+    if (ref && blocked.some(d => ref.includes(d))) {
+        document.documentElement.innerHTML = "";
+        document.write("<h2>Доступ запрещён</h2>");
+        document.close();
+    }
+})();
+</script>
+
   <!-- Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-JZH1TX3DCH"></script>
   <script>
@@ -1076,6 +1090,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 </body>
 </html>
+
 
 
 
