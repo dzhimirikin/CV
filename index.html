@@ -1095,21 +1095,17 @@ document.addEventListener('DOMContentLoaded', () => {
 const burger = document.querySelector('.burger');
 const menu = document.querySelector('nav ul');
 
-// Если добавляешь overlay
-// const overlay = document.getElementById('menu-overlay');
-
-function toggleMenu() {
+// Обработчик клика по бургеру
+burger.addEventListener('click', () => {
     burger.classList.toggle('active');
     menu.classList.toggle('active');
-    // overlay && overlay.classList.toggle('active');
-}
+});
 
 // Автозакрытие при выборе пункта меню
 document.querySelectorAll('nav ul li a').forEach(link => {
     link.addEventListener('click', () => {
         burger.classList.remove('active');
         menu.classList.remove('active');
-        // overlay && overlay.classList.remove('active');
     });
 });
 </script>
@@ -1117,4 +1113,5 @@ document.querySelectorAll('nav ul li a').forEach(link => {
 
 </body>
 </html>
+
 
