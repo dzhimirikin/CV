@@ -72,11 +72,6 @@ nav a:hover {
 
 /* мобильное меню */
 @media (max-width: 768px) {
-
-  header, nav {
-    position: relative;
-  }
-
   #menu {
     position: absolute;
     top: 100%;
@@ -87,30 +82,27 @@ nav a:hover {
     display: flex;
     flex-direction: column;
     gap: 12px;
+    
     transform: translateX(100%);
-    transition: transform 0.3s ease;
+    opacity: 0;
+    pointer-events: none; /* чтобы клики не работали, пока меню скрыто */
+    transition: transform 0.3s ease, opacity 0.3s ease;
     box-shadow: -3px 6px 12px rgba(0,0,0,0.25);
     z-index: 999;
   }
 
-  /* меню открыто */
   #menu.active {
     transform: translateX(0);
+    opacity: 1;
+    pointer-events: auto; /* теперь клики работают */
   }
 
-  /* показываем бургер */
   .burger {
     display: flex;
   }
 
-  /* скрываем меню по умолчанию, если нужно */
-  nav ul {
+  nav ul:not(#menu) {
     display: none;
-  }
-
-  /* при активном состоянии меню делаем его видимым */
-  #menu.active {
-    display: flex;
   }
 }
 
@@ -650,3 +642,4 @@ footer{background:#1f2933;color:#fff;text-align:center;padding:25px;margin-top:4
         margin-bottom: 0;
     }
 }
+
