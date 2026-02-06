@@ -39,10 +39,34 @@ nav a:hover { text-decoration:underline; }
   transform: translateY(-8px) rotate(-45deg);
 }
 
-@media(max-width:768px){
-    nav ul { display:none; position:absolute; right:0; top:60px; background:#1f2933; flex-direction:column; width:220px; padding:15px; }
-    nav ul.active { display:flex; }
-    .burger { display:flex; }
+/* родитель должен быть опорой */
+header, nav {
+  position: relative;
+}
+
+@media (max-width:768px){
+
+  nav ul{
+    position: absolute;
+    right: 0;
+    top: 60px;
+    background: #1f2933;
+    flex-direction: column;
+    width: 220px;
+    padding: 15px;
+
+    display: flex;                 /* ВСЕГДА flex */
+    transform: translateX(110%);   /* спрятано за экраном */
+    transition: transform 0.3s ease;
+  }
+
+  nav ul.active{
+    transform: translateX(0);      /* выехало */
+  }
+
+  .burger{
+    display: flex;
+  }
 }
 
 /* ============ HERO ============ */
@@ -580,6 +604,7 @@ footer{background:#1f2933;color:#fff;text-align:center;padding:25px;margin-top:4
         margin-bottom: 0;
     }
 }
+
 
 
 
