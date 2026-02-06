@@ -2,19 +2,19 @@
 <html lang="en">
 <head>
 
-<!-- Сразу блокировка -->
-<script>
-(function () {
-    const blocked = ["www.tootukassa.ee", "tootukassa.ee"];
-    const ref = document.referrer.toLowerCase();
+  <!-- Сразу блокировка -->
+  <script>
+  (function () {
+      const blocked = ["www.tootukassa.ee", "tootukassa.ee"];
+      const ref = document.referrer.toLowerCase();
 
-    if (ref && blocked.some(d => ref.includes(d))) {
-        document.documentElement.innerHTML = "";
-        document.write("<h2>Unable to load website</h2>");
-        document.close();
-    }
-})();
-</script>
+      if (ref && blocked.some(d => ref.includes(d))) {
+          document.documentElement.innerHTML = "";
+          document.write("<h2>Unable to load website</h2>");
+          document.close();
+      }
+  })();
+  </script>
 
   <!-- Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-JZH1TX3DCH"></script>
@@ -65,9 +65,11 @@
 </nav>
 
 
-    <div class="burger" onclick="toggleMenu()">
-      <div></div><div></div><div></div>
-    </div>
+<div class="burger" onclick="toggleMenu()">
+  <div></div>
+  <div></div>
+  <div></div>
+</div>
 
     <div class="lang">
       <strong>EN</strong> |
@@ -288,7 +290,7 @@
     <div class="card project" data-project="003_BY">
       <img src="003_BY/003_BY_01.jpg" alt="003_BY">
       <h3>2013-2015: Yavara-Neva Yacht Club, building complex on Bychiy Island, S.-Petersburg, Russia</h3>
-	  <p>ELEMENTFACADE LLC / Moscow–S.-Petersburg</p>
+      <p>ELEMENTFACADE LLC / Moscow–S.-Petersburg</p>
       <p>Project features: Ventilated facades (large-block aluminum sheet NOVELIS cassettes, QMS stainless steel substructure), glazing (REYNAERS, ALMO, custom extrusion profiles).</p>
       <p>Role: Structural Design (K2/K3), project team management, supervision of installation works.</p>
        <!-- Всплывающий текст истории -->
@@ -1088,16 +1090,30 @@ document.addEventListener('DOMContentLoaded', () => {
 </script>
 
 
+<!-- Открытие/Закрытие бургер-меню -->
+<script>
+const burger = document.querySelector('.burger');
+const menu = document.querySelector('nav ul');
+
+// Если добавляешь overlay
+// const overlay = document.getElementById('menu-overlay');
+
+function toggleMenu() {
+    burger.classList.toggle('active');
+    menu.classList.toggle('active');
+    // overlay && overlay.classList.toggle('active');
+}
+
+// Автозакрытие при выборе пункта меню
+document.querySelectorAll('nav ul li a').forEach(link => {
+    link.addEventListener('click', () => {
+        burger.classList.remove('active');
+        menu.classList.remove('active');
+        // overlay && overlay.classList.remove('active');
+    });
+});
+</script>
+
+
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
