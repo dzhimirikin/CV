@@ -10,7 +10,6 @@ nav a { color:#fff; text-decoration:none; font-size:14px; }
 nav a:hover { text-decoration:underline; }
 
 /* ===== BURGER → X ===== */
-
 .burger {
     display: none;
     width: 28px;
@@ -49,10 +48,10 @@ nav a:hover { text-decoration:underline; }
     transform: rotate(-45deg);
 }
 
+/* ===== BURGER MENU ANIMATION ===== */
 @media(max-width:768px){
-
     nav ul {
-        display: flex;                  /* обязательно, чтобы пункты были flex */
+        display: flex;                  /* flex для колонок */
         flex-direction: column;
         position: absolute;
         right: 0;
@@ -61,14 +60,37 @@ nav a:hover { text-decoration:underline; }
         padding: 15px;
         background: #1f2933;
 
-        transform: translateX(100%);    /* скрыто справа */
+        transform: translateX(100%);
         transition: transform 0.35s ease;
         z-index: 99;
     }
 
     nav ul.active {
-        transform: translateX(0);       /* выезжает */
+        transform: translateX(0);
     }
+
+    /* Пункты меню плавно появляются с задержкой */
+    nav ul li {
+        opacity: 0;
+        transform: translateX(20px);
+        transition: all 0.3s ease;
+    }
+
+    nav ul.active li {
+        opacity: 1;
+        transform: translateX(0);
+    }
+
+    nav ul.active li:nth-child(1) { transition-delay: 0.05s; }
+    nav ul.active li:nth-child(2) { transition-delay: 0.10s; }
+    nav ul.active li:nth-child(3) { transition-delay: 0.15s; }
+    nav ul.active li:nth-child(4) { transition-delay: 0.20s; }
+    nav ul.active li:nth-child(5) { transition-delay: 0.25s; }
+    nav ul.active li:nth-child(6) { transition-delay: 0.30s; }
+    nav ul.active li:nth-child(7) { transition-delay: 0.35s; }
+    nav ul.active li:nth-child(8) { transition-delay: 0.40s; }
+    nav ul.active li:nth-child(9) { transition-delay: 0.45s; }
+    nav ul.active li:nth-child(10) { transition-delay: 0.50s; }
 
     .burger {
         display: flex;
@@ -77,7 +99,7 @@ nav a:hover { text-decoration:underline; }
         width: 28px;
         height: 22px;
         cursor: pointer;
-        z-index: 100;                   /* чтобы перекрывало меню */
+        z-index: 100;
     }
 }
 
@@ -617,6 +639,7 @@ footer{background:#1f2933;color:#fff;text-align:center;padding:25px;margin-top:4
         margin-bottom: 0;
     }
 }
+
 
 
 
