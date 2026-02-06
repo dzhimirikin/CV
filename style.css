@@ -81,6 +81,7 @@ nav a:hover { text-decoration:underline; }
     }
 }
 
+
 /* ============ HERO ============ */
 .hero { background:url("hero.jpg") center center no-repeat; background-size:cover; }
 .hero-overlay { background:rgba(0,0,0,0.55); padding:80px 20px; }
@@ -616,6 +617,7 @@ footer{background:#1f2933;color:#fff;text-align:center;padding:25px;margin-top:4
         margin-bottom: 0;
     }
 }
+
 
 
 
