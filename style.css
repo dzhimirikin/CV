@@ -104,28 +104,6 @@ nav a:hover { text-decoration:underline; }
     }
 }
 
-    nav ul.active li:nth-child(1) { transition-delay: 0.05s; }
-    nav ul.active li:nth-child(2) { transition-delay: 0.10s; }
-    nav ul.active li:nth-child(3) { transition-delay: 0.15s; }
-    nav ul.active li:nth-child(4) { transition-delay: 0.20s; }
-    nav ul.active li:nth-child(5) { transition-delay: 0.25s; }
-    nav ul.active li:nth-child(6) { transition-delay: 0.30s; }
-    nav ul.active li:nth-child(7) { transition-delay: 0.35s; }
-    nav ul.active li:nth-child(8) { transition-delay: 0.40s; }
-    nav ul.active li:nth-child(9) { transition-delay: 0.45s; }
-    nav ul.active li:nth-child(10) { transition-delay: 0.50s; }
-
-    .burger {
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-        width: 28px;
-        height: 22px;
-        cursor: pointer;
-        z-index: 100;
-    }
-}
-
 
 /* ============ HERO ============ */
 .hero { background:url("hero.jpg") center center no-repeat; background-size:cover; }
@@ -662,6 +640,7 @@ footer{background:#1f2933;color:#fff;text-align:center;padding:25px;margin-top:4
         margin-bottom: 0;
     }
 }
+
 
 
 
