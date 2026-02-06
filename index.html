@@ -49,27 +49,30 @@
   <div class="header-inner">
     <div class="logo">Dmitry Zhimirikin</div>
 
-<nav>
-  <ul id="menu">
-    <li><a href="#about">About</a></li>
-    <li><a href="#skills">Skills</a></li>
-    <li><a href="#projects">Projects</a></li>
-    <li><a href="#gallery">Gallery</a></li>
-    <li><a href="#cv">CV</a></li>
-    <li><a href="#certificates">Certificates</a></li>
-    <li><a href="#drawings">Drawings</a></li>
-    <li><a href="#publications">Publications</a></li>
-    <li><a href="#links">Links</a></li>
-    <li><a href="#contacts">Contacts</a></li>
-  </ul>
-</nav>
+    <!-- Навигация -->
+    <nav>
+      <ul id="menu">
+        <li><a href="#about">About</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#gallery">Gallery</a></li>
+        <li><a href="#cv">CV</a></li>
+        <li><a href="#certificates">Certificates</a></li>
+        <li><a href="#drawings">Drawings</a></li>
+        <li><a href="#publications">Publications</a></li>
+        <li><a href="#links">Links</a></li>
+        <li><a href="#contacts">Contacts</a></li>
+      </ul>
+    </nav>
 
-<div class="burger" id="burger" onclick="toggleMenu()">
-  <div></div>
-  <div></div>
-  <div></div>
-</div>
+    <!-- Бургер для мобильных -->
+    <div class="burger" id="burger" onclick="toggleMenu()">
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
 
+    <!-- Языковое меню -->
     <div class="lang">
       <strong>EN</strong> |
       <a href="index_ru.html">RU</a> |
@@ -796,9 +799,11 @@
 </script>
 
 <script>
-function toggleMenu(){
-  document.getElementById("menu").classList.toggle("active");
-  document.getElementById("burger").classList.toggle("active");
+function toggleMenu() {
+  const menu = document.getElementById('menu');
+  const burger = document.getElementById('burger');
+  menu.classList.toggle('active');
+  burger.classList.toggle('active');
 }
 </script>
 
