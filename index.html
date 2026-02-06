@@ -1092,20 +1092,20 @@ document.addEventListener('DOMContentLoaded', () => {
 
 <!-- Открытие/Закрытие бургер-меню -->
 <script>
-const burger = document.querySelector('.burger');
-const menu = document.querySelector('nav ul');
+document.addEventListener('DOMContentLoaded', () => {
+    const burger = document.querySelector('.burger');
+    const menu = document.querySelector('nav ul');
 
-// Обработчик клика по бургеру
-burger.addEventListener('click', () => {
-    burger.classList.toggle('active');
-    menu.classList.toggle('active');
-});
+    burger.addEventListener('click', () => {
+        burger.classList.toggle('active');
+        menu.classList.toggle('active');
+    });
 
-// Автозакрытие при выборе пункта меню
-document.querySelectorAll('nav ul li a').forEach(link => {
-    link.addEventListener('click', () => {
-        burger.classList.remove('active');
-        menu.classList.remove('active');
+    document.querySelectorAll('nav ul li a').forEach(link => {
+        link.addEventListener('click', () => {
+            burger.classList.remove('active');
+            menu.classList.remove('active');
+        });
     });
 });
 </script>
@@ -1113,5 +1113,6 @@ document.querySelectorAll('nav ul li a').forEach(link => {
 
 </body>
 </html>
+
 
 
