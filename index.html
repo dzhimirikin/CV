@@ -65,9 +65,11 @@
 </nav>
 
 
-    <div class="burger" onclick="toggleMenu()">
-      <div></div><div></div><div></div>
-    </div>
+<div class="burger" id="burger" onclick="toggleMenu()">
+  <div></div>
+  <div></div>
+  <div></div>
+</div>
 
     <div class="lang">
       <strong>EN</strong> |
@@ -792,6 +794,13 @@
 
 <script>
   document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+
+<script>
+function toggleMenu() {
+  document.querySelector("nav ul").classList.toggle("active");
+  document.getElementById("burger").classList.toggle("active");
+}
 </script>
 
 <script>
