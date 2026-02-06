@@ -65,11 +65,9 @@
 </nav>
 
 
-<div class="burger">
-  <div></div>
-  <div></div>
-  <div></div>
-</div>
+    <div class="burger" onclick="toggleMenu()">
+      <div></div><div></div><div></div>
+    </div>
 
     <div class="lang">
       <strong>EN</strong> |
@@ -1090,29 +1088,5 @@ document.addEventListener('DOMContentLoaded', () => {
 </script>
 
 
-<!-- Открытие/Закрытие бургер-меню -->
-<script>
-document.addEventListener('DOMContentLoaded', () => {
-    const burger = document.querySelector('.burger');
-    const menu = document.querySelector('nav ul');
-
-    burger.addEventListener('click', () => {
-        burger.classList.toggle('active');
-        menu.classList.toggle('active');
-    });
-
-    document.querySelectorAll('nav ul li a').forEach(link => {
-        link.addEventListener('click', () => {
-            burger.classList.remove('active');
-            menu.classList.remove('active');
-        });
-    });
-});
-</script>
-
-
 </body>
 </html>
-
-
-
