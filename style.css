@@ -28,33 +28,9 @@ nav a:hover { text-decoration:underline; }
 .burger.active div:nth-child(2){ opacity:0; }
 .burger.active div:nth-child(3){ transform: translateY(-8px) rotate(-45deg); }
 
-@media (max-width:768px){
-
-  #menu{
-    position: absolute;
-    right: 0;
-    top: 100%;
-    width: 220px;
-    padding: 15px;
-    background: #1f2933;
-
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-
-    transform: translateX(100%);   /* ровно за край экрана */
-    transition: transform 0.3s ease;
-
-    box-shadow: -3px 6px 12px rgba(0,0,0,0.25);
-  }
-
-  #menu.active{
-    transform: translateX(0);
-  }
-
-  .burger{
-    display: flex;
-  }
+#menu{
+  transform: translateX(0) !important;
+  background: red !important;
 }
 /* ============ HERO ============ */
 .hero { background:url("hero.jpg") center center no-repeat; background-size:cover; }
@@ -591,4 +567,5 @@ footer{background:#1f2933;color:#fff;text-align:center;padding:25px;margin-top:4
         margin-bottom: 0;
     }
 }
+
 
