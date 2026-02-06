@@ -1,22 +1,122 @@
 /* ============ HEADER ============ */
-* { box-sizing: border-box; margin:0; padding:0; font-family: Arial, Helvetica, sans-serif; }
-body { color:#222; background:#f4f4f4; line-height:1.6; }
-
-header { background:#1f2933; color:#fff; position:sticky; top:0; z-index:100; }
-.header-inner { max-width:1200px; margin:auto; padding:15px 20px; display:flex; align-items:center; justify-content:space-between; }
-.logo { font-weight:bold; font-size:18px; }
-nav ul { list-style:none; display:flex; gap:25px; }
-nav a { color:#fff; text-decoration:none; font-size:14px; }
-nav a:hover { text-decoration:underline; }
-
-.burger { display:none; flex-direction:column; gap:5px; cursor:pointer; }
-.burger div { width:25px; height:3px; background:white; }
-
-@media(max-width:768px){
-    nav ul { display:none; position:absolute; right:0; top:60px; background:#1f2933; flex-direction:column; width:220px; padding:15px; }
-    nav ul.active { display:flex; }
-    .burger { display:flex; }
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: Arial, Helvetica, sans-serif;
 }
+
+body {
+  color: #222;
+  background: #f4f4f4;
+  line-height: 1.6;
+}
+
+header {
+  background: #1f2933;
+  color: #fff;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.header-inner {
+  max-width: 1200px;
+  margin: auto;
+  padding: 15px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative; /* важно для абсолютного позиционирования меню */
+}
+
+/* Логотип с курсором */
+.logo {
+  font-weight: bold;
+  font-size: 18px;
+  cursor: pointer; /* курсор при наведении */
+}
+
+/* Основное меню */
+nav ul {
+  list-style: none;
+  display: flex;
+  gap: 25px;
+}
+
+nav a {
+  color: #fff;
+  text-decoration: none;
+  font-size: 14px;
+}
+
+nav a:hover {
+  text-decoration: underline;
+}
+
+/* Бургер для мобилки */
+.burger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer; /* курсор при наведении */
+  z-index: 1100; /* выше меню */
+}
+
+.burger div {
+  width: 25px;
+  height: 3px;
+  background: white;
+  transition: 0.3s;
+}
+
+/* Крестик при активном бургер-меню */
+.burger.active div:nth-child(1) {
+  transform: translateY(8px) rotate(45deg);
+}
+.burger.active div:nth-child(2) {
+  opacity: 0;
+}
+.burger.active div:nth-child(3) {
+  transform: translateY(-8px) rotate(-45deg);
+}
+
+/* Мобильное меню */
+@media (max-width: 768px) {
+  #menu {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    width: 220px;
+    padding: 15px;
+    background: #1f2933;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+
+    transform: translateX(100%);
+    opacity: 0;
+    pointer-events: none;
+    transition: transform 0.55s ease-in-out, opacity 0.55s ease-in-out;
+    box-shadow: -3px 6px 12px rgba(0,0,0,0.25);
+    z-index: 1000;
+  }
+
+  #menu.active {
+    transform: translateX(0);
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  .burger {
+    display: flex;
+  }
+
+  nav ul:not(#menu) {
+    display: none;
+  }
+}
+
 
 /* ============ HERO ============ */
 .hero { background:url("hero.jpg") center center no-repeat; background-size:cover; }
@@ -58,6 +158,13 @@ section h3{margin:20px 0 10px;}
     word-break: break-word;
     overflow-wrap: break-word;
 }
+
+
+/* === выделение текущего проекта при переходе к галерее === */
+.project-active {
+  outline: 2px solid #000;
+}
+
 
 /* ============ SKILLS ============ */
 
@@ -552,4 +659,48 @@ footer{background:#1f2933;color:#fff;text-align:center;padding:25px;margin-top:4
     .show-all-card .cv-link:last-child {
         margin-bottom: 0;
     }
+}
+
+
+/* =======================
+   PROJECT FILTER COMBO
+======================= */
+.project-filter {
+    margin-bottom: 0; /* убираем отступ после Combo */
+}
+
+.project-filter label {
+    margin-right: 8px;
+    font-weight: bold;
+}
+
+.project-filter select.combo {
+    padding: 6px 12px;
+    font-size: 16px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    background: #1f2933;
+    color: #fff;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.project-filter select.combo:hover,
+.project-filter select.combo:focus {
+    background: #11171a;
+}
+
+/* ===== MOBILE ===== */
+@media(max-width: 768px){
+    .project-filter select.combo {
+        display: block;
+        width: 100%;
+        margin-top: 6px; /* только между label и select */
+        padding: 8px 12px;
+    }
+}
+
+/* Отступ между карточкой заголовка и карточками проектов */
+#projects > .card:first-child {
+    margin-bottom: 20px; /* ровно как gap между карточками */
 }
