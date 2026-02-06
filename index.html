@@ -47,25 +47,25 @@
 <!-- HEADER -->
 <header>
   <div class="header-inner">
-    <div class="logo">Dmitry Zhimirikin</div>
+    <!-- Логотип с прокруткой к верху -->
+    <div class="logo" id="logo">Dmitry Zhimirikin</div>
 
-<nav>
-  <ul id="menu">
-    <li><a href="#about">About</a></li>
-    <li><a href="#skills">Skills</a></li>
-    <li><a href="#projects">Projects</a></li>
-    <li><a href="#gallery">Gallery</a></li>
-    <li><a href="#cv">CV</a></li>
-    <li><a href="#certificates">Certificates</a></li>
-    <li><a href="#drawings">Drawings</a></li>
-    <li><a href="#publications">Publications</a></li>
-    <li><a href="#links">Links</a></li>
-    <li><a href="#contacts">Contacts</a></li>
-  </ul>
-</nav>
+    <nav>
+      <ul id="menu">
+        <li><a href="#about">About</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#gallery">Gallery</a></li>
+        <li><a href="#cv">CV</a></li>
+        <li><a href="#certificates">Certificates</a></li>
+        <li><a href="#drawings">Drawings</a></li>
+        <li><a href="#publications">Publications</a></li>
+        <li><a href="#links">Links</a></li>
+        <li><a href="#contacts">Contacts</a></li>
+      </ul>
+    </nav>
 
-
-    <div class="burger" onclick="toggleMenu()">
+    <div class="burger">
       <div></div><div></div><div></div>
     </div>
 
@@ -151,106 +151,132 @@
 
 <!-- SOFTWARE SKILLS -->
 <section id="skills">
-  <h2>Software Skills</h2>
 
-  <!-- CAD/CAM/CAE -->
-  <h3><u>CAD/CAM/CAE</u></h3>
-  <div class="skill">
-    <span class="skill-name">AutoCAD</span>
-    <div class="skill-bar"><div class="skill-progress" data-width="90%"></div></div>
-    <span class="skill-percent">0%</span>
-  </div>
-  <div class="skill">
-    <span class="skill-name">Inventor</span>
-    <div class="skill-bar"><div class="skill-progress" data-width="70%"></div></div>
-    <span class="skill-percent">0%</span>
-  </div>
-  <div class="skill">
-    <span class="skill-name">LogiKAL</span>
-    <div class="skill-bar"><div class="skill-progress" data-width="90%"></div></div>
-    <span class="skill-percent">0%</span>
-  </div>
-  <div class="skill">
-    <span class="skill-name">Kompas3D</span>
-    <div class="skill-bar"><div class="skill-progress" data-width="70%"></div></div>
-    <span class="skill-percent">0%</span>
+  <div class="card">
+    <h2>Software Skills</h2>
+
+    <!-- CAD/CAM/CAE -->
+    <h3><u>CAD/CAM/CAE</u></h3>
+    <div class="skill">
+      <span class="skill-name">AutoCAD</span>
+      <div class="skill-bar"><div class="skill-progress" data-width="90%"></div></div>
+      <span class="skill-percent">0%</span>
+    </div>
+    <div class="skill">
+      <span class="skill-name">Inventor</span>
+      <div class="skill-bar"><div class="skill-progress" data-width="70%"></div></div>
+      <span class="skill-percent">0%</span>
+    </div>
+    <div class="skill">
+      <span class="skill-name">LogiKAL</span>
+      <div class="skill-bar"><div class="skill-progress" data-width="90%"></div></div>
+      <span class="skill-percent">0%</span>
+    </div>
+    <div class="skill">
+      <span class="skill-name">Kompas3D</span>
+      <div class="skill-bar"><div class="skill-progress" data-width="70%"></div></div>
+      <span class="skill-percent">0%</span>
+    </div>
+
+    <h3><u>FEM</u></h3>
+    <div class="skill">
+      <span class="skill-name">SCAD</span>
+      <div class="skill-bar"><div class="skill-progress" data-width="70%"></div></div>
+      <span class="skill-percent">0%</span>
+    </div>
+
+    <h3><u>PDM</u></h3>
+    <div class="skill">
+      <span class="skill-name">BAUHUB</span>
+      <div class="skill-bar"><div class="skill-progress" data-width="90%"></div></div>
+      <span class="skill-percent">0%</span>
+    </div>
+
+    <h3><u>MS Office</u></h3>
+    <div class="skill">
+      <span class="skill-name">MS Word</span>
+      <div class="skill-bar"><div class="skill-progress" data-width="90%"></div></div>
+      <span class="skill-percent">0%</span>
+    </div>
+    <div class="skill">
+      <span class="skill-name">MS Excel</span>
+      <div class="skill-bar"><div class="skill-progress" data-width="90%"></div></div>
+      <span class="skill-percent">0%</span>
+    </div>
+    <div class="skill">
+      <span class="skill-name">MS PowerPoint</span>
+      <div class="skill-bar"><div class="skill-progress" data-width="90%"></div></div>
+      <span class="skill-percent">0%</span>
+    </div>
+    <div class="skill">
+      <span class="skill-name">MS Project</span>
+      <div class="skill-bar"><div class="skill-progress" data-width="80%"></div></div>
+      <span class="skill-percent">0%</span>
+    </div>
+
+    <h3><u>BIM</u></h3>
+    <div class="skill">
+      <span class="skill-name">ArchiCAD</span>
+      <div class="skill-bar"><div class="skill-progress" data-width="70%"></div></div>
+      <span class="skill-percent">0%</span>
+    </div>
+    <div class="skill">
+      <span class="skill-name">Revit</span>
+      <div class="skill-bar"><div class="skill-progress" data-width="30%"></div></div>
+      <span class="skill-percent">0%</span>
+    </div>
+
+    <h3><u>Graphic Editors</u></h3>
+    <div class="skill">
+      <span class="skill-name">Adobe Photoshop</span>
+      <div class="skill-bar"><div class="skill-progress" data-width="50%"></div></div>
+      <span class="skill-percent">0%</span>
+    </div>
+
+    <h3><u>WEB</u></h3>
+    <div class="skill">
+      <span class="skill-name">HTML, Java</span>
+      <div class="skill-bar"><div class="skill-progress" data-width="10%"></div></div>
+      <span class="skill-percent">0%</span>
+    </div>
+
   </div>
 
-  <h3><u>FEM</u></h3>
-  <div class="skill">
-    <span class="skill-name">SCAD</span>
-    <div class="skill-bar"><div class="skill-progress" data-width="70%"></div></div>
-    <span class="skill-percent">0%</span>
-  </div>
-
-  <h3><u>PDM</u></h3>
-  <div class="skill">
-    <span class="skill-name">BAUHUB</span>
-    <div class="skill-bar"><div class="skill-progress" data-width="90%"></div></div>
-    <span class="skill-percent">0%</span>
-  </div>
-
-  <!-- MS Office -->
-  <h3><u>MS Office</u></h3>
-  <div class="skill">
-    <span class="skill-name">MS Word</span>
-    <div class="skill-bar"><div class="skill-progress" data-width="90%"></div></div>
-    <span class="skill-percent">0%</span>
-  </div>
-  <div class="skill">
-    <span class="skill-name">MS Excel</span>
-    <div class="skill-bar"><div class="skill-progress" data-width="90%"></div></div>
-    <span class="skill-percent">0%</span>
-  </div>
-  <div class="skill">
-    <span class="skill-name">MS PowerPoint</span>
-    <div class="skill-bar"><div class="skill-progress" data-width="90%"></div></div>
-    <span class="skill-percent">0%</span>
-  </div>
-  <div class="skill">
-    <span class="skill-name">MS Project</span>
-    <div class="skill-bar"><div class="skill-progress" data-width="80%"></div></div>
-    <span class="skill-percent">0%</span>
-  </div>
-
-  <!-- BIM -->
-  <h3><u>BIM</u></h3>
-  <div class="skill">
-    <span class="skill-name">ArchiCAD</span>
-    <div class="skill-bar"><div class="skill-progress" data-width="70%"></div></div>
-    <span class="skill-percent">0%</span>
-  </div>
-  <div class="skill">
-    <span class="skill-name">Revit</span>
-    <div class="skill-bar"><div class="skill-progress" data-width="30%"></div></div>
-    <span class="skill-percent">0%</span>
-  </div>
-
-  <!-- Graphic Editors -->
-  <h3><u>Graphic Editors</u></h3>
-  <div class="skill">
-    <span class="skill-name">Adobe Photoshop</span>
-    <div class="skill-bar"><div class="skill-progress" data-width="50%"></div></div>
-    <span class="skill-percent">0%</span>
-  </div>
-
-  <!-- Web -->
-  <h3><u>WEB</u></h3>
-  <div class="skill">
-    <span class="skill-name">HTML, Java</span>
-    <div class="skill-bar"><div class="skill-progress" data-width="10%"></div></div>
-    <span class="skill-percent">0%</span>
-  </div>
 </section>
 
 
 <!-- PROJECTS -->
 <section id="projects">
-  <h2>Selected Projects</h2>
+  <!-- Заголовок и фильтр в одной карточке -->
+  <div class="card">
+    <h2>Selected Projects</h2>
+
+    <!-- Фильтр по годам -->
+    <div class="project-filter">
+      <label for="yearFilter">Filter by year:</label>
+      <select id="yearFilter" class="combo">
+        <option value="all">All</option>
+        <option value="2012">2012</option>
+        <option value="2013">2013</option>
+        <option value="2014">2014</option>
+        <option value="2015">2015</option>
+        <option value="2016">2016</option>
+        <option value="2017">2017</option>
+        <option value="2018">2018</option>
+        <option value="2021">2021</option>
+        <option value="2022">2022</option>
+        <option value="2023">2023</option>
+        <option value="2024">2024</option>
+        <option value="2025">2025</option>
+      </select>
+    </div>
+  </div>
+
+  <!-- Контейнер для карточек проектов -->
   <div class="projects">
 
     <!-- 000_STAIR -->
-    <div class="card project" data-project="000_STAIR">
+    <div class="card project" data-project="000_STAIR" data-years="2012">
       <img src="000_STAIR/000_STAIR_01.jpg" alt="000_STAIR">
       <h3>2012: Stair, Shopping and Entertainment Center Cosmos, Saint Petersburg, Aviakonstruktorov Ave., 5 building 2, Russia</h3>
       <p>EuroStroyStandart LLC / S.-Petersburg</p>
@@ -260,7 +286,7 @@
       </div>
 
     <!-- 001_IL -->
-    <div class="card project" data-project="001_IL">
+    <div class="card project" data-project="001_IL" data-years="2012,2013,2014">
       <img src="001_IL/001_IL_1.jpg" alt="001_IL">
       <h3>2012-2014: Residence Lesnaya Formula</h3>
       <p>ELEMENTFACADE LLC / Moscow–S.-Petersburg</p>
@@ -273,7 +299,7 @@
       </div>
 
     <!-- 002_KR -->
-    <div class="card project" data-project="002_KR">
+    <div class="card project" data-project="002_KR" data-years="2013,2014">
       <img src="002_KR/002_KR_1.jpg" alt="002_KR">
       <h3>2013-2014: Apart-hotel Krestovsky, 12, Saint Petersburg, Russia</h3>
       <p>ELEMENTFACADE LLC / Moscow–S.-Petersburg</p>
@@ -285,7 +311,7 @@
       </div>
  
     <!-- 003_BY -->
-    <div class="card project" data-project="003_BY">
+    <div class="card project" data-project="003_BY" data-years="2013,2014,2015">
       <img src="003_BY/003_BY_01.jpg" alt="003_BY">
       <h3>2013-2015: Yavara-Neva Yacht Club, building complex on Bychiy Island, S.-Petersburg, Russia</h3>
       <p>ELEMENTFACADE LLC / Moscow–S.-Petersburg</p>
@@ -296,7 +322,7 @@
       </div>
 
     <!-- 004_LAKHTA -->
-    <div class="card project" data-project="004_LAKHTA">
+    <div class="card project" data-project="004_LAKHTA" data-years="2016,2017,2018">
       <img src="004_LAKHTA/004_LAKHTA_01.jpg" alt="004_LAKHTA">
       <h3>2016-2018: Lakhta Center complex, multifunctional building (MFB), S.-Petersburg, Russia</h3>
       <p>Samsung C&T Corp (Technical Client)</p>
@@ -312,7 +338,7 @@
       </div>
 
     <!-- 005_SILLA -->
-    <div class="card project" data-project="005_SILLA">
+    <div class="card project" data-project="005_SILLA" data-years="2021">
       <img src="005_SILLA/005_SILLA_01.jpg" alt="005_SILLA">
       <h3>2021: Sillamäe Vanalinna kool, Hariduse St. 6 and Geoloogia St. 13, Sillamäe, Estonia</h3>
       <p>Fenster Alumiinium AS</p>
@@ -323,7 +349,7 @@
       </div>
 
     <!-- 006_MUHU -->
-    <div class="card project" data-project="006_MUHU">
+    <div class="card project" data-project="006_MUHU" data-years="2022">
       <img src="006_MUHU/006_MUHU_01.jpg" alt="006_MUHU">
       <h3>2022: Muhu Maja Center, village of Liiva, Muhu Parish, Saare County, Estonia</h3>
       <p>Fenster Alumiinium AS</p>
@@ -334,7 +360,7 @@
       </div>
 
     <!-- 007_NRG -->
-    <div class="card project" data-project="007_NRG">
+    <div class="card project" data-project="007_NRG" data-years="2022">
       <img src="007_NRG/007_NRG_01.jpg" alt="007_NRG">
       <h3>2022: Narva Riigigümnaasiumi õppehoone, 31 Aleksander Puškini St., Narva, Estonia</h3>
       <p>Fenster Alumiinium AS</p>
@@ -345,7 +371,7 @@
       </div>
 
     <!-- 008_NEK -->
-    <div class="card project" data-project="008_NEK">
+    <div class="card project" data-project="008_NEK" data-years="2023">
       <img src="008_NEK/008_NEK_01.jpg" alt="008_NEK">
       <h3>2023: Narva Eesti Gümnaasium, 1 Kraavi St., Narva, Estonia</h3>
       <p>Fenster Alumiinium AS</p>
@@ -356,7 +382,7 @@
       </div>
 
     <!-- 009_NEL -->
-    <div class="card project" data-project="009_NEL">
+    <div class="card project" data-project="009_NEL" data-years="2023">
       <img src="009_NEL/009_NEL_01.png" alt="009_NEL">
       <h3>2023:Narva Estonian Kindergarten "Red Riding Hood", Hariduse St. 10, Narva, Estonia</h3>
       <p>Fenster Alumiinium AS</p>
@@ -367,7 +393,7 @@
       </div>
 
     <!-- 010_ML -->
-    <div class="card project" data-project="010_ML">
+    <div class="card project" data-project="010_ML" data-years="2023">
       <img src="010_ML/010_ML_01.jpg" alt="010_ML">
       <h3>2023: Magdalena Kindergarten, Asula St. 16 / Asula St. 18, Tallinn, Estonia</h3>
       <p>Fenster Alumiinium AS</p>
@@ -378,7 +404,7 @@
       </div>
 
     <!-- 011_LAAGRI -->
-    <div class="card project" data-project="011_LAAGRI">
+    <div class="card project" data-project="011_LAAGRI" data-years="2023">
       <img src="011_LAAGRI/011_LAAGRI_01.png" alt="011_LAAGRI">
       <h3>2023: Lootsi 8 Commercial and Office Building, Tallinn, Estonia</h3>
       <p>Fenster Alumiinium AS</p>
@@ -389,7 +415,7 @@
       </div>
 
     <!-- 012_MERCEDES -->
-    <div class="card project" data-project="012_MERCEDES">
+    <div class="card project" data-project="012_MERCEDES" data-years="2024">
       <img src="012_MERCEDES/012_MERCEDES_01.jpg" alt="012_MERCEDES">
       <h3>2024: Mercedes-Veho Car Center, Tooma St. 2, Tallinn, Estonia</h3>
       <p>Project features: Curtain wall glazing using REYNAERS systems. Development of connection details for heavy signage.</p>
@@ -399,7 +425,7 @@
       </div>
 
     <!-- 013_GREENFL -->
-    <div class="card project" data-project="013_GREENFL">
+    <div class="card project" data-project="013_GREENFL" data-years="2024">
       <img src="013_GREENFL/013_GREENFL_01.jpg" alt="013_GREENFL">
       <h3>2024: Hotel, Thermal Complex, and Wellness Center "GREEN FLOW BAIKAL", Republic of Buryatia, Pribaikalsky District, Turka Village, Russia</h3>
       <p>Project features: Curtain wall glazing using ALUTECH systems. Use of a double-span mullion with a working joint (composite mullion).</p>
@@ -409,7 +435,7 @@
       </div>
 
     <!-- 014_KASTANI -->
-    <div class="card project" data-project="014_KASTANI">
+    <div class="card project" data-project="014_KASTANI" data-years="2025">
       <img src="014_KASTANI/014_KASTANI_01.jpg" alt="014_KASTANI">
       <h3>2025: Kastani Kolmnurk Office Building, Kastani St. 92, Tartu, Estonia</h3>
       <p>Project features: Curtain wall glazing using ALUPROF systems. Curved facades with tight radii.</p>
@@ -419,7 +445,7 @@
       </div>
 
     <!-- 015_TLT -->
-    <div class="card project" data-project="015_TLT">
+    <div class="card project" data-project="015_TLT" data-years="2025">
       <img src="015_TLT/015_TLT_01.jpg" alt="015_TLT">
       <h3>2025: "Tulesäde" Kindergarten, Kambja Parish, Estonia</h3>
       <p>Project features: Curtain wall glazing using ALUPROF systems.</p>
@@ -429,7 +455,7 @@
       </div>
 
     <!-- 016_LAT -->
-    <div class="card project" data-project="016_LAT">
+    <div class="card project" data-project="016_LAT" data-years="2025">
       <img src="016_LAT/016_LAT_01.jpg" alt="016_LAT">
       <h3>2025: Lõõtsa 6 Office Building, Tartu, Estonia</h3>
       <p>Project features: Curtain wall glazing using ALUPROF systems.</p>
@@ -439,7 +465,7 @@
       </div>
 
     <!-- 017_JMETK -->
-    <div class="card project" data-project="017_JMETK">
+    <div class="card project" data-project="017_JMETK" data-years="2025">
       <img src="017_JMETK/017_JMETK_01.png" alt="017_JMETK">
       <h3>2025: METK Research Center for Plant Breeding and Agriculture, Jõgeva, Estonia</h3>
       <p>Project features: Curtain wall glazing using ALUPROF systems.</p>
@@ -791,10 +817,14 @@
 
 
 <script>
-  document.getElementById('year').textContent = new Date().getFullYear();
-</script>
+/* ==============================
+   FOOTER YEAR
+============================== */
+document.getElementById('year').textContent = new Date().getFullYear();
 
-<script>
+/* ==============================
+   SKILLS ANIMATION
+============================== */
 function animateSkills() {
   const skills = document.querySelectorAll('.skill');
   const triggerBottom = window.innerHeight * 0.9;
@@ -811,18 +841,15 @@ function animateSkills() {
 
       const target = parseInt(progress.dataset.width);
 
-      // создаём серый движок один раз
       if (!bar.querySelector('.skill-track')) {
         const track = document.createElement('div');
         track.className = 'skill-track';
         bar.insertBefore(track, progress);
-        track.style.width = target + '%'; // серый сразу
+        track.style.width = target + '%';
       }
 
-      // цветной — анимация
       progress.style.width = target + '%';
 
-      // анимируем цифры
       let current = 0;
       const duration = 1200;
       const stepTime = 15;
@@ -840,34 +867,22 @@ function animateSkills() {
   });
 }
 
-// события
 window.addEventListener('scroll', animateSkills);
 window.addEventListener('load', animateSkills);
-</script>
 
-
-<style>
-.project-active {
-  outline: 2px solid #000;
-}
-</style>
-
-<script>
+/* ==============================
+   MAIN DOMContentLoaded
+============================== */
 document.addEventListener('DOMContentLoaded', () => {
 
-  /* ==============================
-     ELEMENTS
-  ================================ */
-
+  /* ------------------------------
+     PROJECTS & GALLERY
+  ------------------------------ */
   const projectCards  = document.querySelectorAll('.card.project');
   const galleryImages = document.querySelectorAll('#gallery .gallery a');
   const gallerySection = document.getElementById('gallery');
   const showAllBtn = document.getElementById('showAllProjectsBtn');
   const historyBtn = document.getElementById('historyBtn');
-
-  /* ==============================
-     PROJECT HISTORY CONFIG
-  ================================ */
 
   const projectHistory = {
     "000_STAIR": 0,
@@ -890,20 +905,12 @@ document.addEventListener('DOMContentLoaded', () => {
     "017_JMETK": 0
   };
 
-  /* ==============================
-     GALLERY FILTER
-  ================================ */
-
   function filterGallery(projectCode) {
     galleryImages.forEach(imgLink => {
       const href = imgLink.getAttribute('href');
       imgLink.style.display = href.startsWith(projectCode + '/') ? '' : 'none';
     });
   }
-
-  /* ==============================
-     SMOOTH SCROLL
-  ================================ */
 
   function smoothScroll(target, duration = 800) {
     const start = window.scrollY || window.pageYOffset;
@@ -923,11 +930,8 @@ document.addEventListener('DOMContentLoaded', () => {
     requestAnimationFrame(animation);
   }
 
-  /* ==============================
-     HISTORY BUTTON LOGIC
-  ================================ */
-
   function disableHistoryButton() {
+    if (!historyBtn) return;
     historyBtn.disabled = true;
     historyBtn.classList.add('disabled');
     historyBtn.classList.remove('history');
@@ -935,155 +939,145 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   function updateHistoryButton(projectCode) {
-
-    if (!projectCode || !projectHistory[projectCode]) {
+    if (!historyBtn || !projectCode || !projectHistory[projectCode]) {
       disableHistoryButton();
       return;
     }
-
     const url = projectHistory[projectCode];
-
     historyBtn.disabled = false;
     historyBtn.classList.remove('disabled');
     historyBtn.classList.add('history');
-
-    // Открытие как обычная ссылка в новой вкладке
-    historyBtn.onclick = () => {
-      window.open(url, '_blank'); // target="_blank"
-    };
+    historyBtn.onclick = () => window.open(url, '_blank');
   }
-
-  /* ==============================
-     MARK PROJECTS WITH HISTORY
-  ================================ */
 
   projectCards.forEach(card => {
     const img = card.querySelector('img');
     if (!img) return;
-
     const projectCode = img.getAttribute('src').split('/')[0];
-    if (projectHistory[projectCode]) {
-      card.classList.add('has-history');
-    }
+    if (projectHistory[projectCode]) card.classList.add('has-history');
   });
-
-  /* ==============================
-     PROJECT CARD CLICK
-  ================================ */
 
   projectCards.forEach(card => {
     card.addEventListener('click', () => {
-
-      // снять подсветку
       projectCards.forEach(c => c.classList.remove('project-active'));
       card.classList.add('project-active');
 
-      // получить код проекта
       const img = card.querySelector('img');
       const projectCode = img.getAttribute('src').split('/')[0];
 
-      // фильтрация
       filterGallery(projectCode);
-
-      // история
       updateHistoryButton(projectCode);
 
-      // скролл
       if (gallerySection) smoothScroll(gallerySection, 1000);
     });
   });
 
-  /* ==============================
-     SHOW ALL PROJECTS
-  ================================ */
-
   if (showAllBtn) {
     showAllBtn.addEventListener('click', () => {
-
       projectCards.forEach(c => c.classList.remove('project-active'));
-
-      galleryImages.forEach(imgLink => {
-        imgLink.style.display = '';
-      });
-
+      galleryImages.forEach(imgLink => imgLink.style.display = '');
       updateHistoryButton(null);
     });
   }
 
-});
-</script>
-
-
-<script>
-const correctPassword = "+79313166455";
-
-document.querySelectorAll('.password-link').forEach(link => {
-  link.addEventListener('click', function(e) {
-    e.preventDefault(); // отменяем переход по ссылке
-    const userInput = prompt("Enter password to download:");
-    if(userInput === correctPassword) {
-      window.open(link.href, "_blank"); // открываем ссылку в новой вкладке
-    } else {
-      alert("Incorrect password!");
-    }
+  /* ------------------------------
+     PASSWORD LINKS
+  ------------------------------ */
+  const correctPassword = "+79313166455";
+  document.querySelectorAll('.password-link').forEach(link => {
+    link.addEventListener('click', function(e) {
+      e.preventDefault();
+      const userInput = prompt("Enter password to download:");
+      if(userInput === correctPassword) {
+        window.open(link.href, "_blank");
+      } else {
+        alert("Incorrect password!");
+      }
+    });
   });
-});
-</script>
 
-
-<script>
-const carousel = document.getElementById('certCarousel');
-const images = carousel.querySelectorAll('img');
-
-const count = images.length;
-const angle = 360 / count;
-
-let rotation = 0;
-
-function getRadius() {
-  return window.innerWidth < 768 ? 260 : 420;
-}
-
-function layoutCarousel() {
-  const radius = getRadius();
-
-  images.forEach((img, i) => {
-    img.style.transform =
-      `rotateY(${i * angle}deg) translateZ(${radius}px)`;
-  });
-}
-
-// инициализация
-layoutCarousel();
-
-// вращение кнопками
-function rotateCarousel(direction) {
-  rotation += direction * angle;
-  carousel.style.transform = `rotateY(${rotation}deg)`;
-}
-
-// пересчёт при ресайзе
-window.addEventListener('resize', layoutCarousel);
-
-// открыть сертификат
-images.forEach(img => {
-  img.addEventListener('click', () => {
-    window.open(img.src, '_blank');
-  });
-});
-</script>
-
-
-<script>
-document.addEventListener('DOMContentLoaded', () => {
+  /* ------------------------------
+     BURGER MENU + LOGO SCROLL
+  ------------------------------ */
+  const logo = document.getElementById('logo');
   const burger = document.querySelector('.burger');
   const menu = document.getElementById('menu');
 
-  if (burger && menu) {
-    burger.addEventListener('click', () => {
-      menu.classList.toggle('active');
+  if (logo) {
+    logo.addEventListener('click', e => {
+      e.preventDefault();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     });
   }
+
+  if (burger && menu) {
+    const menuLinks = menu.querySelectorAll('a');
+
+    burger.addEventListener('click', () => {
+      burger.classList.toggle('active');
+      menu.classList.toggle('active');
+    });
+
+    menuLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        menu.classList.remove('active');
+        burger.classList.remove('active');
+      });
+    });
+  }
+
+/* ------------------------------
+   PROJECT FILTER BY YEAR
+------------------------------ */
+const yearFilter = document.getElementById('yearFilter');
+if (yearFilter) {
+  yearFilter.addEventListener('change', () => {
+    const selectedYear = yearFilter.value;
+    projectCards.forEach(project => {
+      const years = project.dataset.years.split(',').map(y => y.trim());
+      if (selectedYear === 'all' || years.includes(selectedYear)) {
+        project.style.display = '';
+      } else {
+        project.style.display = 'none';
+      }
+    });
+  });
+}
+
+  /* ------------------------------
+     CAROUSEL
+  ------------------------------ */
+  const carousel = document.getElementById('certCarousel');
+  if (carousel) {
+    const images = carousel.querySelectorAll('img');
+    const count = images.length;
+    const angle = 360 / count;
+    let rotation = 0;
+
+    function getRadius() {
+      return window.innerWidth < 768 ? 260 : 420;
+    }
+
+    function layoutCarousel() {
+      const radius = getRadius();
+      images.forEach((img, i) => {
+        img.style.transform = `rotateY(${i * angle}deg) translateZ(${radius}px)`;
+      });
+    }
+
+    layoutCarousel();
+    window.addEventListener('resize', layoutCarousel);
+
+    images.forEach(img => {
+      img.addEventListener('click', () => window.open(img.src, '_blank'));
+    });
+
+    window.rotateCarousel = function(direction) {
+      rotation += direction * angle;
+      carousel.style.transform = `rotateY(${rotation}deg)`;
+    }
+  }
+
 });
 </script>
 
