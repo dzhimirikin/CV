@@ -40,6 +40,10 @@
   <title>Дмитрий Жимирикин — Инженерное портфолио</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="style.css">
+
+  <link rel="manifest" href="/manifest.json">
+  <meta name="theme-color" content="#1f2933"> <!-- цвет строки состояния на Android -->
+
   </head>
 
 <body>
@@ -52,16 +56,97 @@
 
     <nav>
       <ul id="menu">
-        <li><a href="#about">О себе</a></li>
-        <li><a href="#skills">Навыки</a></li>
-        <li><a href="#projects">Проекты</a></li>
-        <li><a href="#gallery">Галерея</a></li>
-        <li><a href="#cv">Резюме</a></li> 
-        <li><a href="#certificates">Свидетельства</a></li>
-        <li><a href="#drawings">Чертежи</a></li>
-        <li><a href="#publications">Публикации</a></li>
-        <li><a href="#links">Ссылки</a></li>
-        <li><a href="#contacts">Контакты</a></li>
+        <li>
+          <a href="#about">
+            <!-- Heroicon: user -->
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5.121 17.804A9 9 0 1112 21a9 9 0 01-6.879-3.196z" />
+            </svg>
+            О себе
+          </a>
+        </li>
+        <li>
+          <a href="#skills">
+            <!-- Heroicon: academic-cap -->
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 14l9-5-9-5-9 5 9 5z" />
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 14l6.16-3.422A12.083 12.083 0 0112 21.5a12.083 12.083 0 01-6.16-10.922L12 14z" />
+            </svg>
+            Навыки
+          </a>
+        </li>
+        <li>
+          <a href="#projects">
+            <!-- Heroicon: briefcase -->
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 7V4a2 2 0 012-2h8a2 2 0 012 2v3M6 7h12v14H6V7z" />
+            </svg>
+            Проекты
+          </a>
+        </li>
+        <li>
+          <a href="#gallery">
+            <!-- Heroicon: photograph -->
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 7h18M3 7l3 12h12l3-12M16 11l-4 4-2-2-4 4" />
+            </svg>
+            Галерея
+          </a>
+        </li>
+        <li>
+          <a href="#cv">
+            <!-- Heroicon: document-text -->
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6M9 16h6M7 8h10M5 20h14a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+            </svg>
+            Резюме
+          </a>
+        </li>
+        <li>
+          <a href="#certificates">
+            <!-- Heroicon: badge-check -->
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m2-2a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+            Свидетельства
+          </a>
+        </li>
+        <li>
+          <a href="#drawings">
+            <!-- Heroicon: pencil-alt -->
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5l7 7-7 7-7-7 7-7z" />
+            </svg>
+            Чертежи
+          </a>
+        </li>
+        <li>
+          <a href="#publications">
+            <!-- Heroicon: book-open -->
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 20H6a2 2 0 01-2-2V6a2 2 0 012-2h6m6 0h-6m6 0v12a2 2 0 01-2 2h-6" />
+            </svg>
+            Публикации
+          </a>
+        </li>
+        <li>
+          <a href="#links">
+            <!-- Heroicon: link -->
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 14L21 3m0 0a3 3 0 11-4.243 4.243L10 14l-3 3" />
+            </svg>
+            Ссылки
+          </a>
+        </li>
+        <li>
+          <a href="#contacts">
+            <!-- Heroicon: phone -->
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3a2 2 0 012 2v1a2 2 0 01-2 2H5v3h1a2 2 0 012 2v3a2 2 0 01-2 2H5a2 2 0 01-2-2V5z" />
+            </svg>
+            Контакты
+          </a>
+        </li>
       </ul>
     </nav>
 
@@ -258,35 +343,54 @@
 <!-- PROJECTS -->
 <section id="projects">
 
-  <!-- Заголовок и фильтр в одной карточке -->
+  <!-- Заголовок и фильтры в одной карточке -->
   <div class="card">
     <h2>Избранные проекты</h2>
 
-    <!-- Фильтр по годам -->
+    <!-- Контейнер для обоих фильтров -->
     <div class="project-filter">
-      <label for="yearFilter">Фильтр по годам:</label>
-      <select id="yearFilter" class="combo">
-        <option value="all">Все</option>
-        <option value="2012">2012</option>
-        <option value="2013">2013</option>
-        <option value="2014">2014</option>
-        <option value="2015">2015</option>
-        <option value="2016">2016</option>
-        <option value="2017">2017</option>
-        <option value="2018">2018</option>
-        <option value="2021">2021</option>
-        <option value="2022">2022</option>
-        <option value="2023">2023</option>
-        <option value="2024">2024</option>
-        <option value="2025">2025</option>
-      </select>
+      <!-- Фильтр по годам -->
+      <div class="filter-item">
+        <label for="yearFilter">Фильтр по годам:</label>
+        <select id="yearFilter" class="combo">
+          <option value="all">Все</option>
+          <option value="2012">2012</option>
+          <option value="2013">2013</option>
+          <option value="2014">2014</option>
+          <option value="2015">2015</option>
+          <option value="2016">2016</option>
+          <option value="2017">2017</option>
+          <option value="2018">2018</option>
+          <option value="2021">2021</option>
+          <option value="2022">2022</option>
+          <option value="2023">2023</option>
+          <option value="2024">2024</option>
+          <option value="2025">2025</option>
+        </select>
+      </div>
+
+      <!-- Фильтр по компаниям -->
+      <div class="filter-item">
+        <label for="companyFilter">Фильтр по компаниям:</label>
+        <select id="companyFilter" class="combo">
+          <option value="all">Все</option>
+          <option value="ЕвроСтройСтандарт УК ООО">ЕвроСтройСтандарт УК ООО</option>
+          <option value="ЭЛЕМЕНТФАСАД ООО">ЭЛЕМЕНТФАСАД ООО</option>
+          <option value="Samsung C&T Corp">Samsung C&T Corp</option>
+          <option value="Fenster Alumiinium AS">Fenster Alumiinium AS</option>
+          <option value="Malmerk Fassaadid AS">Malmerk Fassaadid AS</option>
+          <option value="REY Aluminium ООО">REY Aluminium ООО</option>
+          <option value="SeiCom OÜ">SeiCom OÜ</option>
+          <!-- Добавьте остальные компании -->
+        </select>
+      </div>
     </div>
   </div>
 
+  <!-- Контейнер для карточек проектов -->
   <div class="projects">
-
     <!-- 000_STAIR -->
-      <div class="card project" data-project="000_STAIR" data-years="2012">
+      <div class="card project" data-project="000_STAIR" data-years="2012" data-company="ЕвроСтройСтандарт УК ООО">
       <img src="000_STAIR/000_STAIR_01.jpg" alt="000_STAIR">
       <h3>2012: Лестница, ТРК Космос, С.-Петербург, пр. Авиаконструкторов, 5 корпус 2</h3>
       <p>ЕвроСтройСтандарт УК ООО / С.-Петербург</p> 
@@ -296,7 +400,7 @@
       </div>
 
     <!-- 001_IL -->
-    <div class="card project" data-project="001_IL" data-years="2012,2013,2014">
+    <div class="card project" data-project="001_IL" data-years="2012,2013,2014" data-company="ЭЛЕМЕНТФАСАД ООО">
       <img src="001_IL/001_IL_1.jpg" alt="001_IL">
       <h3>2012-2014: Резиденция Лесная Формула</h3>
       <p>ЭЛЕМЕНТФАСАД ООО / Москва–С.-Петербург</p>
@@ -309,7 +413,7 @@
       </div>
 
     <!-- 002_KR -->
-    <div class="card project" data-project="002_KR" data-years="2013,2014,2015">
+    <div class="card project" data-project="002_KR" data-years="2013,2014,2015" data-company="ЭЛЕМЕНТФАСАД ООО">
       <img src="002_KR/002_KR_1.jpg" alt="002_KR">
       <h3>2013-2014: Апарт-отель Крестовский, 12, С.-Петербург</h3>
       <p>ЭЛЕМЕНТФАСАД ООО / Москва–С.-Петербург</p>
@@ -321,7 +425,7 @@
       </div>
 
     <!-- 003_BY -->
-    <div class="card project" data-project="003_BY" data-years="2013,2014,2015">
+    <div class="card project" data-project="003_BY" data-years="2013,2014,2015" data-company="ЭЛЕМЕНТФАСАД ООО">
       <img src="003_BY/003_BY_01.jpg" alt="003_BY">
       <h3>2013-2015: Явара-Нева яхт-клуб, комплекс зданий на острове Бычий, С.-Петербург</h3>
       <p>ЭЛЕМЕНТФАСАД ООО / Москва–С.-Петербург</p>
@@ -332,7 +436,7 @@
       </div>
 
     <!-- 004_LAKHTA -->
-    <div class="card project" data-project="004_LAKHTA" data-years="2016,2017,2018">
+    <div class="card project" data-project="004_LAKHTA" data-years="2016,2017,2018" data-company="Samsung C&T Corp">
       <img src="004_LAKHTA/004_LAKHTA_01.jpg" alt="004_LAKHTA">
       <h3>2016-2018: Комплекс Лахта-центр, многофункциональное здание (МФЗ), С.-Петербург</h3>
       <p>Samsung C&T Corp (Технический Заказчик)</p>
@@ -348,7 +452,7 @@
       </div>
 
     <!-- 005_SILLA -->
-    <div class="card project" data-project="005_SILLA" data-years="2021">
+    <div class="card project" data-project="005_SILLA" data-years="2021" data-company="Fenster Alumiinium AS">
       <img src="005_SILLA/005_SILLA_01.jpg" alt="005_SILLA">
       <h3>2021: Sillamäe Vanalinna kool, ул. Харидусе, 6 и ул. Геология, 13, Силламяэ, Эстония</h3>
       <p>Fenster Alumiinium AS</p>
@@ -359,7 +463,7 @@
       </div>
 
     <!-- 006_MUHU -->
-    <div class="card project" data-project="006_MUHU" data-years="2022">
+    <div class="card project" data-project="006_MUHU" data-years="2022" data-company="Fenster Alumiinium AS">
       <img src="006_MUHU/006_MUHU_01.jpg" alt="006_MUHU">
       <h3>2022: Центр «Muhu Маја», деревня Лиива, волость Муху, уезд Сааремаа, Эстония</h3>
       <p>Fenster Alumiinium AS</p>
@@ -370,7 +474,7 @@
       </div>
 
     <!-- 007_NRG -->
-    <div class="card project" data-project="007_NRG" data-years="2022">
+    <div class="card project" data-project="007_NRG" data-years="2022" data-company="Fenster Alumiinium AS">
       <img src="007_NRG/007_NRG_01.jpg" alt="007_NRG">
       <h3>2022: Narva Riigigümnaasiumi õppehoone, ул. Александра Пушкина, 31, Нарва, Эстония</h3>
       <p>Fenster Alumiinium AS</p>
@@ -381,7 +485,7 @@
       </div>
 
     <!-- 008_NEK -->
-    <div class="card project" data-project="008_NEK" data-years="2023">
+    <div class="card project" data-project="008_NEK" data-years="2023" data-company="Fenster Alumiinium AS">
       <img src="008_NEK/008_NEK_01.jpg" alt="008_NEK">
       <h3>2023: Narva Eesti Gümnaasium, ул. Краави, 1, Нарва, Эстония</h3>
       <p>Fenster Alumiinium AS</p>
@@ -392,7 +496,7 @@
       </div>
 
     <!-- 009_NEL -->
-    <div class="card project" data-project="009_NEL" data-years="2023">
+    <div class="card project" data-project="009_NEL" data-years="2023" data-company="Fenster Alumiinium AS">
       <img src="009_NEL/009_NEL_01.png" alt="009_NEL">
       <h3>2023: Нарвский эстонский детский сад «Красная Шапочка», ул. Харидусе, 10, Нарва, Эстония</h3>
       <p>Fenster Alumiinium AS</p>
@@ -403,7 +507,7 @@
       </div>
 
     <!-- 010_ML -->
-    <div class="card project" data-project="010_ML" data-years="2023">
+    <div class="card project" data-project="010_ML" data-years="2023" data-company="Fenster Alumiinium AS">
       <img src="010_ML/010_ML_01.jpg" alt="010_ML">
       <h3>2023: Детский сад Магдалена, ул. Асула, 16/ул. Асула, 18, Таллин, Эстония</h3>
       <p>Fenster Alumiinium AS</p>
@@ -414,7 +518,7 @@
       </div>
 
     <!-- 011_LAAGRI -->
-    <div class="card project" data-project="011_LAAGRI" data-years="2023">
+    <div class="card project" data-project="011_LAAGRI" data-years="2023" data-company="Fenster Alumiinium AS">
       <img src="011_LAAGRI/011_LAAGRI_01.png" alt="011_LAAGRI">
       <h3>2023: Торгово-офисное здание, ул. Лоотси, 8, Таллин, Эстония</h3>
       <p>Fenster Alumiinium AS</p>
@@ -425,7 +529,7 @@
       </div>
 
     <!-- 012_MERCEDES -->
-    <div class="card project" data-project="012_MERCEDES" data-years="2024">
+    <div class="card project" data-project="012_MERCEDES" data-years="2024" data-company="Malmerk Fassaadid AS">
       <img src="012_MERCEDES/012_MERCEDES_01.jpg" alt="012_MERCEDES">
       <h3>2024: Автосалон Mercedes-Veho, ул. Тоома, 2, Таллин, Эстония</h3>
       <p>Особенности проекта: Фасадное остекление с использованием систем REYNAERS. Проработка узлов крепления тяжелых вывесок.</p>
@@ -435,7 +539,7 @@
       </div>
 
     <!-- 013_GREENFL -->
-    <div class="card project" data-project="013_GREENFL" data-years="2024">
+    <div class="card project" data-project="013_GREENFL" data-years="2024" data-company="REY Aluminium ООО">
       <img src="013_GREENFL/013_GREENFL_01.jpg" alt="013_GREENFL">
       <h3>2024: Отель, термальный комплекс и оздоровительный центр «GREEN FLOW BAIKAL», Республика Бурятия, Прибайкальский район, село Турка, Россия</h3>
       <p>Особенности проекта: Фасадное остекление с использованием систем ALUTECH. Применение двупролетной стойки с рабочей стыковкой (композитной стойки).</p>
@@ -445,7 +549,7 @@
       </div>
 
     <!-- 014_KASTANI -->
-    <div class="card project" data-project="014_KASTANI" data-years="2025">
+    <div class="card project" data-project="014_KASTANI" data-years="2025" data-company="SeiCom OÜ">
       <img src="014_KASTANI/014_KASTANI_01.jpg" alt="014_KASTANI">
       <h3>2025: Деловое здание «Kastani Kolmnurk», ул. Кастани, 92, Тарту, Эстония</h3>
       <p>Особенности проекта: Фасадное остекление с использованием систем ALUPROF. Радиусные фасады на малых радиусах.</p>
@@ -455,7 +559,7 @@
       </div>
 
     <!-- 015_TLT -->
-    <div class="card project" data-project="015_TLT" data-years="2025">
+    <div class="card project" data-project="015_TLT" data-years="2025" data-company="SeiCom OÜ">
       <img src="015_TLT/015_TLT_01.jpg" alt="015_TLT">
       <h3>2025: Детский сад «Tulesäde», волость Камбья, Эстония</h3>
       <p>Особенности проекта: Фасадное остекление с использованием систем ALUPROF.</p>
@@ -465,7 +569,7 @@
       </div>
 
     <!-- 016_LAT -->
-    <div class="card project" data-project="016_LAT" data-years="2025">
+    <div class="card project" data-project="016_LAT" data-years="2025" data-company="SeiCom OÜ">
       <img src="016_LAT/016_LAT_01.jpg" alt="016_LAT">
       <h3>2025: Деловое здание, ул. Lõõtsa, 6, Тарту, Эстония</h3>
       <p>Особенности проекта: Фасадное остекление с использованием систем ALUPROF.</p>
@@ -475,7 +579,7 @@
       </div>
 
     <!-- 017_JMETK -->
-    <div class="card project" data-project="017_JMETK" data-years="2025">
+    <div class="card project" data-project="017_JMETK" data-years="2025" data-company="SeiCom OÜ">
       <img src="017_JMETK/017_JMETK_01.png" alt="017_JMETK">
       <h3>2025: Исследовательский Центр в области растениеводства и сельского хозяйства METK, Йыгева, Эстония</h3>
       <p>Особенности проекта: Фасадное остекление с использованием систем ALUPROF.</p>
@@ -498,16 +602,15 @@
 
     <!-- Кнопки управления галереей -->
     <div class="show-all-card">
-      <p>Показать все проекты в галерее:</p>
-
       <button id="showAllProjectsBtn" type="button" class="cv-link">
         Показать все проекты
       </button>
 
-      <button id="historyBtn"
-              type="button"
-              class="cv-link disabled"
-              disabled>
+      <button id="backToProjectBtn" type="button" class="cv-link disabled" disabled>
+        Вернуться к проекту
+      </button>
+
+      <button id="historyBtn" type="button" class="cv-link disabled" disabled>
         История объекта
       </button>
     </div>
@@ -823,274 +926,12 @@
   © <span id="year"></span> Дмитрий Жимирикин — Инженерное портфолио
 </footer>
 
-
-<script>
-/* ==============================
-   FOOTER YEAR
-============================== */
-document.getElementById('year').textContent = new Date().getFullYear();
-
-/* ==============================
-   SKILLS ANIMATION
-============================== */
-function animateSkills() {
-  const skills = document.querySelectorAll('.skill');
-  const triggerBottom = window.innerHeight * 0.9;
-
-  skills.forEach(skill => {
-    const skillTop = skill.getBoundingClientRect().top;
-
-    if (skillTop < triggerBottom && !skill.classList.contains('animated')) {
-      skill.classList.add('animated');
-
-      const progress = skill.querySelector('.skill-progress');
-      const percent = skill.querySelector('.skill-percent');
-      const bar = skill.querySelector('.skill-bar');
-
-      const target = parseInt(progress.dataset.width);
-
-      if (!bar.querySelector('.skill-track')) {
-        const track = document.createElement('div');
-        track.className = 'skill-track';
-        bar.insertBefore(track, progress);
-        track.style.width = target + '%';
-      }
-
-      progress.style.width = target + '%';
-
-      let current = 0;
-      const duration = 1200;
-      const stepTime = 15;
-      const increment = target / (duration / stepTime);
-
-      const counter = setInterval(() => {
-        current += increment;
-        if (current >= target) {
-          current = target;
-          clearInterval(counter);
-        }
-        percent.textContent = Math.round(current) + '%';
-      }, stepTime);
-    }
-  });
-}
-
-window.addEventListener('scroll', animateSkills);
-window.addEventListener('load', animateSkills);
-
-/* ==============================
-   MAIN DOMContentLoaded
-============================== */
-document.addEventListener('DOMContentLoaded', () => {
-
-  /* ------------------------------
-     PROJECTS & GALLERY
-  ------------------------------ */
-  const projectCards  = document.querySelectorAll('.card.project');
-  const galleryImages = document.querySelectorAll('#gallery .gallery a');
-  const gallerySection = document.getElementById('gallery');
-  const showAllBtn = document.getElementById('showAllProjectsBtn');
-  const historyBtn = document.getElementById('historyBtn');
-
-  const projectHistory = {
-    "000_STAIR": 0,
-    "001_IL": "https://ingmar.ru/en/forest",
-    "002_KR": "https://ingmar.ru/en/k12",
-    "003_BY": "https://www.skyscrapercity.com/threads/%D0%A1%D0%BF%D0%BE%D1%80%D1%82%D0%BA%D0%BB%D1%83%D0%B1-%C2%AB%D0%AF%D0%B2%D0%B0%D1%80%D0%B0-%D0%9D%D0%B5%D0%B2%D0%B0%C2%BB-%D0%BFoc%D1%82%D1%80oe%D0%BD.1338207/",
-    "004_LAKHTA": "https://www.skyscrapercity.com/threads/%C2%AB%D0%9B%D0%B0%D1%85%D1%82%D0%B0-%D1%86%D0%B5%D0%BD%D1%82%D1%80%C2%BB-462%D0%BC-87%D1%8D-%D0%BF%D0%BE%D1%81%D1%82%D1%80%D0%BE%D0%B5%D0%BD.1338788/?post_id=74066229#post-74066229",
-    "005_SILLA": 0,
-    "006_MUHU": 0,
-    "007_NRG": 0,
-    "008_NEK": "https://www.threeplusone.ee/work/narva-estonian-school/",
-    "009_NEL": "https://www.threeplusone.ee/work/narva-estonian-kindergarten/",
-    "010_ML": 0,
-    "011_LAAGRI": 0,
-    "012_MERCEDES": 0,
-    "013_GREENFL": 0,
-    "014_KASTANI": "https://www.kastanikolmnurk.ee/",
-    "015_TLT": 0,
-    "016_LAT": 0,
-    "017_JMETK": 0
-  };
-
-  function filterGallery(projectCode) {
-    galleryImages.forEach(imgLink => {
-      const href = imgLink.getAttribute('href');
-      imgLink.style.display = href.startsWith(projectCode + '/') ? '' : 'none';
-    });
-  }
-
-  function smoothScroll(target, duration = 800) {
-    const start = window.scrollY || window.pageYOffset;
-    const end = target.getBoundingClientRect().top + start - 20;
-    const distance = end - start;
-    let startTime = null;
-
-    function animation(currentTime) {
-      if (startTime === null) startTime = currentTime;
-      const timeElapsed = currentTime - startTime;
-      const progress = Math.min(timeElapsed / duration, 1);
-      const ease = 0.5 * (1 - Math.cos(Math.PI * progress));
-      window.scrollTo(0, start + distance * ease);
-      if (timeElapsed < duration) requestAnimationFrame(animation);
-    }
-
-    requestAnimationFrame(animation);
-  }
-
-  function disableHistoryButton() {
-    if (!historyBtn) return;
-    historyBtn.disabled = true;
-    historyBtn.classList.add('disabled');
-    historyBtn.classList.remove('history');
-    historyBtn.onclick = null;
-  }
-
-  function updateHistoryButton(projectCode) {
-    if (!historyBtn || !projectCode || !projectHistory[projectCode]) {
-      disableHistoryButton();
-      return;
-    }
-    const url = projectHistory[projectCode];
-    historyBtn.disabled = false;
-    historyBtn.classList.remove('disabled');
-    historyBtn.classList.add('history');
-    historyBtn.onclick = () => window.open(url, '_blank');
-  }
-
-  projectCards.forEach(card => {
-    const img = card.querySelector('img');
-    if (!img) return;
-    const projectCode = img.getAttribute('src').split('/')[0];
-    if (projectHistory[projectCode]) card.classList.add('has-history');
-  });
-
-  projectCards.forEach(card => {
-    card.addEventListener('click', () => {
-      projectCards.forEach(c => c.classList.remove('project-active'));
-      card.classList.add('project-active');
-
-      const img = card.querySelector('img');
-      const projectCode = img.getAttribute('src').split('/')[0];
-
-      filterGallery(projectCode);
-      updateHistoryButton(projectCode);
-
-      if (gallerySection) smoothScroll(gallerySection, 1000);
-    });
-  });
-
-  if (showAllBtn) {
-    showAllBtn.addEventListener('click', () => {
-      projectCards.forEach(c => c.classList.remove('project-active'));
-      galleryImages.forEach(imgLink => imgLink.style.display = '');
-      updateHistoryButton(null);
-    });
-  }
-
-  /* ------------------------------
-     PASSWORD LINKS
-  ------------------------------ */
-  const correctPassword = "+79313166455";
-  document.querySelectorAll('.password-link').forEach(link => {
-    link.addEventListener('click', function(e) {
-      e.preventDefault();
-      const userInput = prompt("Enter password to download:");
-      if(userInput === correctPassword) {
-        window.open(link.href, "_blank");
-      } else {
-        alert("Incorrect password!");
-      }
-    });
-  });
-
-  /* ------------------------------
-     BURGER MENU + LOGO SCROLL
-  ------------------------------ */
-  const logo = document.getElementById('logo');
-  const burger = document.querySelector('.burger');
-  const menu = document.getElementById('menu');
-
-  if (logo) {
-    logo.addEventListener('click', e => {
-      e.preventDefault();
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    });
-  }
-
-  if (burger && menu) {
-    const menuLinks = menu.querySelectorAll('a');
-
-    burger.addEventListener('click', () => {
-      burger.classList.toggle('active');
-      menu.classList.toggle('active');
-    });
-
-    menuLinks.forEach(link => {
-      link.addEventListener('click', () => {
-        menu.classList.remove('active');
-        burger.classList.remove('active');
-      });
-    });
-  }
-
-/* ------------------------------
-   PROJECT FILTER BY YEAR
------------------------------- */
-const yearFilter = document.getElementById('yearFilter');
-if (yearFilter) {
-  yearFilter.addEventListener('change', () => {
-    const selectedYear = yearFilter.value;
-    projectCards.forEach(project => {
-      const years = project.dataset.years.split(',').map(y => y.trim());
-      if (selectedYear === 'all' || years.includes(selectedYear)) {
-        project.style.display = '';
-      } else {
-        project.style.display = 'none';
-      }
-    });
-  });
-}
-
-  /* ------------------------------
-     CAROUSEL
-  ------------------------------ */
-  const carousel = document.getElementById('certCarousel');
-  if (carousel) {
-    const images = carousel.querySelectorAll('img');
-    const count = images.length;
-    const angle = 360 / count;
-    let rotation = 0;
-
-    function getRadius() {
-      return window.innerWidth < 768 ? 260 : 420;
-    }
-
-    function layoutCarousel() {
-      const radius = getRadius();
-      images.forEach((img, i) => {
-        img.style.transform = `rotateY(${i * angle}deg) translateZ(${radius}px)`;
-      });
-    }
-
-    layoutCarousel();
-    window.addEventListener('resize', layoutCarousel);
-
-    images.forEach(img => {
-      img.addEventListener('click', () => window.open(img.src, '_blank'));
-    });
-
-    window.rotateCarousel = function(direction) {
-      rotation += direction * angle;
-      carousel.style.transform = `rotateY(${rotation}deg)`;
-    }
-  }
-
-});
-</script>
-
-
+<!-- Основные скрипты -->
+<script src="js/main.js" defer></script>
+<script src="js/skills.js" defer></script>
+<script src="js/projects.js" defer></script>
+<script src="js/mobile-command.js" defer></script>
+<script src="js/carousel.js" defer></script>
 
 </body>
 </html>
-
