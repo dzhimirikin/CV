@@ -1,4 +1,12 @@
-/* ============ HEADER ============ */
+/* ============ ROOT VARIABLES ============ */
+:root {
+  --header-h: 66px; /* высота header */
+  --menu-w: 230px;  /* ширина мобильного меню */
+  --icon-size: 20px; /* размер иконок */
+  --icon-gap: 8px;   /* отступ между иконкой и текстом */
+}
+
+/* ============ GLOBAL RESET ============ */
 * {
   box-sizing: border-box;
   margin: 0;
@@ -10,34 +18,40 @@ body {
   color: #222;
   background: #f4f4f4;
   line-height: 1.6;
+  overflow-x: hidden; /* предотвращаем горизонтальный скролл */
 }
 
+/* ============ HEADER FIXED ============ */
 header {
   background: #1f2933;
   color: #fff;
-  position: sticky;
+  position: fixed;
   top: 0;
-  z-index: 100;
+  left: 0;
+  width: 100%;
+  height: var(--header-h);
+  z-index: 1000;
 }
 
 .header-inner {
   max-width: 1200px;
   margin: auto;
   padding: 15px 20px;
+  height: 100%;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  position: relative; /* важно для абсолютного позиционирования меню */
+  position: relative;
 }
 
-/* Логотип с курсором */
+/* ----- LOGO ----- */
 .logo {
   font-weight: bold;
   font-size: 18px;
-  cursor: pointer; /* курсор при наведении */
+  cursor: pointer;
 }
 
-/* Основное меню */
+/* ----- DESKTOP MENU ----- */
 nav ul {
   list-style: none;
   display: flex;
@@ -48,29 +62,41 @@ nav a {
   color: #fff;
   text-decoration: none;
   font-size: 14px;
+  display: flex;
+  align-items: center;
 }
 
 nav a:hover {
   text-decoration: underline;
 }
 
-/* Бургер для мобилки */
+/* ----- HEROICONS ----- */
+.icon {
+  width: var(--icon-size);
+  height: var(--icon-size);
+  margin-right: var(--icon-gap);
+  vertical-align: middle;
+  stroke: #fff;
+  flex-shrink: 0;
+  display: none; /* по умолчанию скрыты на десктопе */
+}
+
+/* ----- BURGER ICON ----- */
 .burger {
   display: none;
   flex-direction: column;
   gap: 5px;
-  cursor: pointer; /* курсор при наведении */
-  z-index: 1100; /* выше меню */
+  cursor: pointer;
+  z-index: 1100;
 }
 
 .burger div {
   width: 25px;
   height: 3px;
-  background: white;
+  background: #fff;
   transition: 0.3s;
 }
 
-/* Крестик при активном бургер-меню */
 .burger.active div:nth-child(1) {
   transform: translateY(8px) rotate(45deg);
 }
@@ -81,29 +107,31 @@ nav a:hover {
   transform: translateY(-8px) rotate(-45deg);
 }
 
-/* Мобильное меню */
+/* ============ MOBILE MENU ============ */
 @media (max-width: 768px) {
+
   #menu {
-    position: absolute;
-    top: 100%;
-    right: 0;
-    width: 220px;
-    padding: 15px;
+    position: fixed;
+    top: var(--header-h);
+    right: calc(-1 * var(--menu-w));
+    width: var(--menu-w);
+    padding: 16px;
     background: #1f2933;
+
     display: flex;
     flex-direction: column;
-    gap: 12px;
+    gap: 14px;
 
-    transform: translateX(100%);
     opacity: 0;
     pointer-events: none;
-    transition: transform 0.55s ease-in-out, opacity 0.55s ease-in-out;
-    box-shadow: -3px 6px 12px rgba(0,0,0,0.25);
-    z-index: 1000;
+    transition: right 0.45s ease, opacity 0.45s ease;
+
+    box-shadow: -3px 6px 14px rgba(0,0,0,0.28);
+    z-index: 1050;
   }
 
   #menu.active {
-    transform: translateX(0);
+    right: 0;
     opacity: 1;
     pointer-events: auto;
   }
@@ -112,6 +140,12 @@ nav a:hover {
     display: flex;
   }
 
+  /* Показываем Heroicons только в мобильном меню */
+  .icon {
+    display: inline-block;
+  }
+
+  /* скрываем desktop меню */
   nav ul:not(#menu) {
     display: none;
   }
@@ -119,13 +153,50 @@ nav a:hover {
 
 
 /* ============ HERO ============ */
-.hero { background:url("hero.jpg") center center no-repeat; background-size:cover; }
-.hero-overlay { background:rgba(0,0,0,0.55); padding:80px 20px; }
-.hero-inner { max-width:1100px; margin:auto; display:flex; gap:40px; align-items:center; color:white; }
-.hero-photo { width:200px; height:200px; object-fit:cover; border:2px solid rgba(255,255,255,0.6); border-radius:4px; background:#ccc; }
-.hero h1 { font-size:32px; margin-bottom:10px; }
-.hero p { max-width:600px; }
-@media(max-width:768px){ .hero-inner{flex-direction:column;text-align:center;} }
+.hero {
+  margin-top: var(--header-h); /* компенсация fixed header */
+  background: url("hero.jpg") center center no-repeat;
+  background-size: cover;
+}
+
+.hero-overlay {
+  background: rgba(0,0,0,0.55);
+  padding: 80px 20px;
+}
+
+.hero-inner {
+  max-width: 1100px;
+  margin: auto;
+  display: flex;
+  gap: 40px;
+  align-items: center;
+  color: white;
+}
+
+.hero-photo {
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
+  border: 2px solid rgba(255,255,255,0.6);
+  border-radius: 4px;
+  background: #ccc;
+}
+
+.hero h1 {
+  font-size: 32px;
+  margin-bottom: 10px;
+}
+
+.hero p {
+  max-width: 600px;
+}
+
+@media (max-width: 768px) {
+  .hero-inner {
+    flex-direction: column;
+    text-align: center;
+  }
+}
 
 /* ============ SECTIONS ============ */
 section{max-width:1100px;margin:auto;padding:50px 20px;}
@@ -292,10 +363,31 @@ section h3{margin:20px 0 10px;}
 }
 
 
-
-
 /* ============ FOOTER ============ */
-footer{background:#1f2933;color:#fff;text-align:center;padding:25px;margin-top:40px;font-size:14px;}
+footer {
+  background: #1f2933;
+  color: #fff;
+  text-align: center;
+  padding: 25px;
+  font-size: 14px;
+
+  /* закрепляем только на десктопе */
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  z-index: 900;
+  margin-top: 0; /* удаляем верхний отступ, чтобы не создавал белую полосу */
+}
+
+/* на мобильных отключаем фикс */
+@media (max-width: 768px) {
+  footer {
+    position: static;
+    width: 100%;
+    margin-top: 40px; /* оставляем отступ для разделения контента */
+  }
+}
 
 /* ============ LANGUAGE MENU ============ */
 .lang{font-size:13px;color:#ccc;}
@@ -666,14 +758,18 @@ footer{background:#1f2933;color:#fff;text-align:center;padding:25px;margin-top:4
    PROJECT FILTER COMBO
 ======================= */
 .project-filter {
-    margin-bottom: 0; /* убираем отступ после Combo */
+    display: flex;
+    flex-direction: column; /* вертикальное расположение фильтров */
+    gap: 12pt;              /* расстояние между фильтрами на десктопе */
+    margin-bottom: 0;       /* убираем лишний отступ после фильтров */
 }
 
-.project-filter label {
-    margin-right: 8px;
-    font-weight: bold;
+.filter-item {
+    display: flex;
+    flex-direction: column; /* label сверху, select снизу */
 }
 
+/* Унифицированная ширина комбо */
 .project-filter select.combo {
     padding: 6px 12px;
     font-size: 16px;
@@ -683,8 +779,11 @@ footer{background:#1f2933;color:#fff;text-align:center;padding:25px;margin-top:4
     color: #fff;
     cursor: pointer;
     transition: background 0.3s;
+    width: 100%;       /* растягиваем по контейнеру filter-item */
+    max-width: 400px;  /* можно подкорректировать под контент */
 }
 
+/* hover и focus */
 .project-filter select.combo:hover,
 .project-filter select.combo:focus {
     background: #11171a;
@@ -692,15 +791,16 @@ footer{background:#1f2933;color:#fff;text-align:center;padding:25px;margin-top:4
 
 /* ===== MOBILE ===== */
 @media(max-width: 768px){
+    .project-filter {
+        gap: 10pt; /* расстояние между фильтрами на мобильных */
+    }
+
     .project-filter select.combo {
-        display: block;
-        width: 100%;
-        margin-top: 6px; /* только между label и select */
-        padding: 8px 12px;
+        font-size: 14px;
     }
 }
 
-/* Отступ между карточкой заголовка и карточками проектов */
+/* Отступ между заголовочной карточкой и карточками проектов */
 #projects > .card:first-child {
-    margin-bottom: 20px; /* ровно как gap между карточками */
+    margin-bottom: 20px;
 }
