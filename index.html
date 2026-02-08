@@ -332,15 +332,19 @@
 
 <!-- PROJECTS -->
 <section id="projects">
-  <!-- Заголовок и фильтры в одной карточке -->
-  <div class="card">
-    <h2>Selected Projects</h2>
 
-    <!-- Контейнер для обоих фильтров -->
-    <div class="project-filter">
-      <!-- Фильтр по годам -->
-      <div class="filter-item">
-        <label for="yearFilter">Filter by year:</label>
+<!-- Заголовок и фильтры в одной карточке -->
+<div class="card">
+
+  <h2>Selected Projects</h2>
+
+  <!-- Контейнер для обоих фильтров -->
+  <div class="project-filter">
+
+    <!-- Фильтр по годам -->
+    <div class="filter-item">
+      <label for="yearFilter">Filter by year:</label>
+      <div class="combo-row">
         <select id="yearFilter" class="combo">
           <option value="all">All</option>
           <option value="2012">2012</option>
@@ -356,11 +360,18 @@
           <option value="2024">2024</option>
           <option value="2025">2025</option>
         </select>
+        <button class="combo-reset" data-target="yearFilter" title="Reset filter">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+          </svg>
+        </button>
       </div>
+    </div>
 
-      <!-- Фильтр по компаниям -->
-      <div class="filter-item">
-        <label for="companyFilter">Filter by company:</label>
+    <!-- Фильтр по компаниям -->
+    <div class="filter-item">
+      <label for="companyFilter">Filter by company:</label>
+      <div class="combo-row">
         <select id="companyFilter" class="combo">
           <option value="all">All</option>
           <option value="EuroStroyStandart LLC">EuroStroyStandart LLC</option>
@@ -370,11 +381,16 @@
           <option value="Malmerk Fassaadid AS">Malmerk Fassaadid AS</option>
           <option value="REY Aluminium LLC">REY Aluminium LLC</option>
           <option value="SeiCom OÜ">SeiCom OÜ</option>
-          <!-- Добавьте остальные компании -->
         </select>
+        <button class="combo-reset" data-target="companyFilter" title="Reset filter">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+          </svg>
+        </button>
       </div>
     </div>
   </div>
+</div>
 
   <!-- Контейнер для карточек проектов -->
   <div class="projects">
