@@ -754,9 +754,7 @@ footer {
 }
 
 
-/* =======================
-   PROJECT FILTER COMBO
-======================= */
+/* ======================= PROJECT FILTER COMBO ====================== */
 .project-filter {
     display: flex;
     flex-direction: column; /* вертикальное расположение фильтров */
@@ -766,10 +764,16 @@ footer {
 
 .filter-item {
     display: flex;
-    flex-direction: column; /* label сверху, select снизу */
+    flex-direction: column; /* label сверху */
+    gap: 6px;               /* расстояние между label и select+кнопка */
 }
 
-/* Унифицированная ширина комбо */
+.combo-row {
+    display: flex;
+    align-items: center;
+    gap: 6px; /* отступ между select и кнопкой */
+}
+
 .project-filter select.combo {
     padding: 6px 12px;
     font-size: 16px;
@@ -779,31 +783,58 @@ footer {
     color: #fff;
     cursor: pointer;
     transition: background 0.3s;
-    width: 100%;       /* растягиваем по контейнеру filter-item */
-    max-width: 400px;  /* можно подкорректировать под контент */
+    flex: 1;  /* растягиваем select, кнопка фиксированной ширины */
+    max-width: 400px;
 }
 
-/* hover и focus */
 .project-filter select.combo:hover,
 .project-filter select.combo:focus {
     background: #11171a;
 }
 
-/* ===== MOBILE ===== */
-@media(max-width: 768px){
-    .project-filter {
-        gap: 10pt; /* расстояние между фильтрами на мобильных */
-    }
+/* кнопка сброса */
+.combo-reset {
+    width: 28px;
+    height: 28px;
+    background: #999; /* неактивная */
+    border: none;
+    border-radius: 4px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    color: #fff;
+    transition: background 0.2s;
+}
 
+.combo-reset svg {
+    width: 16px;
+    height: 16px;
+    stroke: currentColor;
+}
+
+.combo-reset.active {
+    background: #1f2933; /* активная кнопка */
+}
+
+/* MOBILE */
+@media(max-width: 768px) {
+    .project-filter {
+        gap: 10pt;
+    }
     .project-filter select.combo {
         font-size: 14px;
     }
 }
 
-/* Отступ между заголовочной карточкой и карточками проектов */
+
+
+/* =====  Отступ между заголовочной карточкой и карточками проектов ===== */
 #projects > .card:first-child {
     margin-bottom: 20px;
 }
+
+
 
 /* ===== LIGHTBOX ===== */
 
