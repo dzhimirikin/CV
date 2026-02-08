@@ -349,44 +349,60 @@
     <h2>Valitud projektid</h2>
 
     <!-- Контейнер для обоих фильтров -->
-    <div class="project-filter">
-      <!-- Фильтр по годам -->
-      <div class="filter-item">
-        <label for="yearFilter">Filtreeri aastate järgi:</label>
-        <select id="yearFilter" class="combo">
-          <option value="all">Kõik</option>
-          <option value="2012">2012</option>
-          <option value="2013">2013</option>
-          <option value="2014">2014</option>
-          <option value="2015">2015</option>
-          <option value="2016">2016</option>
-          <option value="2017">2017</option>
-          <option value="2018">2018</option>
-          <option value="2021">2021</option>
-          <option value="2022">2022</option>
-          <option value="2023">2023</option>
-          <option value="2024">2024</option>
-          <option value="2025">2025</option>
-        </select>
-      </div>
+<div class="project-filter">
+  <!-- Фильтр по годам -->
+  <div class="filter-item">
+    <label for="yearFilter">Filtreeri aastate järgi:</label>
+    <div class="combo-row">
+      <select id="yearFilter" class="combo">
+        <option value="all">Kõik</option>
+        <option value="2012">2012</option>
+        <option value="2013">2013</option>
+        <option value="2014">2014</option>
+        <option value="2015">2015</option>
+        <option value="2016">2016</option>
+        <option value="2017">2017</option>
+        <option value="2018">2018</option>
+        <option value="2021">2021</option>
+        <option value="2022">2022</option>
+        <option value="2023">2023</option>
+        <option value="2024">2024</option>
+        <option value="2025">2025</option>
+      </select>
 
-      <!-- Фильтр по компаниям -->
-      <div class="filter-item">
-        <label for="companyFilter">Filtreeri ettevõtte järgi:</label>
-        <select id="companyFilter" class="combo">
-          <option value="all">Kõik</option>
-          <option value="EVROSTROJSTANDARD UK ZAO">EVROSTROJSTANDARD UK ZAO</option>
-          <option value="ELEMENTFASAAD OÜ">ELEMENTFASAAD OÜ</option>
-          <option value="Samsung C&amp;T Corp">Samsung C&amp;T Corp</option>
-          <option value="Fenster Alumiinium AS">Fenster Alumiinium AS</option>
-          <option value="Malmerk Fassaadid AS">Malmerk Fassaadid AS</option>
-          <option value="REY Aluminium OÜ">REY Aluminium OÜ</option>
-          <option value="SeiCom OÜ">SeiCom OÜ</option>
-          <!-- Lisage vajadusel teised ettevõtted -->
-        </select>
-      </div>
+      <button class="combo-reset" data-target="yearFilter" title="Lähtesta filter">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+        </svg>
+      </button>
     </div>
   </div>
+
+  <!-- Фильтр по компаниям -->
+  <div class="filter-item">
+    <label for="companyFilter">Filtreeri ettevõtte järgi:</label>
+    <div class="combo-row">
+      <select id="companyFilter" class="combo">
+        <option value="all">Kõik</option>
+        <option value="EVROSTROJSTANDARD UK ZAO">EVROSTROJSTANDARD UK ZAO</option>
+        <option value="ELEMENTFASAAD OÜ">ELEMENTFASAAD OÜ</option>
+        <option value="Samsung C&amp;T Corp">Samsung C&amp;T Corp</option>
+        <option value="Fenster Alumiinium AS">Fenster Alumiinium AS</option>
+        <option value="Malmerk Fassaadid AS">Malmerk Fassaadid AS</option>
+        <option value="REY Aluminium OÜ">REY Aluminium OÜ</option>
+        <option value="SeiCom OÜ">SeiCom OÜ</option>
+        <!-- Lisage vajadusel teised ettevõtted -->
+      </select>
+
+      <button class="combo-reset" data-target="companyFilter" title="Lähtesta filter">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+        </svg>
+      </button>
+    </div>
+  </div>
+</div>
+</div>
 
   <!-- Контейнер для карточек проектов -->
   <div class="projects">
@@ -933,4 +949,3 @@
 
 </body>
 </html>
-
