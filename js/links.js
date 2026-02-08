@@ -1,5 +1,5 @@
 // -------------------------------
-// PWA LIGHTBOX + SWIPE + PINCH-TO-ZOOM
+// PWA LIGHTBOX + SWIPE + PINCH-TO-ZOOM (FIXED)
 // -------------------------------
 
 let currentIndex = 0;
@@ -8,9 +8,13 @@ let initialDistance = 0;
 let currentScale = 1;
 
 function openLightbox(url) {
-  galleryImages = Array.from(document.querySelectorAll('a[href$=".jpg"], a[href$=".jpeg"], a[href$=".png"], a[href$=".webp"], a[href$=".gif"]'))
-                       .map(a => a.href);
+  galleryImages = Array.from(
+    document.querySelectorAll('a[href$=".jpg"], a[href$=".jpeg"], a[href$=".png"], a[href$=".webp"], a[href$=".gif"]')
+  ).map(a => a.href);   // абсолютные пути
+
   currentIndex = galleryImages.indexOf(url);
+  if (currentIndex < 0) currentIndex = 0;
+
   showImage(currentIndex);
 }
 
@@ -33,42 +37,52 @@ function showImage(index) {
   closeBtn.innerHTML = '&times;';
   overlay.appendChild(closeBtn);
 
-  // Свайп для перелистывания
+  // --- SWIPE + PINCH ---
   let startX = 0;
+  let isPinching = false;
+
   overlay.addEventListener('touchstart', e => {
-    if (e.touches.length === 1) startX = e.touches[0].clientX;
-    // Для pinch
+    if (e.touches.length === 1) {
+      startX = e.touches[0].clientX;
+      isPinching = false;
+    }
+
     if (e.touches.length === 2) {
+      isPinching = true;
       initialDistance = Math.hypot(
         e.touches[0].clientX - e.touches[1].clientX,
         e.touches[0].clientY - e.touches[1].clientY
       );
     }
-  });
+  }, { passive: true });
 
   overlay.addEventListener('touchmove', e => {
-    if (e.touches.length === 2) {
-      // Pinch-to-zoom
+    if (e.touches.length === 2 && isPinching) {
       const newDistance = Math.hypot(
         e.touches[0].clientX - e.touches[1].clientX,
         e.touches[0].clientY - e.touches[1].clientY
       );
-      const scale = Math.max(1, (newDistance / initialDistance) * currentScale);
+
+      const scale = Math.max(1, Math.min(4, (newDistance / initialDistance) * currentScale));
       img.style.transform = `scale(${scale})`;
     }
-  });
+  }, { passive: true });
 
   overlay.addEventListener('touchend', e => {
-    if (e.touches.length > 0) return; // не свайп при pinch
+    if (isPinching) {
+      const match = img.style.transform.match(/scale\(([^)]+)\)/);
+      currentScale = match ? parseFloat(match[1]) : 1;
+      return;
+    }
+
+    if (!e.changedTouches || !e.changedTouches[0]) return;
 
     const endX = e.changedTouches[0].clientX;
-    if (endX - startX > 50) prevImage();
-    else if (startX - endX > 50) nextImage();
-  });
+    if (endX - startX > 60) prevImage();
+    else if (startX - endX > 60) nextImage();
+  }, { passive: true });
 
-  overlay.addEventListener('touchcancel', () => { currentScale = parseFloat(img.style.transform.replace('scale(','').replace(')','')) || 1; });
-
-  // Закрытие по кнопке или клику на фон
+  // --- CLOSE ---
   overlay.addEventListener('click', e => {
     if (e.target === overlay || e.target === closeBtn) overlay.remove();
   });
@@ -86,22 +100,28 @@ function nextImage() {
   showImage(currentIndex);
 }
 
-// Обработка ссылок
-const links = document.querySelectorAll('a[href]');
+// -------------------------------
+// LINK HANDLER (FIXED)
+// -------------------------------
 
-links.forEach(link => {
+document.querySelectorAll('a[href]').forEach(link => {
   const href = link.getAttribute('href');
-  if (href.startsWith('#')) return;
+  if (!href || href.startsWith('#')) return;
 
+  // --- IMAGE LIGHTBOX ---
   if (href.match(/\.(jpg|jpeg|png|webp|gif)$/i)) {
+    link.removeAttribute('target');   // убираем _blank
+
     link.addEventListener('click', e => {
       e.preventDefault();
-      openLightbox(href);
+      openLightbox(link.href);        // абсолютный путь
     });
+
     return;
   }
 
-  const linkHost = new URL(href, location.href).host;
+  // --- EXTERNAL LINKS ---
+  const linkHost = new URL(link.href).host;
   if (linkHost !== location.host) {
     link.setAttribute('target', '_blank');
     link.setAttribute('rel', 'noopener noreferrer');
