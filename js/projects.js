@@ -31,7 +31,8 @@ document.addEventListener('DOMContentLoaded', () => {
     "014_KASTANI": "https://www.kastanikolmnurk.ee/",
     "015_TLT": 0,
     "016_LAT": 0,
-    "017_JMETK": 0
+    "017_JMETK": 0,
+    "018_PCOOP": 0     
   };
 
   function filterGallery(projectCode) {
@@ -167,3 +168,4 @@ document.querySelectorAll('.combo-reset').forEach(btn => {
 
   updateButton();
 });
+
