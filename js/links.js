@@ -1,5 +1,5 @@
 // -------------------------------
-// PWA LIGHTBOX + SWIPE + PINCH-TO-ZOOM (FIXED)
+// PWA LIGHTBOX + DESKTOP NORMAL LINKS
 // -------------------------------
 
 let currentIndex = 0;
@@ -10,7 +10,7 @@ let currentScale = 1;
 function openLightbox(url) {
   galleryImages = Array.from(
     document.querySelectorAll('a[href$=".jpg"], a[href$=".jpeg"], a[href$=".png"], a[href$=".webp"], a[href$=".gif"]')
-  ).map(a => a.href);   // абсолютные пути
+  ).map(a => a.href);
 
   currentIndex = galleryImages.indexOf(url);
   if (currentIndex < 0) currentIndex = 0;
@@ -37,7 +37,7 @@ function showImage(index) {
   closeBtn.innerHTML = '&times;';
   overlay.appendChild(closeBtn);
 
-  // --- SWIPE + PINCH ---
+  // SWIPE + PINCH
   let startX = 0;
   let isPinching = false;
 
@@ -62,7 +62,6 @@ function showImage(index) {
         e.touches[0].clientX - e.touches[1].clientX,
         e.touches[0].clientY - e.touches[1].clientY
       );
-
       const scale = Math.max(1, Math.min(4, (newDistance / initialDistance) * currentScale));
       img.style.transform = `scale(${scale})`;
     }
@@ -82,7 +81,6 @@ function showImage(index) {
     else if (startX - endX > 60) nextImage();
   }, { passive: true });
 
-  // --- CLOSE ---
   overlay.addEventListener('click', e => {
     if (e.target === overlay || e.target === closeBtn) overlay.remove();
   });
@@ -101,27 +99,33 @@ function nextImage() {
 }
 
 // -------------------------------
-// LINK HANDLER (FIXED)
+// LINK HANDLER
 // -------------------------------
+
+const isMobile = /Mobi|Android/i.test(navigator.userAgent);
 
 document.querySelectorAll('a[href]').forEach(link => {
   const href = link.getAttribute('href');
   if (!href || href.startsWith('#')) return;
 
-  // --- IMAGE LIGHTBOX ---
   if (href.match(/\.(jpg|jpeg|png|webp|gif)$/i)) {
-    link.removeAttribute('target');   // убираем _blank
-
-    link.addEventListener('click', e => {
-      e.preventDefault();
-      openLightbox(link.href);        // абсолютный путь
-    });
-
+    if (isMobile) {
+      // Mobile: PWA lightbox
+      link.removeAttribute('target');
+      link.addEventListener('click', e => {
+        e.preventDefault();
+        openLightbox(link.href);
+      });
+    } else {
+      // Desktop: open in new tab
+      link.setAttribute('target', '_blank');
+      link.setAttribute('rel', 'noopener noreferrer');
+    }
     return;
   }
 
-  // --- EXTERNAL LINKS ---
-  const linkHost = new URL(link.href).host;
+  // External links always open in new tab
+  const linkHost = new URL(link.href, location.href).host;
   if (linkHost !== location.host) {
     link.setAttribute('target', '_blank');
     link.setAttribute('rel', 'noopener noreferrer');
