@@ -147,3 +147,23 @@ document.addEventListener('DOMContentLoaded', () => {
   if (yearFilter) yearFilter.addEventListener('change', filterProjects);
   if (companyFilter) companyFilter.addEventListener('change', filterProjects);
 });
+
+
+document.querySelectorAll('.combo-reset').forEach(btn => {
+  const targetId = btn.dataset.target;
+  const select = document.getElementById(targetId);
+
+  function updateButton() {
+    if (select.value === 'all') btn.classList.remove('active');
+    else btn.classList.add('active');
+  }
+
+  select.addEventListener('change', updateButton);
+  btn.addEventListener('click', () => {
+    select.value = 'all';
+    updateButton();
+    select.dispatchEvent(new Event('change')); // если есть фильтрация проектов
+  });
+
+  updateButton();
+});
