@@ -843,25 +843,76 @@
 <section id="drawings">
   <div class="card">
     <h2>Laadi alla joonised (Jooniste paigutuse näited)</h2>
-    <p>Sisesta parool jooniste näidiste allalaadimiseks (Parool edastatakse soovi korral):</p>
-    <div class="drawing-links">
-      <a href="https://drive.google.com/file/d/1FFTcCzOWq6S74yUu_XQAFo5Q5jWIMe8X/view?usp=sharing"
-         class="cv-link password-link" target="_blank">
-        Eesti jaoks_PDF
-      </a>
+    <p>Taotle parooli projekti jooniste allalaadimiseks:</p>
 
-      <a href="https://drive.google.com/file/d/1dNintr-ctHKoR6MrVnjG9whgORR4_66Q/view?usp=sharing"
-         class="cv-link password-link" target="_blank">
-        Eesti jaoks_PDF_DWG
-      </a>
+    <!-- Кнопка запроса доступа -->
+    <button class="access-btn">Taotle juurdepääsu</button>
 
-      <a href="https://drive.google.com/file/d/1K3B2lf5dkv1-ZMOZzJhPhqqsGJJZYmi3/view?usp=sharing"
-         class="cv-link password-link" target="_blank">
-        Venemaa jaoks_PDF
-      </a>
+<!-- Поле для ввода пароля -->
+<div class="password-entry" style="display: none;">
+  <div class="input-wrapper" style="display: flex; align-items: center; gap: 0; border: 1px solid #ccc; border-radius: 6px; overflow: hidden;">
+    <input id="drawingPassword" type="password" placeholder="Enter Password" style="flex: 1; padding: 8px 12px; border: none; font-size: 14px;">
+    <button type="button" id="togglePassword" aria-label="Show/Hide Password" style="padding: 8px 12px; border: none; background: #1f2933; color: #fff; cursor: pointer;">
+      <svg xmlns="http://www.w3.org/2000/svg" class="eye-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" style="width: 20px; height: 20px;">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
+              d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
+              d="M2.458 12C3.732 7.943 7.523 5 12 5c4.477 0 8.268 2.943 9.542 7-1.274 4.057-5.065 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+      </svg>
+    </button>
+  </div>
+  <button id="passwordSubmitBtn" style="margin-top: 8px; width: 100%; padding: 8px 0; background: #1f2933; color: #fff; border: none; border-radius: 6px; cursor: pointer;">Kinnita</button>
+</div>
+<div id="passwordMessage" class="password-msg"></div>
+
+    <!-- Ссылки на чертежи -->
+    <div class="drawing-links" id="drawingLinks" style="display:none;">
+      <a href="https://drive.google.com/file/d/1Q-n7w8fOv2GtCYnHw6HZlALIQdjE7RBp/view?usp=sharing"
+         class="cv-link" target="_blank">Eesti jaoks_PDF</a>
+
+      <a href="https://drive.google.com/file/d/1sqwlCsUtxVsZYlyQtbuqZSdh-klvD-9M/view?usp=sharing"
+         class="cv-link" target="_blank">Eesti jaoks_PDF_DWG</a>
+
+      <a href="https://drive.google.com/file/d/1rRx2cH5KQIB0CY4wBexriKumiy4SaGmq/view?usp=sharing"
+         class="cv-link" target="_blank">Venemaa jaoks_PDF</a>
     </div>
   </div>
 </section>
+
+<!-- MODAL: Request Access -->
+<div id="accessModal" class="modal">
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    <h2>Taotle juurdepääsu</h2>
+
+<form id="accessForm">
+
+  <!-- Name -->
+  <input type="text" name="name" placeholder="Name" required>
+
+  <!-- Company -->
+  <input type="text" name="company" placeholder="Company">
+
+  <!-- Email -->
+  <input type="email" name="email" placeholder="Email" required>
+
+  <!-- Phone -->
+  <input type="tel" name="phone" placeholder="Phone">
+
+  <!-- Message -->
+  <textarea name="message" placeholder="Comment" required></textarea>
+
+  <!-- hidden time (заполнится через JS) -->
+  <input type="hidden" name="time" id="formTime">
+
+  <button type="submit">Saada taotlus</button>
+</form>
+
+    <div id="accessSuccess" class="success" style="display:none;">
+      Taotlus on saadetud. Parool saadetakse pärast kinnitamist.
+    </div>
+  </div>
+</div>
 
 
 <!-- PUBLIKATSIOONID -->
@@ -959,6 +1010,8 @@
 <script src="js/skills.js" defer></script>
 <script src="js/projects.js" defer></script>
 <script src="js/carousel.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+<script src="js/check.js" defer></script>
 <script src="js/links.js" defer></script>
 
 </body>
