@@ -836,26 +836,49 @@
 <section id="drawings">
   <div class="card">
     <h2>Download Drawings (Examples of drawing layouts)</h2>
-    <p>Enter password to download project drawings (Password available upon request):</p>
+    <p>Request password to download project drawings:</p>
 
-    <div class="drawing-links">
+    <!-- Кнопка запроса доступа -->
+    <button class="access-btn">Request Access</button>
+
+    <!-- Поле для ввода пароля -->
+    <div class="password-entry" style="display:none;">
+      <input type="password" id="drawingPassword" placeholder="Enter password">
+      <button id="passwordSubmitBtn">Submit</button>
+      <div id="passwordMessage" class="password-msg"></div>
+    </div>
+
+    <!-- Ссылки на чертежи -->
+    <div class="drawing-links" id="drawingLinks" style="display:none;">
       <a href="https://drive.google.com/file/d/1FFTcCzOWq6S74yUu_XQAFo5Q5jWIMe8X/view?usp=sharing"
-         class="cv-link password-link" target="_blank">
-        For Estonia_PDF
-      </a>
-
+         class="cv-link password-link" target="_blank">For Estonia_PDF</a>
       <a href="https://drive.google.com/file/d/1dNintr-ctHKoR6MrVnjG9whgORR4_66Q/view?usp=sharing"
-         class="cv-link password-link" target="_blank">
-        For Estonia_PDF_DWG
-      </a>
-
+         class="cv-link password-link" target="_blank">For Estonia_PDF_DWG</a>
       <a href="https://drive.google.com/file/d/1K3B2lf5dkv1-ZMOZzJhPhqqsGJJZYmi3/view?usp=sharing"
-         class="cv-link password-link" target="_blank">
-        For Russia_PDF
-      </a>
+         class="cv-link password-link" target="_blank">For Russia_PDF</a>
     </div>
   </div>
 </section>
+
+<!-- MODAL: Request Access -->
+<div id="accessModal" class="modal">
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    <h2>Request Access</h2>
+
+    <form id="accessForm">
+      <input type="text" name="name" placeholder="Name" required>
+      <input type="text" name="company" placeholder="Company">
+      <input type="email" name="email" placeholder="Email" required>
+      <textarea name="message" placeholder="Comment"></textarea>
+      <button type="submit">Send Request</button>
+    </form>
+
+    <div id="accessSuccess" class="success" style="display:none;">
+      Request sent. Password will be sent after verification.
+    </div>
+  </div>
+</div>
 
 
 <!-- PUBLICATIONS -->
@@ -953,7 +976,10 @@
 <script src="js/skills.js" defer></script>
 <script src="js/projects.js" defer></script>
 <script src="js/carousel.js" defer></script>
+<script src="https://cdn.emailjs.com/dist/email.min.js"></script>
+<script src="js/check.js" defer></script>
 <script src="js/links.js" defer></script>
+
 
 </body>
 </html>
