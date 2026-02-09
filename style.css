@@ -497,213 +497,49 @@ footer {
 
 
 
-/* ===== DRAWINGS SECTION ===== */
-#drawings .card {
-    padding: 25px;
-    background: #fff;
-    border-radius: 6px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.12);
-}
+/* ============ DRAWINGS LINKS (единая схема 12 / 10) ============ */
 
-/* ===== DRAWINGS LINKS ===== */
 .drawing-links {
-    margin-top: 12px;
-    margin-bottom: 0;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
+    margin-top: 12px;        /* текст → первая кнопка */
+    margin-bottom: 0px;     /* после кнопок (desktop) */
 }
 
 .drawing-links .cv-link {
-    display: inline-block;
+    display: inline-block;  /* плоские кнопки */
     padding: 10px 20px;
+    margin-bottom: 10px;    /* расстояние между кнопками */
     background: #1f2933;
     color: #fff;
     text-decoration: none;
-    border-radius: 6px;
+    border-radius: 4px;
     transition: background 0.3s;
     font-size: 16px;
     text-align: center;
+}
+
+.drawing-links .cv-link:last-child {
+    margin-bottom: 0;       /* без лишнего отступа внутри */
 }
 
 .drawing-links .cv-link:hover {
     background: #11171a;
 }
 
-.drawing-links .cv-link:last-child {
-    margin-bottom: 0;
-}
-
-/* ===== MOBILE DRAWINGS LINKS ===== */
+/* ===== MOBILE ===== */
 @media (max-width: 768px) {
     .drawing-links {
-        flex-direction: column;
-        gap: 10px;
+        margin-top: 10px;     /* текст → кнопка */
+        margin-bottom: 0px;  /* после кнопок */
     }
 
     .drawing-links .cv-link {
-        display: block;
+        display: block;      /* на всю ширину */
         width: 100%;
-    }
-}
-
-/* ===== PASSWORD ENTRY ===== */
-.password-entry {
-    margin-top: 10px;
-    display: flex;
-    gap: 10px;
-    align-items: center;
-}
-
-.password-entry input {
-    flex: 1;
-    padding: 8px 12px;
-    border-radius: 6px;
-    border: 1px solid #ccc;
-    font-size: 14px;
-}
-
-.password-entry button {
-    padding: 8px 16px;
-    border: none;
-    background: #1f2933;
-    color: #fff;
-    border-radius: 6px;
-    cursor: pointer;
-    font-size: 14px;
-    transition: background 0.3s;
-}
-
-.password-entry button:hover {
-    background: #11171a;
-}
-
-.password-msg {
-    margin-top: 6px;
-    color: red;
-    font-size: 14px;
-}
-
-/* ===== MOBILE PASSWORD ENTRY ===== */
-@media (max-width: 768px) {
-    .password-entry {
-        flex-direction: column;
+        margin-bottom: 10px;
     }
 
-    .password-entry button {
-        width: 100%;
-    }
-}
-
-/* ===== MODAL FOR FORMSPREE ===== */
-.modal {
-    display: none;
-    position: fixed;
-    z-index: 9999;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0,0,0,0.5);
-    justify-content: center;
-    align-items: center;
-}
-
-.modal-content {
-    background: #fff;
-    padding: 24px;
-    border-radius: 8px;
-    width: 360px;
-    max-width: 90%;
-    position: relative;
-    box-shadow: 0 8px 24px rgba(0,0,0,0.3);
-}
-
-.modal-content h2 {
-    margin-top: 0;
-    margin-bottom: 12px;
-    font-size: 20px;
-}
-
-.modal-content input,
-.modal-content textarea {
-    width: 100%;
-    padding: 8px 12px;
-    margin-bottom: 10px;
-    border-radius: 6px;
-    border: 1px solid #ccc;
-    font-size: 14px;
-}
-
-.modal-content textarea {
-    resize: vertical;
-    min-height: 60px;
-}
-
-.modal-content button[type="submit"] {
-    width: 100%;
-    padding: 10px 0;
-    background: #1f2933;
-    color: #fff;
-    border: none;
-    border-radius: 6px;
-    cursor: pointer;
-    font-size: 16px;
-    transition: background 0.3s;
-}
-
-.modal-content button[type="submit"]:hover {
-    background: #11171a;
-}
-
-.close {
-    position: absolute;
-    top: 8px;
-    right: 12px;
-    font-size: 24px;
-    font-weight: bold;
-    cursor: pointer;
-    color: #333;
-}
-
-.success {
-    display: none;
-    margin-top: 12px;
-    color: green;
-    text-align: center;
-    font-size: 14px;
-}
-
-/* ===== ACCESS BUTTON ===== */
-.access-btn {
-    padding: 10px 18px;
-    background: #1f2933;
-    color: #fff;
-    border: none;
-    border-radius: 6px;
-    cursor: pointer;
-    font-size: 14px;
-    margin-top: 12px;
-    transition: background 0.3s;
-}
-
-.access-btn:hover {
-    background: #11171a;
-}
-
-/* ===== RESPONSIVE MODAL ===== */
-@media (max-width: 480px) {
-    .modal-content {
-        width: 90%;
-        padding: 16px;
-    }
-
-    .modal-content h2 {
-        font-size: 18px;
-    }
-
-    .modal-content button[type="submit"] {
-        font-size: 14px;
+    .drawing-links .cv-link:last-child {
+        margin-bottom: 0;
     }
 }
 
@@ -754,7 +590,6 @@ footer {
 }
 
 .carousel-controls button {
-  display: inline-block;      /* важно для горизонтальной линии */
   font-size: 26px;
   padding: 6px 16px;
   margin: 0 10px;
@@ -779,18 +614,6 @@ footer {
   .carousel {
     width: 180px;
     height: 230px;
-  }
-
-  /* кнопки остаются в ряд, уменьшаем размер */
-  .carousel-controls {
-    text-align: center;
-  }
-
-  .carousel-controls button {
-    display: inline-block;  /* обязательно */
-    font-size: 20px;        /* меньше шрифт */
-    padding: 4px 12px;      /* меньше padding */
-    margin: 0 6px;          /* уменьшенный промежуток */
   }
 }
 
