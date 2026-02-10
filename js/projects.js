@@ -2,14 +2,18 @@
    PROJECTS & GALLERY
 ============================== */
 document.addEventListener('DOMContentLoaded', () => {
-  const projectCards  = document.querySelectorAll('.card.project');
-  const galleryImages = document.querySelectorAll('#gallery .gallery a');
-  const gallerySection = document.getElementById('gallery');
-  const showAllBtn = document.getElementById('showAllProjectsBtn');
-  const historyBtn = document.getElementById('historyBtn');
+  const projectCards     = document.querySelectorAll('.card.project');
+  const galleryImages    = document.querySelectorAll('#gallery .gallery a');
+  const gallerySection   = document.getElementById('gallery');
+  const showAllBtn       = document.getElementById('showAllProjectsBtn');
+  const historyBtn       = document.getElementById('historyBtn');
   const backToProjectBtn = document.getElementById('backToProjectBtn');
-  const yearFilter = document.getElementById('yearFilter');
-  const companyFilter = document.getElementById('companyFilter');
+  const yearFilter       = document.getElementById('yearFilter');
+  const companyFilter    = document.getElementById('companyFilter');
+  const companySiteBtn   = document.getElementById('companySiteBtn'); // ← КНОПКА WWW
+
+  const yearCombo  = document.querySelector('.filter-item:first-child .combo-row');
+  const companyCombo = document.querySelector('.company-row .combo-row');
 
   let currentProjectCard = null;
 
@@ -35,6 +39,29 @@ document.addEventListener('DOMContentLoaded', () => {
     "018_PCOOP": 0
   };
 
+  /* ==============================
+     SYNC YEAR FILTER WIDTH
+  ============================== */
+  function syncFilterWidths() {
+    if (!yearCombo || !companyCombo) return;
+
+    // На мобильных ширина 100%, оставляем как есть
+    if (window.innerWidth <= 768) {
+      yearCombo.style.width = "100%";
+      return;
+    }
+
+    // На больших экранах задаём ширину верхнего фильтра равной нижнему
+    const width = companyCombo.offsetWidth;
+    yearCombo.style.width = width + "px";
+  }
+
+  window.addEventListener('load', syncFilterWidths);
+  window.addEventListener('resize', syncFilterWidths);
+
+  /* ==============================
+     FILTER & GALLERY FUNCTIONS
+  ============================== */
   function filterGallery(projectCode) {
     galleryImages.forEach(imgLink => {
       const href = imgLink.getAttribute('href');
@@ -60,6 +87,9 @@ document.addEventListener('DOMContentLoaded', () => {
     requestAnimationFrame(animation);
   }
 
+  /* ==============================
+     HISTORY BUTTON
+  ============================== */
   function disableHistoryButton() {
     if (!historyBtn) return;
     historyBtn.disabled = true;
@@ -91,6 +121,29 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
+  /* ==============================
+     COMPANY WEBSITE BUTTON
+  ============================== */
+  function updateCompanySiteButton() {
+    if (!companyFilter || !companySiteBtn) return;
+
+    const selectedOption = companyFilter.options[companyFilter.selectedIndex];
+    const url = selectedOption.dataset.site || "";
+
+    if (url) {
+      companySiteBtn.disabled = false;
+      companySiteBtn.classList.remove('disabled');
+      companySiteBtn.onclick = () => window.open(url, '_blank');
+    } else {
+      companySiteBtn.disabled = true;
+      companySiteBtn.classList.add('disabled');
+      companySiteBtn.onclick = null;
+    }
+  }
+
+  /* ==============================
+     PROJECT CARD CLICK
+  ============================== */
   projectCards.forEach(card => {
     const img = card.querySelector('img');
     if (!img) return;
@@ -111,6 +164,9 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
+  /* ==============================
+     SHOW ALL BUTTON
+  ============================== */
   if (showAllBtn) {
     showAllBtn.addEventListener('click', () => {
       projectCards.forEach(c => c.classList.remove('project-active'));
@@ -122,6 +178,9 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+  /* ==============================
+     BACK TO PROJECT BUTTON
+  ============================== */
   if (backToProjectBtn) {
     backToProjectBtn.addEventListener('click', () => {
       if (!currentProjectCard) return;
@@ -129,7 +188,9 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // Filter by year & company
+  /* ==============================
+     FILTER PROJECTS
+  ============================== */
   function filterProjects() {
     const selectedYear = yearFilter ? yearFilter.value : 'all';
     const selectedCompany = companyFilter ? companyFilter.value : 'all';
@@ -143,16 +204,24 @@ document.addEventListener('DOMContentLoaded', () => {
 
       project.style.display = yearMatch && companyMatch ? '' : 'none';
     });
+
+    updateCompanySiteButton(); // ← обновляем WWW
   }
 
-  if (yearFilter) yearFilter.addEventListener('change', filterProjects);
+  if (yearFilter) yearFilter.addEventListener('change', () => { filterProjects(); syncFilterWidths(); });
   if (companyFilter) companyFilter.addEventListener('change', filterProjects);
+
+  updateCompanySiteButton(); // init
+  syncFilterWidths(); // init
 });
 
-
+/* ==============================
+   COMBO RESET BUTTONS
+============================== */
 document.querySelectorAll('.combo-reset').forEach(btn => {
   const targetId = btn.dataset.target;
   const select = document.getElementById(targetId);
+  const companySiteBtn = document.getElementById('companySiteBtn');
 
   function updateButton() {
     if (select.value === 'all') btn.classList.remove('active');
@@ -160,10 +229,18 @@ document.querySelectorAll('.combo-reset').forEach(btn => {
   }
 
   select.addEventListener('change', updateButton);
+
   btn.addEventListener('click', () => {
     select.value = 'all';
     updateButton();
-    select.dispatchEvent(new Event('change')); // если есть фильтрация проектов
+    select.dispatchEvent(new Event('change'));
+
+    // обновить кнопку сайта
+    if (targetId === 'companyFilter' && companySiteBtn) {
+      companySiteBtn.disabled = true;
+      companySiteBtn.classList.add('disabled');
+      companySiteBtn.onclick = null;
+    }
   });
 
   updateButton();
