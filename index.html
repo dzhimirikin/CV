@@ -4,16 +4,16 @@
 
   <!-- Сразу блокировка -->
   <script>
-  (function () {
+    (function () {
       const blocked = ["www.tootukassa.ee", "tootukassa.ee"];
       const ref = document.referrer.toLowerCase();
 
       if (ref && blocked.some(d => ref.includes(d))) {
-          document.documentElement.innerHTML = "";
-          document.write("<h2>Unable to load website</h2>");
-          document.close();
+        document.documentElement.innerHTML = "";
+        document.write("<h2>Unable to load website</h2>");
+        document.close();
       }
-  })();
+    })();
   </script>
 
   <!-- Google Analytics -->
@@ -22,7 +22,16 @@
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
-    gtag('config', 'G-JZH1TX3DCH');
+
+    // === Блокировка вашего трафика ===
+    // Если вы посещаете сайт сами, ставим isInternal = true
+    // Тогда GA не получает данные с вашего браузера
+    const isInternal = true; // <-- true для себя, false для обычных пользователей
+
+    if (!isInternal) {
+      // Только если не внутренний пользователь — отправляем события в GA
+      gtag('config', 'G-JZH1TX3DCH');
+    }
   </script>
 
   <!-- SEO Meta Tags -->
@@ -41,11 +50,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="style.css">
 
-
   <link rel="manifest" href="./manifest.json">
   <meta name="theme-color" content="#1f2933"> <!-- цвет строки состояния на Android -->
-</head>
 
+</head>
 <body>
 
 <!-- HEADER -->
