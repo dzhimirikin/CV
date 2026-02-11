@@ -22,16 +22,7 @@
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
-
-    // === Блокировка вашего трафика ===
-    // Если вы посещаете сайт сами, ставим isInternal = true
-    // Тогда GA не получает данные с вашего браузера
-    const isInternal = true; // <-- true для себя, false для обычных пользователей
-
-    if (!isInternal) {
-      // Только если не внутренний пользователь — отправляем события в GA
-      gtag('config', 'G-JZH1TX3DCH');
-    }
+    gtag('config', 'G-JZH1TX3DCH');
   </script>
 
   <!-- SEO Meta Tags (ET) -->
@@ -1077,3 +1068,4 @@
 
 </body>
 </html>
+
