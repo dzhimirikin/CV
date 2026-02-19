@@ -182,7 +182,7 @@ nav a:hover {
   overflow: hidden;
 }
 
-/* Анимируемый фон */
+/* Динамический фон */
 .hero::before{
   content:"";
   position:absolute;
@@ -191,7 +191,7 @@ nav a:hover {
   background-size:cover;
 
   transform:scale(1);
-  animation:heroZoom 5s ease-in-out infinite alternate; /* быстрее */
+  animation:heroZoom 8s ease-in-out infinite alternate;
   will-change:transform;
 
   z-index:-1;
@@ -232,26 +232,25 @@ nav a:hover {
   max-width:600px;
 }
 
-/* Анимация медленного циклического наезда */
+/* Быстрый, заметный, но плавный zoom */
 @keyframes heroZoom{
   from{
     transform:scale(1) translate(0,0);
   }
   to{
-    transform:scale(1.10) translate(-1.5%,-1.5%);
+    transform:scale(1.22) translate(-4%,-4%);
   }
 }
 
-/* Мобильная адаптация */
+/* Мобильная версия — чуть мягче */
 @media (max-width:768px){
   .hero-inner{
     flex-direction:column;
     text-align:center;
   }
 
-  /* чуть мягче на телефоне */
   .hero::before{
-    animation:heroZoom 42s ease-in-out infinite alternate;
+    animation:heroZoom 10s ease-in-out infinite alternate;
   }
 }
 
@@ -259,7 +258,7 @@ nav a:hover {
 @media (prefers-reduced-motion:reduce){
   .hero::before{
     animation:none;
-    transform:scale(1.05);
+    transform:scale(1.08);
   }
 }
 
@@ -1239,3 +1238,4 @@ footer {
 }
 
 @keyframes fadeIn { to { opacity: 1; } }
+
