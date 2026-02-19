@@ -263,6 +263,7 @@ nav a:hover {
 }
 
 
+
 /* ============ SECTIONS ============ */
 section{
   max-width:1100px;
@@ -1238,5 +1239,6 @@ footer {
 }
 
 @keyframes fadeIn { to { opacity: 1; } }
+
 
 
