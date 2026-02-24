@@ -129,23 +129,22 @@ document.addEventListener('DOMContentLoaded', () => {
        GOOGLE MAP BUTTON
     ============================== */
     function updateGoogleMapButton(card) {
-        if (!googleMapBtn || !card) return;
+        if (!googleMapBtn) return;
 
-        const lat = card.dataset.lat;
-        const lng = card.dataset.lng;
+        const lat = card ? card.dataset.lat : null;
+        const lng = card ? card.dataset.lng : null;
 
-        // Проверяем: координаты существуют и не равны "0"
         if (lat && lng && lat !== "0" && lng !== "0") {
             googleMapBtn.disabled = false;
             googleMapBtn.classList.remove('disabled');
-            googleMapBtn.classList.add('history'); // чтобы стрелка появилась
+            googleMapBtn.classList.add('history');
             googleMapBtn.onclick = () => {
                 window.open(`https://www.google.com/maps?q=${lat},${lng}`, '_blank');
             };
         } else {
             googleMapBtn.disabled = true;
             googleMapBtn.classList.add('disabled');
-            googleMapBtn.classList.remove('history'); // убираем стрелку
+            googleMapBtn.classList.remove('history');
             googleMapBtn.onclick = null;
         }
     }
@@ -193,17 +192,15 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    /* ==============================
-       SHOW ALL BUTTON
-    ============================== */
     if (showAllBtn) {
         showAllBtn.addEventListener('click', () => {
             projectCards.forEach(c => c.classList.remove('project-active'));
             galleryImages.forEach(imgLink => imgLink.style.display = '');
-            updateHistoryButton(null);
-            updateGoogleMapButton(null); // ← отключаем Google Map
 
             currentProjectCard = null;
+
+            updateHistoryButton(null);
+            updateGoogleMapButton(null);   // ← принудительно отключаем Google Map
             updateBackToProjectButton();
         });
     }
