@@ -1051,6 +1051,15 @@ footer {
 }
 
 
+/* ===== GOOGLE MAP BUTTON ICON ===== */
+#googleMapBtn.history::after {
+    content: " ↗";       /* тот же символ, что и у Project History */
+    font-size: 14px;
+    margin-left: 6px;
+    opacity: 0.85;
+}
+
+
 /* ===== SHOW ALL / HISTORY BUTTONS (плоские, как CV) ===== */
 
 .show-all-card {
