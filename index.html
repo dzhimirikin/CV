@@ -126,13 +126,32 @@ a{
 }
 a:hover{text-decoration:underline;}
 
-/* ===== FOOTER ===== */
-footer{
-  text-align:center;
-  padding:20px;
-  font-size:13px;
-  color:#666;
+/* ============ FOOTER ============ */
+footer {
+  background: #1f2933;
+  color: #fff;
+  text-align: center;
+  padding: 25px;
+  font-size: 14px;
+
+  /* закрепляем только на десктопе */
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  z-index: 900;
+  margin-top: 0; /* удаляем верхний отступ, чтобы не создавал белую полосу */
 }
+
+/* на мобильных отключаем фикс */
+@media (max-width: 768px) {
+  footer {
+    position: static;
+    width: 100%;
+    margin-top: 40px; /* оставляем отступ для разделения контента */
+  }
+}
+
 </style>
 </head>
 
@@ -184,8 +203,9 @@ footer{
 
 </main>
 
+<!-- FOOTER -->
 <footer>
-  © 2026
+  © <span id="year"></span> Dmitry Zhimirikin — Engineering Portfolio
 </footer>
 
 </body>
