@@ -1,1148 +1,192 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Site temporarily closed</title>
 
-  <!-- Сразу блокировка -->
-  <script>
-    (function () {
-      const blocked = ["www.tootukassa.ee", "tootukassa.ee"];
-      const ref = document.referrer.toLowerCase();
+<style>
+:root{
+  --dark:#1f2933;
+  --bg:#f4f4f4;
+  --radius:6px;
+}
 
-      if (ref && blocked.some(d => ref.includes(d))) {
-        document.documentElement.innerHTML = "";
-        document.write("<h2>Unable to load website</h2>");
-        document.close();
-      }
-    })();
-  </script>
+*{box-sizing:border-box;margin:0;padding:0;font-family:Arial,Helvetica,sans-serif;}
 
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-JZH1TX3DCH"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-JZH1TX3DCH');
-  </script>
+body {
+  background-color: #f8f8f8;
 
-  <!-- SEO Meta Tags -->
-  <meta name="description" content="Dmitry Zhimirikin — Facade engineer with 10+ years experience in aluminum and ventilated facades design, K2/K3 documentation, Reynaers, Schüco, Aluprof, Alutech systems, curtain walls, structural calculations, 2D/3D CAD, project management, technical support in Estonia and Russia.">
-  <meta name="keywords" content="Dmitry Zhimirikin, facade engineer, aluminum facades, ventilated facades, K2 design, K3 documentation, Reynaers, Schüco, Aluprof, Alutech, curtain wall, structural calculations, AutoCAD, Inventor, LogiKAL, Kompas3D, SCAD, ArchiCAD, Revit, project management, Estonia, Russia">
-  <meta name="robots" content="index, follow">
-  <link rel="canonical" href="https://dzhimirikin.github.io/CV/index.html">
+  background-image:
+    /* 1 мм — тонкие */
+    linear-gradient(to right, rgba(0,0,0,0.07) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(0,0,0,0.07) 1px, transparent 1px),
 
-  <link rel="alternate" hreflang="en" href="https://dzhimirikin.github.io/CV/index.html">
-  <link rel="alternate" hreflang="ru" href="https://dzhimirikin.github.io/CV/index_ru.html">
-  <link rel="alternate" hreflang="et" href="https://dzhimirikin.github.io/CV/index_ee.html">
-  <link rel="alternate" hreflang="x-default" href="https://dzhimirikin.github.io/CV/index.html">
+    /* 5 мм — средние */
+    linear-gradient(to right, rgba(0,0,0,0.12) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(0,0,0,0.12) 1px, transparent 1px),
 
-  <meta charset="UTF-8">
-  <title>Dmitry Zhimirikin — Engineering Portfolio</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="style.css">
+    /* 10 мм — более заметные */
+    linear-gradient(to right, rgba(0,0,0,0.18) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(0,0,0,0.18) 1px, transparent 1px);
 
-  <link rel="manifest" href="./manifest.json">
-  <meta name="theme-color" content="#1f2933"> <!-- цвет строки состояния на Android -->
+  background-size:
+    3.78px 3.78px,   3.78px 3.78px,     /* 1 мм */
+    18.9px 18.9px,   18.9px 18.9px,     /* 5 мм */
+    37.8px 37.8px,   37.8px 37.8px;     /* 10 мм */
 
+  background-attachment: fixed;
+}
+
+/* ===== HEADER ===== */
+header{
+  background:var(--dark);
+  color:#fff;
+  padding:18px;
+  text-align:center;
+  font-weight:bold;
+}
+
+/* ===== HERO ===== */
+.hero{
+  position: relative;
+  background: url('hero.jpg') center/cover no-repeat;
+  padding: 60px 20px 100px; /* увеличен отступ снизу */
+  color: #fff;
+  overflow: hidden;
+  margin-bottom: 40px; /* дополнительный отступ между HERO и main */
+}
+
+.hero::before{
+  content: "";
+  position: absolute;
+  top:0; left:0; right:0; bottom:0;
+  background: rgba(31,41,51,0.6); /* тёмно-серый слой */
+  z-index: 0;
+}
+
+.hero-inner{
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 30px;
+  flex-wrap: wrap;
+  max-width: 900px;
+  margin: 0 auto;
+  z-index: 1; /* чтобы текст был над слоем */
+}
+
+.hero-photo{
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 6px;
+  flex-shrink: 0;
+}
+
+.hero-text{
+  flex: 1;
+}
+
+.hero-text h1{
+  margin-bottom: 10px;
+  font-size: 28px;
+}
+
+.hero-text p{
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+/* ===== MAIN ===== */
+main{
+  max-width:900px;
+  margin:0 auto 60px;
+  padding:0 20px;
+}
+
+.card{
+  background:#fff;
+  padding:30px;
+  border-radius:var(--radius);
+  box-shadow:0 2px 6px rgba(0,0,0,.1);
+  margin-bottom:20px;
+  text-align:center;
+}
+
+h1{margin-bottom:10px;font-size:26px;}
+.lang{margin-top:10px;color:#666;font-size:14px;}
+
+/* ===== CONTACTS ===== */
+.contacts p{margin:6px 0;}
+
+a{
+  color:var(--dark);
+  text-decoration:none;
+}
+a:hover{text-decoration:underline;}
+
+/* ===== FOOTER ===== */
+footer{
+  text-align:center;
+  padding:20px;
+  font-size:13px;
+  color:#666;
+}
+</style>
 </head>
+
 <body>
 
-<!-- HEADER -->
 <header>
-  <div class="header-inner">
-    <!-- Логотип с прокруткой к верху -->
-    <div class="logo" id="logo">Dmitry Zhimirikin</div>
-
-    <nav>
-      <ul id="menu">
-        <li>
-          <a href="#about">
-            <!-- Heroicon: user -->
-            <svg xmlns="http://www.w3.org/2000/svg" class="icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5.121 17.804A9 9 0 1112 21a9 9 0 01-6.879-3.196z" />
-            </svg>
-            About
-          </a>
-        </li>
-        <li>
-          <a href="#skills">
-            <!-- Heroicon: academic-cap -->
-            <svg xmlns="http://www.w3.org/2000/svg" class="icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 14l9-5-9-5-9 5 9 5z" />
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 14l6.16-3.422A12.083 12.083 0 0112 21.5a12.083 12.083 0 01-6.16-10.922L12 14z" />
-            </svg>
-            Skills
-          </a>
-        </li>
-        <li>
-          <a href="#projects">
-            <!-- Heroicon: briefcase -->
-            <svg xmlns="http://www.w3.org/2000/svg" class="icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 7V4a2 2 0 012-2h8a2 2 0 012 2v3M6 7h12v14H6V7z" />
-            </svg>
-            Projects
-          </a>
-        </li>
-        <li>
-          <a href="#gallery">
-            <!-- Heroicon: photograph -->
-            <svg xmlns="http://www.w3.org/2000/svg" class="icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 7h18M3 7l3 12h12l3-12M16 11l-4 4-2-2-4 4" />
-            </svg>
-            Gallery
-          </a>
-        </li>
-        <li>
-          <a href="#cv">
-            <!-- Heroicon: document-text -->
-            <svg xmlns="http://www.w3.org/2000/svg" class="icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6M9 16h6M7 8h10M5 20h14a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-            </svg>
-            CV
-          </a>
-        </li>
-        <li>
-          <a href="#certificates">
-            <!-- Heroicon: badge-check -->
-            <svg xmlns="http://www.w3.org/2000/svg" class="icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m2-2a9 9 0 11-18 0 9 9 0 0118 0z" />
-            </svg>
-            Certificates
-          </a>
-        </li>
-        <li>
-          <a href="#drawings">
-            <!-- Heroicon: pencil-alt -->
-            <svg xmlns="http://www.w3.org/2000/svg" class="icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5l7 7-7 7-7-7 7-7z" />
-            </svg>
-            Drawings
-          </a>
-        </li>
-        <li>
-          <a href="#publications">
-            <!-- Heroicon: book-open -->
-            <svg xmlns="http://www.w3.org/2000/svg" class="icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 20H6a2 2 0 01-2-2V6a2 2 0 012-2h6m6 0h-6m6 0v12a2 2 0 01-2 2h-6" />
-            </svg>
-            Publications
-          </a>
-        </li>
-        <li>
-          <a href="#links">
-            <!-- Heroicon: link -->
-            <svg xmlns="http://www.w3.org/2000/svg" class="icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 14L21 3m0 0a3 3 0 11-4.243 4.243L10 14l-3 3" />
-            </svg>
-            Links
-          </a>
-        </li>
-        <li>
-          <a href="#contacts">
-            <!-- Heroicon: phone -->
-            <svg xmlns="http://www.w3.org/2000/svg" class="icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3a2 2 0 012 2v1a2 2 0 01-2 2H5v3h1a2 2 0 012 2v3a2 2 0 01-2 2H5a2 2 0 01-2-2V5z" />
-            </svg>
-            Contacts
-          </a>
-        </li>
-      </ul>
-    </nav>
-
-    <div class="burger">
-      <div></div><div></div><div></div>
-    </div>
-
-    <div class="lang">
-      <strong>EN</strong> |
-      <a href="index_ru.html">RU</a> |
-      <a href="index_ee.html">EE</a>
-    </div>
-  </div>
+  Dmitry Zhimirikin — Engineering Portfolio
 </header>
 
 <!-- HERO -->
 <div class="hero">
-  <div class="hero-overlay">
-    <div class="hero-inner">
-      <img src="photo.png" alt="Dmitry Zhimirikin" class="hero-photo">
-      <div>
-        <h1>Dmitry Zhimirikin</h1>
-        <p>
-	Facade Engineer with over 10 years of experience in the design and delivery of faсade systems for residential, commercial, and industrial buildings.
-	Specialized in aluminium faсade systems, design stages K2 and K3, detailed technical documentation, and on-site technical support.
-	Proven experience in project execution and project management.
-        </p>
-      </div>
+  <div class="hero-inner">
+    <img src="photo.png" alt="Dmitry Zhimirikin" class="hero-photo">
+    <div class="hero-text">
+      <h1>Dmitry Zhimirikin</h1>
+      <p>
+        Facade Engineer with over 10 years of experience in the design and delivery of faсade systems for residential, commercial, and industrial buildings.
+        Specialized in aluminium faсade systems, design stages K2 and K3, detailed technical documentation, and on-site technical support.
+        Proven experience in project execution and project management.
+      </p>
     </div>
   </div>
 </div>
 
-<!-- ABOUT -->
-<section id="about">
+<main>
+
+  <!-- CLOSED MESSAGE -->
   <div class="card">
-    <h2>Profile</h2>
+    <h1>Site temporarily closed</h1>
+    <p>Сайт временно закрыт</p>
+    <p>Veebileht on ajutiselt suletud</p>
 
-    <p>
-	Design engineer with more than 10 years of experience in faсade systems and building envelope design.
-	Education: Leningrad Mechanical Institute (Baltic State Technical University), Master’s degree; diploma and 
-	professional qualification officially recognized by the Estonian ENIC/NARIC Centre (2025).
-    </p>
-
-    <p>
-	Professional practice in the Russian Federation (Saint Petersburg); since 2021 — working in 
-	Estonia, managing projects in both Estonia and Russia.
-    </p>
-
-    <p>
-	Six years of experience within system supplier companies: Reynaers Aluminium (S.-Petersburg), 
-	Alutech (S.-Petersburg), Inicial (S.-Petersburg).
-    </p>
-
-    <p>
-	Project management experience, including participation in a major international project — Lakhta Center, 
-	faсade design of the Multifunctional Building (MFB) as part of Samsung C&T Corp.
-    </p>
-
-    <p>
-	In design practice, worked with REYNAERS, ALUPROF, ALUTECH systems (primary), as 
-	well as SCHÜCO, TATPROF, KRAMZ, INICIAL, frameless glazing systems by Kinlong, and others. 
-	Delivered projects with ventilated faсades based on aluminium cassette systems and three-dimensional ceramic cladding (NBK).
-    </p>
-
-    <p>
-      Participated in testing of facade structures: annealing of structures at 
-      <a href="https://www.serconsrus.ru/" target="_blank">SERCONS SZRC</a>, Russia, 
-      and operational tests at 
-      <a href="https://www.ift-rosenheim.de/" target="_blank">IFT Rosenheim</a>, Germany.
-    </p>
-
-    <p>
-    2D drafting (including dynamic blocks and LISP), 3D modelling, structural calculations, and full-cycle design documentation: 
-	working drawings of faсade structures and connection details (K2), detailed drawings (K3), fabrication and installation 
-	specifications, sheet metal layouts, including complex-shaped cassette elements.
-    </p>
-
-    <p>
-	English — B1 (working proficiency, mainly spoken), Estonian — A2.
-    </p>
-    <p>
-	Own fully equipped workstation.
-    </p>
-
-  </div>
-</section>
-
-<!-- SOFTWARE SKILLS -->
-<section id="skills">
-
-  <div class="card">
-    <h2>Software Skills</h2>
-
-    <!-- CAD/CAM/CAE -->
-    <h3><u>CAD/CAM/CAE</u></h3>
-    <div class="skill">
-      <span class="skill-name">AutoCAD</span>
-      <div class="skill-bar"><div class="skill-progress" data-width="90%"></div></div>
-      <span class="skill-percent">0%</span>
-    </div>
-    <div class="skill">
-      <span class="skill-name">Inventor</span>
-      <div class="skill-bar"><div class="skill-progress" data-width="70%"></div></div>
-      <span class="skill-percent">0%</span>
-    </div>
-    <div class="skill">
-      <span class="skill-name">LogiKAL</span>
-      <div class="skill-bar"><div class="skill-progress" data-width="90%"></div></div>
-      <span class="skill-percent">0%</span>
-    </div>
-    <div class="skill">
-      <span class="skill-name">Kompas3D</span>
-      <div class="skill-bar"><div class="skill-progress" data-width="70%"></div></div>
-      <span class="skill-percent">0%</span>
-    </div>
-
-    <h3><u>FEM</u></h3>
-    <div class="skill">
-      <span class="skill-name">SCAD</span>
-      <div class="skill-bar"><div class="skill-progress" data-width="70%"></div></div>
-      <span class="skill-percent">0%</span>
-    </div>
-
-    <h3><u>PDM</u></h3>
-    <div class="skill">
-      <span class="skill-name">BAUHUB</span>
-      <div class="skill-bar"><div class="skill-progress" data-width="90%"></div></div>
-      <span class="skill-percent">0%</span>
-    </div>
-
-    <h3><u>MS Office</u></h3>
-    <div class="skill">
-      <span class="skill-name">MS Word</span>
-      <div class="skill-bar"><div class="skill-progress" data-width="90%"></div></div>
-      <span class="skill-percent">0%</span>
-    </div>
-    <div class="skill">
-      <span class="skill-name">MS Excel</span>
-      <div class="skill-bar"><div class="skill-progress" data-width="90%"></div></div>
-      <span class="skill-percent">0%</span>
-    </div>
-    <div class="skill">
-      <span class="skill-name">MS PowerPoint</span>
-      <div class="skill-bar"><div class="skill-progress" data-width="90%"></div></div>
-      <span class="skill-percent">0%</span>
-    </div>
-    <div class="skill">
-      <span class="skill-name">MS Project</span>
-      <div class="skill-bar"><div class="skill-progress" data-width="80%"></div></div>
-      <span class="skill-percent">0%</span>
-    </div>
-
-    <h3><u>BIM</u></h3>
-    <div class="skill">
-      <span class="skill-name">ArchiCAD</span>
-      <div class="skill-bar"><div class="skill-progress" data-width="70%"></div></div>
-      <span class="skill-percent">0%</span>
-    </div>
-    <div class="skill">
-      <span class="skill-name">Revit</span>
-      <div class="skill-bar"><div class="skill-progress" data-width="30%"></div></div>
-      <span class="skill-percent">0%</span>
-    </div>
-
-    <h3><u>Graphic Editors</u></h3>
-    <div class="skill">
-      <span class="skill-name">Adobe Photoshop</span>
-      <div class="skill-bar"><div class="skill-progress" data-width="50%"></div></div>
-      <span class="skill-percent">0%</span>
-    </div>
-
-    <h3><u>WEB</u></h3>
-    <div class="skill">
-      <span class="skill-name">HTML, Java</span>
-      <div class="skill-bar"><div class="skill-progress" data-width="10%"></div></div>
-      <span class="skill-percent">0%</span>
-    </div>
-
-  </div>
-
-</section>
-
-
-<!-- PROJECTS -->
-<section id="projects">
-
-  <!-- Заголовок и фильтры в одной карточке -->
-  <div class="card">
-    <h2>Selected Projects</h2>
-
-    <!-- Контейнер для обоих фильтров -->
-    <div class="project-filter">
-
-      <!-- Фильтр по годам -->
-      <div class="filter-item">
-        <label for="yearFilter">Filter by year:</label>
-        <div class="combo-row">
-          <select id="yearFilter" class="combo">
-            <option value="all">All</option>
-            <option value="2012">2012</option>
-            <option value="2013">2013</option>
-            <option value="2014">2014</option>
-            <option value="2015">2015</option>
-            <option value="2016">2016</option>
-            <option value="2017">2017</option>
-            <option value="2018">2018</option>
-            <option value="2021">2021</option>
-            <option value="2022">2022</option>
-            <option value="2023">2023</option>
-            <option value="2024">2024</option>
-            <option value="2025">2025</option>
-          </select>
-
-          <button class="combo-reset" data-target="yearFilter" title="Reset filter">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                    d="M6 18L18 6M6 6l12 12"/>
-            </svg>
-          </button>
-        </div>
-      </div>
-
-      <!-- Фильтр по компаниям -->
-      <div class="filter-item">
-        <label for="companyFilter">Filter by company:</label>
-
-        <div class="company-row">
-
-          <!-- combo-row: select + reset -->
-          <div class="combo-row">
-            <select id="companyFilter" class="combo">
-              <option value="all" data-site="">All</option>
-              <option value="EuroStroyStandart LLC" data-site="">EuroStroyStandart LLC</option>
-              <option value="ELEMENTFACADE LLC" data-site="http://element-facade.ru/">ELEMENTFACADE LLC</option>
-              <option value="Samsung C&T Corp" data-site="https://www.secc.co.kr/en">Samsung C&T Corp</option>
-              <option value="Fenster Alumiinium AS" data-site="https://fenster.ee/alumiinium/">Fenster Alumiinium AS</option>
-              <option value="Malmerk Fassaadid AS" data-site="https://malmerkfassaadid.ee/">Malmerk Fassaadid AS</option>
-              <option value="REY Aluminium LLC" data-site="https://ray024.ru/">REY Aluminium LLC</option>
-              <option value="SeiCom OÜ" data-site="https://seicom.ee/">SeiCom OÜ</option>
-            </select>
-
-            <button class="combo-reset" data-target="companyFilter" title="Reset filter">
-              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                      d="M6 18L18 6M6 6l12 12"/>
-              </svg>
-            </button>
-          </div>
-
-          <!-- кнопка Company website -->
-          <button id="companySiteBtn" class="cv-link" disabled>
-            <!-- Heroicon Globe -->
-            <svg xmlns="http://www.w3.org/2000/svg" class="icon-heroicon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="16" height="16">
-              <circle cx="12" cy="12" r="10"></circle>
-              <line x1="2" y1="12" x2="22" y2="12"></line>
-              <path d="M12 2a15.3 15.3 0 0 1 0 20"></path>
-            </svg>
-            Company website
-          </button>
-
-        </div>
-      </div>
-
+    <div class="lang">
+      The website is under maintenance / Сайт на обслуживании / Leht on hoolduses
     </div>
   </div>
 
-  <!-- Контейнер для карточек проектов -->
-  <div class="projects">
+  <!-- CONTACTS -->
+  <div class="card contacts">
+    <h2>Contacts / Контакты / Kontakt</h2>
 
-    <!-- 000_STAIR -->
-    <div class="card project" 
-         data-project="000_STAIR" 
-         data-years="2012" 
-         data-company="EuroStroyStandart LLC"
-         data-lat="59.853026"
-         data-lng="30.340520">
-      <img src="000_STAIR/000_STAIR_01.jpg" alt="000_STAIR">
-      <h3>2012: Stair, Shopping and Entertainment Center Piter, S.-Petersburg, Tipanova st., 21A, Russia</h3>
-      <p>EuroStroyStandart LLC / S.-Petersburg</p>
-      <p>Role: Structural Design (K2/K3) / Structural Calculations / Installation</p>
-      <span class="history-label">Project history available</span>
-    </div>
+    <p>Email: <a href="mailto:d.zhimirikin@gmail.com">d.zhimirikin@gmail.com</a></p>
+    <p>Phone (EST): <a href="tel:+372 53235078">+372 53235078</a></p>
 
-    <!-- 001_IL -->
-    <div class="card project" 
-         data-project="001_IL" 
-         data-years="2012,2013,2014" 
-         data-company="ELEMENTFACADE LLC"
-         data-lat="0" 
-         data-lng="0">
-        <img src="001_IL/001_IL_1.jpg" alt="001_IL">
-        <h3>2012-2014: Residence Lesnaya Formula, Russia</h3>
-        <p>ELEMENTFACADE LLC / Moscow–S.-Petersburg</p>
-        <p>4000 m², ventilated facades (3D ceramic NBK CERAMIC, custom-developed substructure, aluminum), REYNAERS aluminum profile system, stainless steel mesh blinds, spider facades.</p>
-        <p>Project features: high-precision installation, curtain wall windows on glass supports with a height of 4 m, doors made of aluminum and aluminum-wood profiles with a height of 4 m.</p>
-        <p>Experience with “non-standard” dimensions and increased weight.</p>
-        <p>Role: Structural Design (K2/K3), project team management, supervision of installation works.</p>
-        <span class="history-label">Project history available</span>
-    </div>
-
-    <!-- 002_KR -->
-    <div class="card project" 
-         data-project="002_KR" 
-         data-years="2013,2014" 
-         data-company="ELEMENTFACADE LLC"
-         data-lat="59.96972667595169" 
-         data-lng="30.270404975278332">
-        <img src="002_KR/002_KR_1.jpg" alt="002_KR">
-        <h3>2013-2014: Apart-hotel Krestovsky, 12, S.-Petersburg, Russia</h3>
-        <p>ELEMENTFACADE LLC / Moscow–S.-Petersburg</p>
-        <p>Ventilated facades (3D ceramic NBK CERAMIC, substructure – OLMA stainless steel + custom-developed substructure (aluminum), curved elements – EUROMAX sheet), glazing (REYNAERS, custom extrusion profiles).</p>
-        <p>Project features: cassette installation of ventilated facades using a custom substructure.</p>
-        <p>Role: Structural Design (K2/K3), project team management, supervision of installation works.</p>
-        <span class="history-label">Project history available</span>
-    </div>
-
-    <!-- 003_BY -->
-    <div class="card project" 
-         data-project="003_BY" 
-         data-years="2013,2014,2015" 
-         data-company="ELEMENTFACADE LLC"
-         data-lat="59.9768703960985" 
-         data-lng="30.224771050298926">
-        <img src="003_BY/003_BY_01.jpg" alt="003_BY">
-        <h3>2013-2015: Yavara-Neva Yacht Club, building complex on Bychiy Island, S.-Petersburg, Russia</h3>
-        <p>ELEMENTFACADE LLC / Moscow–S.-Petersburg</p>
-        <p>Project features: Ventilated facades (large-block aluminum sheet NOVELIS cassettes, QMS stainless steel substructure), glazing (REYNAERS, ALMO, custom extrusion profiles).</p>
-        <p>Role: Structural Design (K2/K3), project team management, supervision of installation works.</p>
-        <span class="history-label">Project history available</span>
-    </div>
-
-    <!-- 004_LAKHTA -->
-    <div class="card project" 
-         data-project="004_LAKHTA" 
-         data-years="2016,2017,2018" 
-         data-company="Samsung C&T Corp"
-         data-lat="59.98840808350551" 
-         data-lng="30.177825755229104">
-        <img src="004_LAKHTA/004_LAKHTA_01.jpg" alt="004_LAKHTA">
-        <h3>2016-2018: Lakhta Center complex, multifunctional building (MFB), S.-Petersburg, Russia</h3>
-        <p>Samsung C&T Corp (Technical Client)</p>
-        <p>Project features:</p>
-        <p>Use of modular facade systems (SCHÜCO, special extrusions), including warm-cold and double facades; spider façades on glass mullions, cable spider façades; roofs based on ethylene-tetrafluoroethylene (ETFE) film; detailed development of facade maintenance system concepts.</p>
-        <p>All types of calculations (structural, thermal, condensation). All types of testing (climatic, operational, fire-resistance confirmation, factory, and acceptance tests).</p>
-        <p>Role within the team (1 specialist from South Korea, 1 from Russia):</p>
-        <p>Internal coordination of facade design solutions via RFI and SAF/MAF, coordination of facade design solutions with related sections (architectural, electrical, HVAC, interior solutions, architectural lighting); approval of design solutions with the Client.</p>
-        <p>Verification of technical and design solutions in System Design and Working Documentation; checking provided calculations and test programs.</p>
-        <p>Participation in full-scale testing — operational tests at the IFT Rosenheim Test Center in Deggendorf (Germany) and at Lindner’s production facility in Arnstorf (Germany), annealing of facade structure samples.</p>
-        <span class="history-label">Project history available</span>
-    </div>
-
-    <!-- 005_SILLA -->
-    <div class="card project" 
-         data-project="005_SILLA" 
-         data-years="2021" 
-         data-company="Fenster Alumiinium AS"
-         data-lat="59.393555866821515" 
-         data-lng="27.760053639703372">
-        <img src="005_SILLA/005_SILLA_01.jpg" alt="005_SILLA">
-        <h3>2021: Sillamäe Vanalinna kool, Hariduse St. 6 and Geoloogia St. 13, Sillamäe, Estonia</h3>
-        <p>Fenster Alumiinium AS</p>
-        <p>Project features: Curtain wall glazing using REYNAERS systems.</p>
-        <p>Role: K2/K3 design following the one project – one engineer principle.</p>
-        <span class="history-label">Project history available</span>
-    </div>
-
-    <!-- 006_MUHU -->
-    <div class="card project" 
-         data-project="006_MUHU" 
-         data-years="2022" 
-         data-company="Fenster Alumiinium AS"
-         data-lat="58.60545121802041" 
-         data-lng="23.233597920450922">
-        <img src="006_MUHU/006_MUHU_01.jpg" alt="006_MUHU">
-        <h3>2022: Muhu Maja Center, village of Liiva, Muhu Parish, Saare County, Estonia</h3>
-        <p>Fenster Alumiinium AS</p>
-        <p>Project features: Curtain wall glazing using REYNAERS systems, structural corner glazing with transition onto the roof.</p>
-        <p>Role: K2/K3 design following the one project – one engineer principle.</p>
-        <span class="history-label">Project history available</span>
-    </div>
-
-    <!-- 007_NRG -->
-    <div class="card project" 
-         data-project="007_NRG" 
-         data-years="2022" 
-         data-company="Fenster Alumiinium AS"
-         data-lat="59.38196754947218" 
-         data-lng="28.190513942058544">
-        <img src="007_NRG/007_NRG_01.jpg" alt="007_NRG">
-        <h3>2022: Narva Riigigümnaasiumi õppehoone, 31 Aleksander Puškini St., Narva, Estonia</h3>
-        <p>Fenster Alumiinium AS</p>
-        <p>Project features: Curtain wall glazing using REYNAERS systems.</p>
-        <p>Role: K2/K3 design following the one project – one engineer principle.</p>
-        <span class="history-label">Project history available</span>
-    </div>
-
-    <!-- 008_NEK -->
-    <div class="card project" 
-         data-project="008_NEK" 
-         data-years="2023" 
-         data-company="Fenster Alumiinium AS"
-         data-lat="59.380475592682345" 
-         data-lng="28.196474495960903">
-        <img src="008_NEK/008_NEK_01.jpg" alt="008_NEK">
-        <h3>2023: Narva Eesti Gümnaasium, 1 Kraavi St., Narva, Estonia</h3>
-        <p>Fenster Alumiinium AS</p>
-        <p>Project features: Curtain wall glazing using REYNAERS systems, structural corner glazing with transition onto the roof. Glazing on zero-level aluminum profiles mounted on glued laminated timber, with installation of external duplicate profiles on mullions and transoms, including LED lighting.</p>
-        <p>Role: K2/K3 design following the one project – one engineer principle.</p>
-        <span class="history-label">Project history available</span>
-    </div>
-
-    <!-- 009_NEL -->
-    <div class="card project" 
-         data-project="009_NEL" 
-         data-years="2023" 
-         data-company="Fenster Alumiinium AS"
-         data-lat="59.38116010359024" 
-         data-lng="28.197255390569815">
-        <img src="009_NEL/009_NEL_01.png" alt="009_NEL">
-        <h3>2023: Narva Estonian Kindergarten "Red Riding Hood", Hariduse St. 10, Narva, Estonia</h3>
-        <p>Fenster Alumiinium AS</p>
-        <p>Project features: Curtain wall glazing using REYNAERS systems. Glazing on zero-level aluminum profiles mounted on glued laminated timber, with installation of external duplicate profiles on mullions and transoms, including LED lighting.</p>
-        <p>Role: K2/K3 design following the one project – one engineer principle.</p>
-        <span class="history-label">Project history available</span>
-    </div>
-
-    <!-- 010_ML -->
-    <div class="card project" 
-         data-project="010_ML" 
-         data-years="2023" 
-         data-company="Fenster Alumiinium AS"
-         data-lat="59.415944067443164" 
-         data-lng="24.734851379549166">
-        <img src="010_ML/010_ML_01.jpg" alt="010_ML">
-        <h3>2023: Magdalena Kindergarten, Asula St. 16 / Asula St. 18, Tallinn, Estonia</h3>
-        <p>Fenster Alumiinium AS</p>
-        <p>Project features: Curtain wall glazing using REYNAERS systems.</p>
-        <p>Role: K2/K3 design following the one project – one engineer principle.</p>
-        <span class="history-label">Project history available</span>
-    </div>
-
-    <!-- 011_LAAGRI -->
-    <div class="card project" 
-         data-project="011_LAAGRI" 
-         data-years="2023" 
-         data-company="Fenster Alumiinium AS"
-         data-lat="59.44104556786512" 
-         data-lng="24.766802113740088">
-        <img src="011_LAAGRI/011_LAAGRI_01.png" alt="011_LAAGRI">
-        <h3>2023: Lootsi 8 Commercial and Office Building, Tallinn, Estonia</h3>
-        <p>Fenster Alumiinium AS</p>
-        <p>Project features: Design of louvered screens using ALUTECH custom extrusion profiles. Cassette installation of the louvers.</p>
-        <p>Role: K2/K3 design following the one project – one engineer principle.</p>
-        <span class="history-label">Project history available</span>
-    </div>
-
-    <!-- 012_MERCEDES -->
-    <div class="card project" 
-         data-project="012_MERCEDES" 
-         data-years="2024" 
-         data-company="Malmerk Fassaadid AS"
-         data-lat="59.440247704413046" 
-         data-lng="24.898935344161536">
-        <img src="012_MERCEDES/012_MERCEDES_01.jpg" alt="012_MERCEDES">
-        <h3>2024: Mercedes-Veho Car Center, Tooma St. 2, Tallinn, Estonia</h3>
-        <p>Project features: Curtain wall glazing using REYNAERS systems. Development of connection details for heavy signage.</p>
-        <p>Role: K2/K3 design following the one project – one engineer principle.</p>
-        <span class="history-label">Project history available</span>
-    </div>
-
-    <!-- 013_GREENFL -->
-    <div class="card project" 
-         data-project="013_GREENFL" 
-         data-years="2024" 
-         data-company="REY Aluminium LLC"
-         data-lat="52.92878654001972" 
-         data-lng="108.21075478348259">
-        <img src="013_GREENFL/013_GREENFL_01.jpg" alt="013_GREENFL">
-        <h3>2024: Hotel, Thermal Complex, and Wellness Center "GREEN FLOW BAIKAL", Republic of Buryatia, Pribaikalsky District, Turka Village, Russia</h3>
-        <p>Project features: Curtain wall glazing using ALUTECH systems. Use of a double-span mullion with a working joint (composite mullion).</p>
-        <p>Role: K2 design following the one project – one engineer principle.</p>
-        <span class="history-label">Project history available</span>
-    </div>
-
-    <!-- 014_KASTANI -->
-    <div class="card project" 
-         data-project="014_KASTANI" 
-         data-years="2025" 
-         data-company="SeiCom OÜ"
-         data-lat="58.36693195290489" 
-         data-lng="26.721173609027407">
-        <img src="014_KASTANI/014_KASTANI_01.jpg" alt="014_KASTANI">
-        <h3>2025: Kastani Kolmnurk Office Building, Kastani St. 92, Tartu, Estonia</h3>
-        <p>Project features: Curtain wall glazing using ALUPROF systems. Curved facades with tight radii.</p>
-        <p>Role: K2/K3 design following the one project – one engineer principle.</p>
-        <span class="history-label">Project history available</span>
-    </div>
-
-    <!-- 015_TLT -->
-    <div class="card project" 
-         data-project="015_TLT" 
-         data-years="2025" 
-         data-company="SeiCom OÜ"
-         data-lat="58.353191" 
-         data-lng="26.667736">
-        <img src="015_TLT/015_TLT_01.jpg" alt="015_TLT">
-        <h3>2025: "Tulesäde" Kindergarten, Kambja Parish, Estonia</h3>
-        <p>Project features: Curtain wall glazing using ALUPROF systems.</p>
-        <p>Role: K2/K3 design following the one project – one engineer principle.</p>
-        <span class="history-label">Project history available</span>
-    </div>
-
-    <!-- 016_LAT -->
-    <div class="card project" 
-         data-project="016_LAT" 
-         data-years="2025" 
-         data-company="SeiCom OÜ"
-         data-lat="58.3439670752008" 
-         data-lng="26.72764195951716">
-        <img src="016_LAT/016_LAT_01.jpg" alt="016_LAT">
-        <h3>2025: Lõõtsa 6 Office Building, Tartu, Estonia</h3>
-        <p>Project features: Curtain wall glazing using ALUPROF systems.</p>
-        <p>Role: K2/K3 design following the one project – one engineer principle.</p>
-        <span class="history-label">Project history available</span>
-    </div>
-
-    <!-- 017_JMETK -->
-    <div class="card project" 
-         data-project="017_JMETK" 
-         data-years="2025" 
-         data-company="SeiCom OÜ"
-         data-lat="58.762173" 
-         data-lng="26.405036">
-        <img src="017_JMETK/017_JMETK_01.png" alt="017_JMETK">
-        <h3>2025: METK Research Center for Plant Breeding and Agriculture, Jõgeva, Estonia</h3>
-        <p>Project features: Curtain wall glazing using ALUPROF systems.</p>
-        <p>Role: K2/K3 design following the one project – one engineer principle.</p>
-        <span class="history-label">Project history available</span>
-    </div>
-
-    <!-- 018_PCOOP -->
-    <div class="card project" 
-         data-project="018_PCOOP" 
-         data-years="2025" 
-         data-company="SeiCom OÜ"
-         data-lat="58.65069511231367" 
-         data-lng="25.98483218509239">
-        <img src="018_PCOOP/018_PCOOP_01.jpg" alt="018_PCOOP">
-        <h3>2025: Põltsamaa Kingu COOP Shopping Centre, 1 Kingu St, Põltsamaa, Estonia</h3>
-        <p>Project features: Curtain wall glazing using ALUPROF systems.</p>
-        <p>Role: K2/K3 design following the one project – one engineer principle.</p>
-        <span class="history-label">Project history available</span>
-    </div>
-
-  </div>
-</section>
-
-
-<!-- GALLERY -->
-<section id="gallery">
-
-  <div class="card">
-
-    <h2>Gallery</h2>
-
-    <!-- Кнопки управления галереей -->
-    <div class="show-all-card">
-        <button id="showAllProjectsBtn" type="button" class="cv-link">
-            Show all projects
-        </button>
-
-        <button id="backToProjectBtn" type="button" class="cv-link disabled" disabled>
-            Back to project
-        </button>
-
-        <button id="googleMapBtn" type="button" class="cv-link disabled" disabled>
-            Google Map
-        </button>
-
-        <button id="historyBtn" type="button" class="cv-link disabled" disabled>
-            Project history
-        </button>
-    </div>
-
-
-
-    <div class="gallery-wrapper">
-      <div class="gallery">
-
-        <!-- 000_STAIR -->
-
-      <a href="000_STAIR/000_STAIR_01.jpg" target="_blank"><img src="000_STAIR/000_STAIR_01.jpg" alt="000_STAIR" loading="lazy"></a>
-      <a href="000_STAIR/000_STAIR_02.jpg" target="_blank"><img src="000_STAIR/000_STAIR_02.jpg" alt="000_STAIR" loading="lazy"></a>
-      <a href="000_STAIR/000_STAIR_03.jpg" target="_blank"><img src="000_STAIR/000_STAIR_03.jpg" alt="000_STAIR" loading="lazy"></a>
-      <a href="000_STAIR/000_STAIR_04.jpg" target="_blank"><img src="000_STAIR/000_STAIR_04.jpg" alt="000_STAIR" loading="lazy"></a>
-      <a href="000_STAIR/000_STAIR_05.jpg" target="_blank"><img src="000_STAIR/000_STAIR_05.jpg" alt="000_STAIR" loading="lazy"></a>
-      <a href="000_STAIR/000_STAIR_06.jpg" target="_blank"><img src="000_STAIR/000_STAIR_06.jpg" alt="000_STAIR" loading="lazy"></a>
-      <a href="000_STAIR/000_STAIR_07.jpg" target="_blank"><img src="000_STAIR/000_STAIR_07.jpg" alt="000_STAIR" loading="lazy"></a>
-      <a href="000_STAIR/000_STAIR_08.jpg" target="_blank"><img src="000_STAIR/000_STAIR_08.jpg" alt="000_STAIR" loading="lazy"></a>
-
-      <!-- 001_IL -->
-      <a href="001_IL/001_IL_1.jpg" target="_blank"><img src="001_IL/001_IL_1.jpg" alt="001_IL" loading="lazy"></a>
-      <a href="001_IL/001_IL_2.jpg" target="_blank"><img src="001_IL/001_IL_2.jpg" alt="001_IL" loading="lazy"></a>
-      <a href="001_IL/001_IL_3.jpg" target="_blank"><img src="001_IL/001_IL_3.jpg" alt="001_IL" loading="lazy"></a>
-      <a href="001_IL/001_IL_4.jpg" target="_blank"><img src="001_IL/001_IL_4.jpg" alt="001_IL" loading="lazy"></a>
-      <a href="001_IL/001_IL_5.jpg" target="_blank"><img src="001_IL/001_IL_5.jpg" alt="001_IL" loading="lazy"></a>
-      <a href="001_IL/001_IL_6.jpg" target="_blank"><img src="001_IL/001_IL_6.jpg" alt="001_IL" loading="lazy"></a>
-      <a href="001_IL/001_IL_7.jpg" target="_blank"><img src="001_IL/001_IL_7.jpg" alt="001_IL" loading="lazy"></a>
-      <a href="001_IL/001_IL_8.jpg" target="_blank"><img src="001_IL/001_IL_8.jpg" alt="001_IL" loading="lazy"></a>
-      <a href="001_IL/001_IL_9.jpg" target="_blank"><img src="001_IL/001_IL_9.jpg" alt="001_IL" loading="lazy"></a>
-      <a href="001_IL/001_IL_10.jpg" target="_blank"><img src="001_IL/001_IL_10.jpg" alt="001_IL" loading="lazy"></a>
-
-      <!-- 002_KR -->
-      <a href="002_KR/002_KR_1.jpg" target="_blank"><img src="002_KR/002_KR_1.jpg" alt="002_KR" loading="lazy"></a>
-      <a href="002_KR/002_KR_2.jpg" target="_blank"><img src="002_KR/002_KR_2.jpg" alt="002_KR" loading="lazy"></a>
-      <a href="002_KR/002_KR_3.jpg" target="_blank"><img src="002_KR/002_KR_3.jpg" alt="002_KR" loading="lazy"></a>
-      <a href="002_KR/002_KR_4.jpg" target="_blank"><img src="002_KR/002_KR_4.jpg" alt="002_KR" loading="lazy"></a>
-      <a href="002_KR/002_KR_5.jpg" target="_blank"><img src="002_KR/002_KR_5.jpg" alt="002_KR" loading="lazy"></a>
-      <a href="002_KR/002_KR_6.jpg" target="_blank"><img src="002_KR/002_KR_6.jpg" alt="002_KR" loading="lazy"></a>
-
-      <!-- 003_BY -->
-      <a href="003_BY/003_BY_01.jpg" target="_blank"><img src="003_BY/003_BY_01.jpg" alt="003_BY" loading="lazy"></a>
-      <a href="003_BY/003_BY_02.jpg" target="_blank"><img src="003_BY/003_BY_02.jpg" alt="003_BY" loading="lazy"></a>
-      <a href="003_BY/003_BY_03.jpg" target="_blank"><img src="003_BY/003_BY_03.jpg" alt="003_BY" loading="lazy"></a>
-      <a href="003_BY/003_BY_04.jpg" target="_blank"><img src="003_BY/003_BY_04.jpg" alt="003_BY" loading="lazy"></a>
-      <a href="003_BY/003_BY_05.jpg" target="_blank"><img src="003_BY/003_BY_05.jpg" alt="003_BY" loading="lazy"></a>
-      <a href="003_BY/003_BY_06.jpg" target="_blank"><img src="003_BY/003_BY_06.jpg" alt="003_BY" loading="lazy"></a>
-      <a href="003_BY/003_BY_07.jpg" target="_blank"><img src="003_BY/003_BY_07.jpg" alt="003_BY" loading="lazy"></a>
-      <a href="003_BY/003_BY_08.jpg" target="_blank"><img src="003_BY/003_BY_08.jpg" alt="003_BY" loading="lazy"></a>
-      <a href="003_BY/003_BY_09.jpg" target="_blank"><img src="003_BY/003_BY_09.jpg" alt="003_BY" loading="lazy"></a>
-      <a href="003_BY/003_BY_10.jpg" target="_blank"><img src="003_BY/003_BY_10.jpg" alt="003_BY" loading="lazy"></a>
-
-      <!-- 004_LAKHTA -->
-      <a href="004_LAKHTA/004_LAKHTA_01.jpg" target="_blank"><img src="004_LAKHTA/004_LAKHTA_01.jpg" alt="004_LAKHTA" loading="lazy"></a>
-      <a href="004_LAKHTA/004_LAKHTA_02.jpg" target="_blank"><img src="004_LAKHTA/004_LAKHTA_02.jpg" alt="004_LAKHTA" loading="lazy"></a>
-      <a href="004_LAKHTA/004_LAKHTA_03.jpg" target="_blank"><img src="004_LAKHTA/004_LAKHTA_03.jpg" alt="004_LAKHTA" loading="lazy"></a>
-      <a href="004_LAKHTA/004_LAKHTA_04.jpg" target="_blank"><img src="004_LAKHTA/004_LAKHTA_04.jpg" alt="004_LAKHTA" loading="lazy"></a>
-
-      <!-- 005_SILLA -->
-      <a href="005_SILLA/005_SILLA_01.jpg" target="_blank"><img src="005_SILLA/005_SILLA_01.jpg" alt="005_SILLA" loading="lazy"></a>
-      <a href="005_SILLA/005_SILLA_02.jpg" target="_blank"><img src="005_SILLA/005_SILLA_02.jpg" alt="005_SILLA" loading="lazy"></a>
-      <a href="005_SILLA/005_SILLA_03.jpg" target="_blank"><img src="005_SILLA/005_SILLA_03.jpg" alt="005_SILLA" loading="lazy"></a>
-      <a href="005_SILLA/005_SILLA_04.jpg" target="_blank"><img src="005_SILLA/005_SILLA_04.jpg" alt="005_SILLA" loading="lazy"></a>
-      <a href="005_SILLA/005_SILLA_05.jpg" target="_blank"><img src="005_SILLA/005_SILLA_05.jpg" alt="005_SILLA" loading="lazy"></a>
-      <a href="005_SILLA/005_SILLA_06.jpg" target="_blank"><img src="005_SILLA/005_SILLA_06.jpg" alt="005_SILLA" loading="lazy"></a>
-      <a href="005_SILLA/005_SILLA_07.jpg" target="_blank"><img src="005_SILLA/005_SILLA_07.jpg" alt="005_SILLA" loading="lazy"></a>
-      <a href="005_SILLA/005_SILLA_08.jpg" target="_blank"><img src="005_SILLA/005_SILLA_08.jpg" alt="005_SILLA" loading="lazy"></a>
-
-      <!-- 006_MUHU -->
-      <a href="006_MUHU/006_MUHU_01.jpg" target="_blank"><img src="006_MUHU/006_MUHU_01.jpg" alt="006_MUHU" loading="lazy"></a>
-      <a href="006_MUHU/006_MUHU_02.jpg" target="_blank"><img src="006_MUHU/006_MUHU_02.jpg" alt="006_MUHU" loading="lazy"></a>
-      <a href="006_MUHU/006_MUHU_03.jpg" target="_blank"><img src="006_MUHU/006_MUHU_03.jpg" alt="006_MUHU" loading="lazy"></a>
-      <a href="006_MUHU/006_MUHU_04.jpg" target="_blank"><img src="006_MUHU/006_MUHU_04.jpg" alt="006_MUHU" loading="lazy"></a>
-      <a href="006_MUHU/006_MUHU_05.jpg" target="_blank"><img src="006_MUHU/006_MUHU_05.jpg" alt="006_MUHU" loading="lazy"></a>
-      <a href="006_MUHU/006_MUHU_06.jpg" target="_blank"><img src="006_MUHU/006_MUHU_06.jpg" alt="006_MUHU" loading="lazy"></a>
-      <a href="006_MUHU/006_MUHU_07.jpg" target="_blank"><img src="006_MUHU/006_MUHU_07.jpg" alt="006_MUHU" loading="lazy"></a>
-      <a href="006_MUHU/006_MUHU_08.jpg" target="_blank"><img src="006_MUHU/006_MUHU_08.jpg" alt="006_MUHU" loading="lazy"></a>
-      <a href="006_MUHU/006_MUHU_09.jpg" target="_blank"><img src="006_MUHU/006_MUHU_09.jpg" alt="006_MUHU" loading="lazy"></a>
-
-      <!-- 007_NRG -->
-      <a href="007_NRG/007_NRG_01.jpg" target="_blank"><img src="007_NRG/007_NRG_01.jpg" alt="007_NRG" loading="lazy"></a>
-      <a href="007_NRG/007_NRG_02.jpg" target="_blank"><img src="007_NRG/007_NRG_02.jpg" alt="007_NRG" loading="lazy"></a>
-      <a href="007_NRG/007_NRG_03.jpg" target="_blank"><img src="007_NRG/007_NRG_03.jpg" alt="007_NRG" loading="lazy"></a>
-      <a href="007_NRG/007_NRG_04.jpg" target="_blank"><img src="007_NRG/007_NRG_04.jpg" alt="007_NRG" loading="lazy"></a>
-      <a href="007_NRG/007_NRG_05.jpg" target="_blank"><img src="007_NRG/007_NRG_05.jpg" alt="007_NRG" loading="lazy"></a>
-      <a href="007_NRG/007_NRG_06.jpg" target="_blank"><img src="007_NRG/007_NRG_06.jpg" alt="007_NRG" loading="lazy"></a>
-
-      <!-- 008_NEK -->
-      <a href="008_NEK/008_NEK_01.jpg" target="_blank"><img src="008_NEK/008_NEK_01.jpg" alt="008_NEK" loading="lazy"></a>
-      <a href="008_NEK/008_NEK_02.jpg" target="_blank"><img src="008_NEK/008_NEK_02.jpg" alt="008_NEK" loading="lazy"></a>
-      <a href="008_NEK/008_NEK_03.jpg" target="_blank"><img src="008_NEK/008_NEK_03.jpg" alt="008_NEK" loading="lazy"></a>
-      <a href="008_NEK/008_NEK_04.jpg" target="_blank"><img src="008_NEK/008_NEK_04.jpg" alt="008_NEK" loading="lazy"></a>
-      <a href="008_NEK/008_NEK_05.jpg" target="_blank"><img src="008_NEK/008_NEK_05.jpg" alt="008_NEK" loading="lazy"></a>
-      <a href="008_NEK/008_NEK_06.jpg" target="_blank"><img src="008_NEK/008_NEK_06.jpg" alt="008_NEK" loading="lazy"></a>
-      <a href="008_NEK/008_NEK_07.jpg" target="_blank"><img src="008_NEK/008_NEK_07.jpg" alt="008_NEK" loading="lazy"></a>
-      <a href="008_NEK/008_NEK_08.jpg" target="_blank"><img src="008_NEK/008_NEK_08.jpg" alt="008_NEK" loading="lazy"></a>
-      <a href="008_NEK/008_NEK_09.jpg" target="_blank"><img src="008_NEK/008_NEK_09.jpg" alt="008_NEK" loading="lazy"></a>
-      <a href="008_NEK/008_NEK_10.jpg" target="_blank"><img src="008_NEK/008_NEK_10.jpg" alt="008_NEK" loading="lazy"></a>
-      <a href="008_NEK/008_NEK_11.jpg" target="_blank"><img src="008_NEK/008_NEK_11.jpg" alt="008_NEK" loading="lazy"></a>
-      <a href="008_NEK/008_NEK_12.jpg" target="_blank"><img src="008_NEK/008_NEK_12.jpg" alt="008_NEK" loading="lazy"></a>
-      <a href="008_NEK/008_NEK_13.jpg" target="_blank"><img src="008_NEK/008_NEK_13.jpg" alt="008_NEK" loading="lazy"></a>
-
-      <!-- 009_NEL -->
-      <a href="009_NEL/009_NEL_01.png" target="_blank"><img src="009_NEL/009_NEL_01.png" alt="009_NEL" loading="lazy"></a>
-      <a href="009_NEL/009_NEL_02.png" target="_blank"><img src="009_NEL/009_NEL_02.png" alt="009_NEL" loading="lazy"></a>
-      <a href="009_NEL/009_NEL_03.png" target="_blank"><img src="009_NEL/009_NEL_03.png" alt="009_NEL" loading="lazy"></a>
-      <a href="009_NEL/009_NEL_04.png" target="_blank"><img src="009_NEL/009_NEL_04.png" alt="009_NEL" loading="lazy"></a>
-      <a href="009_NEL/009_NEL_05.png" target="_blank"><img src="009_NEL/009_NEL_05.png" alt="009_NEL" loading="lazy"></a>
-      <a href="009_NEL/009_NEL_06.png" target="_blank"><img src="009_NEL/009_NEL_06.png" alt="009_NEL" loading="lazy"></a>
-      <a href="009_NEL/009_NEL_07.png" target="_blank"><img src="009_NEL/009_NEL_07.png" alt="009_NEL" loading="lazy"></a>
-      <a href="009_NEL/009_NEL_08.png" target="_blank"><img src="009_NEL/009_NEL_08.png" alt="009_NEL" loading="lazy"></a>
-      <a href="009_NEL/009_NEL_09.png" target="_blank"><img src="009_NEL/009_NEL_09.png" alt="009_NEL" loading="lazy"></a>
-      <a href="009_NEL/009_NEL_10.png" target="_blank"><img src="009_NEL/009_NEL_10.png" alt="009_NEL" loading="lazy"></a>
-      <a href="009_NEL/009_NEL_11.png" target="_blank"><img src="009_NEL/009_NEL_11.png" alt="009_NEL" loading="lazy"></a>
-      <a href="009_NEL/009_NEL_12.png" target="_blank"><img src="009_NEL/009_NEL_12.png" alt="009_NEL" loading="lazy"></a>
-      <a href="009_NEL/009_NEL_13.png" target="_blank"><img src="009_NEL/009_NEL_13.png" alt="009_NEL" loading="lazy"></a>
-
-      <!-- 010_ML -->
-      <a href="010_ML/010_ML_01.jpg" target="_blank"><img src="010_ML/010_ML_01.jpg" alt="010_ML" loading="lazy"></a>
-      <a href="010_ML/010_ML_02.jpg" target="_blank"><img src="010_ML/010_ML_02.jpg" alt="010_ML" loading="lazy"></a>
-      <a href="010_ML/010_ML_03.jpg" target="_blank"><img src="010_ML/010_ML_03.jpg" alt="010_ML" loading="lazy"></a>
-      <a href="010_ML/010_ML_04.jpg" target="_blank"><img src="010_ML/010_ML_04.jpg" alt="010_ML" loading="lazy"></a>
-      <a href="010_ML/010_ML_05.jpg" target="_blank"><img src="010_ML/010_ML_05.jpg" alt="010_ML" loading="lazy"></a>
-
-      <!-- 011_LAAGRI -->
-      <a href="011_LAAGRI/011_LAAGRI_01.png" target="_blank"><img src="011_LAAGRI/011_LAAGRI_01.png" alt="011_LAAGRI" loading="lazy"></a>
-      <a href="011_LAAGRI/011_LAAGRI_02.png" target="_blank"><img src="011_LAAGRI/011_LAAGRI_02.png" alt="011_LAAGRI" loading="lazy"></a>
-      <a href="011_LAAGRI/011_LAAGRI_03.png" target="_blank"><img src="011_LAAGRI/011_LAAGRI_03.png" alt="011_LAAGRI" loading="lazy"></a>
-      <a href="011_LAAGRI/011_LAAGRI_04.png" target="_blank"><img src="011_LAAGRI/011_LAAGRI_04.png" alt="011_LAAGRI" loading="lazy"></a>
-
-      <!-- 012_MERCEDES -->
-      <a href="012_MERCEDES/012_MERCEDES_01.jpg" target="_blank"><img src="012_MERCEDES/012_MERCEDES_01.jpg" alt="012_MERCEDES" loading="lazy"></a>
-
-      <!-- 013_GREENFL -->
-      <a href="013_GREENFL/013_GREENFL_01.jpg" target="_blank"><img src="013_GREENFL/013_GREENFL_01.jpg" alt="013_GREENFL" loading="lazy"></a>
-
-      <!-- 014_KASTANI -->
-      <a href="014_KASTANI/014_KASTANI_01.jpg" target="_blank"><img src="014_KASTANI/014_KASTANI_01.jpg" alt="014_KASTANI" loading="lazy"></a>
-      <a href="014_KASTANI/014_KASTANI_02.jpg" target="_blank"><img src="014_KASTANI/014_KASTANI_02.jpg" alt="014_KASTANI" loading="lazy"></a>
-      <a href="014_KASTANI/014_KASTANI_03.jpg" target="_blank"><img src="014_KASTANI/014_KASTANI_03.jpg" alt="014_KASTANI" loading="lazy"></a>
-      <a href="014_KASTANI/014_KASTANI_04.jpg" target="_blank"><img src="014_KASTANI/014_KASTANI_04.jpg" alt="014_KASTANI" loading="lazy"></a>
-      <a href="014_KASTANI/014_KASTANI_05.jpg" target="_blank"><img src="014_KASTANI/014_KASTANI_05.jpg" alt="014_KASTANI" loading="lazy"></a>
-      <a href="014_KASTANI/014_KASTANI_06.jpg" target="_blank"><img src="014_KASTANI/014_KASTANI_06.jpg" alt="014_KASTANI" loading="lazy"></a>
-
-      <!-- 015_TLT -->
-      <a href="015_TLT/015_TLT_01.jpg" target="_blank"><img src="015_TLT/015_TLT_01.jpg" alt="015_TLT" loading="lazy"></a>
-      <a href="015_TLT/015_TLT_02.jpg" target="_blank"><img src="015_TLT/015_TLT_02.jpg" alt="015_TLT" loading="lazy"></a>
-      <a href="015_TLT/015_TLT_03.jpg" target="_blank"><img src="015_TLT/015_TLT_03.jpg" alt="015_TLT" loading="lazy"></a>
-      <a href="015_TLT/015_TLT_04.jpg" target="_blank"><img src="015_TLT/015_TLT_04.jpg" alt="015_TLT" loading="lazy"></a>
-      <a href="015_TLT/015_TLT_05.jpg" target="_blank"><img src="015_TLT/015_TLT_05.jpg" alt="015_TLT" loading="lazy"></a>
-      <a href="015_TLT/015_TLT_06.jpg" target="_blank"><img src="015_TLT/015_TLT_06.jpg" alt="015_TLT" loading="lazy"></a>
-
-      <!-- 016_LAT -->
-      <a href="016_LAT/016_LAT_01.jpg" target="_blank"><img src="016_LAT/016_LAT_01.jpg" alt="016_LAT" loading="lazy"></a>
-      <a href="016_LAT/016_LAT_02.jpg" target="_blank"><img src="016_LAT/016_LAT_02.jpg" alt="016_LAT" loading="lazy"></a>
-      <a href="016_LAT/016_LAT_03.jpg" target="_blank"><img src="016_LAT/016_LAT_03.jpg" alt="016_LAT" loading="lazy"></a>
-
-      <!-- 017_JMETK -->
-      <a href="017_JMETK/017_JMETK_01.png" target="_blank"><img src="017_JMETK/017_JMETK_01.png" alt="017_JMETK" loading="lazy"></a>
-      <a href="017_JMETK/017_JMETK_02.png" target="_blank"><img src="017_JMETK/017_JMETK_02.png" alt="017_JMETK" loading="lazy"></a>
-      <a href="017_JMETK/017_JMETK_03.png" target="_blank"><img src="017_JMETK/017_JMETK_03.png" alt="017_JMETK" loading="lazy"></a>
-
-      <!-- 018_PCOOP -->
-      <a href="018_PCOOP/018_PCOOP_01.jpg" target="_blank"><img src="018_PCOOP/018_PCOOP_01.jpg" alt="018_PCOOP" loading="lazy"></a>
-
-
-    </div>
+    <!-- можно добавить -->
+    <!-- <p>Company: Name</p> -->
+    <!-- <p>Tallinn, Estonia</p> -->
   </div>
 
-</section>
+</main>
 
-<!-- CV -->
-<section id="cv">
-  <div class="card">
-    <h2>Download CV</h2>
-    <p>You can download my CV (ENG) here:</p>
-    <a href="Dmitry Zhimirikin_EU_ENG_05.2025.pdf" download class="cv-link">Download CV (PDF)</a>
-  </div>
-</section>
-
-
-<!-- CERTIFICATES -->
-<section id="certificates">
-  <div class="card">
-    <h2>Certificates</h2>
-
-    <div class="carousel-container">
-      <div class="carousel" id="certCarousel">
-
-        <img src="Certificates/cert1.jpg" alt="Certificate 1">
-        <img src="Certificates/cert2.jpg" alt="Certificate 2">
-        <img src="Certificates/cert3.jpg" alt="Certificate 3">
-        <img src="Certificates/cert4.jpg" alt="Certificate 4">
-        <img src="Certificates/cert5.jpg" alt="Certificate 5">
-        <img src="Certificates/cert6.jpg" alt="Certificate 6">
-        <img src="Certificates/cert7.jpg" alt="Certificate 7">
-        <img src="Certificates/cert8.jpg" alt="Certificate 8">
-        <img src="Certificates/cert9.jpg" alt="Certificate 9">
-        <img src="Certificates/cert10.jpg" alt="Certificate 10">
-
-      </div>
-    </div>
-
-    <div class="carousel-controls">
-      <button onclick="rotateCarousel(-1)">‹</button>
-      <button onclick="rotateCarousel(1)">›</button>
-    </div>
-  </div>
-</section>
-
-
-<!-- DOWNLOAD DRAWINGS WITH PASSWORD -->
-<section id="drawings">
-  <div class="card">
-    <h2>Download Drawings (Examples of drawing layouts)</h2>
-    <p>Request password to download project drawings:</p>
-
-    <!-- Кнопка запроса доступа -->
-    <button class="access-btn">Request Access</button>
-
-<!-- Поле для ввода пароля -->
-<div class="password-entry" style="display: none;">
-  <div class="input-wrapper" style="display: flex; align-items: center; gap: 0; border: 1px solid #ccc; border-radius: 6px; overflow: hidden;">
-    <input id="drawingPassword" type="password" placeholder="Enter Password" style="flex: 1; padding: 8px 12px; border: none; font-size: 14px;">
-    <button type="button" id="togglePassword" aria-label="Show/Hide Password" style="padding: 8px 12px; border: none; background: #1f2933; color: #fff; cursor: pointer;">
-      <svg xmlns="http://www.w3.org/2000/svg" class="eye-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" style="width: 20px; height: 20px;">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
-              d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
-              d="M2.458 12C3.732 7.943 7.523 5 12 5c4.477 0 8.268 2.943 9.542 7-1.274 4.057-5.065 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
-      </svg>
-    </button>
-  </div>
-  <button id="passwordSubmitBtn" style="margin-top: 8px; width: 100%; padding: 8px 0; background: #1f2933; color: #fff; border: none; border-radius: 6px; cursor: pointer;">Submit</button>
-</div>
-<div id="passwordMessage" class="password-msg"></div>
-
-    <!-- Ссылки на чертежи -->
-    <div class="drawing-links" id="drawingLinks" style="display:none;">
-      <a href="https://drive.google.com/file/d/1Q-n7w8fOv2GtCYnHw6HZlALIQdjE7RBp/view?usp=sharing"
-         class="cv-link" target="_blank">For Estonia_PDF</a>
-
-      <a href="https://drive.google.com/file/d/1sqwlCsUtxVsZYlyQtbuqZSdh-klvD-9M/view?usp=sharing"
-         class="cv-link" target="_blank">For Estonia_PDF_DWG</a>
-
-      <a href="https://drive.google.com/file/d/1rRx2cH5KQIB0CY4wBexriKumiy4SaGmq/view?usp=sharing"
-         class="cv-link" target="_blank">For Russia_PDF</a>
-    </div>
-  </div>
-</section>
-
-<!-- MODAL: Request Access -->
-<div id="accessModal" class="modal">
-  <div class="modal-content">
-    <span class="close">&times;</span>
-    <h2>Request Access</h2>
-
-<form id="accessForm">
-
-  <!-- Name -->
-  <input type="text" name="name" placeholder="Name" required>
-
-  <!-- Company -->
-  <input type="text" name="company" placeholder="Company">
-
-  <!-- Email -->
-  <input type="email" name="email" placeholder="Email" required>
-
-  <!-- Phone -->
-  <input type="tel" name="phone" placeholder="Phone">
-
-  <!-- Message -->
-  <textarea name="message" placeholder="Comment" required></textarea>
-
-  <!-- hidden time (заполнится через JS) -->
-  <input type="hidden" name="time" id="formTime">
-
-  <button type="submit">Send Request</button>
-</form>
-
-    <div id="accessSuccess" class="success" style="display:none;">
-      Request sent. Password will be sent after verification.
-    </div>
-  </div>
-</div>
-
-
-<!-- PUBLICATIONS -->
-<section id="publications">
-  <div class="card">
-    <h2>Publications</h2>
-
-    <ul class="publications-list">
-      <li>
-        <a href="https://uspc.ru/archteplohod" target="_blank" rel="noopener">
-          Architectural Cruise Ship in Saint Petersburg: Results
-        </a>
-      </li>
-    </ul>
-  </div>
-</section>
-
-
-<!-- LINKS -->
-<section id="links">
-  <div class="card">
-    <h2>Useful Links</h2>
-
-    <ul class="links-list" style="list-style:none; padding:0; display:flex; flex-wrap:wrap; gap:20px;">
-
-      <!-- SkyscraperCity -->
-      <li style="flex:1 1 200px; display:flex; align-items:center; gap:10px;">
-        <img src="LinksLogo/logo_skyscrapercity.png" alt="SkyscraperCity" width="32" height="32">
-        <a href="https://www.skyscrapercity.com/forums/%D0%A0%D0%BE%D1%81%D1%81%D0%B8%D0%B9%D1%81%D0%BA%D0%B8%D0%B9-%D1%84%D0%BE%D1%80%D1%83%D0%BC.345/"
-           target="_blank" rel="nofollow ugc noopener">
-          SkyscraperCity — Russian forum on facades
-        </a>
-      </li>
-
-      <!-- Tybet.ru -->
-      <li style="flex:1 1 200px; display:flex; align-items:center; gap:10px;">
-        <img src="LinksLogo/logo_tybet.png" alt="Tybet.ru" width="32" height="32">
-        <a href="https://tybet.ru/"
-           target="_blank" rel="nofollow ugc noopener">
-          Tybet.ru — technical forum on building structures
-        </a>
-      </li>
-
-      <!-- Forum-Okna -->
-      <li style="flex:1 1 200px; display:flex; align-items:center; gap:10px;">
-        <img src="LinksLogo/logo_forum okna.png" alt="Forum-Okna" width="32" height="32">
-        <a href="https://forum-okna.ru/"
-           target="_blank" rel="nofollow ugc noopener">
-          Forum-Okna — Russian-language forum on windows and facades
-        </a>
-      </li>
-
-      <!-- MIO.ru -->
-      <li style="flex:1 1 200px; display:flex; align-items:center; gap:10px;">
-        <img src="LinksLogo/logo_mio.png" alt="MIO.ru" width="32" height="32">
-        <a href="https://portal.mio.ru/"
-           target="_blank" rel="nofollow ugc noopener">
-          MIO.ru — forum and resources on construction and window systems
-        </a>
-      </li>
-
-    </ul>
-  </div>
-</section>
-
-<!-- CONTACTS -->
-<section id="contacts">
-  <div class="card">
-    <h2>Contacts</h2>
-
-    <p>
-      <!-- envelope -->
-      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none"
-           viewBox="0 0 24 24" stroke="currentColor"
-           style="vertical-align:-3px;margin-right:6px;">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8"
-              d="M21.75 7.5v9a2.25 2.25 0 01-2.25 2.25h-15A2.25 2.25 0 012.25 16.5v-9m19.5 0L12 13.5 2.25 7.5m19.5 0A2.25 2.25 0 0019.5 5.25h-15A2.25 2.25 0 002.25 7.5"/>
-      </svg>
-      Email:
-      <a href="mailto:d.zhimirikin@gmail.com">d.zhimirikin@gmail.com</a>
-    </p>
-
-    <p>
-      <!-- phone -->
-      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none"
-           viewBox="0 0 24 24" stroke="currentColor"
-           style="vertical-align:-3px;margin-right:6px;">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8"
-              d="M2.25 6.75c0 8.284 6.716 15 15 15h1.5a2.25 2.25 0 002.25-2.25l.001-1.372a2.25 2.25 0 00-1.636-2.163l-2.605-.744a2.25 2.25 0 00-2.318.761l-.574.766a12.042 12.042 0 01-5.516-5.516l.766-.574a2.25 2.25 0 00.761-2.318l-.744-2.605A2.25 2.25 0 006.372 3H5A2.25 2.25 0 002.75 5.25v1.5z"/>
-      </svg>
-      Phone (EST):
-      <a href="tel:+37253235078">+372-53235078</a>
-    </p>
-
-    <p>
-      <!-- phone -->
-      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none"
-           viewBox="0 0 24 24" stroke="currentColor"
-           style="vertical-align:-3px;margin-right:6px;">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8"
-              d="M2.25 6.75c0 8.284 6.716 15 15 15h1.5a2.25 2.25 0 002.25-2.25l.001-1.372a2.25 2.25 0 00-1.636-2.163l-2.605-.744a2.25 2.25 0 00-2.318.761l-.574.766a12.042 12.042 0 01-5.516-5.516l.766-.574a2.25 2.25 0 00.761-2.318l-.744-2.605A2.25 2.25 0 006.372 3H5A2.25 2.25 0 002.75 5.25v1.5z"/>
-      </svg>
-      Phone (RUS):
-      <a href="tel:+79313166455">+7-931-3166455</a>
-    </p>
-
-    <!-- увеличенный отступ перед LinkedIn -->
-    <p style="margin-top:18px;">
-      <a href="https://www.linkedin.com/in/dzhimirikin/" target="_blank" rel="noopener noreferrer">
-        <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/linkedin.svg"
-             width="24" height="24" alt="">
-      </a>
-    </p>
-
-  </div>
-</section>
-
-
-<!-- FOOTER -->
 <footer>
-  © <span id="year"></span> Dmitry Zhimirikin — Engineering Portfolio
+  © 2026
 </footer>
-
-<!-- Основные скрипты -->
-<script src="js/main.js" defer></script>
-<script src="js/skills.js" defer></script>
-<script src="js/projects.js" defer></script>
-<script src="js/carousel.js" defer></script>
-<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
-<script src="js/check.js" defer></script>
-<script src="js/links.js" defer></script>
-
 
 </body>
 </html>
