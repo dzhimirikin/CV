@@ -15,10 +15,27 @@
 }
 
 body {
-  color: #222;
-  background: #f4f4f4;
-  line-height: 1.6;
-  overflow-x: hidden; /* предотвращаем горизонтальный скролл */
+  background-color: #f8f8f8;
+
+  background-image:
+    /* 1 мм — тонкие */
+    linear-gradient(to right, rgba(0,0,0,0.07) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(0,0,0,0.07) 1px, transparent 1px),
+
+    /* 5 мм — средние */
+    linear-gradient(to right, rgba(0,0,0,0.12) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(0,0,0,0.12) 1px, transparent 1px),
+
+    /* 10 мм — более заметные */
+    linear-gradient(to right, rgba(0,0,0,0.18) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(0,0,0,0.18) 1px, transparent 1px);
+
+  background-size:
+    3.78px 3.78px,   3.78px 3.78px,     /* 1 мм */
+    18.9px 18.9px,   18.9px 18.9px,     /* 5 мм */
+    37.8px 37.8px,   37.8px 37.8px;     /* 10 мм */
+
+  background-attachment: fixed;
 }
 
 
