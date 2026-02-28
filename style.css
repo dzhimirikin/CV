@@ -1,4 +1,6 @@
-/* ============ ROOT VARIABLES ============ */
+/* ============================================================
+   ROOT VARIABLES
+============================================================ */
 :root {
   --header-h: 66px; /* высота header */
   --menu-w: 230px;  /* ширина мобильного меню */
@@ -6,7 +8,10 @@
   --icon-gap: 8px;   /* отступ между иконкой и текстом */
 }
 
-/* ============ GLOBAL RESET ============ */
+
+/* ============================================================
+   GLOBAL RESET
+============================================================ */
 * {
   box-sizing: border-box;
   margin: 0;
@@ -14,56 +19,69 @@
   font-family: Arial, Helvetica, sans-serif;
 }
 
+
+/* ============================================================
+   BODY BACKGROUND (GRID — softer version)
+============================================================ */
 body {
   background-color: #f8f8f8;
 
   background-image:
     /* 1 мм — тонкие */
-    linear-gradient(to right, rgba(0,0,0,0.07) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(0,0,0,0.07) 1px, transparent 1px),
+    linear-gradient(to right, rgba(0,0,0,0.03) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(0,0,0,0.03) 1px, transparent 1px),
 
     /* 5 мм — средние */
-    linear-gradient(to right, rgba(0,0,0,0.12) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(0,0,0,0.12) 1px, transparent 1px),
+    linear-gradient(to right, rgba(0,0,0,0.06) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(0,0,0,0.06) 1px, transparent 1px),
 
-    /* 10 мм — более заметные */
-    linear-gradient(to right, rgba(0,0,0,0.18) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(0,0,0,0.18) 1px, transparent 1px);
+    /* 10 мм — основные */
+    linear-gradient(to right, rgba(0,0,0,0.09) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(0,0,0,0.09) 1px, transparent 1px);
 
   background-size:
-    3.78px 3.78px,   3.78px 3.78px,     /* 1 мм */
-    18.9px 18.9px,   18.9px 18.9px,     /* 5 мм */
-    37.8px 37.8px,   37.8px 37.8px;     /* 10 мм */
+    3.78px 3.78px, 3.78px 3.78px,
+    18.9px 18.9px, 18.9px 18.9px,
+    37.8px 37.8px, 37.8px 37.8px;
 
   background-attachment: fixed;
 }
 
 
-/* ===== UNIFIED BUTTON STYLE ===== */
+/* ============================================================
+   UNIFIED BUTTON STYLE — 42px
+============================================================ */
 .cv-link,
 .access-btn,
 .password-entry button[type="submit"],
 .carousel-controls button {
-    padding: 10px 20px;
-    font-size: 16px;
-    border-radius: 6px;
-    background: #1f2933;
-    color: #fff;
-    border: none;
-    cursor: pointer;
-    text-align: center;
-    transition: background 0.25s ease;
+  display: flex;               /* flex для вертикального центрирования текста */
+  align-items: center;         /* центр по вертикали */
+  justify-content: center;     /* центр по горизонтали */
+  height: 42px;                /* фиксированная высота */
+  padding: 0 20px;             /* только горизонтальный padding */
+  font-size: 16px;             /* размер текста */
+  border-radius: 6px;          /* общий радиус */
+  background: #1f2933;         /* основной фон */
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  text-align: center;
+  transition: background 0.25s ease;
 }
 
 .cv-link:hover,
 .access-btn:hover,
 .password-entry button[type="submit"]:hover,
 .carousel-controls button:hover {
-    background: #11171a;
+  background: #11171a;         /* hover фон */
 }
 
 
-/* ============ HEADER FIXED ============ */
+
+/* ============================================================
+   HEADER (FIXED)
+============================================================ */
 header {
   background: #1f2933;
   color: #fff;
@@ -86,14 +104,16 @@ header {
   position: relative;
 }
 
-/* ----- LOGO ----- */
+
+/* ---------------- LOGO ---------------- */
 .logo {
   font-weight: bold;
   font-size: 18px;
   cursor: pointer;
 }
 
-/* ----- DESKTOP MENU ----- */
+
+/* ---------------- DESKTOP MENU ---------------- */
 nav ul {
   list-style: none;
   display: flex;
@@ -112,7 +132,8 @@ nav a:hover {
   text-decoration: underline;
 }
 
-/* ----- HEROICONS ----- */
+
+/* ---------------- HEROICONS ---------------- */
 .icon {
   width: var(--icon-size);
   height: var(--icon-size);
@@ -120,10 +141,11 @@ nav a:hover {
   vertical-align: middle;
   stroke: #fff;
   flex-shrink: 0;
-  display: none; /* по умолчанию скрыты на десктопе */
+  display: none;
 }
 
-/* ----- BURGER ICON ----- */
+
+/* ---------------- BURGER ICON ---------------- */
 .burger {
   display: none;
   flex-direction: column;
@@ -142,14 +164,19 @@ nav a:hover {
 .burger.active div:nth-child(1) {
   transform: translateY(8px) rotate(45deg);
 }
+
 .burger.active div:nth-child(2) {
   opacity: 0;
 }
+
 .burger.active div:nth-child(3) {
   transform: translateY(-8px) rotate(-45deg);
 }
 
-/* ============ MOBILE MENU ============ */
+
+/* ============================================================
+   MOBILE MENU
+============================================================ */
 @media (max-width: 768px) {
 
   #menu {
@@ -182,289 +209,339 @@ nav a:hover {
     display: flex;
   }
 
-  /* Показываем Heroicons только в мобильном меню */
   .icon {
     display: inline-block;
   }
 
-  /* скрываем desktop меню */
   nav ul:not(#menu) {
     display: none;
   }
 }
 
 
-/* ============ HERO ============ */
-.hero{
-  margin-top: var(--header-h);
+/* ============================================================
+   HERO SECTION WITH PHOTO LEFT & TEXT RIGHT
+============================================================ */
+
+/* --- Переменные для десктопа --- */
+:root {
+  --hero-height: 300px;            /* высота блока HERO */
+  --hero-photo-gap-top: 70px;      /* верхний отступ фото */
+  --hero-photo-gap-bottom: 20px;   /* нижний отступ фото */
+}
+
+.hero {
   position: relative;
   overflow: hidden;
+  min-height: var(--hero-height);
 }
 
-/* Динамический фон */
-.hero::before{
-  content:"";
-  position:absolute;
-  inset:0;
-  background:url("hero.jpg") center center no-repeat;
-  background-size:cover;
-
-  transform:scale(1);
-  animation:heroZoom 8s ease-in-out infinite alternate;
-  will-change:transform;
-
-  z-index:-1;
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  background: url("hero.jpg") center center no-repeat;
+  background-size: cover;
+  transform: scale(1);
+  animation: heroZoom 8s ease-in-out infinite alternate;
+  will-change: transform;
+  z-index: -1;
 }
 
-/* Затемнение */
-.hero-overlay{
-  position:relative;
-  background:rgba(0,0,0,0.55);
-  padding:80px 20px;
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.55);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 80px 20px;
 }
 
-/* Контент */
-.hero-inner{
-  max-width:1100px;
-  margin:auto;
-  display:flex;
-  gap:40px;
-  align-items:center;
-  color:#fff;
+.hero-inner {
+  max-width: 1100px;
+  width: 100%;
+  display: flex;
+  gap: 40px;
+  color: #fff;
+  flex-direction: row;       /* фото слева, текст справа */
+  align-items: flex-start;   /* верхняя граница, чтобы текст был на уровне фото */
 }
 
-.hero-photo{
-  width:200px;
-  height:200px;
-  object-fit:cover;
-  border:2px solid rgba(255,255,255,0.6);
-  border-radius:4px;
-  background:#ccc;
+/* Фото */
+.hero-photo {
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
+  border: 2px solid rgba(255,255,255,0.6);
+  border-radius: 4px;
+  background: #ccc;
+  margin-top: var(--hero-photo-gap-top);
+  margin-bottom: var(--hero-photo-gap-bottom);
 }
 
-.hero h1{
-  font-size:32px;
-  margin-bottom:10px;
+/* Текст справа от фото */
+.hero-text {
+  margin-top: var(--hero-photo-gap-top); /* текст выравнивается по верхнему краю фото */
 }
 
-.hero p{
-  max-width:600px;
+.hero h1 {
+  font-size: 32px;
+  margin-bottom: 10px;
 }
 
-/* Быстрый, заметный, но плавный zoom */
-@keyframes heroZoom{
-  from{
-    transform:scale(1) translate(0,0);
+.hero p {
+  max-width: 600px;
+}
+
+/* Анимация фона */
+@keyframes heroZoom {
+  from { transform: scale(1) translate(0,0); }
+  to { transform: scale(1.22) translate(-4%,-4%); }
+}
+
+/* ---------------- HERO MOBILE ---------------- */
+@media (max-width: 768px) {
+  .hero {
+    min-height: 100vh;
+    margin-top: 0;
   }
-  to{
-    transform:scale(1.22) translate(-4%,-4%);
+
+  .hero-overlay {
+    flex-direction: column;
+    padding: 40px 20px;
+  }
+
+  .hero-inner {
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+  }
+
+  .hero::before {
+    animation: heroZoom 10s ease-in-out infinite alternate;
+  }
+
+  .hero-photo,
+  .hero-text {
+    margin-top: initial;
+    margin-bottom: initial;
   }
 }
 
-/* Мобильная версия — чуть мягче */
-@media (max-width:768px){
-  .hero-inner{
-    flex-direction:column;
-    text-align:center;
-  }
-
-  .hero::before{
-    animation:heroZoom 10s ease-in-out infinite alternate;
-  }
-}
-
-/* Если у пользователя отключены анимации */
-@media (prefers-reduced-motion:reduce){
-  .hero::before{
-    animation:none;
-    transform:scale(1.08);
+/* ---------------- REDUCED MOTION ---------------- */
+@media (prefers-reduced-motion: reduce) {
+  .hero::before {
+    animation: none;
+    transform: scale(1.08);
   }
 }
 
 
-
-/* ============ SECTIONS ============ */
-section{
-  max-width:1100px;
-  margin:auto;
-  padding:50px 20px;
+/* ============================================================
+   SECTIONS (GENERAL)
+============================================================ */
+section {
+  max-width: 1100px;
+  margin: auto;
+  padding: 50px 20px;
 }
 
-section h2{margin-bottom:20px;}
-section h3{margin:20px 0 10px;}
-
-.card{
-  background:#fff;
-  padding:25px;
-  border-radius:4px;
-  box-shadow:0 2px 6px rgba(0,0,0,0.1);
+section h2 {
+  margin-bottom: 20px;
 }
 
-/* ============ PROJECTS ============ */
+section h3 {
+  margin: 20px 0 10px;
+}
+
+.card {
+  background: #fff;
+  padding: 25px;
+  border-radius: 4px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+
+/* ============================================================
+   PROJECTS
+============================================================ */
 .projects {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 20px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
 }
 
 .project img {
-    width: 100%;
-    height: 180px;
-    object-fit: cover;
-    margin-bottom: 10px;
-    background: #ddd;
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  margin-bottom: 10px;
+  background: #ddd;
 }
 
 .project h3 {
-    margin-bottom: 5px;
+  margin-bottom: 5px;
 }
 
-/* === fix длинных заголовков и текста === */
 .project h3,
 .project p {
-    word-break: break-word;
-    overflow-wrap: break-word;
+  word-break: break-word;
+  overflow-wrap: break-word;
 }
 
-/* === выделение текущего проекта при переходе к галерее === */
 .project-active {
-    outline: 2px solid #000;
+  outline: 2px solid #000;
 }
 
-/* ===== COMPANY WEBSITE BUTTON — uses .cv-link style ===== */
-
-/* Убираем стрелку */
-#companySiteBtn::after {
-    content: none;
-}
+/* ============================================================
+   COMPANY WEBSITE BUTTON — только иконка и disabled
+============================================================ */
 
 /* disabled — как все .cv-link */
 #companySiteBtn:disabled,
 #companySiteBtn.disabled {
-    background: #999;
-    cursor: not-allowed;
-    opacity: 0.5;
-    pointer-events: none;
+  background: #999;
+  cursor: not-allowed;
+  opacity: 0.5;
+  pointer-events: none;
 }
 
 /* иконка глобуса слева от текста */
 #companySiteBtn svg.icon-heroicon {
-    width: 16px;
-    height: 16px;
-    margin-right: 6px;
-    vertical-align: middle;
-    stroke: currentColor;
+  width: 16px;
+  height: 16px;
+  margin-right: 6px;
+  vertical-align: middle;
+  stroke: currentColor;
 }
 
-/* ===== Строка фильтров ===== */
+
+/* ============================================================
+   FILTER ROW (COMPANY + WEBSITE BUTTON)
+============================================================ */
 
 /* Нижний фильтр компании + кнопка www */
 .company-row {
-    display: flex;
-    align-items: center;
-    gap: 6px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
 }
 
 /* combo + reset внутри company-row */
 .company-row .combo-row {
-    display: flex;
-    align-items: center;
-    gap: 6px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
 }
 
 /* кнопка сайта сразу за combo-row на больших экранах */
 .company-row #companySiteBtn {
-    flex-shrink: 0;
-    margin-left: 6px;
+  flex-shrink: 0;
+  margin-left: 6px;
 }
 
-/* ===== Адаптив для мобильных экранов ===== */
+
+/* ============================================================
+   MOBILE ADAPTATION (FILTERS)
+============================================================ */
 @media (max-width: 768px) {
-    /* фильтр года растягиваем по ширине контейнера */
-    .filter-item:first-child .combo-row {
-        width: 100%;
-    }
 
-    .company-row {
-        flex-direction: column;
-        align-items: stretch;
-        gap: 6px;
-    }
+  /* фильтр года растягиваем по ширине контейнера */
+  .filter-item:first-child .combo-row {
+    width: 100%;
+  }
 
-    .company-row .combo-row {
-        width: 100%;
-    }
+  .company-row {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 6px;
+  }
 
-    .company-row #companySiteBtn {
-        width: 100%;
-        text-align: center;
-        margin-left: 0;
-        margin-top: 6px;
-    }
+  .company-row .combo-row {
+    width: 100%;
+  }
+
+  .company-row #companySiteBtn {
+    width: 100%;
+    text-align: center;
+    margin-left: 0;
+    margin-top: 6px;
+  }
 }
 
-/* ===== Выравнивание по левому краю всех элементов ===== */
+
+/* ============================================================
+   FILTER ALIGNMENT
+============================================================ */
 .filter-item .combo-row,
 .company-row {
-    justify-content: flex-start;
+  justify-content: flex-start;
 }
 
 
-/* ============ SKILLS ============ */
-
-.skill{
-  display:flex;
-  align-items:center;
-  margin-bottom:15px;
-  gap:15px;
-  flex-wrap:wrap;
+/* ============================================================
+   SKILLS SECTION
+============================================================ */
+.skill {
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+  gap: 15px;
+  flex-wrap: wrap;
 }
 
-.skill-name{
-  flex:1 1 150px;
-  font-weight:bold;
+.skill-name {
+  flex: 1 1 150px;
+  font-weight: bold;
 }
+
+
+/* ---------------- SKILL BAR ---------------- */
 
 /* контейнер бара */
-.skill-bar{
-  flex:2 1 300px;
-  height:14px;
-  position:relative;
-  background:transparent;   /* теперь фон не тут */
-  border-radius:7px;
-  overflow:hidden;
+.skill-bar {
+  flex: 2 1 300px;
+  height: 14px;
+  position: relative;
+  background: transparent;
+  border-radius: 7px;
+  overflow: hidden;
 }
 
 /* серый статичный движок */
-.skill-track{
-  position:absolute;
-  top:0;
-  left:0;
-  height:100%;
-  width:0;
-  background:#ddd;
-  border-radius:7px;
+.skill-track {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 0;
+  background: #ddd;
+  border-radius: 7px;
 }
 
 /* цветной анимируемый бар */
-.skill-progress{
-  position:absolute;
-  top:0;
-  left:0;
-  height:100%;
-  width:0;
-  background:#1f2933;
-  border-radius:7px;
+.skill-progress {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 0;
+  background: #1f2933;
+  border-radius: 7px;
   transition: width 1.2s ease-in-out;
 }
 
-.skill-percent{
-  width:40px;
-  text-align:right;
-  font-weight:bold;
+.skill-percent {
+  width: 40px;
+  text-align: right;
+  font-weight: bold;
 }
 
-/* ====== MOBILE ====== */
+
+/* ---------------- SKILLS MOBILE ---------------- */
 @media (max-width: 768px) {
 
   .skill {
@@ -488,55 +565,58 @@ section h3{margin:20px 0 10px;}
 }
 
 
-
-
-/* ============ PUBLICATIONS ============ */
-
+/* ============================================================
+   PUBLICATIONS
+============================================================ */
 .publications-list {
-    list-style: none;
-    padding: 0;
-    margin: 0;
+  list-style: none;
+  padding: 0;
+  margin: 0;
 }
 
 .publications-list li {
-    margin-bottom: 12px;
+  margin-bottom: 12px;
 }
 
 .publications-list li:last-child {
-    margin-bottom: 0;
+  margin-bottom: 0;
 }
 
 .publications-list a {
-    display: inline-block;
-    padding: 10px 15px;
-    background: #1f2933;
-    color: #fff;
-    text-decoration: none;
-    border-radius: 4px;
-    font-size: 16px;
-    transition: background 0.3s;
+  display: inline-block;
+  padding: 10px 15px;
+  background: #1f2933;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 4px;
+  font-size: 16px;
+  transition: background 0.3s;
 }
 
 .publications-list a:hover {
-    background: #11171a;
-}
-
-/* ===== MOBILE: растягиваем кнопки ===== */
-@media(max-width: 768px){
-    .publications-list a {
-        display: block;       /* кнопка занимает всю ширину */
-        width: 100%;
-        text-align: center;   /* выравнивание текста по центру */
-        margin-bottom: 10px;  /* отступ между кнопками */
-    }
-
-    .publications-list a:last-child {
-        margin-bottom: 0;     /* убираем лишний отступ у последней */
-    }
+  background: #11171a;
 }
 
 
-/* ============ FOOTER ============ */
+/* ---------------- PUBLICATIONS MOBILE ---------------- */
+@media (max-width: 768px) {
+
+  .publications-list a {
+    display: block;
+    width: 100%;
+    text-align: center;
+    margin-bottom: 10px;
+  }
+
+  .publications-list a:last-child {
+    margin-bottom: 0;
+  }
+}
+
+
+/* ============================================================
+   FOOTER
+============================================================ */
 footer {
   background: #1f2933;
   color: #fff;
@@ -544,681 +624,756 @@ footer {
   padding: 25px;
   font-size: 14px;
 
-  /* закрепляем только на десктопе */
   position: fixed;
   bottom: 0;
   left: 0;
   width: 100%;
   z-index: 900;
-  margin-top: 0; /* удаляем верхний отступ, чтобы не создавал белую полосу */
+  margin-top: 0;
 }
 
-/* на мобильных отключаем фикс */
+
+/* ---------------- FOOTER MOBILE ---------------- */
 @media (max-width: 768px) {
+
   footer {
     position: static;
     width: 100%;
-    margin-top: 40px; /* оставляем отступ для разделения контента */
+    margin-top: 40px;
   }
 }
 
-/* ============ LANGUAGE MENU ============ */
-.lang{font-size:13px;color:#ccc;}
-.lang a{text-decoration:none;color:#ccc;}
-.lang a:hover{color:#fff;}
-.lang strong{color:#fff;font-weight:normal;}
 
-/* ============ GALLERY HORIZONTAL SCROLL (ADAPTIVE) ============ */
+/* ============================================================
+   LANGUAGE MENU
+============================================================ */
+.lang {
+  font-size: 13px;
+  color: #ccc;
+}
+
+.lang a {
+  text-decoration: none;
+  color: #ccc;
+}
+
+.lang a:hover {
+  color: #fff;
+}
+
+.lang strong {
+  color: #fff;
+  font-weight: normal;
+}
+
+
+/* ============================================================
+   PROJECT FILTER COMBO — COMPACT & UNIFIED
+============================================================ */
+
+/* ================== Контейнеры фильтров ================== */
+.project-filter {
+  display: flex;
+  flex-direction: column;  /* вертикальное расположение фильтров */
+  gap: 12pt;               /* расстояние между фильтрами на десктопе */
+  margin-bottom: 0;        /* убираем лишний отступ после фильтров */
+}
+
+.filter-item {
+  display: flex;
+  flex-direction: column;  /* label сверху */
+  gap: 6px;                /* расстояние между label и select+кнопка */
+}
+
+.combo-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;                /* отступ между select и кнопкой */
+}
+
+/* ================== Кнопка сброса, особенности ================== */
+.combo-reset {
+  width: 42px;                 /* квадратная кнопка */
+  height: 42px;
+  padding: 0;                  /* чтобы svg центрировался */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 6px;
+  background: #999;            /* неактивная */
+  color: #fff;                 /* svg currentColor */
+  border: none;
+  cursor: pointer;
+  transition: background 0.25s ease;
+}
+
+.combo-reset.active {
+  background: #1f2933;         /* активное состояние */
+}
+
+.combo-reset svg {
+  width: 16px;
+  height: 16px;
+  stroke: currentColor;
+}
+
+.combo-reset:hover {
+  background: #11171a;
+}
+
+/* ================== Unified combo style ================== */
+.project-filter select.combo,
+.company-row select.combo {
+  padding: 10px 20px;           /* чтобы совпадало с кнопками */
+  font-size: 16px;              /* общий размер текста */
+  border-radius: 6px;           /* скругление, как у кнопок */
+  border: 1px solid #ccc;
+  background: #1f2933;
+  color: #fff;
+  cursor: pointer;
+  transition: background 0.25s ease;
+  height: 42px;                 /* высота для соответствия кнопкам */
+  flex: 1;                      /* растягиваем select, кнопка фиксированной ширины */
+  max-width: 400px;
+}
+
+.project-filter select.combo:hover,
+.project-filter select.combo:focus,
+.company-row select.combo:hover,
+.company-row select.combo:focus {
+  background: #11171a;
+}
+
+/* ================== Mobile адаптация ================== */
+@media(max-width: 768px) {
+  .project-filter {
+    gap: 10pt;
+  }
+
+  .project-filter select.combo {
+    font-size: 14px;
+  }
+}
+
+
+/* ============================================================
+   GALLERY (HORIZONTAL SCROLL)
+============================================================ */
 .gallery-wrapper {
-    overflow-x: auto;                /* Горизонтальная прокрутка */
-    padding-bottom: 10px;            /* Отступ снизу для скролла */
-    -webkit-overflow-scrolling: touch; /* Плавный скролл на iOS */
+  overflow-x: auto;
+  padding-bottom: 10px;
+  -webkit-overflow-scrolling: touch;
 }
 
 .gallery {
-    display: flex;                    /* Одна строка изображений */
-    flex-wrap: nowrap;                /* Без переноса */
-    gap: 10px;                        /* Расстояние между картинками */
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 10px;
 }
 
 .gallery a {
-    flex: 0 0 auto;                   /* Картинка не растягивается */
-    display: block;
+  flex: 0 0 auto;
+  display: block;
 }
 
 .gallery img {
-    display: block;
-    height: 180px;                     /* Базовая высота */
-    width: auto;                        /* Сохраняем пропорции */
-    object-fit: cover;
-    border-radius: 6px;
-    cursor: pointer;
-    transition: transform 0.3s;
+  display: block;
+  height: 180px;
+  width: auto;
+  object-fit: cover;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: transform 0.3s;
 }
 
 .gallery img:hover {
-    transform: scale(1.05);
+  transform: scale(1.05);
 }
 
-/* Скроллбар */
+
+/* ---------------- GALLERY SCROLLBAR ---------------- */
 .gallery-wrapper::-webkit-scrollbar {
-    height: 8px;
+  height: 8px;
 }
 
 .gallery-wrapper::-webkit-scrollbar-thumb {
-    background-color: #aaa;
-    border-radius: 4px;
-}
-
-/* ============ MOBILE ADAPTATION ============ */
-@media(max-width:768px){
-    .gallery img {
-        height: 140px;                /* Немного меньше на телефоне */
-    }
-}
-
-@media(max-width:480px){
-    .gallery img {
-        height: 120px;                /* Ещё меньше для узких экранов */
-    }
+  background-color: #aaa;
+  border-radius: 4px;
 }
 
 
-/* ===== CV BUTTON ===== */
+/* ---------------- GALLERY MOBILE ---------------- */
+@media (max-width:768px) {
+  .gallery img {
+    height: 140px;
+  }
+}
+
+@media (max-width:480px) {
+  .gallery img {
+    height: 120px;
+  }
+}
+
+
+/* ============================================================
+   CV BUTTON
+============================================================ */
 #cv .cv-link {
-    display: inline-block;       /* как у Publications */
-    padding: 10px 20px;
-    background: #1f2933;
-    color: #fff;
-    text-decoration: none;
-    border-radius: 4px;
-    font-size: 16px;
-    transition: background 0.3s;
-    text-align: center;
-    margin-top: 12px;           /* разрыв между текстом и кнопкой */
+  display: inline-block;
+  padding: 10px 20px;
+  background: #1f2933;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 4px;
+  font-size: 16px;
+  transition: background 0.3s;
+  text-align: center;
+  margin-top: 12px;
 }
 
 #cv .cv-link:hover {
-    background: #11171a;
+  background: #11171a;
 }
 
 #cv .cv-link.disabled,
 #cv .cv-link:disabled {
-    background: #999;
-    cursor: not-allowed;
-    opacity: 0.5;
-    pointer-events: none;
+  background: #999;
+  cursor: not-allowed;
+  opacity: 0.5;
+  pointer-events: none;
 }
 
-/* Стрелка истории для CV */
 #cv .cv-link.history::after {
-    content: " ↗";
-    font-size: 14px;
-    margin-left: 6px;
-    opacity: 0.85;
-}
-
-/* ===== MOBILE: растягиваем кнопку на всю ширину ===== */
-@media(max-width: 768px){
-    #cv .cv-link {
-        display: block;       /* кнопка занимает всю ширину */
-        width: 100%;
-        text-align: center;
-        margin-top: 10px;     /* сохраняем разрыв сверху */
-    }
+  content: " ↗";
+  font-size: 14px;
+  margin-left: 6px;
+  opacity: 0.85;
 }
 
 
-/* ===== DRAWINGS SECTION ===== */
+/* ---------------- CV MOBILE ---------------- */
+@media (max-width:768px) {
+  #cv .cv-link {
+    display: block;
+    width: 100%;
+    text-align: center;
+    margin-top: 10px;
+  }
+}
+
+
+/* ============================================================
+   DRAWINGS SECTION
+============================================================ */
 #drawings .card {
-    padding: 25px;
-    background: #fff;
-    border-radius: 6px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+  padding: 25px 25px 5px 25px; /* верх/лево/низ/право, минимальный нижний отступ */
+  background: #fff;
+  border-radius: 6px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.12);
 }
 
-/* ===== DRAWINGS LINKS ===== */
+/* ---------------- DRAWINGS LINKS ---------------- */
 .drawing-links {
-    margin-top: 12px;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
+  margin-top: 10px; /* чуть меньше, чем было */
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
 }
 
-/* Кнопки чертежей — одинаковая ширина с кнопкой Request Access */
 .drawing-links .cv-link,
 .access-btn {
-    flex: 1;             /* равная ширина */
-    text-align: center;  /* текст по центру */
-    min-width: 150px;    /* минимальная ширина */
+  flex: 1;
+  text-align: center;
+  min-width: 150px;
 }
 
 .drawing-links .cv-link {
-    display: inline-block;
-    padding: 10px 20px;
-    background: #1f2933;
-    color: #fff;
-    text-decoration: none;
-    border-radius: 6px;
-    transition: background 0.25s;
-    font-size: 16px;
+  display: inline-block;
+  padding: 10px 20px;
+  background: #1f2933;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 6px;
+  transition: background 0.25s;
+  font-size: 16px;
 }
 
 .drawing-links .cv-link:hover,
 .access-btn:hover {
-    background: #11171a;
+  background: #11171a;
 }
 
-/* ===== MOBILE DRAWINGS LINKS ===== */
-@media (max-width: 768px) {
-    .drawing-links {
-        flex-direction: column;
-    }
-    .drawing-links .cv-link,
-    .access-btn {
-        width: 100%; /* на мобильных занимают всю ширину */
-    }
+/* Отступ после текста перед кнопкой Request Access */
+#drawings p + .access-btn {
+  margin-top: 12px; /* расстояние между текстом и кнопкой */
 }
 
-/* ===== PASSWORD ENTRY ===== */
-.password-entry {
-    margin-top: 10px;
-    display: none; /* скрыто по умолчанию */
-    gap: 10px;
-    flex-direction: column; /* вертикально по умолчанию */
-}
+/* ---------------- DRAWINGS MOBILE ---------------- */
+@media (max-width:768px) {
+  .drawing-links {
+    flex-direction: column;
+  }
 
-/* Контейнер input + глаз */
-.input-wrapper {
-    display: flex;
-    align-items: stretch; /* выравнивание по высоте */
+  .drawing-links .cv-link,
+  .access-btn {
     width: 100%;
+  }
+
+  #drawings .card {
+    padding-bottom: 5px; /* минимальный нижний отступ и на мобильном */
+  }
+}
+
+/* ---------------- ADJUST BUTTON MARGINS ---------------- */
+#drawings .access-btn {
+  margin-bottom: 4px;  /* немного места под кнопкой */
+}
+
+#drawings .password-entry {
+  margin-top: 0;       /* без лишнего отступа сверху */
+}
+
+
+/* ============================================================
+   PASSWORD ENTRY
+============================================================ */
+.password-entry {
+  margin-top: 10px;
+  display: none; /* скрыто по умолчанию */
+  gap: 10px;
+  flex-direction: column; /* вертикально по умолчанию */
+}
+
+/* ---------------- INPUT WRAPPER ---------------- */
+.input-wrapper {
+  display: flex;
+  align-items: stretch; /* выравнивание по высоте */
+  width: 100%;
 }
 
 .password-entry input {
-    flex: 1;
-    padding: 10px 12px;
-    border-radius: 6px 0 0 6px; /* скругление слева */
-    border: 1px solid #ccc;
-    font-size: 14px;
-    border-right: none; /* объединяем с кнопкой глаза */
+  flex: 1;
+  padding: 10px 12px;
+  border-radius: 6px 0 0 6px; /* скругление слева */
+  border: 1px solid #ccc;
+  font-size: 14px;
+  border-right: none; /* объединяем с кнопкой глаза */
 }
 
 .password-entry button#togglePassword {
-    padding: 0 12px;
-    border: 1px solid #ccc;
-    border-left: none; /* объединяем с полем */
-    background: #1f2933;
-    color: #fff;
-    border-radius: 0 6px 6px 0; /* скругление справа */
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: background 0.25s;
+  padding: 0 12px;
+  border: 1px solid #ccc;
+  border-left: none; /* объединяем с полем */
+  background: #1f2933;
+  color: #fff;
+  border-radius: 0 6px 6px 0; /* скругление справа */
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.25s;
 }
 
 .password-entry button#togglePassword:hover {
-    background: #11171a;
+  background: #11171a;
 }
 
 .password-entry button#passwordSubmitBtn {
-    padding: 10px 16px;
-    border: none;
-    background: #1f2933;
-    color: #fff;
-    border-radius: 6px;
-    cursor: pointer;
-    font-size: 14px;
-    transition: background 0.25s;
+  padding: 10px 16px;
+  border: none;
+  background: #1f2933;
+  color: #fff;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background 0.25s;
 }
 
-/* Горизонтальная раскладка на больших экранах */
+/* ---------------- DESKTOP LAYOUT ---------------- */
 @media (min-width: 769px) {
-    .password-entry {
-        flex-direction: row;
-        align-items: center;
-    }
-    .password-entry button#passwordSubmitBtn {
-        margin-left: 10px;
-    }
-}
-
-/* Вертикальная раскладка на мобильных */
-@media (max-width: 768px) {
-    .password-entry {
-        flex-direction: column;
-        align-items: stretch;
-    }
-    .password-entry button#passwordSubmitBtn {
-        width: 100%;
-        margin-left: 0;
-    }
-}
-
-/* ===== PASSWORD MESSAGE ===== */
-.password-msg {
-    margin-top: 6px;
-    min-height: 18px;
-    font-size: 14px;
-}
-
-/* ===== MODAL ===== */
-.modal {
-    display: none; /* скрыта по умолчанию */
-    position: fixed;
-    inset: 0;
-    z-index: 9999;
-    background: rgba(0,0,0,0.5);
-    justify-content: center;
+  .password-entry {
+    flex-direction: row;
     align-items: center;
+  }
+
+  .password-entry button#passwordSubmitBtn {
+    margin-left: 10px;
+  }
 }
 
+/* ---------------- MOBILE LAYOUT ---------------- */
+@media (max-width: 768px) {
+  .password-entry {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .password-entry button#passwordSubmitBtn {
+    width: 100%;
+    margin-left: 0;
+  }
+}
+
+/* ============================================================
+   PASSWORD MESSAGE
+============================================================ */
+.password-msg {
+  margin-top: 6px;
+  min-height: 18px;
+  font-size: 14px;
+}
+
+/* ============================================================
+   MODAL
+============================================================ */
+.modal {
+  display: none; /* скрыта по умолчанию */
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  justify-content: center;
+  align-items: center;
+}
+
+/* затемнение фона */
+.modal::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.75); /* почти непрозрачный черный */
+  z-index: 1;
+}
+
+/* модальное окно поверх затемнения */
 .modal-content {
-    background: #fff;
-    padding: 24px;
-    border-radius: 8px;
-    width: 360px;
-    max-width: 90%;
-    position: relative;
-    box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+  position: relative;
+  z-index: 2; /* поверх затемнения */
+  background: #fff;
+  padding: 24px;
+  border-radius: 8px;
+  width: 360px;
+  max-width: 90%;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.3);
 }
 
 .modal-content h2 {
-    margin: 0 0 12px;
-    font-size: 20px;
+  margin: 0 0 12px;
+  font-size: 20px;
 }
 
 .modal-content input,
 .modal-content textarea {
-    width: 100%;
-    padding: 8px 12px;
-    margin-bottom: 10px;
-    border-radius: 6px;
-    border: 1px solid #ccc;
-    font-size: 14px;
+  width: 100%;
+  padding: 8px 12px;
+  margin-bottom: 10px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  font-size: 14px;
 }
 
 .modal-content textarea {
-    resize: vertical;
-    min-height: 70px;
+  resize: vertical;
+  min-height: 70px;
 }
 
 .modal-content button[type="submit"] {
-    width: 100%;
-    padding: 10px 0;
-    background: #1f2933;
-    color: #fff;
-    border: none;
-    border-radius: 6px;
-    cursor: pointer;
-    font-size: 16px;
-    transition: background 0.25s;
+  width: 100%;
+  padding: 10px 0;
+  background: #1f2933;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background 0.25s;
 }
 
 .modal-content button[type="submit"]:hover {
-    background: #11171a;
+  background: #11171a;
 }
 
 .close {
-    position: absolute;
-    top: 8px;
-    right: 12px;
-    font-size: 24px;
-    font-weight: bold;
-    cursor: pointer;
-    color: #333;
+  position: absolute;
+  top: 8px;
+  right: 12px;
+  font-size: 24px;
+  font-weight: bold;
+  cursor: pointer;
+  color: #333;
 }
 
 .success {
-    margin-top: 12px;
-    color: green;
-    text-align: center;
-    font-size: 14px;
+  margin-top: 12px;
+  color: green;
+  text-align: center;
+  font-size: 14px;
 }
 
-/* ===== ACCESS BUTTON ===== */
-.access-btn {
-    padding: 10px 18px;
-    background: #1f2933;
-    color: #fff;
-    border: none;
-    border-radius: 6px;
-    cursor: pointer;
-    font-size: 14px;
-    margin-top: 12px;
-    transition: background 0.25s;
-}
-
-.access-btn:hover {
-    background: #11171a;
-}
-
-/* ===== RESPONSIVE MODAL ===== */
+/* ---------------- RESPONSIVE MODAL ---------------- */
 @media (max-width: 480px) {
-    .modal-content {
-        padding: 16px;
-    }
-    .modal-content h2 {
-        font-size: 18px;
-    }
-    .modal-content button[type="submit"] {
-        font-size: 14px;
-    }
-}
+  .modal-content {
+    padding: 16px;
+  }
 
+  .modal-content h2 {
+    font-size: 18px;
+  }
 
-
-/* ===== 3D CERTIFICATE CAROUSEL ===== */
-
-.carousel-container {
-    width: 100%;
-    height: 360px;
-    margin: 32px 0;
-    position: relative;
-    perspective: 1200px;
-    overflow: hidden;
-
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
-}
-
-.carousel {
-    position: relative;
-    width: 260px;
-    height: 320px;
-    transform-style: preserve-3d;
-    transform: rotateY(0deg);
-    transition: transform 0.9s ease;
-}
-
-/* элементы карусели */
-.carousel img {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-    background: #fff;
-    border-radius: 8px;
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
-    cursor: pointer;
-}
-
-/* controls */
-.carousel-controls {
-    margin-top: 16px;
-    display: flex;
-    justify-content: center;
-    gap: 16px;
-}
-
-/* ===== MOBILE ===== */
-@media (max-width: 768px) {
-
-    .carousel-container {
-        height: 280px;
-        perspective: 800px;
-    }
-
-    .carousel {
-        width: 180px;
-        height: 230px;
-    }
-
-    .carousel-controls {
-        gap: 12px;
-    }
-
-    .carousel-controls button {
-        padding: 8px 14px;
-        font-size: 14px;
-    }
-}
-
-  .carousel-controls button {
-    display: inline-block;  /* обязательно */
-    font-size: 20px;        /* меньше шрифт */
-    padding: 4px 12px;      /* меньше padding */
-    margin: 0 6px;          /* уменьшенный промежуток */
+  .modal-content button[type="submit"] {
+    font-size: 14px;
   }
 }
 
-/* ===== PROJECT HISTORY INDICATOR ===== */
+
+/* ============================================================
+   3D CERTIFICATE CAROUSEL
+============================================================ */
+.carousel-container {
+  width: 100%;
+  height: 360px;
+  margin: 32px 0;
+  position: relative;
+  perspective: 1200px;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.carousel {
+  position: relative;
+  width: 260px;
+  height: 320px;
+  transform-style: preserve-3d;
+  transform: rotateY(0deg);
+  transition: transform 0.9s ease;
+}
+
+/* ---------------- CAROUSEL ITEMS ---------------- */
+.carousel img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.25);
+  cursor: pointer;
+}
+
+/* ---------------- CAROUSEL CONTROLS ---------------- */
+.carousel-controls {
+  margin-top: 16px;
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+}
+
+/* ---------------- MOBILE ---------------- */
+@media (max-width: 768px) {
+  .carousel-container {
+    height: 280px;
+    perspective: 800px;
+  }
+
+  .carousel {
+    width: 180px;
+    height: 230px;
+  }
+
+  .carousel-controls {
+    gap: 12px;
+  }
+
+  .carousel-controls button {
+    padding: 8px 14px;
+    font-size: 14px;
+  }
+}
+
+
+/* ---------------- CAROUSEL BUTTONS, специальные свойства ---------------- */
+
+.carousel-controls button {
+  display: flex;               /* flex для центрирования стрелок */
+  align-items: center;
+  justify-content: center;
+  height: 42px;                /* фиксированная высота */
+  width: 84px;                 /* увеличенная ширина для стрелок */
+  font-size: 20px;             /* размер стрелок */
+  border-radius: 6px;
+  background: #1f2933;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  transition: background 0.25s ease;
+}
+
+.carousel-controls button:hover {
+  background: #11171a;
+}
+
+
+/* ============================================================
+   PROJECT HISTORY INDICATOR
+============================================================ */
 .project {
-    position: relative;
+  position: relative;
 }
 
-/* Метка точки истории */
 .project.has-history::after {
-    content: "";
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    width: 10px;
-    height: 10px;
-    background: #1f2933;
-    border-radius: 50%;
-    box-shadow: 0 0 0 2px #fff;
+  content: "";
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 10px;
+  height: 10px;
+  background: #1f2933;
+  border-radius: 50%;
+  box-shadow: 0 0 0 2px #fff;
 }
 
-/* Скрытый текст истории (берётся из HTML) */
 .project .history-label {
-    position: absolute;
-    top: 28px;
-    right: 10px;
-    font-size: 12px;
-    background: #1f2933;
-    color: #fff;
-    padding: 4px 8px;
-    border-radius: 4px;
-    white-space: nowrap;
-    opacity: 0;
-    pointer-events: none;
-    transform: translateY(-4px);
-    transition: opacity 0.2s, transform 0.2s;
+  position: absolute;
+  top: 28px;
+  right: 10px;
+  font-size: 12px;
+  background: #1f2933;
+  color: #fff;
+  padding: 4px 8px;
+  border-radius: 4px;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(-4px);
+  transition: opacity 0.2s, transform 0.2s;
 }
 
-/* Показать текст при наведении */
 .project.has-history:hover .history-label {
-    opacity: 1;
-    transform: translateY(0);
+  opacity: 1;
+  transform: translateY(0);
 }
 
-/* ===== HISTORY BUTTON DISABLED ===== */
-
+/* ---------------- HISTORY BUTTON DISABLED ---------------- */
 .cv-link.disabled,
 .cv-link:disabled {
-    background: #999;
-    cursor: not-allowed;
-    opacity: 0.5;
-    pointer-events: none;
+  background: #999;
+  cursor: not-allowed;
+  opacity: 0.5;
+  pointer-events: none;
 }
 
 .cv-link.disabled:hover,
 .cv-link:disabled:hover {
-    background: #999;
+  background: #999;
 }
 
-
-/* ===== HISTORY BUTTON ICON ===== */
-
+/* ---------------- HISTORY BUTTON ICON ---------------- */
 .cv-link.history::after {
-    content: " ↗";
-    font-size: 14px;
-    margin-left: 6px;
-    opacity: 0.85;
+  content: " ↗";
+  font-size: 14px;
+  margin-left: 6px;
+  opacity: 0.85;
 }
 
-
-/* ===== GOOGLE MAP BUTTON ICON ===== */
+/* ---------------- GOOGLE MAP BUTTON ICON ---------------- */
 #googleMapBtn.history::after {
-    content: " ↗";       /* тот же символ, что и у Project History */
-    font-size: 14px;
-    margin-left: 6px;
-    opacity: 0.85;
+  content: " ↗"; /* тот же символ, что и у Project History */
+  font-size: 14px;
+  margin-left: 6px;
+  opacity: 0.85;
 }
 
 
-/* ===== SHOW ALL / HISTORY BUTTONS (плоские, как CV) ===== */
-
+/* ============================================================
+   SHOW ALL / HISTORY BUTTONS (плоские, как CV)
+============================================================ */
 .show-all-card {
-    margin-top: 12px;        /* текст → первая кнопка */
-    margin-bottom: 12px;     /* после кнопок (desktop) */
+  margin-top: 12px;        /* текст → первая кнопка */
+  margin-bottom: 12px;     /* после кнопок (desktop) */
 }
 
 .show-all-card p {
-    margin: 0 0 12px 0;      /* текст → кнопка */
+  margin: 0 0 12px 0;      /* текст → кнопка */
 }
 
 .show-all-card .cv-link {
-    display: inline-block;  /* плоская кнопка */
-    padding: 10px 20px;
-    margin-bottom: 10px;    /* расстояние между кнопками */
-    background: #1f2933;
-    color: #fff;
-    text-decoration: none;
-    border-radius: 4px;
-    font-size: 16px;
-    transition: background 0.3s;
-    text-align: center;
+  display: inline-block;  /* плоская кнопка */
+  padding: 10px 20px;
+  margin-bottom: 10px;    /* расстояние между кнопками */
+  background: #1f2933;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 4px;
+  font-size: 16px;
+  transition: background 0.3s;
+  text-align: center;
 }
 
 .show-all-card .cv-link:last-child {
-    margin-bottom: 0;       /* убираем лишний зазор внутри */
+  margin-bottom: 0;       /* убираем лишний зазор внутри */
 }
 
 .show-all-card .cv-link:hover:not(.disabled) {
-    background: #11171a;
+  background: #11171a;
 }
 
 .show-all-card .cv-link.disabled {
-    background: #999;
-    cursor: not-allowed;
-    opacity: 0.5;
-    pointer-events: none;
+  background: #999;
+  cursor: not-allowed;
+  opacity: 0.5;
+  pointer-events: none;
 }
 
-/* Стрелка истории */
 .show-all-card .cv-link.history::after {
-    content: " ↗";
-    font-size: 14px;
-    margin-left: 6px;
-    opacity: 0.85;
+  content: " ↗";
+  font-size: 14px;
+  margin-left: 6px;
+  opacity: 0.85;
 }
 
-/* ===== MOBILE ===== */
+/* ---------------- MOBILE ---------------- */
 @media (max-width: 480px) {
-    .show-all-card {
-        margin-top: 10px;     /* текст → кнопка */
-        margin-bottom: 10px;  /* после кнопок */
-    }
+  .show-all-card {
+    margin-top: 10px;     /* текст → кнопка */
+    margin-bottom: 10px;  /* после кнопок */
+  }
 
-    .show-all-card p {
-        margin-bottom: 10px;
-    }
+  .show-all-card p {
+    margin-bottom: 10px;
+  }
 
-    .show-all-card .cv-link {
-        display: block;      /* на всю ширину */
-        width: 100%;
-        margin-bottom: 10px;
-    }
+  .show-all-card .cv-link {
+    display: block;      /* на всю ширину */
+    width: 100%;
+    margin-bottom: 10px;
+  }
 
-    .show-all-card .cv-link:last-child {
-        margin-bottom: 0;
-    }
-}
-
-
-/* ======================= PROJECT FILTER COMBO ====================== */
-.project-filter {
-    display: flex;
-    flex-direction: column; /* вертикальное расположение фильтров */
-    gap: 12pt;              /* расстояние между фильтрами на десктопе */
-    margin-bottom: 0;       /* убираем лишний отступ после фильтров */
-}
-
-.filter-item {
-    display: flex;
-    flex-direction: column; /* label сверху */
-    gap: 6px;               /* расстояние между label и select+кнопка */
-}
-
-.combo-row {
-    display: flex;
-    align-items: center;
-    gap: 6px; /* отступ между select и кнопкой */
-}
-
-.project-filter select.combo {
-    padding: 6px 12px;
-    font-size: 16px;
-    border-radius: 4px;
-    border: 1px solid #ccc;
-    background: #1f2933;
-    color: #fff;
-    cursor: pointer;
-    transition: background 0.3s;
-    flex: 1;  /* растягиваем select, кнопка фиксированной ширины */
-    max-width: 400px;
-}
-
-.project-filter select.combo:hover,
-.project-filter select.combo:focus {
-    background: #11171a;
-}
-
-/* кнопка сброса */
-.combo-reset {
-    width: 28px;
-    height: 28px;
-    background: #999; /* неактивная */
-    border: none;
-    border-radius: 4px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
-    color: #fff;
-    transition: background 0.2s;
-}
-
-.combo-reset svg {
-    width: 16px;
-    height: 16px;
-    stroke: currentColor;
-}
-
-.combo-reset.active {
-    background: #1f2933; /* активная кнопка */
-}
-
-/* MOBILE */
-@media(max-width: 768px) {
-    .project-filter {
-        gap: 10pt;
-    }
-    .project-filter select.combo {
-        font-size: 14px;
-    }
+  .show-all-card .cv-link:last-child {
+    margin-bottom: 0;
+  }
 }
 
 
 
-/* =====  Отступ между заголовочной карточкой и карточками проектов ===== */
+/* ============================================================
+   SPACING BETWEEN HEADER CARD AND PROJECT CARDS
+============================================================ */
 #projects > .card:first-child {
-    margin-bottom: 20px;
+  margin-bottom: 20px;
 }
 
-
-
-/* ===== LIGHTBOX ===== */
-
+/* ============================================================
+   LIGHTBOX
+============================================================ */
 .lightbox-overlay {
   position: fixed;
-  top: 0; left: 0;
-  width: 100%; height: 100%;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
   background: rgba(0,0,0,0.9);
   display: flex;
   justify-content: center;
@@ -1248,4 +1403,9 @@ footer {
   cursor: pointer;
 }
 
-@keyframes fadeIn { to { opacity: 1; } }
+/* ---------------- LIGHTBOX ANIMATION ---------------- */
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+  }
+}
