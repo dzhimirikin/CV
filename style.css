@@ -763,16 +763,15 @@ footer {
 ============================================================ */
 
 /* ================== Контейнеры фильтров ================== */
-.project-filter {
+.project-filter,
+.filter-item {
   display: flex;
-  flex-direction: column;  
-  gap: 12pt;               
+  flex-direction: column;
+  gap: 12pt;
   margin-bottom: 0;
 }
 
 .filter-item {
-  display: flex;
-  flex-direction: column;  
   gap: 6px;
 }
 
@@ -780,15 +779,16 @@ footer {
 .combo-row,
 .company-row {
   display: flex;
-  align-items: center;     
-  gap: 6px;                
+  align-items: center;
+  gap: 6px;
 }
 
+/* Селекты внутри фильтров */
 .project-filter select.combo,
 .company-row select.combo {
-  flex: 1;                 
-  min-width: 140px;        
-  height: 42px;            
+  flex: 1;
+  min-width: 140px;
+  height: 42px;
   padding: 10px 20px;
   font-size: 16px;
   border-radius: 6px;
@@ -809,9 +809,9 @@ footer {
 
 /* ================== Кнопка сброса ================== */
 .combo-reset {
-  width: 42px;             
-  height: 42px;            
-  flex: 0 0 auto;          
+  width: 42px;
+  height: 42px;
+  flex: 0 0 auto;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -838,13 +838,13 @@ footer {
   stroke: currentColor;
 }
 
-/* ================== Кнопка Company website ================== */
+/* ================== Кнопка Company website / CV ================== */
 .cv-link {
-  height: 42px;            
+  height: 42px;
   padding: 0 12px;
   display: flex;
   align-items: center;
-  gap: 6px;                
+  gap: 6px;
   border-radius: 6px;
   border: 1px solid #ccc;
   background: #1f2933;
@@ -853,12 +853,15 @@ footer {
   transition: background 0.25s ease;
 }
 
-.cv-link:disabled {
+.cv-link:disabled,
+.cv-link.disabled {
   opacity: 0.5;
-  cursor: default;
+  cursor: not-allowed;
+  pointer-events: none;
+  background: #999;
 }
 
-.cv-link:hover:not(:disabled) {
+.cv-link:hover:not(:disabled):not(.disabled) {
   background: #11171a;
 }
 
@@ -872,7 +875,25 @@ footer {
   .company-row select.combo {
     font-size: 14px;
     min-width: 120px;
-    max-width: 100%; /* растягивается по контейнеру */
+    max-width: 100%;
+  }
+
+  /* company-row растягивается вертикально */
+  .company-row {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 6px;
+  }
+
+  .company-row .combo-row {
+    width: 100%;
+  }
+
+  .company-row #companySiteBtn {
+    width: 100%;
+    text-align: center;
+    margin-left: 0;
+    margin-top: 6px;
   }
 }
 
@@ -880,9 +901,9 @@ footer {
 @media(min-width: 769px) and (max-width: 1024px) {
   .project-filter select.combo,
   .company-row select.combo {
-    flex: 1;          /* растягивается вместе с кнопкой */
+    flex: 1;
     min-width: 140px;
-    max-width: none;  /* снимаем ограничение */
+    max-width: none;
     font-size: 15px;
   }
 }
@@ -891,7 +912,7 @@ footer {
 @media(min-width: 1025px) {
   .project-filter select.combo,
   .company-row select.combo {
-    max-width: 400px; /* ограничение для больших экранов */
+    max-width: 400px;
     font-size: 16px;
   }
 }
@@ -1693,4 +1714,3 @@ footer {
     opacity: 1;
   }
 }
-
