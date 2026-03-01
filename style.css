@@ -1244,7 +1244,7 @@ footer {
 
 
 /* ============================================================
-   3D CERTIFICATE CAROUSEL
+   3D CERTIFICATE CAROUSEL — визуально как PROJECTS
 ============================================================ */
 .carousel-container {
   width: 100%;
@@ -1278,6 +1278,16 @@ footer {
   border-radius: 8px;
   box-shadow: 0 10px 25px rgba(0,0,0,0.25);
   cursor: pointer;
+  transition: transform 0.3s ease, filter 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Hover / мобильная имитация hover — 1:1 как PROJECTS */
+.carousel img:hover,
+.carousel img:focus,
+.carousel img:active {
+  transform: translateY(-3px) scale(1.02); /* лёгкое поднятие + минимальное увеличение */
+  filter: brightness(0.95);                 /* слабое затемнение */
+  box-shadow: 0 5px 12px rgba(0,0,0,0.1);  /* мягкая тень */
 }
 
 /* ---------------- CAROUSEL CONTROLS ---------------- */
@@ -1310,16 +1320,14 @@ footer {
   }
 }
 
-
 /* ---------------- CAROUSEL BUTTONS, специальные свойства ---------------- */
-
 .carousel-controls button {
-  display: flex;               /* flex для центрирования стрелок */
+  display: flex;               
   align-items: center;
   justify-content: center;
-  height: 42px;                /* фиксированная высота */
-  width: 84px;                 /* увеличенная ширина для стрелок */
-  font-size: 20px;             /* размер стрелок */
+  height: 42px;                
+  width: 84px;                 
+  font-size: 20px;             
   border-radius: 6px;
   background: #1f2933;
   color: #fff;
