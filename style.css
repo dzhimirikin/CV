@@ -77,6 +77,20 @@ body {
   background: #11171a;         /* hover фон */
 }
 
+/* ---------------- Show All / Show Filtered — disabled ----------------- */
+
+button#showAllProjectsBtn:disabled {
+    background: #cccccc;   /* светло-серый фон */
+    color: #fff;           /* белый текст */
+    cursor: default;       /* не кликабельная */
+    opacity: 1;            /* полностью видимая */
+    border: none;
+}
+
+/* Hover на disabled не меняет фон */
+button#showAllProjectsBtn:disabled:hover {
+    background: #cccccc;
+}
 
 
 /* ============================================================
@@ -668,73 +682,45 @@ footer {
 
 
 /* ============================================================
-   PROJECT FILTER COMBO — COMPACT & UNIFIED
+   PROJECT FILTER COMBO — UNIFIED & RESPONSIVE
 ============================================================ */
 
 /* ================== Контейнеры фильтров ================== */
 .project-filter {
   display: flex;
-  flex-direction: column;  /* вертикальное расположение фильтров */
-  gap: 12pt;               /* расстояние между фильтрами на десктопе */
-  margin-bottom: 0;        /* убираем лишний отступ после фильтров */
+  flex-direction: column;  
+  gap: 12pt;               
+  margin-bottom: 0;
 }
 
 .filter-item {
   display: flex;
-  flex-direction: column;  /* label сверху */
-  gap: 6px;                /* расстояние между label и select+кнопка */
+  flex-direction: column;  
+  gap: 6px;
 }
 
-.combo-row {
+/* ================== Комбо + кнопка сброса ================== */
+.combo-row,
+.company-row {
   display: flex;
-  align-items: center;
-  gap: 6px;                /* отступ между select и кнопкой */
+  align-items: center;     
+  gap: 6px;                
 }
 
-/* ================== Кнопка сброса, особенности ================== */
-.combo-reset {
-  width: 42px;                 /* квадратная кнопка */
-  height: 42px;
-  padding: 0;                  /* чтобы svg центрировался */
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border-radius: 6px;
-  background: #999;            /* неактивная */
-  color: #fff;                 /* svg currentColor */
-  border: none;
-  cursor: pointer;
-  transition: background 0.25s ease;
-}
-
-.combo-reset.active {
-  background: #1f2933;         /* активное состояние */
-}
-
-.combo-reset svg {
-  width: 16px;
-  height: 16px;
-  stroke: currentColor;
-}
-
-.combo-reset:hover {
-  background: #11171a;
-}
-
-/* ================== Unified combo style ================== */
 .project-filter select.combo,
 .company-row select.combo {
-  padding: 10px 20px;           /* чтобы совпадало с кнопками */
-  font-size: 16px;              /* общий размер текста */
-  border-radius: 6px;           /* скругление, как у кнопок */
+  flex: 1;                 
+  min-width: 140px;        
+  height: 42px;            
+  padding: 10px 20px;
+  font-size: 16px;
+  border-radius: 6px;
   border: 1px solid #ccc;
   background: #1f2933;
   color: #fff;
   cursor: pointer;
+  box-sizing: border-box;
   transition: background 0.25s ease;
-  height: 42px;                 /* высота для соответствия кнопкам */
-  flex: 1;                      /* растягиваем select, кнопка фиксированной ширины */
-  max-width: 400px;
 }
 
 .project-filter select.combo:hover,
@@ -744,14 +730,92 @@ footer {
   background: #11171a;
 }
 
-/* ================== Mobile адаптация ================== */
+/* ================== Кнопка сброса ================== */
+.combo-reset {
+  width: 42px;             
+  height: 42px;            
+  flex: 0 0 auto;          
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0;
+  border-radius: 6px;
+  background: #999;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  transition: background 0.25s ease;
+}
+
+.combo-reset.active {
+  background: #1f2933;
+}
+
+.combo-reset:hover {
+  background: #11171a;
+}
+
+.combo-reset svg {
+  width: 16px;
+  height: 16px;
+  stroke: currentColor;
+}
+
+/* ================== Кнопка Company website ================== */
+.cv-link {
+  height: 42px;            
+  padding: 0 12px;
+  display: flex;
+  align-items: center;
+  gap: 6px;                
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  background: #1f2933;
+  color: #fff;
+  cursor: pointer;
+  transition: background 0.25s ease;
+}
+
+.cv-link:disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+
+.cv-link:hover:not(:disabled) {
+  background: #11171a;
+}
+
+/* ================== Мобильные экраны (телефоны) ================== */
 @media(max-width: 768px) {
   .project-filter {
     gap: 10pt;
   }
 
-  .project-filter select.combo {
+  .project-filter select.combo,
+  .company-row select.combo {
     font-size: 14px;
+    min-width: 120px;
+    max-width: 100%; /* растягивается по контейнеру */
+  }
+}
+
+/* ================== Планшеты ================== */
+@media(min-width: 769px) and (max-width: 1024px) {
+  .project-filter select.combo,
+  .company-row select.combo {
+    flex: 1;          /* растягивается вместе с кнопкой */
+    min-width: 140px;
+    max-width: none;  /* снимаем ограничение */
+    font-size: 15px;
+  }
+}
+
+/* ================== Десктоп ================== */
+@media(min-width: 1025px) {
+  .project-filter select.combo,
+  .company-row select.combo {
+    max-width: 400px; /* ограничение для больших экранов */
+    font-size: 16px;
   }
 }
 
