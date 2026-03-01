@@ -267,7 +267,7 @@ nav a:hover {
 .hero-overlay {
   position: absolute;
   inset: 0;
-  background: rgba(0,0,0,0.55);
+  background: rgba(0,0,0,0.35);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -1693,3 +1693,4 @@ footer {
     opacity: 1;
   }
 }
+
