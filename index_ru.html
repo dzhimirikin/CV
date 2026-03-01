@@ -745,8 +745,10 @@
 
     <!-- Кнопки управления галереей -->
     <div class="show-all-card">
-      <button id="showAllProjectsBtn" type="button" class="cv-link">
-        Показать все проекты
+      <button id="showAllProjectsBtn" type="button" class="cv-link"
+              data-show-all="Показать все проекты"
+              data-show-filtered="Показать фильтр">
+         Показать все проекты
       </button>
 
       <button id="backToProjectBtn" type="button" class="cv-link disabled" disabled>
@@ -757,12 +759,12 @@
             Видео
         </button>
 
-      <button id="googleMapBtn" type="button" class="cv-link disabled" disabled>
-          Google Map
-      </button>
-
       <button id="historyBtn" type="button" class="cv-link disabled" disabled>
         История объекта
+      </button>
+
+      <button id="googleMapBtn" type="button" class="cv-link disabled" disabled>
+          Google Map
       </button>
     </div>
 
