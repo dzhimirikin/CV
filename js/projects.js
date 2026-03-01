@@ -1,32 +1,42 @@
-/* ==============================
-   PROJECTS & GALLERY
-============================= */
+/* ======================================================
+    PROJECTS & GALLERY MODULE
+    Handles projects selection, gallery filtering, and
+    all project-related buttons with multilingual support
+====================================================== */
 document.addEventListener('DOMContentLoaded', () => {
-    // Карточки проектов и галерея
+
+    /* ==============================
+       DOM Elements
+    ============================== */
     const projectCards     = document.querySelectorAll('.card.project');
     const galleryImages    = document.querySelectorAll('#gallery .gallery a');
     const gallerySection   = document.getElementById('gallery');
 
-    // Основные кнопки
     const showAllBtn       = document.getElementById('showAllProjectsBtn');
-    const historyBtn       = document.getElementById('historyBtn');       // Project History
-    const backToProjectBtn = document.getElementById('backToProjectBtn'); // Back to Project
-    const googleMapBtn     = document.getElementById('googleMapBtn');     // Google Map
-    const videoBtn         = document.getElementById('videoBtn');         // Video
-    const companySiteBtn   = document.getElementById('companySiteBtn');   // Company WWW
+    const backToProjectBtn = document.getElementById('backToProjectBtn');
+    const videoBtn         = document.getElementById('videoBtn');
+    const googleMapBtn     = document.getElementById('googleMapBtn');
+    const historyBtn       = document.getElementById('historyBtn');
+    const companySiteBtn   = document.getElementById('companySiteBtn');
 
-    // Фильтры
     const yearFilter       = document.getElementById('yearFilter');
     const companyFilter    = document.getElementById('companyFilter');
 
-    const yearCombo       = document.querySelector('.filter-item:first-child .combo-row');
-    const companyCombo    = document.querySelector('.company-row .combo-row');
+    const yearCombo        = document.querySelector('.filter-item:first-child .combo-row');
+    const companyCombo     = document.querySelector('.company-row .combo-row');
 
     let currentProjectCard = null;
+    let showingAll = false;
+    let manualShowAll = false; // для пункта 2
+
+    /* ==============================
+       Multilingual Show All / Show Filtered
+    ============================== */
+    const showAllText = showAllBtn.dataset.showAll || showAllBtn.textContent.trim();
+    const showFilteredText = showAllBtn.dataset.showFiltered || 'Show filtered';
 
     /* ==============================
        Project History Links
-       (кнопка History активна только если есть ссылка)
     ============================== */
     const projectHistory = {
         "000_STAIR": 0,
@@ -72,14 +82,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
     /* ==============================
        Video Links
-       (кнопка Video активна только если есть видео)
     ============================== */
     const projectVideo = {
         "000_STAIR": 0,
         "001_IL": "https://drive.google.com/file/d/1P5N27OUiKsPKOYTi01UWlhSXRNohLcGE/view?usp=sharing",
         "002_KR": "https://drive.google.com/file/d/1tIqpg_TVqx3Yu2GuTW2yF_Y51ohHp_mb/view?usp=drive_link",
         "003_BY": "https://drive.google.com/file/d/1GvoF-6E10CFrEojiPkfNwNTajDZVA-FV/view?usp=drive_link",
-        "004_LAKHTA": 0,
+        "004_LAKHTA": "https://drive.google.com/file/d/1Iza_s50vTrs9sQGQUOUTjEMQmNGOXKT1/view?usp=sharing",
         "005_SILLA": 0,
         "006_MUHU": 0,
         "007_NRG": 0,
@@ -97,34 +106,29 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     function updateVideoButton(projectCode) {
-        if (!videoBtn || !projectCode) {
-            videoBtn.disabled = true;
-            videoBtn.classList.add('disabled');
-            videoBtn.onclick = null;
-            return;
-        }
-
+        if (!videoBtn || !projectCode) return disableVideoButton();
         const videoFile = projectVideo[projectCode];
-
         if (videoFile && videoFile !== 0) {
             videoBtn.disabled = false;
             videoBtn.classList.remove('disabled');
             videoBtn.onclick = () => window.open(videoFile, '_blank', 'width=800,height=450,resizable=yes');
         } else {
-            videoBtn.disabled = true;
-            videoBtn.classList.add('disabled');
-            videoBtn.onclick = null;
+            disableVideoButton();
         }
     }
 
+    function disableVideoButton() {
+        if (!videoBtn) return;
+        videoBtn.disabled = true;
+        videoBtn.classList.add('disabled');
+        videoBtn.onclick = null;
+    }
 
     /* ==============================
-       Back to Project Button
-       (активна только если выбран проект)
+       Back to Project
     ============================== */
     function updateBackToProjectButton() {
         if (!backToProjectBtn) return;
-
         if (currentProjectCard) {
             backToProjectBtn.disabled = false;
             backToProjectBtn.classList.remove('disabled');
@@ -134,22 +138,23 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
+    backToProjectBtn?.addEventListener('click', () => {
+        if (!currentProjectCard) return;
+        smoothScroll(currentProjectCard, 800);
+    });
 
     /* ==============================
-       Google Map Button — маркер + спутник
-    ============================= */
+       Google Map Button
+    ============================== */
     function updateGoogleMapButton(card) {
         if (!googleMapBtn) return;
-
-        const lat = card ? card.dataset.lat : null;
-        const lng = card ? card.dataset.lng : null;
+        const lat = card?.dataset.lat;
+        const lng = card?.dataset.lng;
 
         if (lat && lng && lat !== "0" && lng !== "0") {
             googleMapBtn.disabled = false;
             googleMapBtn.classList.remove('disabled');
             googleMapBtn.classList.add('history');
-
-            // Открываем Google Maps с маркером и zoom=17
             googleMapBtn.onclick = () => {
                 const url = `https://www.google.com/maps/search/?api=1&query=${lat},${lng}&zoom=17`;
                 window.open(url, '_blank');
@@ -162,17 +167,13 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-
     /* ==============================
-       Company Website Button
-       (активна только если выбранная компания имеет сайт)
+       Company Site Button
     ============================== */
     function updateCompanySiteButton() {
         if (!companyFilter || !companySiteBtn) return;
-
         const selectedOption = companyFilter.options[companyFilter.selectedIndex];
-        const url = selectedOption.dataset.site || "";
-
+        const url = selectedOption?.dataset.site || "";
         if (url) {
             companySiteBtn.disabled = false;
             companySiteBtn.classList.remove('disabled');
@@ -185,19 +186,138 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     /* ==============================
-       Gallery Filter by Project
+       Filter Helpers
     ============================== */
-    function filterGallery(projectCode) {
-        galleryImages.forEach(imgLink => {
-            const href = imgLink.getAttribute('href');
-            imgLink.style.display = href.startsWith(projectCode + '/') ? '' : 'none';
+    function filtersActive() {
+        return (yearFilter && yearFilter.value !== 'all') ||
+               (companyFilter && companyFilter.value !== 'all');
+    }
+
+    function filterGalleryImages() {
+        const yearVal = yearFilter?.value || 'all';
+        const companyVal = companyFilter?.value || 'all';
+
+        galleryImages.forEach(img => {
+            const projectCode = img.getAttribute('href').split('/')[0];
+            const card = Array.from(projectCards).find(c => c.dataset.project === projectCode);
+            if (!card) return;
+
+            if (showingAll) {
+                img.style.display = '';
+            } else if (currentProjectCard) {
+                img.style.display = (projectCode === currentProjectCard.dataset.project) ? '' : 'none';
+            } else {
+                const yearMatch = yearVal === 'all' || card.dataset.years.split(',').includes(yearVal);
+                const companyMatch = companyVal === 'all' || card.dataset.company === companyVal;
+                img.style.display = (yearMatch && companyMatch) ? '' : 'none';
+            }
         });
     }
+
+    function updateButtons() {
+        // Show All / Show Filtered
+        if (manualShowAll && showAllBtn.disabled) {
+            showAllBtn.textContent = showAllText; // пункт 2
+        } else {
+            showAllBtn.textContent = showingAll ? showFilteredText : showAllText;
+            showAllBtn.disabled = currentProjectCard ? false : !filtersActive();
+        }
+
+        // Other buttons
+        updateBackToProjectButton();
+        updateVideoButton(currentProjectCard?.dataset.project);
+        updateGoogleMapButton(currentProjectCard);
+        updateHistoryButton(currentProjectCard?.dataset.project);
+    }
+
+    /* ==============================
+       Show All / Show Filtered Click
+    ============================== */
+    showAllBtn?.addEventListener('click', () => {
+        if (currentProjectCard && !filtersActive()) {
+            // пункт 2: выбран проект, фильтры пусты
+            projectCards.forEach(c => c.classList.remove('project-active'));
+            currentProjectCard = null;
+            showingAll = false;
+            manualShowAll = true;
+
+            filterGalleryImages();
+            showAllBtn.disabled = true;
+            updateBackToProjectButton();
+            disableVideoButton();
+            updateGoogleMapButton(null);
+            disableHistoryButton();
+        } else {
+            // обычная логика Show All / Show Filtered
+            manualShowAll = false;
+            showingAll = !showingAll;
+            if (showingAll) currentProjectCard = null;
+            projectCards.forEach(c => c.classList.remove('project-active'));
+            filterGalleryImages();
+            updateButtons();
+        }
+    });
+
+    /* ==============================
+       Project Card Click
+    ============================== */
+    projectCards.forEach(card => {
+        const img = card.querySelector('img');
+        if (!img) return;
+
+        const projectCode = img.getAttribute('src').split('/')[0];
+
+        if (projectHistory[projectCode]) card.classList.add('has-history');
+
+        card.addEventListener('click', () => {
+            projectCards.forEach(c => c.classList.remove('project-active'));
+            card.classList.add('project-active');
+
+            currentProjectCard = card;
+            showingAll = false;
+            manualShowAll = false;
+
+            filterGalleryImages();
+            updateButtons();
+
+            smoothScroll(gallerySection, 1000);
+        });
+    });
+
+    /* ==============================
+       Project Filters
+    ============================== */
+    function filterProjects() {
+        const selectedYear = yearFilter?.value || 'all';
+        const selectedCompany = companyFilter?.value || 'all';
+
+        // сбрасываем Show All, чтобы фильтр применился сразу
+        showingAll = false;
+        manualShowAll = false;
+
+        projectCards.forEach(project => {
+            const years = project.dataset.years.split(',').map(y => y.trim());
+            const projectCompany = project.dataset.company;
+
+            const yearMatch = selectedYear === 'all' || years.includes(selectedYear);
+            const companyMatch = selectedCompany === 'all' || projectCompany === selectedCompany;
+
+            project.style.display = yearMatch && companyMatch ? '' : 'none';
+        });
+
+        updateCompanySiteButton();
+        filterGalleryImages();
+        updateButtons();
+    }
+
+    yearFilter?.addEventListener('change', () => { filterProjects(); syncFilterWidths(); });
+    companyFilter?.addEventListener('change', filterProjects);
 
     /* ==============================
        Smooth Scroll Helper
     ============================== */
     function smoothScroll(target, duration = 800) {
+        if (!target) return;
         const start = window.scrollY || window.pageYOffset;
         const end = target.getBoundingClientRect().top + start - 20;
         const distance = end - start;
@@ -231,84 +351,6 @@ document.addEventListener('DOMContentLoaded', () => {
     window.addEventListener('resize', syncFilterWidths);
 
     /* ==============================
-       Project Card Click
-    ============================== */
-    projectCards.forEach(card => {
-        const img = card.querySelector('img');
-        if (!img) return;
-
-        const projectCode = img.getAttribute('src').split('/')[0];
-        if (projectHistory[projectCode]) card.classList.add('has-history');
-
-        card.addEventListener('click', () => {
-            projectCards.forEach(c => c.classList.remove('project-active'));
-            card.classList.add('project-active');
-
-            currentProjectCard = card;
-
-            updateBackToProjectButton();
-            updateGoogleMapButton(card);
-            updateHistoryButton(projectCode);
-            updateVideoButton(projectCode);
-            filterGallery(projectCode);
-
-            if (gallerySection) smoothScroll(gallerySection, 1000);
-        });
-    });
-
-    /* ==============================
-       Show All Button
-    ============================== */
-    if (showAllBtn) {
-        showAllBtn.addEventListener('click', () => {
-            projectCards.forEach(c => c.classList.remove('project-active'));
-            galleryImages.forEach(imgLink => imgLink.style.display = '');
-
-            currentProjectCard = null;
-            updateBackToProjectButton();
-            updateGoogleMapButton(null);
-            updateHistoryButton(null);
-            updateVideoButton(null);
-        });
-    }
-
-    /* ==============================
-       Back to Project Click
-    ============================== */
-    if (backToProjectBtn) {
-        backToProjectBtn.addEventListener('click', () => {
-            if (!currentProjectCard) return;
-            smoothScroll(currentProjectCard, 800);
-        });
-    }
-
-    /* ==============================
-       Filter Projects
-    ============================== */
-    function filterProjects() {
-        const selectedYear = yearFilter ? yearFilter.value : 'all';
-        const selectedCompany = companyFilter ? companyFilter.value : 'all';
-
-        projectCards.forEach(project => {
-            const years = project.dataset.years.split(',').map(y => y.trim());
-            const projectCompany = project.dataset.company;
-
-            const yearMatch = selectedYear === 'all' || years.includes(selectedYear);
-            const companyMatch = selectedCompany === 'all' || projectCompany === selectedCompany;
-
-            project.style.display = yearMatch && companyMatch ? '' : 'none';
-        });
-
-        updateCompanySiteButton();
-    }
-
-    if (yearFilter) yearFilter.addEventListener('change', () => { filterProjects(); syncFilterWidths(); });
-    if (companyFilter) companyFilter.addEventListener('change', filterProjects);
-
-    updateCompanySiteButton();
-    syncFilterWidths();
-
-    /* ==============================
        Combo Reset Buttons
     ============================== */
     document.querySelectorAll('.combo-reset').forEach(btn => {
@@ -325,14 +367,16 @@ document.addEventListener('DOMContentLoaded', () => {
             select.value = 'all';
             updateButton();
             select.dispatchEvent(new Event('change'));
-
-            if (targetId === 'companyFilter' && companySiteBtn) {
-                companySiteBtn.disabled = true;
-                companySiteBtn.classList.add('disabled');
-                companySiteBtn.onclick = null;
-            }
         });
 
         updateButton();
     });
+
+    /* ==============================
+       Initial Setup
+    ============================== */
+    filterProjects();
+    filterGalleryImages();
+    updateButtons();
+    syncFilterWidths();
 });
