@@ -306,24 +306,16 @@ document.querySelectorAll('.combo-reset').forEach(btn => {
 
     if (!select) return;
 
-    function updateButton() {
-        btn.classList.toggle('active', select.value !== 'all');
-    }
-
-    function handleChange() {
-        updateButton();
+    select.addEventListener('change', () => {
         filterProjects();
         syncFilterWidths();
-    }
-
-    select.addEventListener('change', handleChange);
+    });
 
     btn.addEventListener('click', () => {
         select.value = 'all';
-        handleChange();
+        filterProjects();
+        syncFilterWidths();
     });
-
-    updateButton();
 
 });
 
@@ -335,4 +327,5 @@ document.querySelectorAll('.combo-reset').forEach(btn => {
     updateButtons();
     syncFilterWidths();
 });
+
 
