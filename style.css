@@ -704,7 +704,6 @@ section h3 {
   }
 }
 
-
 /* ============================================================
    FOOTER
 ============================================================ */
@@ -756,7 +755,6 @@ footer {
   color: #fff;
   font-weight: normal;
 }
-
 
 /* ============================================================
    PROJECT FILTER COMBO — UNIFIED & RESPONSIVE
@@ -817,15 +815,11 @@ footer {
   align-items: center;
   padding: 0;
   border-radius: 6px;
-  background: #999;
+  background: #1f2933;
   color: #fff;
   border: none;
   cursor: pointer;
   transition: background 0.25s ease;
-}
-
-.combo-reset.active {
-  background: #1f2933;
 }
 
 .combo-reset:hover {
@@ -867,6 +861,7 @@ footer {
 
 /* ================== Мобильные экраны (телефоны) ================== */
 @media(max-width: 768px) {
+
   .project-filter {
     gap: 10pt;
   }
@@ -895,10 +890,12 @@ footer {
     margin-left: 0;
     margin-top: 6px;
   }
+
 }
 
 /* ================== Планшеты ================== */
 @media(min-width: 769px) and (max-width: 1024px) {
+
   .project-filter select.combo,
   .company-row select.combo {
     flex: 1;
@@ -906,15 +903,18 @@ footer {
     max-width: none;
     font-size: 15px;
   }
+
 }
 
 /* ================== Десктоп ================== */
 @media(min-width: 1025px) {
+
   .project-filter select.combo,
   .company-row select.combo {
     max-width: 400px;
     font-size: 16px;
   }
+
 }
 
 
@@ -1714,3 +1714,4 @@ footer {
     opacity: 1;
   }
 }
+
