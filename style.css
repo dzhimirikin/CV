@@ -379,113 +379,6 @@ section h3 {
 }
 
 
-/* ============================================================ */
-/* PROJECTS — обновлённые hover эффекты */
-/* ============================================================ */
-.projects {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 20px;
-}
-
-.project {
-  position: relative;                 
-  overflow: hidden;                   
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  cursor: pointer;
-}
-
-.project:hover,
-.project:focus,
-.project:active {
-  transform: scale(1.03);                    /* усиленное увеличение */
-  box-shadow: 0 12px 24px rgba(0,0,0,0.15); /* более заметная тень */
-}
-
-.project img {
-  width: 100%;
-  height: 180px;
-  object-fit: cover;
-  margin-bottom: 10px;
-  background: #ddd;
-  transition: transform 0.3s ease, filter 0.3s ease;
-}
-
-.project:hover img,
-.project:focus img,
-.project:active img {
-  transform: scale(1.02);             /* лёгкое увеличение картинки */
-  filter: brightness(0.95);           /* едва заметное затемнение */
-}
-
-.project h3 {
-  margin-bottom: 5px;
-  transition: color 0.25s ease;
-}
-
-.project:hover h3,
-.project:focus h3,
-.project:active h3 {
-  color: #007acc;                     /* акцент при наведении */
-}
-
-.project p {
-  word-break: break-word;
-  overflow-wrap: break-word;
-}
-
-/* overlay */
-.project .overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0,0,0,0.05);       
-  opacity: 0;
-  transition: opacity 0.3s ease;
-  pointer-events: none;
-}
-
-.project:hover .overlay,
-.project:focus .overlay,
-.project:active .overlay {
-  opacity: 1;
-}
-
-/* ссылки внутри карточек */
-.project a {
-  transition: color 0.25s ease, text-decoration 0.25s ease;
-}
-.project:hover a,
-.project:focus a,
-.project:active a {
-  color: #007acc;
-  text-decoration: underline;
-}
-
-/* иконки и медиа кнопки внутри карточек */
-.project .icon,
-.project .media-button {
-  transition: transform 0.25s ease, color 0.25s ease;
-}
-.project:hover .icon,
-.project:focus .icon,
-.project:active .icon,
-.project:hover .media-button,
-.project:focus .media-button,
-.project:active .media-button {
-  transform: scale(1.2);
-  color: #007acc;
-}
-
-
-/* рамка для активного проекта */
-.project-active {
-  outline: 2px solid #000;     /* чёрная рамка */
-  outline-offset: -2px;        /* чтобы не увеличивалась карточка */
-  transition: outline 0.25s ease;
-}
 
 /* ============================================================
    COMPANY WEBSITE BUTTON — только иконка и disabled
@@ -576,6 +469,37 @@ section h3 {
 /* ============================================================
    SKILLS SECTION
 ============================================================ */
+
+/* категории софта */
+#skills h3 {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  margin: 40px 0 20px;
+  font-size: 18px;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+/* линии по бокам категории */
+#skills h3::before,
+#skills h3::after {
+  content: "";
+  flex: 1;
+  border-bottom: 1px solid #dcdcdc;
+}
+
+#skills h3::before {
+  margin-right: 15px;
+}
+
+#skills h3::after {
+  margin-left: 15px;
+}
+
+
+/* строка навыка */
 .skill {
   display: flex;
   align-items: center;
@@ -584,13 +508,13 @@ section h3 {
   flex-wrap: wrap;
 }
 
+
+/* название программы */
 .skill-name {
-  flex: 1 1 150px;
-  font-weight: bold;
+  flex: 1 1 160px;
+  font-weight: normal;
 }
 
-
-/* ---------------- SKILL BAR ---------------- */
 
 /* контейнер бара */
 .skill-bar {
@@ -602,18 +526,20 @@ section h3 {
   overflow: hidden;
 }
 
-/* серый статичный движок */
+
+/* серый фон бара */
 .skill-track {
   position: absolute;
   top: 0;
   left: 0;
   height: 100%;
   width: 0;
-  background: #ddd;
+  background: #e5e5e5;
   border-radius: 7px;
 }
 
-/* цветной анимируемый бар */
+
+/* цветная часть */
 .skill-progress {
   position: absolute;
   top: 0;
@@ -622,17 +548,22 @@ section h3 {
   width: 0;
   background: #1f2933;
   border-radius: 7px;
-  transition: width 1.2s ease-in-out;
+  transition: width 2.4s ease-in-out;
 }
 
+
+/* процент */
 .skill-percent {
   width: 40px;
   text-align: right;
-  font-weight: bold;
+  font-weight: normal;
 }
 
 
-/* ---------------- SKILLS MOBILE ---------------- */
+/* ============================================================
+   MOBILE
+============================================================ */
+
 @media (max-width: 768px) {
 
   .skill {
@@ -704,6 +635,7 @@ section h3 {
   }
 }
 
+
 /* ============================================================
    FOOTER
 ============================================================ */
@@ -755,6 +687,7 @@ footer {
   color: #fff;
   font-weight: normal;
 }
+
 
 /* ============================================================
    PROJECT FILTER COMBO — UNIFIED & RESPONSIVE
@@ -815,11 +748,15 @@ footer {
   align-items: center;
   padding: 0;
   border-radius: 6px;
-  background: #1f2933;
+  background: #999;
   color: #fff;
   border: none;
   cursor: pointer;
   transition: background 0.25s ease;
+}
+
+.combo-reset.active {
+  background: #1f2933;
 }
 
 .combo-reset:hover {
@@ -861,7 +798,6 @@ footer {
 
 /* ================== Мобильные экраны (телефоны) ================== */
 @media(max-width: 768px) {
-
   .project-filter {
     gap: 10pt;
   }
@@ -890,12 +826,10 @@ footer {
     margin-left: 0;
     margin-top: 6px;
   }
-
 }
 
 /* ================== Планшеты ================== */
 @media(min-width: 769px) and (max-width: 1024px) {
-
   .project-filter select.combo,
   .company-row select.combo {
     flex: 1;
@@ -903,18 +837,15 @@ footer {
     max-width: none;
     font-size: 15px;
   }
-
 }
 
 /* ================== Десктоп ================== */
 @media(min-width: 1025px) {
-
   .project-filter select.combo,
   .company-row select.combo {
     max-width: 400px;
     font-size: 16px;
   }
-
 }
 
 
@@ -1292,8 +1223,10 @@ footer {
 /* UNIFIED HOVER EFFECTS — PROJECTS & 3D CAROUSEL */
 /* ============================================================ */
 
+
 /* ------------------------------- */
-/* CARDS — PROJECTS */
+/* PROJECT CARDS */
+
 .projects {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -1301,17 +1234,18 @@ footer {
 }
 
 .project {
-  position: relative;                 
-  overflow: hidden;                   
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  position: relative;
+  overflow: hidden;
   cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .project:hover,
 .project:focus,
 .project:active {
-  transform: scale(1.03);                    
-  box-shadow: 0 12px 24px rgba(0,0,0,0.15); 
+  transform: scale(1.03);
+  box-shadow: 0 12px 24px rgba(0,0,0,0.15);
+  outline: none;
 }
 
 .project img {
@@ -1326,19 +1260,13 @@ footer {
 .project:hover img,
 .project:focus img,
 .project:active img {
-  transform: scale(1.02);             
-  filter: brightness(0.95);           
+  transform: scale(1.02);
+  filter: brightness(0.95);
 }
 
 .project h3 {
   margin-bottom: 5px;
-  transition: color 0.25s ease;
-}
-
-.project:hover h3,
-.project:focus h3,
-.project:active h3 {
-  color: #007acc;                     
+  color: inherit;
 }
 
 .project p {
@@ -1346,14 +1274,13 @@ footer {
   overflow-wrap: break-word;
 }
 
+
 /* overlay */
+
 .project .overlay {
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0,0,0,0.05);       
+  inset: 0;
+  background: rgba(0,0,0,0.05);
   opacity: 0;
   transition: opacity 0.3s ease;
   pointer-events: none;
@@ -1365,18 +1292,30 @@ footer {
   opacity: 1;
 }
 
-/* links & icons inside cards */
+
+/* links */
+
 .project a,
-.project .icon,
-.project .media-button {
-  transition: transform 0.25s ease, color 0.25s ease, text-decoration 0.25s ease;
+.project a:visited,
+.project a:hover,
+.project a:active,
+.project a:focus {
+  color: inherit;
+  text-decoration: none;
 }
 
 .project:hover a,
 .project:focus a,
 .project:active a {
-  color: #007acc;
   text-decoration: underline;
+}
+
+
+/* icons & media buttons */
+
+.project .icon,
+.project .media-button {
+  transition: transform 0.25s ease;
 }
 
 .project:hover .icon,
@@ -1386,11 +1325,21 @@ footer {
 .project:focus .media-button,
 .project:active .media-button {
   transform: scale(1.2);
-  color: #007acc;
 }
+
+
+/* active project */
+
+.project-active {
+  outline: 2px solid #000;
+  outline-offset: -2px;
+  transition: outline 0.25s ease;
+}
+
 
 /* ------------------------------- */
 /* 3D CERTIFICATE CAROUSEL */
+
 .carousel-container {
   width: 100%;
   height: 360px;
@@ -1425,34 +1374,26 @@ footer {
   transition: transform 0.3s ease, filter 0.3s ease, box-shadow 0.3s ease;
 }
 
-/* Hover / мобильная имитация hover — как PROJECTS */
 .carousel img:hover,
 .carousel img:focus,
 .carousel img:active {
-  transform: scale(1.03);                  
-  filter: brightness(0.95);                
+  transform: scale(1.03);
+  filter: brightness(0.95);
   box-shadow: 0 12px 24px rgba(0,0,0,0.15);
 }
 
-/* Optional captions */
+
+/* captions */
+
 .carousel img + h3,
 .carousel img + p {
-  transition: color 0.25s ease;
+  color: inherit;
 }
 
-.carousel img:hover + h3,
-.carousel img:focus + h3,
-.carousel img:active + h3 {
-  color: #007acc;
-}
 
-.carousel img:hover + p,
-.carousel img:focus + p,
-.carousel img:active + p {
-  color: #007acc;
-}
+/* ------------------------------- */
+/* CAROUSEL CONTROLS */
 
-/* Carousel controls */
 .carousel-controls {
   margin-top: 16px;
   display: flex;
@@ -1461,12 +1402,12 @@ footer {
 }
 
 .carousel-controls button {
-  display: flex;               
+  display: flex;
   align-items: center;
   justify-content: center;
-  height: 42px;                
-  width: 84px;                 
-  font-size: 20px;             
+  height: 42px;
+  width: 84px;
+  font-size: 20px;
   border-radius: 6px;
   background: #1f2933;
   color: #fff;
@@ -1479,8 +1420,12 @@ footer {
   background: #11171a;
 }
 
-/* Mobile adjustments */
+
+/* ------------------------------- */
+/* MOBILE */
+
 @media (max-width: 768px) {
+
   .carousel-container {
     height: 280px;
     perspective: 800px;
@@ -1499,26 +1444,7 @@ footer {
     padding: 8px 14px;
     font-size: 14px;
   }
-}
 
-/* ---------------- CAROUSEL BUTTONS, специальные свойства ---------------- */
-.carousel-controls button {
-  display: flex;               
-  align-items: center;
-  justify-content: center;
-  height: 42px;                
-  width: 84px;                 
-  font-size: 20px;             
-  border-radius: 6px;
-  background: #1f2933;
-  color: #fff;
-  border: none;
-  cursor: pointer;
-  transition: background 0.25s ease;
-}
-
-.carousel-controls button:hover {
-  background: #11171a;
 }
 
 
@@ -1714,4 +1640,3 @@ footer {
     opacity: 1;
   }
 }
-
