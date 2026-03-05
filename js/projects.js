@@ -296,28 +296,22 @@ document.addEventListener('DOMContentLoaded', () => {
     window.addEventListener('load', syncFilterWidths);
     window.addEventListener('resize', syncFilterWidths);
 
-/* ==============================
-   Combo Reset Buttons
-============================== */
-document.querySelectorAll('.combo-reset').forEach(btn => {
+    /* ==============================
+       Combo Reset Buttons
+    ============================== */
+    document.querySelectorAll('.combo-reset').forEach(btn => {
+        const targetId = btn.dataset.target;
+        const select = document.getElementById(targetId);
 
-    const targetId = btn.dataset.target;
-    const select = document.getElementById(targetId);
+        function updateButton() {
+            btn.classList.toggle('active', select.value !== 'all');
+        }
 
-    if (!select) return;
+        select.addEventListener('change', () => { updateButton(); filterProjects(); });
+        btn.addEventListener('click', () => { select.value = 'all'; updateButton(); filterProjects(); });
 
-    select.addEventListener('change', () => {
-        filterProjects();
-        syncFilterWidths();
+        updateButton();
     });
-
-    btn.addEventListener('click', () => {
-        select.value = 'all';
-        filterProjects();
-        syncFilterWidths();
-    });
-
-});
 
     /* ==============================
        Initial Setup
@@ -327,5 +321,3 @@ document.querySelectorAll('.combo-reset').forEach(btn => {
     updateButtons();
     syncFilterWidths();
 });
-
-
