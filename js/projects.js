@@ -85,7 +85,6 @@ document.addEventListener('DOMContentLoaded', () => {
         "018_PCOOP": 0
     };
 
-
     /* ==============================
        Utility Functions
     ============================== */
@@ -111,15 +110,18 @@ document.addEventListener('DOMContentLoaded', () => {
        Update All Buttons
     ============================== */
     function updateButtons() {
+
         const noActiveFiltersOrProject = !currentProjectCard && !filtersActive();
 
-        // ShowAll / ShowFiltered
         showAllBtn.textContent = showingAll ? showFilteredText : showAllText;
+
         if (noActiveFiltersOrProject) {
             disableButton(showAllBtn);
         } else {
             enableButton(showAllBtn, () => {
+
                 showingAll = !showingAll;
+
                 if (showingAll) {
                     lastFocusedProject = currentProjectCard;
                     currentProjectCard = null;
@@ -127,24 +129,27 @@ document.addEventListener('DOMContentLoaded', () => {
                 } else {
                     currentProjectCard = lastFocusedProject;
                     projectCards.forEach(c => c.classList.remove('project-active'));
-                    if (currentProjectCard) currentProjectCard.classList.add('project-active');
+
+                    if (currentProjectCard)
+                        currentProjectCard.classList.add('project-active');
                 }
+
                 filterGalleryImages();
                 updateButtons();
             });
         }
 
-        // Back to Project
         if (currentProjectCard) {
             enableButton(backToProjectBtn, () => smoothScroll(currentProjectCard, 800));
         } else {
             disableButton(backToProjectBtn);
         }
 
-        // Company Site
         if (companyFilter && companySiteBtn) {
+
             const selectedOption = companyFilter.options[companyFilter.selectedIndex];
             const url = selectedOption?.dataset.site || "";
+
             if (url) {
                 enableButton(companySiteBtn, () => window.open(url, '_blank'));
             } else {
@@ -152,7 +157,6 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }
 
-        // Video / Google Map / History
         if (currentProjectCard) {
             updateVideoButton(currentProjectCard.dataset.project);
             updateGoogleMapButton(currentProjectCard);
@@ -165,14 +169,25 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function updateHistoryButton(projectCode) {
-        if (!historyBtn || !projectCode || !projectHistory[projectCode]) return disableButton(historyBtn);
+
+        if (!historyBtn || !projectCode || !projectHistory[projectCode]) {
+            disableButton(historyBtn);
+            return;
+        }
+
         enableButton(historyBtn, () => window.open(projectHistory[projectCode], '_blank'));
         historyBtn.classList.add('history');
     }
 
     function updateVideoButton(projectCode) {
-        if (!videoBtn || !projectCode) return disableButton(videoBtn);
+
+        if (!videoBtn || !projectCode) {
+            disableButton(videoBtn);
+            return;
+        }
+
         const videoFile = projectVideo[projectCode];
+
         if (videoFile && videoFile !== 0) {
             enableButton(videoBtn, () => window.open(videoFile, '_blank', 'width=800,height=450,resizable=yes'));
         } else {
@@ -181,61 +196,101 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function updateGoogleMapButton(card) {
+
         if (!googleMapBtn) return;
+
         const lat = card?.dataset.lat;
         const lng = card?.dataset.lng;
+
         if (lat && lng && lat !== "0" && lng !== "0") {
+
             enableButton(googleMapBtn, () => {
+
                 const url = `https://www.google.com/maps/search/?api=1&query=${lat},${lng}&zoom=17`;
                 window.open(url, '_blank');
+
             });
+
             googleMapBtn.classList.add('history');
+
         } else {
             disableButton(googleMapBtn);
         }
     }
 
     /* ==============================
-       Gallery Filter Function
+       Gallery Filter
     ============================== */
     function filterGalleryImages() {
+
         const yearVal = yearFilter?.value || 'all';
         const companyVal = companyFilter?.value || 'all';
 
         galleryImages.forEach(img => {
+
             const projectCode = img.getAttribute('href').split('/')[0];
-            const card = Array.from(projectCards).find(c => c.dataset.project === projectCode);
+
+            const card = Array.from(projectCards).find(
+                c => c.dataset.project === projectCode
+            );
+
             if (!card) return;
 
             if (showingAll) {
+
                 img.style.display = '';
+
             } else if (currentProjectCard) {
-                img.style.display = (projectCode === currentProjectCard.dataset.project) ? '' : 'none';
+
+                img.style.display =
+                    (projectCode === currentProjectCard.dataset.project)
+                        ? '' : 'none';
+
             } else {
-                const yearMatch = yearVal === 'all' || card.dataset.years.split(',').includes(yearVal);
-                const companyMatch = companyVal === 'all' || card.dataset.company === companyVal;
-                img.style.display = (yearMatch && companyMatch) ? '' : 'none';
+
+                const yearMatch =
+                    yearVal === 'all' ||
+                    card.dataset.years.split(',').includes(yearVal);
+
+                const companyMatch =
+                    companyVal === 'all' ||
+                    card.dataset.company === companyVal;
+
+                img.style.display =
+                    (yearMatch && companyMatch)
+                        ? ''
+                        : 'none';
             }
         });
     }
 
     /* ==============================
-       Project Card Click
+       Project Click
     ============================== */
     projectCards.forEach(card => {
+
         const img = card.querySelector('img');
+
         if (!img) return;
 
-        if (projectHistory[img.getAttribute('src').split('/')[0]]) card.classList.add('has-history');
+        if (projectHistory[img.getAttribute('src').split('/')[0]])
+            card.classList.add('has-history');
 
         card.addEventListener('click', () => {
-            projectCards.forEach(c => c.classList.remove('project-active'));
+
+            projectCards.forEach(c =>
+                c.classList.remove('project-active')
+            );
+
             card.classList.add('project-active');
+
             currentProjectCard = card;
             lastFocusedProject = card;
             showingAll = false;
+
             filterGalleryImages();
             updateButtons();
+
             smoothScroll(gallerySection, 1000);
         });
     });
@@ -244,17 +299,31 @@ document.addEventListener('DOMContentLoaded', () => {
        Project Filters
     ============================== */
     function filterProjects() {
+
         const selectedYear = yearFilter?.value || 'all';
         const selectedCompany = companyFilter?.value || 'all';
+
         currentProjectCard = null;
         showingAll = false;
 
         projectCards.forEach(project => {
-            const years = project.dataset.years.split(',').map(y => y.trim());
+
+            const years =
+                project.dataset.years.split(',').map(y => y.trim());
+
             const company = project.dataset.company;
-            const yearMatch = selectedYear === 'all' || years.includes(selectedYear);
-            const companyMatch = selectedCompany === 'all' || company === selectedCompany;
-            project.style.display = (yearMatch && companyMatch) ? '' : 'none';
+
+            const yearMatch =
+                selectedYear === 'all' || years.includes(selectedYear);
+
+            const companyMatch =
+                selectedCompany === 'all' || company === selectedCompany;
+
+            project.style.display =
+                (yearMatch && companyMatch)
+                    ? ''
+                    : 'none';
+
             project.classList.remove('project-active');
         });
 
@@ -262,27 +331,48 @@ document.addEventListener('DOMContentLoaded', () => {
         updateButtons();
     }
 
-    yearFilter?.addEventListener('change', () => { filterProjects(); syncFilterWidths(); });
+    yearFilter?.addEventListener('change', () => {
+        filterProjects();
+        syncFilterWidths();
+    });
+
     companyFilter?.addEventListener('change', filterProjects);
 
     /* ==============================
-       Smooth Scroll Helper
+       Smooth Scroll
     ============================== */
     function smoothScroll(target, duration = 800) {
+
         if (!target) return;
+
         const start = window.scrollY || window.pageYOffset;
         const end = target.getBoundingClientRect().top + start - 20;
         const distance = end - start;
+
         let startTime = null;
 
         function animation(currentTime) {
-            if (!startTime) startTime = currentTime;
+
+            if (!startTime)
+                startTime = currentTime;
+
             const timeElapsed = currentTime - startTime;
-            const progress = Math.min(timeElapsed / duration, 1);
-            const ease = 0.5 * (1 - Math.cos(Math.PI * progress));
-            window.scrollTo(0, start + distance * ease);
-            if (timeElapsed < duration) requestAnimationFrame(animation);
+
+            const progress =
+                Math.min(timeElapsed / duration, 1);
+
+            const ease =
+                0.5 * (1 - Math.cos(Math.PI * progress));
+
+            window.scrollTo(
+                0,
+                start + distance * ease
+            );
+
+            if (timeElapsed < duration)
+                requestAnimationFrame(animation);
         }
+
         requestAnimationFrame(animation);
     }
 
@@ -290,9 +380,15 @@ document.addEventListener('DOMContentLoaded', () => {
        Sync Filter Widths
     ============================== */
     function syncFilterWidths() {
+
         if (!yearCombo || !companyCombo) return;
-        yearCombo.style.width = window.innerWidth <= 768 ? "100%" : companyCombo.offsetWidth + "px";
+
+        yearCombo.style.width =
+            window.innerWidth <= 768
+                ? "100%"
+                : companyCombo.offsetWidth + "px";
     }
+
     window.addEventListener('load', syncFilterWidths);
     window.addEventListener('resize', syncFilterWidths);
 
@@ -300,17 +396,18 @@ document.addEventListener('DOMContentLoaded', () => {
        Combo Reset Buttons
     ============================== */
     document.querySelectorAll('.combo-reset').forEach(btn => {
+
         const targetId = btn.dataset.target;
         const select = document.getElementById(targetId);
 
-        function updateButton() {
-            btn.classList.toggle('active', select.value !== 'all');
-        }
+        if (!select) return;
 
-        select.addEventListener('change', () => { updateButton(); filterProjects(); });
-        btn.addEventListener('click', () => { select.value = 'all'; updateButton(); filterProjects(); });
+        btn.addEventListener('click', () => {
 
-        updateButton();
+            select.value = 'all';
+
+            filterProjects();
+        });
     });
 
     /* ==============================
@@ -320,4 +417,5 @@ document.addEventListener('DOMContentLoaded', () => {
     filterGalleryImages();
     updateButtons();
     syncFilterWidths();
+
 });
