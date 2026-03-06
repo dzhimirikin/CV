@@ -1,4 +1,4 @@
-/* ======================================================
+/* ====================================================== 
    PROJECTS & GALLERY MODULE
    Handles projects selection, gallery filtering, and
    all project-related buttons with multilingual support
@@ -24,6 +24,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const yearCombo        = document.querySelector('.filter-item:first-child .combo-row');
     const companyCombo     = document.querySelector('.company-row .combo-row');
+
+    /* ===== NEW ===== */
+    const projectsCounter  = document.getElementById('projectsCounter');
 
     let currentProjectCard = null;
     let lastFocusedProject = null;
@@ -88,6 +91,7 @@ document.addEventListener('DOMContentLoaded', () => {
     /* ==============================
        Utility Functions
     ============================== */
+
     function disableButton(btn) {
         if (!btn) return;
         btn.disabled = true;
@@ -104,6 +108,20 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function filtersActive() {
         return (yearFilter && yearFilter.value !== 'all') || (companyFilter && companyFilter.value !== 'all');
+    }
+
+    /* ===== NEW ===== */
+    function updateProjectsCounter() {
+
+        if (!projectsCounter) return;
+
+        const totalProjects = projectCards.length;
+
+        const visibleProjects = Array.from(projectCards)
+            .filter(card => card.style.display !== 'none')
+            .length;
+
+        projectsCounter.textContent = `${visibleProjects}/${totalProjects}`;
     }
 
     /* ==============================
@@ -329,6 +347,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         filterGalleryImages();
         updateButtons();
+        updateProjectsCounter(); /* NEW */
     }
 
     yearFilter?.addEventListener('change', () => {
@@ -417,5 +436,6 @@ document.addEventListener('DOMContentLoaded', () => {
     filterGalleryImages();
     updateButtons();
     syncFilterWidths();
+    updateProjectsCounter(); /* NEW */
 
 });
