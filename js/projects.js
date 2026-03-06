@@ -33,6 +33,14 @@ document.addEventListener('DOMContentLoaded', () => {
     let showingAll = false;
 
     /* ==============================
+       SCROLL SPEED SETTINGS
+    ============================== */
+
+    const SCROLL_TO_GALLERY = 800;
+    const SCROLL_TO_PROJECT = 600;
+
+
+    /* ==============================
        Multilingual Show All / Show Filtered
     ============================== */
     const showAllText      = showAllBtn.dataset.showAll || showAllBtn.textContent.trim();
@@ -158,7 +166,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         if (currentProjectCard) {
-            enableButton(backToProjectBtn, () => smoothScroll(currentProjectCard, 800));
+            enableButton(backToProjectBtn, () => smoothScroll(currentProjectCard, SCROLL_TO_PROJECT));
         } else {
             disableButton(backToProjectBtn);
         }
@@ -309,7 +317,7 @@ document.addEventListener('DOMContentLoaded', () => {
             filterGalleryImages();
             updateButtons();
 
-            smoothScroll(gallerySection, 1000);
+            smoothScroll(gallerySection, SCROLL_TO_GALLERY);
         });
     });
 
