@@ -1327,9 +1327,15 @@ footer {
 /* active project */
 
 .project-active {
-  outline: 2px solid #000;
-  outline-offset: -2px;
-  transition: outline 0.25s ease;
+  box-shadow: 0 0 0 2px #000;
+}
+
+.project-active:hover,
+.project-active:focus,
+.project-active:active {
+  box-shadow:
+    0 0 0 2px #000,
+    0 12px 24px rgba(0,0,0,0.15);
 }
 
 
