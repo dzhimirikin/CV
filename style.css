@@ -1636,3 +1636,22 @@ footer {
     opacity: 1;
   }
 }
+
+/* ============================================================
+   GALLERY BUTTONS — EQUAL WIDTH (DESKTOP)
+============================================================ */
+
+@media (min-width: 769px) {
+
+  .show-all-card {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .show-all-card .cv-link {
+    flex: 1 1 180px;
+    text-align: center;
+  }
+
+}
