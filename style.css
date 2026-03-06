@@ -748,15 +748,11 @@ footer {
   align-items: center;
   padding: 0;
   border-radius: 6px;
-  background: #999;
+  background: #1f2933;
   color: #fff;
   border: none;
   cursor: pointer;
   transition: background 0.25s ease;
-}
-
-.combo-reset.active {
-  background: #1f2933;
 }
 
 .combo-reset:hover {
