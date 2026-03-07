@@ -458,24 +458,36 @@ html[lang="ru"] {
    FILTER ROW (COMPANY + WEBSITE BUTTON)
 ============================================================ */
 
-/* Нижний фильтр компании + кнопка www */
 .company-row {
   display: flex;
   align-items: center;
   gap: 6px;
 }
 
-/* combo + reset внутри company-row */
 .company-row .combo-row {
   display: flex;
   align-items: center;
   gap: 6px;
 }
 
-/* кнопка сайта сразу за combo-row на больших экранах */
-.company-row #companySiteBtn {
+/* обе кнопки сайтов */
+.company-row .cv-link {
   flex-shrink: 0;
   margin-left: 6px;
+}
+
+
+/* ============================================================
+   DESKTOP FILTER ALIGNMENT
+============================================================ */
+
+@media (min-width: 769px) {
+
+  .company-row .cv-link {
+    flex: 0 0 200px;
+    justify-content: center;
+  }
+
 }
 
 
@@ -499,12 +511,14 @@ html[lang="ru"] {
     width: 100%;
   }
 
-  .company-row #companySiteBtn {
+  .company-row #companySiteBtn,
+  .company-row #profileSiteBtn {
     width: 100%;
     text-align: center;
     margin-left: 0;
     margin-top: 6px;
   }
+
 }
 
 
@@ -758,7 +772,12 @@ footer {
 }
 
 /* ================== Комбо + кнопка сброса ================== */
-.combo-row,
+.combo-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
 .company-row {
   display: flex;
   align-items: center;
@@ -768,7 +787,8 @@ footer {
 /* Селекты внутри фильтров */
 .project-filter select.combo,
 .company-row select.combo {
-  flex: 1;
+  flex: 0 0 auto;
+  width: 220px;
   min-width: 140px;
   height: 42px;
   padding: 10px 20px;
@@ -845,18 +865,32 @@ footer {
 
 /* ================== Мобильные экраны (телефоны) ================== */
 @media(max-width: 768px) {
+
   .project-filter {
     gap: 10pt;
   }
 
-  .project-filter select.combo,
-  .company-row select.combo {
-    font-size: 14px;
-    min-width: 120px;
-    max-width: 100%;
+  /* строка select + reset */
+  .combo-row{
+    width:100%;
   }
 
-  /* company-row растягивается вертикально */
+  /* селект растягивается */
+  .project-filter select.combo,
+  .company-row select.combo {
+    flex:1;
+    width:100%;
+    min-width:0;
+    max-width:none;
+    font-size:14px;
+  }
+
+  /* reset кнопка фиксированная */
+  .combo-reset{
+    flex:0 0 42px;
+  }
+
+  /* company filter */
   .company-row {
     flex-direction: column;
     align-items: stretch;
@@ -867,12 +901,14 @@ footer {
     width: 100%;
   }
 
-  .company-row #companySiteBtn {
-    width: 100%;
-    text-align: center;
-    margin-left: 0;
-    margin-top: 6px;
+  /* кнопки сайтов */
+  #profileSiteBtn,
+  #companySiteBtn {
+    width:100%;
+    text-align:center;
+    margin-top:6px;
   }
+
 }
 
 /* ================== Планшеты ================== */
