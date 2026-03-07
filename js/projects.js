@@ -329,48 +329,42 @@ document.addEventListener('DOMContentLoaded', () => {
     /* ==============================
        Gallery Filter
     ============================== */
-    function filterGalleryImages() {
+function filterGalleryImages() {
 
-        const yearVal = yearFilter?.value || 'all';
-        const companyVal = companyFilter?.value || 'all';
+    galleryImages.forEach(img => {
 
-        galleryImages.forEach(img => {
+        const projectCode = img.getAttribute('href').split('/')[0];
 
-            const projectCode = img.getAttribute('href').split('/')[0];
+        const card = Array.from(projectCards).find(
+            c => c.dataset.project === projectCode
+        );
 
-            const card = Array.from(projectCards).find(
-                c => c.dataset.project === projectCode
-            );
+        if (!card) return;
 
-            if (!card) return;
+        if (showingAll) {
 
-            if (showingAll) {
+            img.style.display = '';
 
-                img.style.display = '';
+        } else if (currentProjectCard) {
 
-            } else if (currentProjectCard) {
+            img.style.display =
+                (projectCode === currentProjectCard.dataset.project)
+                    ? ''
+                    : 'none';
 
-                img.style.display =
-                    (projectCode === currentProjectCard.dataset.project)
-                        ? '' : 'none';
+        } else {
 
-            } else {
+            /* ВАЖНО: проверяем видимость карточки */
 
-                const yearMatch =
-                    yearVal === 'all' ||
-                    card.dataset.years.split(',').includes(yearVal);
+            img.style.display =
+                card.style.display === 'none'
+                    ? 'none'
+                    : '';
+        }
 
-                const companyMatch =
-                    companyVal === 'all' ||
-                    card.dataset.company === companyVal;
+    });
 
-                img.style.display =
-                    (yearMatch && companyMatch)
-                        ? ''
-                        : 'none';
-            }
-        });
-    }
+}
 
     /* ==============================
        Project Click
