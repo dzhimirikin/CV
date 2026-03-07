@@ -9,6 +9,34 @@ document.addEventListener('DOMContentLoaded', () => {
        DOM Elements
     ============================== */
     const projectCards     = document.querySelectorAll('.card.project');
+
+   /* ==============================
+   Project paragraph markers (by language)
+============================== */
+
+const lang = document.documentElement.lang;
+
+const labels = {
+    ru: ["Особенности", "Роль"],
+    en: ["Project features", "Role"],
+    et: ["Projekti eripära", "Roll"]
+};
+
+projectCards.forEach(card => {
+
+    card.querySelectorAll("p").forEach(p => {
+
+        const text = p.textContent.trim();
+
+        if (labels[lang]?.some(label => text.startsWith(label))) {
+            p.classList.add("project-marker");
+        }
+
+    });
+
+});
+
+   
     /* ==============================
        Profile Logos (auto from data attributes)
     ============================== */
@@ -535,3 +563,4 @@ function filterGalleryImages() {
     updateProjectsCounter(); /* NEW */
 
 });
+
