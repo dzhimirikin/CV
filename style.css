@@ -1337,7 +1337,7 @@ footer {
 .project p.marker-start,
 .project p.marker-start ~ p{
   padding-left:14px;
-  margin-top:3px;
+  margin-top:6px;
 }
 
 /* кружок только у нужных абзацев */
@@ -1808,6 +1808,7 @@ footer {
   }
 
 }
+
 
 
 
