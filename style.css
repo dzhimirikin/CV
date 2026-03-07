@@ -126,6 +126,10 @@ header {
   cursor: pointer;
 }
 
+.logo:hover {
+  text-decoration: underline;
+}
+
 
 /* ---------------- DESKTOP MENU ---------------- */
 nav ul {
@@ -378,6 +382,53 @@ section h3 {
   box-shadow: 0 2px 6px rgba(0,0,0,0.1);
 }
 
+
+/* ============================================================
+   ABOUT SECTION (TEXT READABILITY)
+============================================================ */
+
+#about p {
+  line-height: 1.55;
+}
+
+#about p + p {
+  margin-top: 0.65em;
+}
+
+
+/* ============================================================
+   HERO LINK STYLE
+============================================================ */
+
+/* языковые отступы */
+html[lang="en"] {
+  --hero-cv-gap: 43px;
+}
+
+html[lang="et"] {
+  --hero-cv-gap: 43px;
+}
+
+html[lang="ru"] {
+  --hero-cv-gap: 25px;
+}
+
+.hero-cv {
+  display: inline-block;
+  margin-top: var(--hero-cv-gap, 43px); /* регулируемый зазор */
+
+  font: inherit;
+  font-weight: bold;
+  font-size: 18px;
+  color: #fff;
+  text-decoration: none;
+}
+
+/* общий hover как у логотипа */
+.logo:hover,
+.hero-cv:hover {
+  text-decoration: underline;
+}
 
 
 /* ============================================================
