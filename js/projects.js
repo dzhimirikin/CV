@@ -10,8 +10,6 @@ document.addEventListener('DOMContentLoaded', () => {
     ============================== */
     const projectCards     = document.querySelectorAll('.card.project');
 
-   /* ==============================
-   Project paragraph markers (by language)
 /* ==============================
    Project paragraph markers
 ============================== */
@@ -32,21 +30,27 @@ projectCards.forEach(card => {
 
         const text = p.textContent.trim();
 
-        if (labels[lang]?.some(label => text.startsWith(label))) {
+        labels[lang]?.forEach(label => {
 
-            p.classList.add("project-marker");
+            if (text.startsWith(label)) {
 
-            if (!firstMarkerFound) {
-                p.classList.add("marker-start");
-                firstMarkerFound = true;
+                p.classList.add("project-marker");
+
+                /* делаем ключевое слово полужирным */
+                p.innerHTML = p.innerHTML.replace(label, `<strong>${label}</strong>`);
+
+                if (!firstMarkerFound) {
+                    p.classList.add("marker-start");
+                    firstMarkerFound = true;
+                }
+
             }
 
-        }
+        });
 
     });
 
 });
-
    
     /* ==============================
        Profile Logos (auto from data attributes)
@@ -574,5 +578,6 @@ function filterGalleryImages() {
     updateProjectsCounter(); /* NEW */
 
 });
+
 
 
