@@ -12,6 +12,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
    /* ==============================
    Project paragraph markers (by language)
+/* ==============================
+   Project paragraph markers
 ============================== */
 
 const lang = document.documentElement.lang;
@@ -24,12 +26,21 @@ const labels = {
 
 projectCards.forEach(card => {
 
+    let firstMarkerFound = false;
+
     card.querySelectorAll("p").forEach(p => {
 
         const text = p.textContent.trim();
 
         if (labels[lang]?.some(label => text.startsWith(label))) {
+
             p.classList.add("project-marker");
+
+            if (!firstMarkerFound) {
+                p.classList.add("marker-start");
+                firstMarkerFound = true;
+            }
+
         }
 
     });
@@ -563,4 +574,5 @@ function filterGalleryImages() {
     updateProjectsCounter(); /* NEW */
 
 });
+
 
