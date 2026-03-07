@@ -1329,15 +1329,21 @@ footer {
 }
 
 /* ======================================================
-   PROJECT PARAGRAPH MARKERS
+   PROJECT DESCRIPTION PARAGRAPHS
 ====================================================== */
 
-/* project markers */
+/* все абзацы после первого маркированного */
+
+.project p.marker-start,
+.project p.marker-start ~ p{
+  padding-left:14px;
+  margin-top:3px;
+}
+
+/* кружок только у маркированных */
 
 .project-marker{
-  position: relative;
-  padding-left: 14px;
-  margin-top: 3px;
+  position:relative;
 }
 
 .project-marker::before{
@@ -1802,6 +1808,7 @@ footer {
   }
 
 }
+
 
 
 
