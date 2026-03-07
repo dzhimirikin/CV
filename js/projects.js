@@ -9,6 +9,55 @@ document.addEventListener('DOMContentLoaded', () => {
        DOM Elements
     ============================== */
     const projectCards     = document.querySelectorAll('.card.project');
+    /* ==============================
+       Profile Logos (auto from data attributes)
+    ============================== */
+
+    const profileLogos = {
+
+        "Schüco": "schuco.png",
+        "Reynaers": "reynaers.png",
+        "Aluprof": "aluprof.png",
+        "Alutech": "alutech.png",
+        "ALMO": "almo.png",
+        "Custom": "custom.png"
+
+    };
+
+
+    projectCards.forEach(card => {
+
+        const prof1 = card.dataset.prof_1;
+        const prof2 = card.dataset.prof_2;
+        const prof3 = card.dataset.prof_3;
+
+        const systemsBlock = document.createElement('div');
+        systemsBlock.className = 'project-systems';
+
+        [prof1, prof2, prof3].forEach(system => {
+
+            if (system && system !== "0") {
+
+            const logoFile = profileLogos[system];
+
+            if (!logoFile) return;
+
+            const img = document.createElement('img');
+
+            img.src = `LinksLogo/${logoFile}`;
+            img.alt = system;
+
+            systemsBlock.appendChild(img);
+            }
+
+        });
+
+        const firstImg = card.querySelector('img');
+
+        if (firstImg)
+            card.insertBefore(systemsBlock, firstImg);
+
+    });
     const galleryImages    = document.querySelectorAll('#gallery .gallery a');
     const gallerySection   = document.getElementById('gallery');
 
@@ -72,6 +121,21 @@ document.addEventListener('DOMContentLoaded', () => {
         "017_JMETK": 0,
         "018_PCOOP": 0
     };
+
+
+    /* ==============================
+       Mark projects with history
+    ============================== */
+
+    projectCards.forEach(card => {
+
+        const id = card.dataset.project;
+
+        if (projectHistory[id] && projectHistory[id] !== 0) {
+            card.classList.add("has-history");
+        }
+
+    });
 
     /* ==============================
        Video Links
