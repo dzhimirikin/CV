@@ -18,8 +18,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const googleMapBtn     = document.getElementById('googleMapBtn');
     const historyBtn       = document.getElementById('historyBtn');
     const companySiteBtn   = document.getElementById('companySiteBtn');
+    const profileSiteBtn   = document.getElementById('profileSiteBtn');
 
     const yearFilter       = document.getElementById('yearFilter');
+    const profileFilter    = document.getElementById('profileFilter');
     const companyFilter    = document.getElementById('companyFilter');
 
     const yearCombo        = document.querySelector('.filter-item:first-child .combo-row');
@@ -115,7 +117,11 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function filtersActive() {
-        return (yearFilter && yearFilter.value !== 'all') || (companyFilter && companyFilter.value !== 'all');
+        return (
+            (yearFilter && yearFilter.value !== 'all') ||
+            (profileFilter && profileFilter.value !== 'all') ||
+            (companyFilter && companyFilter.value !== 'all')
+        );
     }
 
     /* ===== NEW ===== */
@@ -180,6 +186,18 @@ document.addEventListener('DOMContentLoaded', () => {
                 enableButton(companySiteBtn, () => window.open(url, '_blank'));
             } else {
                 disableButton(companySiteBtn);
+            }
+        }
+
+        if (profileFilter && profileSiteBtn) {
+
+            const selectedOption = profileFilter.options[profileFilter.selectedIndex];
+            const url = selectedOption?.dataset.site || "";
+
+            if (url) {
+                enableButton(profileSiteBtn, () => window.open(url, '_blank'));
+            } else {
+                disableButton(profileSiteBtn);
             }
         }
 
@@ -327,6 +345,7 @@ document.addEventListener('DOMContentLoaded', () => {
     function filterProjects() {
 
         const selectedYear = yearFilter?.value || 'all';
+        const selectedProfile = profileFilter?.value || 'all';
         const selectedCompany = companyFilter?.value || 'all';
 
         currentProjectCard = null;
@@ -342,13 +361,23 @@ document.addEventListener('DOMContentLoaded', () => {
             const yearMatch =
                 selectedYear === 'all' || years.includes(selectedYear);
 
-            const companyMatch =
-                selectedCompany === 'all' || company === selectedCompany;
+    const prof1 = project.dataset.prof_1;
+    const prof2 = project.dataset.prof_2;
+    const prof3 = project.dataset.prof_3;
 
-            project.style.display =
-                (yearMatch && companyMatch)
-                    ? ''
-                    : 'none';
+    const profileMatch =
+        selectedProfile === 'all' ||
+        selectedProfile === prof1 ||
+        selectedProfile === prof2 ||
+        selectedProfile === prof3;
+
+    const companyMatch =
+        selectedCompany === 'all' || company === selectedCompany;
+
+    project.style.display =
+        (yearMatch && companyMatch && profileMatch)
+            ? ''
+            : 'none';
 
             project.classList.remove('project-active');
         });
@@ -363,6 +392,7 @@ document.addEventListener('DOMContentLoaded', () => {
         syncFilterWidths();
     });
 
+    profileFilter?.addEventListener('change', filterProjects);
     companyFilter?.addEventListener('change', filterProjects);
 
     /* ==============================
