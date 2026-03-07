@@ -1328,6 +1328,26 @@ footer {
   opacity:0.9;
 }
 
+/* ======================================================
+   PROJECTS & GALLERY MODULE
+====================================================== */
+
+/* project paragraph markers */
+
+.project p:not(:first-of-type) {
+  position: relative;
+  padding-left: 16px;
+}
+
+.project p:not(:first-of-type)::before {
+  content: "◦";
+  position: absolute;
+  left: 0;
+  top: 0.55em;
+  font-size: 0.75em;
+  opacity: 0.65;
+}
+
 
 /* ============================================================ */
 /* UNIFIED HOVER EFFECTS — PROJECTS & 3D CAROUSEL */
@@ -1777,3 +1797,4 @@ footer {
   }
 
 }
+
