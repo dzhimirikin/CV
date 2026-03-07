@@ -442,6 +442,47 @@
         </div>
       </div>
 
+      <!-- Фильтр по профильным системам -->
+      <div class="filter-item">
+
+            <label for="profileFilter">Filter by profile system:</label>
+
+            <div class="company-row">
+
+                  <div class="combo-row">
+
+                        <select id="profileFilter" class="combo">
+                              <option value="all" data-site="">All</option>
+                              <option value="Schüco" data-site="https://www.schueco.com">Schüco</option>
+                              <option value="Reynaers" data-site="https://www.reynaers.com">Reynaers</option>
+                              <option value="Aluprof" data-site="https://aluprof.com">Aluprof</option>
+                              <option value="Alutech" data-site="https://alutech-group.com">Alutech</option>
+                              <option value="ALMO" data-site="https://www.almo-ags.ru/">ALMO</option>
+                              <option value="Custom" data-site="">Special profiles</option>
+                        </select>
+
+                        <button class="combo-reset" data-target="profileFilter" title="Reset filter">
+                              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                          d="M6 18L18 6M6 6l12 12"/>
+                              </svg>
+                        </button>
+
+                  </div>
+
+                  <button id="profileSiteBtn" class="cv-link" disabled>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon-heroicon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="16" height="16">
+                              <circle cx="12" cy="12" r="10"></circle>
+                              <line x1="2" y1="12" x2="22" y2="12"></line>
+                              <path d="M12 2a15.3 15.3 0 0 1 0 20"></path>
+                        </svg>
+                        Profile website
+                  </button>
+
+            </div>
+
+      </div>
+
       <!-- Фильтр по компаниям -->
       <div class="filter-item">
         <label for="companyFilter">Filter by company:</label>
@@ -494,6 +535,9 @@
          data-project="000_STAIR" 
          data-years="2012" 
          data-company="EuroStroyStandart LLC"
+         data-prof_1="0"
+         data-prof_2="0"
+         data-prof_3="0"
          data-lat="59.853026"
          data-lng="30.340520">
       <img src="000_STAIR/000_STAIR_01.jpg" alt="000_STAIR">
@@ -509,6 +553,9 @@
          data-project="001_IL" 
          data-years="2012,2013,2014" 
          data-company="ELEMENTFACADE LLC"
+         data-prof_1="Reynaers"
+         data-prof_2="0"
+         data-prof_3="0"
          data-lat="0" 
          data-lng="0">
         <img src="001_IL/001_IL_1.jpg" alt="001_IL">
@@ -527,6 +574,9 @@
          data-project="002_KR" 
          data-years="2013,2014" 
          data-company="ELEMENTFACADE LLC"
+         data-prof_1="Reynaers"
+         data-prof_2="Custom"
+         data-prof_3="0"
          data-lat="59.96972667595169" 
          data-lng="30.270404975278332">
         <img src="002_KR/002_KR_1.jpg" alt="002_KR">
@@ -544,6 +594,9 @@
          data-project="003_BY" 
          data-years="2013,2014,2015" 
          data-company="ELEMENTFACADE LLC"
+         data-prof_1="Reynaers"
+         data-prof_2="ALMO"
+         data-prof_3="Custom"
          data-lat="59.9768703960985" 
          data-lng="30.224771050298926">
         <img src="003_BY/003_BY_01.jpg" alt="003_BY">
@@ -560,6 +613,9 @@
          data-project="004_LAKHTA" 
          data-years="2016,2017,2018" 
          data-company="Samsung C&T Corp"
+         data-prof_1="Schüco"
+         data-prof_2="Custom"
+         data-prof_3="0"
          data-lat="59.98840808350551" 
          data-lng="30.177825755229104">
         <img src="004_LAKHTA/004_LAKHTA_01.jpg" alt="004_LAKHTA">
@@ -581,6 +637,9 @@
          data-project="005_SILLA" 
          data-years="2021" 
          data-company="Fenster Alumiinium AS"
+         data-prof_1="Reynaers"
+         data-prof_2="0"
+         data-prof_3="0"
          data-lat="59.393555866821515" 
          data-lng="27.760053639703372">
         <img src="005_SILLA/005_SILLA_01.jpg" alt="005_SILLA">
@@ -597,6 +656,9 @@
          data-project="006_MUHU" 
          data-years="2022" 
          data-company="Fenster Alumiinium AS"
+         data-prof_1="Reynaers"
+         data-prof_2="0"
+         data-prof_3="0"
          data-lat="58.60545121802041" 
          data-lng="23.233597920450922">
         <img src="006_MUHU/006_MUHU_01.jpg" alt="006_MUHU">
@@ -613,6 +675,9 @@
          data-project="007_NRG" 
          data-years="2022" 
          data-company="Fenster Alumiinium AS"
+         data-prof_1="Reynaers"
+         data-prof_2="0"
+         data-prof_3="0"
          data-lat="59.38196754947218" 
          data-lng="28.190513942058544">
         <img src="007_NRG/007_NRG_01.jpg" alt="007_NRG">
@@ -629,6 +694,9 @@
          data-project="008_NEK" 
          data-years="2023" 
          data-company="Fenster Alumiinium AS"
+         data-prof_1="Reynaers"
+         data-prof_2="0"
+         data-prof_3="0"
          data-lat="59.380475592682345" 
          data-lng="28.196474495960903">
         <img src="008_NEK/008_NEK_01.jpg" alt="008_NEK">
@@ -645,6 +713,9 @@
          data-project="009_NEL" 
          data-years="2023" 
          data-company="Fenster Alumiinium AS"
+         data-prof_1="Reynaers"
+         data-prof_2="0"
+         data-prof_3="0"
          data-lat="59.38116010359024" 
          data-lng="28.197255390569815">
         <img src="009_NEL/009_NEL_01.png" alt="009_NEL">
@@ -661,6 +732,9 @@
          data-project="010_ML" 
          data-years="2023" 
          data-company="Fenster Alumiinium AS"
+         data-prof_1="Reynaers"
+         data-prof_2="0"
+         data-prof_3="0"
          data-lat="59.415944067443164" 
          data-lng="24.734851379549166">
         <img src="010_ML/010_ML_01.jpg" alt="010_ML">
@@ -677,6 +751,9 @@
          data-project="011_LAAGRI" 
          data-years="2023" 
          data-company="Fenster Alumiinium AS"
+         data-prof_1="Reynaers"
+         data-prof_2="0"
+         data-prof_3="0"
          data-lat="59.44104556786512" 
          data-lng="24.766802113740088">
         <img src="011_LAAGRI/011_LAAGRI_01.png" alt="011_LAAGRI">
@@ -693,6 +770,9 @@
          data-project="012_MERCEDES" 
          data-years="2024" 
          data-company="Malmerk Fassaadid AS"
+         data-prof_1="Reynaers"
+         data-prof_2="0"
+         data-prof_3="0"
          data-lat="59.440247704413046" 
          data-lng="24.898935344161536">
         <img src="012_MERCEDES/012_MERCEDES_01.jpg" alt="012_MERCEDES">
@@ -708,6 +788,9 @@
          data-project="013_GREENFL" 
          data-years="2024" 
          data-company="REY Aluminium LLC"
+         data-prof_1="Alutech"
+         data-prof_2="0"
+         data-prof_3="0"
          data-lat="52.92878654001972" 
          data-lng="108.21075478348259">
         <img src="013_GREENFL/013_GREENFL_01.jpg" alt="013_GREENFL">
@@ -723,6 +806,9 @@
          data-project="014_KASTANI" 
          data-years="2025" 
          data-company="SeiCom OÜ"
+         data-prof_1="Aluprof"
+         data-prof_2="0"
+         data-prof_3="0"
          data-lat="58.36693195290489" 
          data-lng="26.721173609027407">
         <img src="014_KASTANI/014_KASTANI_01.jpg" alt="014_KASTANI">
@@ -738,6 +824,9 @@
          data-project="015_TLT" 
          data-years="2025" 
          data-company="SeiCom OÜ"
+         data-prof_1="Aluprof"
+         data-prof_2="0"
+         data-prof_3="0"
          data-lat="58.353191" 
          data-lng="26.667736">
         <img src="015_TLT/015_TLT_01.jpg" alt="015_TLT">
@@ -753,6 +842,9 @@
          data-project="016_LAT" 
          data-years="2025" 
          data-company="SeiCom OÜ"
+         data-prof_1="Aluprof"
+         data-prof_2="0"
+         data-prof_3="0"
          data-lat="58.3439670752008" 
          data-lng="26.72764195951716">
         <img src="016_LAT/016_LAT_01.jpg" alt="016_LAT">
@@ -768,6 +860,9 @@
          data-project="017_JMETK" 
          data-years="2025" 
          data-company="SeiCom OÜ"
+         data-prof_1="Aluprof"
+         data-prof_2="0"
+         data-prof_3="0"
          data-lat="58.762173" 
          data-lng="26.405036">
         <img src="017_JMETK/017_JMETK_01.png" alt="017_JMETK">
@@ -783,6 +878,9 @@
          data-project="018_PCOOP" 
          data-years="2025" 
          data-company="SeiCom OÜ"
+         data-prof_1="Aluprof"
+         data-prof_2="0"
+         data-prof_3="0"
          data-lat="58.65069511231367" 
          data-lng="25.98483218509239">
         <img src="018_PCOOP/018_PCOOP_01.jpg" alt="018_PCOOP">
