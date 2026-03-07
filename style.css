@@ -1329,23 +1329,27 @@ footer {
 }
 
 /* ======================================================
-   PROJECTS & GALLERY MODULE
+   PROJECT PARAGRAPH MARKERS
 ====================================================== */
-
-/* project paragraph markers */
 
 .project p:not(:first-of-type) {
   position: relative;
-  padding-left: 16px;
+  padding-left: 14px;
+  margin-top: 3px;
 }
 
 .project p:not(:first-of-type)::before {
-  content: "◦";
+  content: "";
   position: absolute;
   left: 0;
-  top: 0.55em;
-  font-size: 0.75em;
-  opacity: 0.65;
+  top: 50%;
+  transform: translateY(-50%);
+
+  width: 4px;
+  height: 4px;
+
+  background: #444;
+  border-radius: 50%;
 }
 
 
@@ -1797,4 +1801,5 @@ footer {
   }
 
 }
+
 
