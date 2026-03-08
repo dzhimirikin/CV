@@ -17,9 +17,9 @@ document.addEventListener('DOMContentLoaded', () => {
 const lang = document.documentElement.lang;
 
 const labels = {
-    ru: ["Особенности", "Роль"],
+    ru: ["Особенности проекта", "Роль"],
     en: ["Project features", "Role"],
-    et: ["Projekti eripära", "Roll"]
+    et: ["Projekti eripärad", "Roll"]
 };
 
 projectCards.forEach(card => {
@@ -578,6 +578,7 @@ function filterGalleryImages() {
     updateProjectsCounter(); /* NEW */
 
 });
+
 
 
 
