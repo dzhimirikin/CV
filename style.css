@@ -343,7 +343,7 @@ nav a:hover {
 /* ---------------- HERO MOBILE ---------------- */
 @media (max-width: 768px) {
   .hero {
-    min-height: calc(100vh - var(--header-h));
+    min-height: 100vh;
     margin-top: 0;
   }
 
@@ -1827,4 +1827,5 @@ footer {
   }
 
 }
+
 
