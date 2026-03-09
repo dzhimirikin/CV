@@ -314,6 +314,20 @@ nav a:hover {
   max-width: 600px;
 }
 
+/* ---------------- TEXT ALIGNMENT ---------------- */
+
+.hero-text p {
+  text-align: justify;
+  hyphens: none;
+}
+
+.card p {
+  text-align: justify;
+  hyphens: auto;
+}
+
+
+
 /* Анимация фона */
 @keyframes heroZoom {
   from { transform: scale(1) translate(0,0); }
@@ -356,6 +370,7 @@ nav a:hover {
     transform: scale(1.08);
   }
 }
+
 
 
 /* ============================================================
