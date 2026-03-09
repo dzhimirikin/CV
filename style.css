@@ -268,41 +268,47 @@ nav a:hover {
   z-index: -1;
 }
 
-.hero-overlay {
-  position: absolute;
-  inset: 0;
-  background: rgba(0,0,0,0.35);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 80px 20px;
+.hero-overlay{
+  position:absolute;
+  inset:0;
+  background:rgba(0,0,0,0.35);
+
+  display:flex;
+  justify-content:center;
 }
 
 .hero-inner {
   max-width: 1100px;
-  width: 100%;
+  margin: auto;
+
+  padding-top: 50px;
+  padding-bottom: 50px;
+  padding-left: 20px;
+  padding-right: 20px;
+
   display: flex;
   gap: 40px;
   color: #fff;
-  flex-direction: row;       /* фото слева, текст справа */
-  align-items: flex-start;   /* верхняя граница, чтобы текст был на уровне фото */
+  align-items: flex-start;
 }
 
 /* Фото */
 .hero-photo {
-  width: 200px;
-  height: 200px;
-  object-fit: cover;
-  border: 2px solid rgba(255,255,255,0.6);
-  border-radius: 4px;
-  background: #ccc;
-  margin-top: var(--hero-photo-gap-top);
-  margin-bottom: var(--hero-photo-gap-bottom);
+  flex:0 0 200px;
+  width:200px;
+  height:200px;
+  object-fit:cover;
+  border:2px solid rgba(255,255,255,0.6);
+  border-radius:4px;
+  background:#ccc;
+  margin-top:var(--hero-photo-gap-top);
+  margin-bottom:var(--hero-photo-gap-bottom);
 }
 
 /* Текст справа от фото */
 .hero-text {
-  margin-top: var(--hero-photo-gap-top); /* текст выравнивается по верхнему краю фото */
+  margin-top: var(--hero-photo-gap-top); /* выравнивание по верхнему краю фото */
+  flex: 1; /* занимает всё свободное место до правой границы */
 }
 
 .hero h1 {
@@ -311,7 +317,7 @@ nav a:hover {
 }
 
 .hero p {
-  max-width: 600px;
+  max-width: none;
 }
 
 /* ---------------- TEXT ALIGNMENT ---------------- */
@@ -372,6 +378,16 @@ nav a:hover {
 }
 
 
+/* ============================================================
+   GLOBAL CONTAINER
+============================================================ */
+
+.container{
+  max-width:1100px;
+  margin:auto;
+  padding:0 20px;
+}
+
 
 /* ============================================================
    SECTIONS (GENERAL)
@@ -417,15 +433,15 @@ section h3 {
 
 /* языковые отступы */
 html[lang="en"] {
-  --hero-cv-gap: 43px;
+  --hero-cv-gap: 60px;
 }
 
 html[lang="et"] {
-  --hero-cv-gap: 43px;
+  --hero-cv-gap: 60px;
 }
 
 html[lang="ru"] {
-  --hero-cv-gap: 25px;
+  --hero-cv-gap: 60px;
 }
 
 .hero-cv {
