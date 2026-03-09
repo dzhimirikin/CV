@@ -44,6 +44,31 @@
   <link rel="manifest" href="./manifest.json">
   <meta name="theme-color" content="#1f2933"> <!-- цвет строки состояния на Android -->
 
+
+<!-- Hyphenation -->
+<script>
+window.Hyphenopoly = {
+  require: {
+    ru: "FORCEHYPHENOPOLY",
+    "en-us": "FORCEHYPHENOPOLY",
+    et: "FORCEHYPHENOPOLY"
+  },
+  paths: {
+    maindir: "Hyphenopoly/"
+  },
+  setup: {
+    selectors: {
+      ".card.project p": {
+        minWordLength: 8
+      }
+    }
+  }
+};
+</script>
+
+<script src="Hyphenopoly/Hyphenopoly_Loader.js"></script>
+
+
 </head>
 <body>
 
@@ -542,7 +567,7 @@
          data-lng="30.340520">
       <img src="000_STAIR/000_STAIR_01.jpg" alt="000_STAIR">
       <h3>2012: Stair, Shopping and Entertainment Center Piter, S.-Petersburg, Tipanova st., 21A, Russia</h3>
-      <p>EuroStroyStandart LLC / S.-Petersburg</p>
+      <p><strong>EuroStroyStandart LLC</strong> / S.-Petersburg</p>
       <p>Role: Structural Design (K2/K3) / Structural Calculations / Installation</p>
       <span class="history-label">Project history available</span>
     <div class="overlay"></div>
@@ -560,7 +585,7 @@
          data-lng="0">
         <img src="001_IL/001_IL_1.jpg" alt="001_IL">
         <h3>2012-2014: Residence Lesnaya Formula, Russia</h3>
-        <p>ELEMENTFACADE LLC / Moscow–S.-Petersburg</p>
+        <p><strong>ELEMENTFACADE LLC</strong> / Moscow–S.-Petersburg</p>
         <p>Project features: 4000 m², ventilated facades (3D ceramic NBK CERAMIC, custom-developed substructure, aluminum), REYNAERS aluminum profile system, stainless steel mesh blinds, spider facades.</p>
         <p>High-precision installation, curtain wall windows on glass supports with a height of 4 m, doors made of aluminum and aluminum-wood profiles with a height of 4 m.</p>
         <p>Experience with “non-standard” dimensions and increased weight.</p>
@@ -581,7 +606,7 @@
          data-lng="30.270404975278332">
         <img src="002_KR/002_KR_1.jpg" alt="002_KR">
         <h3>2013-2014: Apart-hotel Krestovsky, 12, S.-Petersburg, Russia</h3>
-        <p>ELEMENTFACADE LLC / Moscow–S.-Petersburg</p>
+        <p><strong>ELEMENTFACADE LLC</strong> / Moscow–S.-Petersburg</p>        
         <p>Project features: Ventilated facades (3D ceramic NBK CERAMIC, substructure – OLMA stainless steel + custom-developed substructure (aluminum), curved elements – EUROMAX sheet), glazing (REYNAERS, custom extrusion profiles).</p>
         <p>Cassette installation of ventilated facades using a custom substructure.</p>
         <p>Role: Structural Design (K2/K3), project team management, supervision of installation works.</p>
@@ -601,7 +626,7 @@
          data-lng="30.224771050298926">
         <img src="003_BY/003_BY_01.jpg" alt="003_BY">
         <h3>2013-2015: Yavara-Neva Yacht Club, building complex on Bychiy Island, S.-Petersburg, Russia</h3>
-        <p>ELEMENTFACADE LLC / Moscow–S.-Petersburg</p>
+        <p><strong>ELEMENTFACADE LLC</strong> / Moscow–S.-Petersburg</p>
         <p>Project features: Ventilated facades (large-block aluminum sheet NOVELIS cassettes, QMS stainless steel substructure), glazing (REYNAERS, ALMO, custom extrusion profiles).</p>
         <p>Role: Structural Design (K2/K3), project team management, supervision of installation works.</p>
         <span class="history-label">Project history available</span>
@@ -620,7 +645,7 @@
          data-lng="30.177825755229104">
         <img src="004_LAKHTA/004_LAKHTA_01.jpg" alt="004_LAKHTA">
         <h3>2016-2018: Lakhta Center complex, multifunctional building (MFB), S.-Petersburg, Russia</h3>
-        <p>Samsung C&T Corp (Technical Client)</p>
+        <p><strong>Samsung C&T Corp</strong> (Technical Client)</p>
         <p>Project features:</p>
         <p>Use of modular facade systems (SCHÜCO, special extrusions), including warm-cold and double facades; spider façades on glass mullions, cable spider façades; roofs based on ethylene-tetrafluoroethylene (ETFE) film; detailed development of facade maintenance system concepts.</p>
         <p>All types of calculations (structural, thermal, condensation). All types of testing (climatic, operational, fire-resistance confirmation, factory, and acceptance tests).</p>
@@ -644,7 +669,7 @@
          data-lng="27.760053639703372">
         <img src="005_SILLA/005_SILLA_01.jpg" alt="005_SILLA">
         <h3>2021: Sillamäe Vanalinna kool, Hariduse St. 6 and Geoloogia St. 13, Sillamäe, Estonia</h3>
-        <p>Fenster Alumiinium AS</p>
+        <p><strong>Fenster Alumiinium AS</strong></p>
         <p>Project features: Curtain wall glazing using REYNAERS systems.</p>
         <p>Role: K2/K3 design following the one project – one engineer principle.</p>
         <span class="history-label">Project history available</span>
@@ -663,7 +688,7 @@
          data-lng="23.233597920450922">
         <img src="006_MUHU/006_MUHU_01.jpg" alt="006_MUHU">
         <h3>2022: Muhu Maja Center, village of Liiva, Muhu Parish, Saare County, Estonia</h3>
-        <p>Fenster Alumiinium AS</p>
+        <p><strong>Fenster Alumiinium AS</strong></p>
         <p>Project features: Curtain wall glazing using REYNAERS systems, structural corner glazing with transition onto the roof.</p>
         <p>Role: K2/K3 design following the one project – one engineer principle.</p>
         <span class="history-label">Project history available</span>
@@ -682,7 +707,7 @@
          data-lng="28.190513942058544">
         <img src="007_NRG/007_NRG_01.jpg" alt="007_NRG">
         <h3>2022: Narva Riigigümnaasiumi õppehoone, 31 Aleksander Puškini St., Narva, Estonia</h3>
-        <p>Fenster Alumiinium AS</p>
+        <p><strong>Fenster Alumiinium AS</strong></p>
         <p>Project features: Curtain wall glazing using REYNAERS systems.</p>
         <p>Role: K2/K3 design following the one project – one engineer principle.</p>
         <span class="history-label">Project history available</span>
@@ -701,7 +726,7 @@
          data-lng="28.196474495960903">
         <img src="008_NEK/008_NEK_01.jpg" alt="008_NEK">
         <h3>2023: Narva Eesti Gümnaasium, 1 Kraavi St., Narva, Estonia</h3>
-        <p>Fenster Alumiinium AS</p>
+        <p><strong>Fenster Alumiinium AS</strong></p>
         <p>Project features: Curtain wall glazing using REYNAERS systems, structural corner glazing with transition onto the roof. Glazing on zero-level aluminum profiles mounted on glued laminated timber, with installation of external duplicate profiles on mullions and transoms, including LED lighting.</p>
         <p>Role: K2/K3 design following the one project – one engineer principle.</p>
         <span class="history-label">Project history available</span>
@@ -720,7 +745,7 @@
          data-lng="28.197255390569815">
         <img src="009_NEL/009_NEL_01.png" alt="009_NEL">
         <h3>2023: Narva Estonian Kindergarten "Red Riding Hood", Hariduse St. 10, Narva, Estonia</h3>
-        <p>Fenster Alumiinium AS</p>
+        <p><strong>Fenster Alumiinium AS</strong></p>
         <p>Project features: Curtain wall glazing using REYNAERS systems. Glazing on zero-level aluminum profiles mounted on glued laminated timber, with installation of external duplicate profiles on mullions and transoms, including LED lighting.</p>
         <p>Role: K2/K3 design following the one project – one engineer principle.</p>
         <span class="history-label">Project history available</span>
@@ -739,7 +764,7 @@
          data-lng="24.734851379549166">
         <img src="010_ML/010_ML_01.jpg" alt="010_ML">
         <h3>2023: Magdalena Kindergarten, Asula St. 16 / Asula St. 18, Tallinn, Estonia</h3>
-        <p>Fenster Alumiinium AS</p>
+        <p><strong>Fenster Alumiinium AS</strong></p>
         <p>Project features: Curtain wall glazing using REYNAERS systems.</p>
         <p>Role: K2/K3 design following the one project – one engineer principle.</p>
         <span class="history-label">Project history available</span>
@@ -758,7 +783,7 @@
          data-lng="24.766802113740088">
         <img src="011_LAAGRI/011_LAAGRI_01.png" alt="011_LAAGRI">
         <h3>2023: Lootsi 8 Commercial and Office Building, Tallinn, Estonia</h3>
-        <p>Fenster Alumiinium AS</p>
+        <p><strong>Fenster Alumiinium AS</strong></p>
         <p>Project features: Design of louvered screens using ALUTECH custom extrusion profiles. Cassette installation of the louvers.</p>
         <p>Role: K2/K3 design following the one project – one engineer principle.</p>
         <span class="history-label">Project history available</span>
@@ -777,6 +802,7 @@
          data-lng="24.898935344161536">
         <img src="012_MERCEDES/012_MERCEDES_01.jpg" alt="012_MERCEDES">
         <h3>2024: Mercedes-Veho Car Center, Tooma St. 2, Tallinn, Estonia</h3>
+        <p><strong>Malmerk Fassaadid AS</strong></p>
         <p>Project features: Curtain wall glazing using REYNAERS systems. Development of connection details for heavy signage.</p>
         <p>Role: K2/K3 design following the one project – one engineer principle.</p>
         <span class="history-label">Project history available</span>
@@ -795,6 +821,7 @@
          data-lng="108.21075478348259">
         <img src="013_GREENFL/013_GREENFL_01.jpg" alt="013_GREENFL">
         <h3>2024: Hotel, Thermal Complex, and Wellness Center "GREEN FLOW BAIKAL", Republic of Buryatia, Pribaikalsky District, Turka Village, Russia</h3>
+        <p><strong>REY Aluminium LLC</strong></p>
         <p>Project features: Curtain wall glazing using ALUTECH systems. Use of a double-span mullion with a working joint (composite mullion).</p>
         <p>Role: K2 design following the one project – one engineer principle.</p>
         <span class="history-label">Project history available</span>
@@ -813,6 +840,7 @@
          data-lng="26.721173609027407">
         <img src="014_KASTANI/014_KASTANI_01.jpg" alt="014_KASTANI">
         <h3>2025: Kastani Kolmnurk Office Building, Kastani St. 92, Tartu, Estonia</h3>
+        <p><strong>SeiCom OÜ</strong></p>
         <p>Project features: Curtain wall glazing using ALUPROF systems. Curved facades with tight radii.</p>
         <p>Role: K2/K3 design following the one project – one engineer principle.</p>
         <span class="history-label">Project history available</span>
@@ -831,6 +859,7 @@
          data-lng="26.667736">
         <img src="015_TLT/015_TLT_01.jpg" alt="015_TLT">
         <h3>2025: "Tulesäde" Kindergarten, Kambja Parish, Estonia</h3>
+        <p><strong>SeiCom OÜ</strong></p>
         <p>Project features: Curtain wall glazing using ALUPROF systems.</p>
         <p>Role: K2/K3 design following the one project – one engineer principle.</p>
         <span class="history-label">Project history available</span>
@@ -849,6 +878,7 @@
          data-lng="26.72764195951716">
         <img src="016_LAT/016_LAT_01.jpg" alt="016_LAT">
         <h3>2025: Lõõtsa 6 Office Building, Tartu, Estonia</h3>
+        <p><strong>SeiCom OÜ</strong></p>
         <p>Project features: Curtain wall glazing using ALUPROF systems.</p>
         <p>Role: K2/K3 design following the one project – one engineer principle.</p>
         <span class="history-label">Project history available</span>
@@ -867,6 +897,7 @@
          data-lng="26.405036">
         <img src="017_JMETK/017_JMETK_01.png" alt="017_JMETK">
         <h3>2025: METK Research Center for Plant Breeding and Agriculture, Jõgeva, Estonia</h3>
+        <p><strong>SeiCom OÜ</strong></p>
         <p>Project features: Curtain wall glazing using ALUPROF systems.</p>
         <p>Role: K2/K3 design following the one project – one engineer principle.</p>
         <span class="history-label">Project history available</span>
@@ -884,6 +915,7 @@
          data-lat="58.65069511231367" 
          data-lng="25.98483218509239">
         <img src="018_PCOOP/018_PCOOP_01.jpg" alt="018_PCOOP">
+        <p><strong>SeiCom OÜ</strong></p>
         <h3>2025: Põltsamaa Kingu COOP Shopping Centre, 1 Kingu St, Põltsamaa, Estonia</h3>
         <p>Project features: Curtain wall glazing using ALUPROF systems.</p>
         <p>Role: K2/K3 design following the one project – one engineer principle.</p>
