@@ -349,7 +349,7 @@ nav a:hover {
 
   .hero-overlay {
     flex-direction: column;
-    padding: 40px 20px;
+    padding: 25px 20px;
   }
 
   .hero-inner {
@@ -1827,6 +1827,7 @@ footer {
   }
 
 }
+
 
 
 
