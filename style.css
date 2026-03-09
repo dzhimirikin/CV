@@ -737,11 +737,6 @@ footer {
   margin-top: 0;
 }
 
-footer p {
-  text-align: left;
-  hyphens: none;
-}
-
 /* ---------------- FOOTER MOBILE ---------------- */
 @media (max-width: 768px) {
 
@@ -1831,4 +1826,5 @@ footer p {
   }
 
 }
+
 
