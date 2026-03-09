@@ -562,124 +562,111 @@ html[lang="ru"] {
 }
 
 
+
+/* ============================================================
+   SKILLS CATEGORY HEADERS
+============================================================ */
+
+#skills h3{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:14px;
+
+  margin:40px 0 20px;
+
+  font-size:18px;
+  font-weight:600;
+  letter-spacing:.05em;
+  text-transform:uppercase;
+}
+
+#skills h3::before,
+#skills h3::after{
+  content:"";
+  flex:1;
+  max-width:120px;   /* ограничивает длину линии */
+  height:1px;
+  background:#dcdcdc;
+}
+
+
 /* ============================================================
    SKILLS SECTION
 ============================================================ */
 
-/* категории софта */
-#skills h3 {
-  display: flex;
-  align-items: center;
-  text-align: center;
-  margin: 40px 0 20px;
-  font-size: 18px;
-  font-weight: 600;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
-}
-
-/* линии по бокам категории */
-#skills h3::before,
-#skills h3::after {
-  content: "";
-  flex: 1;
-  border-bottom: 1px solid #dcdcdc;
-}
-
-#skills h3::before {
-  margin-right: 15px;
-}
-
-#skills h3::after {
-  margin-left: 15px;
-}
-
-
 /* строка навыка */
-.skill {
-  display: flex;
-  align-items: center;
-  margin-bottom: 15px;
-  gap: 15px;
-  flex-wrap: wrap;
+.skill{
+  display:flex;
+  align-items:center;
+  gap:15px;
+  margin-bottom:14px;
 }
 
 
 /* название программы */
-.skill-name {
-  flex: 1 1 160px;
-  font-weight: normal;
+.skill-name{
+  flex:0 0 160px;
 }
 
 
 /* контейнер бара */
-.skill-bar {
-  flex: 2 1 300px;
-  height: 14px;
-  position: relative;
-  background: transparent;
-  border-radius: 7px;
-  overflow: hidden;
+.skill-bar{
+  flex:1 1 auto;
+  height:12px;
+  background:#e5e5e5;
+  border-radius:6px;
+  overflow:hidden;
 }
 
 
-/* серый фон бара */
-.skill-track {
-  position: absolute;
-  top: 0;
-  left: 0;
-  height: 100%;
-  width: 0;
-  background: #e5e5e5;
-  border-radius: 7px;
-}
-
-
-/* цветная часть */
-.skill-progress {
-  position: absolute;
-  top: 0;
-  left: 0;
-  height: 100%;
-  width: 0;
-  background: #1f2933;
-  border-radius: 7px;
-  transition: width 2.4s ease-in-out;
+/* заполнение бара */
+.skill-progress{
+  height:100%;
+  width:0;
+  background:#2c3640;
+  border-radius:6px;
+  transition:width 1.2s ease;
 }
 
 
 /* процент */
-.skill-percent {
-  width: 40px;
-  text-align: right;
-  font-weight: normal;
+.skill-percent{
+  flex:0 0 40px;
+  text-align:right;
 }
 
-
 /* ============================================================
-   MOBILE
+      SKILLS MOBILE
 ============================================================ */
 
-@media (max-width: 768px) {
+@media (max-width:768px){
 
-  .skill {
-    flex-wrap: nowrap;
-    flex-direction: row;
-    align-items: baseline;
+  .skill{
+    display:grid;
+    grid-template-columns:1fr auto;
+    grid-template-rows:auto auto;
+    gap:6px 10px;
   }
 
-  .skill-bar {
-    display: none;
+  .skill-name{
+    grid-column:1;
+    grid-row:1;
   }
 
-  .skill-name {
-    flex: none;
+  .skill-percent{
+    grid-column:2;
+    grid-row:1;
+    text-align:right;
   }
 
-  .skill-percent {
-    margin-left: auto;
-    font-weight: normal;
+  .skill-bar{
+    grid-column:1 / span 2;
+    grid-row:2;
+    width:100%;
+    height:10px;
   }
+
 }
 
 
