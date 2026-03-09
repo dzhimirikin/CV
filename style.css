@@ -324,7 +324,7 @@ nav a:hover {
 
 .hero-text p {
   text-align: justify;
-  hyphens: none;
+  hyphens: auto;
 }
 
 .card p {
@@ -1827,6 +1827,7 @@ footer {
   }
 
 }
+
 
 
 
