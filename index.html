@@ -1353,6 +1353,8 @@ window.Hyphenopoly = {
   © <span id="year"></span> Dmitry Zhimirikin — Engineering Portfolio
 </footer>
 
+<div id="lightParticles"></div>
+	
 <!-- Основные скрипты -->
 <script src="js/main.js" defer></script>
 <script src="js/skills.js" defer></script>
@@ -1363,10 +1365,55 @@ window.Hyphenopoly = {
 <script src="js/links.js" defer></script>
 <script src="js/lightboxnav.js" defer></script>
 
-	
-<div id="lightParticles"></div>
+	<script>
+
+/* включение / выключение эффекта */
+
+const LIGHT_PARTICLES = true;
+
+if(LIGHT_PARTICLES){
+
+const container = document.getElementById("lightParticles");
+
+const lampX = window.innerWidth * 0.9;
+const lampY = window.innerHeight * 0.9;
+
+function createParticle(){
+
+  const p = document.createElement("div");
+  p.className = "light-particle";
+
+  const x = Math.random()*window.innerWidth;
+  const y = Math.random()*window.innerHeight;
+
+  p.style.left = x+"px";
+  p.style.top = y+"px";
+
+  const dx = x - lampX;
+  const dy = y - lampY;
+
+  const dist = Math.sqrt(dx*dx + dy*dy);
+
+  const brightness = Math.max(0.15,1 - dist/700);
+
+  p.style.opacity = brightness;
+
+  p.style.animationDuration = (6 + Math.random()*6) + "s";
+
+  container.appendChild(p);
+
+  setTimeout(()=>p.remove(),12000);
+}
+
+setInterval(createParticle,400);
+
+}
+
+</script>
+
 
 	
 </body>
 </html>
+
 
