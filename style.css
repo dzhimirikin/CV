@@ -1811,6 +1811,32 @@ footer {
 }
 
 /* ============================================================
+   LIGHTBOX ARROWS
+============================================================ */
+
+.lightbox-prev,
+.lightbox-next{
+position:absolute;
+top:50%;
+transform:translateY(-50%);
+font-size:40px;
+color:white;
+background:none;
+border:none;
+cursor:pointer;
+padding:20px;
+}
+
+.lightbox-prev{
+left:30px;
+}
+
+.lightbox-next{
+right:30px;
+}
+
+
+/* ============================================================
    GALLERY BUTTONS — EQUAL WIDTH (DESKTOP)
 ============================================================ */
 
@@ -1828,6 +1854,3 @@ footer {
   }
 
 }
-
-
-
