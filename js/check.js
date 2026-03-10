@@ -1,5 +1,10 @@
+// -------------------------------
+// JavaScript-логика формы доступа к чертежам на сайте
+// -------------------------------
+
 document.addEventListener('DOMContentLoaded', () => {
-  const DRAWING_PASSWORD = "+79313166455";
+
+  const DRAWING_PASSWORD_HASH = "bbea81bc38bc3ec1d690f39f728c15bb460a666abaa08e6d7dbe1c30b4486a9f";
 
   const inputEl = document.getElementById('drawingPassword');
   const linksEl = document.getElementById('drawingLinks');
@@ -15,22 +20,38 @@ document.addEventListener('DOMContentLoaded', () => {
   const form = document.getElementById('accessForm');
   const success = document.getElementById('accessSuccess');
 
+  // ================= HASH FUNCTION =================
+  async function hashPassword(password) {
+    const encoder = new TextEncoder();
+    const data = encoder.encode(password);
+    const hashBuffer = await crypto.subtle.digest('SHA-256', data);
+    const hashArray = Array.from(new Uint8Array(hashBuffer));
+    return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+  }
+
   // Скрываем блок пароля по умолчанию
   if (passwordBlock) passwordBlock.style.display = 'none';
 
   // ================= PASSWORD SUBMIT =================
   if (passwordSubmitBtn && inputEl && linksEl && messageEl) {
-    passwordSubmitBtn.addEventListener('click', () => {
-      const input = inputEl.value.trim();
 
-      if (input === DRAWING_PASSWORD) {
+    passwordSubmitBtn.addEventListener('click', async () => {
+
+      const input = inputEl.value.trim();
+      const hash = await hashPassword(input);
+
+      if (hash === DRAWING_PASSWORD_HASH) {
+
         linksEl.style.display = 'flex';
         messageEl.textContent = '';
         alert("Password correct. Drawings are unlocked.");
+
       } else {
+
         linksEl.style.display = 'none';
         messageEl.style.color = 'red';
         messageEl.textContent = "Incorrect password. Please check your email.";
+
       }
 
       inputEl.value = '';
@@ -62,6 +83,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   if (accessBtn) accessBtn.addEventListener('click', openModal);
   if (closeBtn) closeBtn.addEventListener('click', closeModal);
+
   if (modal) {
     modal.addEventListener('click', (e) => {
       if (e.target === modal) closeModal();
@@ -74,11 +96,13 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   if (form) {
+
     form.addEventListener('submit', (e) => {
+
       e.preventDefault();
 
-      // ===== УСТАНАВЛИВАЕМ TIME =====
       const now = new Date();
+
       const formattedTime =
         now.getFullYear() + "-" +
         String(now.getMonth() + 1).padStart(2, '0') + "-" +
@@ -100,9 +124,13 @@ document.addEventListener('DOMContentLoaded', () => {
       };
 
       emailjs.send('service_raa0kxg', 'template_wgsxwer', formData)
+
         .then((response) => {
+
           console.log('SUCCESS!', response.status, response.text);
+
           form.reset();
+
           if (success) success.style.display = 'block';
 
           if (passwordBlock) passwordBlock.style.display = 'flex';
@@ -111,11 +139,18 @@ document.addEventListener('DOMContentLoaded', () => {
             if (success) success.style.display = 'none';
             closeModal();
           }, 3500);
+
         })
+
         .catch((err) => {
+
           console.error('FAILED...', err);
           alert('Error sending email. Check console.');
+
         });
+
     });
+
   }
+
 });
