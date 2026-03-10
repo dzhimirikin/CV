@@ -74,9 +74,17 @@ showNext();
 
 function handleKey(e){
 
-if(e.key === "ArrowLeft") showPrev();
-else if(e.key === "ArrowRight") showNext();
-else if(e.key === "Escape") closeLightbox();
+if(e.key === "ArrowLeft"){
+showPrev();
+}
+
+else if(e.key === "ArrowRight"){
+showNext();
+}
+
+else if(e.key === "Escape"){
+closeLightbox();
+}
 
 }
 
