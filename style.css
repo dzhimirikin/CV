@@ -1859,3 +1859,24 @@ right:30px;
   }
 
 }
+
+/* ============================================================
+   GLOBAL EFFECTS
+============================================================ */
+
+body::before{
+  content:"";
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  z-index:0;
+
+  background:
+  radial-gradient(
+    circle at 80% 85%,
+    rgba(255,230,160,0.18) 0%,
+    rgba(255,230,160,0.10) 20%,
+    rgba(255,230,160,0.05) 35%,
+    transparent 55%
+  );
+}
