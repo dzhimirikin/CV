@@ -314,6 +314,8 @@ nav a:hover {
 .hero h1 {
   font-size: 28px;
   margin-bottom: 10px;
+  white-space: nowrap;
+  letter-spacing: -0.5px;
 }
 
 .hero p {
@@ -1826,5 +1828,6 @@ footer {
   }
 
 }
+
 
 
