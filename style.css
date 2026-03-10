@@ -1783,6 +1783,11 @@ footer {
   animation: fadeIn 0.25s forwards;
 }
 
+/* убрать рамку фокуса */
+.lightbox-overlay:focus {
+  outline: none;
+}
+
 .lightbox-img {
   max-width: 90%;
   max-height: 90%;
