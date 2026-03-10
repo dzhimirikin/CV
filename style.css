@@ -1880,3 +1880,39 @@ body::before{
     transparent 65%
   );
 }
+
+/* ============================================================
+   LIGHT PARTICLES
+============================================================ */
+
+#lightParticles{
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  z-index:1;
+}
+
+.light-particle{
+  position:absolute;
+  width:3px;
+  height:3px;
+  border-radius:50%;
+  background:rgba(255,240,200,0.9);
+  animation:floatParticle linear forwards;
+}
+
+@keyframes floatParticle{
+  from{
+    transform:translateY(40px);
+    opacity:0;
+  }
+
+  20%{
+    opacity:1;
+  }
+
+  to{
+    transform:translateY(-80px) translateX(30px);
+    opacity:0;
+  }
+}
