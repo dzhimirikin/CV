@@ -1414,20 +1414,21 @@ function snow(){
   flake.innerHTML = symbols[Math.floor(Math.random()*symbols.length)];
 
   flake.style.left = Math.random()*100+"vw";
-  flake.style.fontSize = (10+Math.random()*20)+"px";
-  flake.style.opacity = Math.random();
-  flake.style.animationDuration = (5+Math.random()*7)+"s";
+  flake.style.fontSize = (24+Math.random()*36)+"px";
+  flake.style.opacity = 0.3+Math.random()*0.7;
+  flake.style.animationDuration = (8+Math.random()*7)+"s";
 
   document.body.appendChild(flake);
 
   setTimeout(()=>flake.remove(),12000);
 }
 
-setInterval(snow,120);
+setInterval(snow,250);
 
 })();
 </script>
 	
 </body>
 </html>
+
 
