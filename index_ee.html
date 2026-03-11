@@ -1360,6 +1360,44 @@ window.Hyphenopoly = {
 <script src="js/links.js" defer></script>
 <script src="js/lightboxnav.js" defer></script>
 
+<div class="snow"></div>
+
+<style>
+.snowflake{
+  position: fixed;
+  top: -10px;
+  color: white;
+  font-size: 16px;
+  pointer-events: none;
+  animation: fall linear forwards;
+}
+
+@keyframes fall{
+  to{
+    transform: translateY(100vh);
+  }
+}
+</style>
+
+<script>
+function createSnowflake(){
+
+  const snow = document.createElement("div");
+  snow.className = "snowflake";
+  snow.innerHTML = "❄";
+
+  snow.style.left = Math.random()*100 + "vw";
+  snow.style.animationDuration = (3+Math.random()*5) + "s";
+  snow.style.opacity = Math.random();
+
+  document.body.appendChild(snow);
+
+  setTimeout(()=>snow.remove(),8000);
+}
+
+setInterval(createSnowflake,150);
+</script>
+
 
 </body>
 </html>
