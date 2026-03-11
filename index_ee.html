@@ -1379,25 +1379,52 @@ window.Hyphenopoly = {
 }
 </style>
 
-<script>
-function createSnowflake(){
-
-  const snow = document.createElement("div");
-  snow.className = "snowflake";
-  snow.innerHTML = "❄";
-
-  snow.style.left = Math.random()*100 + "vw";
-  snow.style.animationDuration = (3+Math.random()*5) + "s";
-  snow.style.opacity = Math.random();
-
-  document.body.appendChild(snow);
-
-  setTimeout(()=>snow.remove(),8000);
+<style>
+.snowflake{
+  position:fixed;
+  top:-10px;
+  color:#fff;
+  user-select:none;
+  pointer-events:none;
+  z-index:9999;
+  animation-name:snowfall;
+  animation-timing-function:linear;
 }
 
-setInterval(createSnowflake,150);
+@keyframes snowfall{
+  to{
+    transform:translateY(100vh) rotate(360deg);
+  }
+}
+</style>
+
+<script>
+(function(){
+
+const symbols = ["❄","❅","❆"];
+
+function snow(){
+
+  const flake = document.createElement("div");
+  flake.className="snowflake";
+  flake.innerHTML = symbols[Math.floor(Math.random()*symbols.length)];
+
+  flake.style.left = Math.random()*100+"vw";
+  flake.style.fontSize = (10+Math.random()*20)+"px";
+  flake.style.opacity = Math.random();
+  flake.style.animationDuration = (5+Math.random()*7)+"s";
+
+  document.body.appendChild(flake);
+
+  setTimeout(()=>flake.remove(),12000);
+}
+
+setInterval(snow,120);
+
+})();
 </script>
 
 
 </body>
 </html>
+
