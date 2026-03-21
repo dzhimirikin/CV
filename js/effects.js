@@ -4,7 +4,7 @@
      СЕЗОН
   ============================================================ */
 
-  const month = 2; // new Date().getMonth();
+  const month = new Date().getMonth();
 
   const isWinter = (month === 11 || month === 0 || month === 1);
   const isSpring = (month === 2 || month === 3 || month === 4);
