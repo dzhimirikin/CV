@@ -1859,3 +1859,127 @@ right:30px;
   }
 
 }
+
+
+/* ============================================================
+   WHATSAPP FLOAT BUTTON
+============================================================ */
+
+.wa-button {
+    position: fixed;
+
+    right: 22px;
+    bottom: 22px;
+
+    width: 64px;
+    height: 64px;
+
+    border-radius: 50%;
+
+    background: #25D366;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    z-index: 99999;
+
+    box-shadow:
+        0 10px 25px rgba(0,0,0,0.25),
+        0 0 0 0 rgba(37,211,102,0.6);
+
+    transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease;
+
+    animation: waPulse 2s infinite;
+
+    text-decoration: none;
+
+    pointer-events: auto;
+}
+
+.wa-button:hover {
+    transform: scale(1.08);
+
+    box-shadow:
+        0 14px 35px rgba(0,0,0,0.35),
+        0 0 0 14px rgba(37,211,102,0);
+}
+
+.wa-icon {
+    width: 34px;
+    height: 34px;
+}
+
+.wa-tooltip {
+    position: absolute;
+
+    right: 78px;
+
+    background: #111827;
+    color: white;
+
+    padding: 8px 12px;
+
+    border-radius: 10px;
+
+    font-size: 14px;
+    font-weight: 500;
+
+    opacity: 0;
+
+    transform: translateX(10px);
+
+    transition: all 0.25s ease;
+
+    pointer-events: none;
+
+    white-space: nowrap;
+}
+
+.wa-button:hover .wa-tooltip {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+@keyframes waPulse {
+
+    0% {
+        box-shadow:
+            0 10px 25px rgba(0,0,0,0.25),
+            0 0 0 0 rgba(37,211,102,0.6);
+    }
+
+    70% {
+        box-shadow:
+            0 10px 25px rgba(0,0,0,0.25),
+            0 0 0 18px rgba(37,211,102,0);
+    }
+
+    100% {
+        box-shadow:
+            0 10px 25px rgba(0,0,0,0.25),
+            0 0 0 0 rgba(37,211,102,0);
+    }
+}
+
+@media (max-width: 768px) {
+
+    .wa-button {
+        width: 58px;
+        height: 58px;
+
+        right: 16px;
+        bottom: 16px;
+    }
+
+    .wa-icon {
+        width: 30px;
+        height: 30px;
+    }
+
+    .wa-tooltip {
+        display: none;
+    }
+}
