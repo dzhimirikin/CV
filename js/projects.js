@@ -222,7 +222,7 @@ projectCards.forEach(card => {
         "006_MUHU": [
             {
                 title: "Muhu Maja video",
-                url: "https://youtu.be/WK5_QcWRW6U?is=MXwIzk_BYKxGsVRU"
+                url: "006_MUHU/006_MUHU_01.mp4"
             }
         ],
         "007_NRG": 0,
