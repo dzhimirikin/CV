@@ -219,7 +219,7 @@ projectCards.forEach(card => {
         ],
 
         "005_SILLA": 0,
-        "006_MUHU": 0,
+        "006_MUHU": ,https://youtu.be/WK5_QcWRW6U?is=MXwIzk_BYKxGsVRU
         "007_NRG": 0,
         "008_NEK": 0,
         "009_NEL": 0,
