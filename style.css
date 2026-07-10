@@ -1860,6 +1860,132 @@ right:30px;
 
 }
 
+/* ============================================================
+   TELEGRAM FLOAT BUTTON
+============================================================ */
+
+.tg-button {
+    position: fixed;
+
+    right: 22px;
+    bottom: 96px;      /* выше WhatsApp */
+
+    width: 64px;
+    height: 64px;
+
+    border-radius: 50%;
+
+    background: #229ED9;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    z-index: 99998;
+
+    box-shadow:
+        0 10px 25px rgba(0,0,0,0.25),
+        0 0 0 0 rgba(34,158,217,.60);
+
+    transition:
+        transform .25s ease,
+        box-shadow .25s ease;
+
+    animation: tgPulse 2s infinite;
+
+    text-decoration: none;
+}
+
+.tg-button:hover {
+
+    transform: scale(1.08);
+
+    box-shadow:
+        0 14px 35px rgba(0,0,0,.35),
+        0 0 0 14px rgba(34,158,217,0);
+}
+
+.tg-icon{
+    width:34px;
+    height:34px;
+}
+
+.tg-tooltip{
+
+    position:absolute;
+
+    right:78px;
+
+    background:#111827;
+    color:#fff;
+
+    padding:8px 12px;
+
+    border-radius:10px;
+
+    font-size:14px;
+    font-weight:500;
+
+    white-space:nowrap;
+
+    opacity:0;
+
+    transform:translateX(10px);
+
+    transition:.25s;
+
+    pointer-events:none;
+}
+
+.tg-button:hover .tg-tooltip{
+
+    opacity:1;
+    transform:translateX(0);
+}
+
+@keyframes tgPulse{
+
+    0%{
+        box-shadow:
+            0 10px 25px rgba(0,0,0,.25),
+            0 0 0 0 rgba(34,158,217,.60);
+    }
+
+    70%{
+        box-shadow:
+            0 10px 25px rgba(0,0,0,.25),
+            0 0 0 18px rgba(34,158,217,0);
+    }
+
+    100%{
+        box-shadow:
+            0 10px 25px rgba(0,0,0,.25),
+            0 0 0 0 rgba(34,158,217,0);
+    }
+}
+
+@media (max-width:768px){
+
+    .tg-button{
+
+        width:58px;
+        height:58px;
+
+        right:16px;
+        bottom:88px;
+    }
+
+    .tg-icon{
+
+        width:30px;
+        height:30px;
+    }
+
+    .tg-tooltip{
+        display:none;
+    }
+
+}
 
 /* ============================================================
    WHATSAPP FLOAT BUTTON
