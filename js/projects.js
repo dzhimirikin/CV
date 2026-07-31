@@ -213,8 +213,12 @@ projectCards.forEach(card => {
 
         "004_LAKHTA": [
             {
-                title: "Lakhta MFB video",
+                title: "Lakhta MFB video_RUS",
                 url: "https://drive.google.com/file/d/1Iza_s50vTrs9sQGQUOUTjEMQmNGOXKT1/view?usp=sharing"
+            },
+            {
+                title: "Lakhta MFB video_ENG",
+                url: "https://drive.google.com/file/d/1ZkC3gKz66a9pUSU5cKCXKK5CGo3ACxbG/view?usp=sharing"
             }
         ],
 
