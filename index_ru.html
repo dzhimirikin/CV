@@ -73,16 +73,49 @@ window.Hyphenopoly = {
 
 <!-- YANDEX TELEMOST FLOAT BUTTON -->
 
-<a href="https://telemost.yandex.ru/j/21543979358531"
-   target="_blank"
+<a href="#" 
    class="floating-yandex"
-   aria-label="Видеозвонок через Яндекс Телемост">
-
+   aria-label="Видеозвонок через Яндекс Телемост"
+   onclick="openTelemostModal(); return false;">
     Я
-
-    <span class="yandex-tooltip">Видеозвонок</span>
-
+    <span class="yandex-tooltip">Яндекс Телемост</span>
 </a>
+
+
+<!-- TELEMOST MODAL -->
+
+<div id="telemostModal" class="telemost-modal">
+
+    <div class="telemost-window">
+
+        <button class="telemost-close" onclick="closeTelemostModal()">×</button>
+
+        <div class="telemost-title">
+            Войти в Яндекс Телемост
+        </div>
+
+        <div class="telemost-subtitle">
+            Введите код встречи
+        </div>
+
+        <input
+            id="telemostCode"
+            class="telemost-input"
+            type="text"
+            inputmode="numeric"
+            placeholder="Например: 23743079358632"
+            autocomplete="off"
+        >
+
+        <button
+            class="telemost-enter"
+            onclick="joinTelemost()">
+            Войти в встречу
+        </button>
+
+    </div>
+
+</div>
 	
 <!-- TELEGRAM FLOAT BUTTON -->
 
@@ -1541,7 +1574,7 @@ window.Hyphenopoly = {
 <script src="js/links.js" defer></script>
 <script src="js/lightboxnav.js" defer></script>
 <script src="js/effects.js" defer></script>
-
+<script src="js/yandex_telemost.js" defer></script>
 
 </body>
 </html>
