@@ -73,12 +73,17 @@ window.Hyphenopoly = {
 
 <!-- YANDEX TELEMOST FLOAT BUTTON -->
 
-<a href="#" 
+<a href="#"
    class="floating-yandex"
    aria-label="Видеозвонок через Яндекс Телемост"
    onclick="openTelemostModal(); return false;">
+
     Я
-    <span class="yandex-tooltip">Яндекс Телемост</span>
+
+    <span class="yandex-tooltip">
+        Яндекс Телемост
+    </span>
+
 </a>
 
 
@@ -88,10 +93,13 @@ window.Hyphenopoly = {
 
     <div class="telemost-window">
 
-        <button class="telemost-close" onclick="closeTelemostModal()">×</button>
+        <button class="telemost-close"
+                onclick="closeTelemostModal()">
+            ×
+        </button>
 
         <div class="telemost-title">
-            Войти в Яндекс Телемост
+            Видеовстреча
         </div>
 
         <div class="telemost-subtitle">
@@ -101,9 +109,10 @@ window.Hyphenopoly = {
         <input
             id="telemostCode"
             class="telemost-input"
-            type="text"
+            type="password"
             inputmode="numeric"
-            placeholder="Например: 23743079358632"
+            maxlength="4"
+            placeholder="Код встречи"
             autocomplete="off"
         >
 
