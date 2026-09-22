@@ -2921,6 +2921,8 @@ right:30px;
         font-size: 22px;
         line-height: 1.3;
         font-weight: 700;
+
+        color: #c00000;
     }
 
     .company-warning-box p {
@@ -2939,6 +2941,9 @@ right:30px;
         border: none;
         border-radius: 5px;
 
+        background: #000000;
+        color: #ffffff;
+
         font-size: 16px;
         font-weight: 600;
 
@@ -2946,7 +2951,8 @@ right:30px;
     }
 
     .company-warning-box button:hover {
-        opacity: 0.85;
+        background: #333333;
+        color: #ffffff;
     }
 
 
