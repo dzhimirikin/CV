@@ -2878,3 +2878,99 @@ right:30px;
         gap: 15px;
     }
 }
+
+
+    /* ============================================================
+       COMPANY WARNING MODAL
+    ============================================================ */
+
+    .company-warning-modal {
+        display: none;
+        position: fixed;
+        inset: 0;
+        z-index: 10000;
+
+        align-items: center;
+        justify-content: center;
+
+        background: rgba(0, 0, 0, 0.65);
+    }
+
+    .company-warning-modal.open {
+        display: flex;
+    }
+
+    .company-warning-box {
+        position: relative;
+
+        width: min(560px, calc(100% - 40px));
+        padding: 30px 35px;
+
+        background: #ffffff;
+        border-radius: 10px;
+
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.35);
+
+        text-align: center;
+        box-sizing: border-box;
+    }
+
+    .company-warning-box h2 {
+        margin: 0 0 20px 0;
+
+        font-size: 22px;
+        line-height: 1.3;
+        font-weight: 700;
+    }
+
+    .company-warning-box p {
+        margin: 0 auto 25px auto;
+
+        max-width: 480px;
+
+        font-size: 16px;
+        line-height: 1.5;
+    }
+
+    .company-warning-box button {
+        min-width: 90px;
+        padding: 10px 25px;
+
+        border: none;
+        border-radius: 5px;
+
+        font-size: 16px;
+        font-weight: 600;
+
+        cursor: pointer;
+    }
+
+    .company-warning-box button:hover {
+        opacity: 0.85;
+    }
+
+
+    /* ============================================================
+       COMPANY WARNING MODAL — MOBILE
+    ============================================================ */
+
+    @media (max-width: 600px) {
+
+        .company-warning-box {
+            width: calc(100% - 30px);
+            padding: 25px 20px;
+        }
+
+        .company-warning-box h2 {
+            font-size: 19px;
+        }
+
+        .company-warning-box p {
+            font-size: 15px;
+        }
+
+        .company-warning-box button {
+            width: 100%;
+        }
+
+    }
