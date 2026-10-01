@@ -10,9 +10,9 @@ document.addEventListener('DOMContentLoaded', () => {
   const angle = 360 / count;
   let rotation = 0;
 
-  function getRadius() {
-    return window.innerWidth < 768 ? 260 : 420;
-  }
+ function getRadius() {
+   return window.innerWidth < 768 ? 300 : 420;
+ }
 
   function layoutCarousel() {
     const radius = getRadius();
