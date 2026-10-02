@@ -3031,6 +3031,8 @@ right:30px;
 
 /* ---------- Таблица ---------- */
 
+/* ---------- Таблица ---------- */
+
 #market-monitor .table-wrap {
     width: 100%;
     overflow-x: auto;
@@ -3038,26 +3040,43 @@ right:30px;
 
 #market-monitor table {
     width: 100%;
+    min-width: 0;
     border-collapse: collapse;
-    min-width: 1050px;
+    table-layout: auto;
 }
 
 #market-monitor th,
 #market-monitor td {
-    padding: 9px 10px;
+    padding: 9px 8px;
     border-bottom: 1px solid #ddd;
     text-align: right;
-    white-space: nowrap;
 }
 
 #market-monitor th {
     background: #f3f3f3;
     font-weight: 600;
+    font-size: 14px;
+    line-height: 1.25;
+    white-space: normal;
+    vertical-align: middle;
+}
+
+#market-monitor td {
+    font-size: 14px;
+    white-space: nowrap;
 }
 
 #market-monitor th:first-child,
 #market-monitor td:first-child {
     text-align: left;
+}
+
+#market-monitor td.company {
+    white-space: normal;
+}
+
+#market-monitor td.company .company-cell {
+    max-width: 210px;
 }
 
 
