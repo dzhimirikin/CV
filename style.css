@@ -3131,12 +3131,14 @@ right:30px;
     gap: 8px;
 }
 
-#market-monitor .company-name {
-    color: inherit;
+#market-monitor .company-name,
+#market-monitor .company-name:visited {
+    color: #222;
     text-decoration: none;
 }
 
 #market-monitor .company-name:hover {
+    color: #222;
     text-decoration: underline;
 }
 
