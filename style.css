@@ -3232,6 +3232,12 @@ right:30px;
         border-spacing: 0 10px;
     }
 
+   /* Все ячейки карточки занимают всю ширину */
+#market-monitor tbody td {
+    width: 100% !important;
+    max-width: none;
+}
+
     #market-monitor thead {
         display: none;
     }
@@ -3277,7 +3283,11 @@ right:30px;
     }
 
     #market-monitor .company-name {
-        overflow-wrap: anywhere;
+        overflow-wrap: normal;
+        word-break: normal;
+        white-space: normal;
+        flex: 1 1 auto;
+        min-width: 0;
     }
 
     #market-monitor .teatmik-link {
