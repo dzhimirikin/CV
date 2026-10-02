@@ -2980,3 +2980,285 @@ right:30px;
         }
 
     }
+
+/* ============================================================
+   MARKET MONITOR
+============================================================ */
+
+/* ---------- Основной блок ---------- */
+
+#market-monitor {
+    width: 100%;
+}
+
+#market-monitor .market-monitor-description {
+    margin: 0 0 8px;
+}
+
+#market-monitor #status {
+    margin: 10px 0;
+    color: #666;
+}
+
+
+/* ---------- Панель управления ---------- */
+
+#market-monitor .controls {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin: 20px 0;
+    align-items: center;
+}
+
+#market-monitor .controls label {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+#market-monitor .controls select,
+#market-monitor .controls input {
+    padding: 8px 10px;
+    font-size: 14px;
+    box-sizing: border-box;
+}
+
+#market-monitor .controls input {
+    min-width: 190px;
+}
+
+
+/* ---------- Таблица ---------- */
+
+#market-monitor .table-wrap {
+    width: 100%;
+    overflow-x: auto;
+}
+
+#market-monitor table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 1050px;
+}
+
+#market-monitor th,
+#market-monitor td {
+    padding: 9px 10px;
+    border-bottom: 1px solid #ddd;
+    text-align: right;
+    white-space: nowrap;
+}
+
+#market-monitor th {
+    background: #f3f3f3;
+    font-weight: 600;
+}
+
+#market-monitor th:first-child,
+#market-monitor td:first-child {
+    text-align: left;
+}
+
+
+/* ---------- Компания ---------- */
+
+#market-monitor .company-cell {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
+#market-monitor .company-name {
+    color: inherit;
+    text-decoration: none;
+}
+
+#market-monitor .company-name:hover {
+    text-decoration: underline;
+}
+
+
+/* ---------- Значок Teatmik ---------- */
+
+#market-monitor .teatmik-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 20px;
+    height: 20px;
+
+    border: 1px solid #d5d5d5;
+    border-radius: 50%;
+
+    background: #fafafa;
+
+    text-decoration: none;
+    flex-shrink: 0;
+}
+
+#market-monitor .teatmik-icon {
+    color: #73b82a;
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+    font-weight: bold;
+    line-height: 1;
+}
+
+#market-monitor .teatmik-link:hover {
+    border-color: #73b82a;
+    background: #f5f5f5;
+}
+
+
+/* ---------- Значения ---------- */
+
+#market-monitor .positive {
+    color: #16803c;
+}
+
+#market-monitor .negative {
+    color: #b42318;
+}
+
+#market-monitor .muted {
+    color: #888;
+}
+
+
+/* ============================================================
+   MARKET MONITOR — MOBILE
+============================================================ */
+
+@media (max-width: 700px) {
+
+    #market-monitor {
+        width: 100%;
+    }
+
+    #market-monitor .controls {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 10px;
+    }
+
+    #market-monitor .controls label {
+        display: grid;
+        grid-template-columns: 120px 1fr;
+        align-items: center;
+        gap: 8px;
+    }
+
+    #market-monitor .controls input,
+    #market-monitor .controls select {
+        width: 100%;
+        min-width: 0;
+        box-sizing: border-box;
+    }
+
+    #market-monitor .table-wrap {
+        overflow: visible;
+    }
+
+    #market-monitor table {
+        min-width: 0;
+        width: 100%;
+        border-collapse: separate;
+        border-spacing: 0 10px;
+    }
+
+    #market-monitor thead {
+        display: none;
+    }
+
+    #market-monitor tbody,
+    #market-monitor tr,
+    #market-monitor td {
+        display: block;
+    }
+
+    #market-monitor tbody tr {
+        background: #f7f7f7;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        padding: 10px;
+    }
+
+    #market-monitor tbody td {
+        border: 0;
+        padding: 5px 0;
+        text-align: right;
+        white-space: normal;
+    }
+
+
+    /* ---------- Название компании ---------- */
+
+    #market-monitor tbody td.company {
+        text-align: left;
+        font-weight: 600;
+        font-size: 16px;
+        padding-bottom: 9px;
+        border-bottom: 1px solid #ddd;
+        margin-bottom: 5px;
+    }
+
+    #market-monitor .company-cell {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 8px;
+        width: 100%;
+    }
+
+    #market-monitor .company-name {
+        overflow-wrap: anywhere;
+    }
+
+    #market-monitor .teatmik-link {
+        flex-shrink: 0;
+    }
+
+
+    /* ---------- Подписи перед значениями ---------- */
+
+    #market-monitor tbody td:nth-child(2)::before {
+        content: "Год";
+    }
+
+    #market-monitor tbody td:nth-child(3)::before {
+        content: "Оборот";
+    }
+
+    #market-monitor tbody td:nth-child(4)::before {
+        content: "Собственный капитал";
+    }
+
+    #market-monitor tbody td:nth-child(5)::before {
+        content: "Прибыль";
+    }
+
+    #market-monitor tbody td:nth-child(6)::before {
+        content: "Рентабельность";
+    }
+
+    #market-monitor tbody td:nth-child(7)::before {
+        content: "Сотрудники";
+    }
+
+    #market-monitor tbody td:nth-child(8)::before {
+        content: "Оборот / сотрудник";
+    }
+
+    #market-monitor tbody td:not(.company)::before {
+        float: left;
+        font-weight: 400;
+        color: #777;
+    }
+
+
+    #market-monitor #status {
+        font-size: 13px;
+    }
+}
