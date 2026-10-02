@@ -255,6 +255,24 @@ window.Hyphenopoly = {
           </a>
         </li>
         <li>
+
+<!-- <li> -->
+<!--   <a href="#market-monitor"> -->
+<!--     <!-- Heroicon: chart-bar --> -->
+<!--     <svg xmlns="http://www.w3.org/2000/svg" -->
+<!--          class="icon" -->
+<!--          fill="none" -->
+<!--          viewBox="0 0 24 24" -->
+<!--          stroke="currentColor"> -->
+<!--       <path stroke-linecap="round" -->
+<!--             stroke-linejoin="round" -->
+<!--             stroke-width="2" -->
+<!--             d="M4 19V5m0 14h16M8 17v-5m4 5V7m4 10v-8" /> -->
+<!--     </svg> -->
+<!--     Мониторинг рынка -->
+<!--   </a> -->
+<!-- </li> -->
+			
           <a href="#contacts">
             <!-- Heroicon: phone -->
             <svg xmlns="http://www.w3.org/2000/svg" class="icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -1644,6 +1662,85 @@ window.Hyphenopoly = {
 </section>
 
 
+<!-- MARKET MONITOR -->
+<section id="market-monitor">
+  <div class="card">
+
+    <h2>Мониторинг рынка</h2>
+
+    <p class="market-monitor-description">
+      Основные финансовые показатели компаний рынка алюминиевых и фасадных конструкций Эстонии.
+    </p>
+
+    <div id="status">
+      Загрузка...
+    </div>
+
+    <div class="controls">
+
+      <label>
+        Год:
+        <select id="year"></select>
+      </label>
+
+      <label>
+        Сортировка:
+        <select id="sort">
+          <option value="turnover">Оборот</option>
+          <option value="equity">Собственный капитал</option>
+          <option value="profit">Прибыль</option>
+          <option value="margin">Рентабельность</option>
+          <option value="employees">Сотрудники</option>
+          <option value="turnoverPerEmployee">Оборот / сотрудник</option>
+          <option value="name">Название A–Z</option>
+        </select>
+      </label>
+
+      <label>
+        Направление:
+        <select id="sortDirection">
+          <option value="desc">По убыванию ↓</option>
+          <option value="asc">По возрастанию ↑</option>
+        </select>
+      </label>
+
+      <label>
+        Поиск:
+        <input
+          id="search"
+          type="search"
+          placeholder="Название компании"
+        >
+      </label>
+
+    </div>
+
+    <div class="table-wrap">
+
+      <table>
+
+        <thead>
+          <tr>
+            <th>Компания</th>
+            <th>Год</th>
+            <th>Оборот, €</th>
+            <th>Собственный капитал, €</th>
+            <th>Прибыль, €</th>
+            <th>Рентабельность</th>
+            <th>Сотрудники</th>
+            <th>Оборот / сотрудник</th>
+          </tr>
+        </thead>
+
+        <tbody id="companiesBody"></tbody>
+
+      </table>
+
+    </div>
+
+  </div>
+</section>
+
 <!-- CONTACTS -->
 <section id="contacts">
   <div class="card">
@@ -1713,6 +1810,7 @@ window.Hyphenopoly = {
 <script src="js/lightboxnav.js" defer></script>
 <script src="js/effects.js" defer></script>
 <script src="js/yandex_telemost.js" defer></script>
+<script src="js/market-monitor.js" defer></script>
 
 
     <div id="companyWarningModal" class="company-warning-modal">
