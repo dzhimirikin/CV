@@ -1545,6 +1545,206 @@ window.Hyphenopoly = {
 </section>
 
 
+<!-- MARKET MONITOR -->
+<section id="market-monitor">
+  <div class="card">
+
+    <h2>Turu jälgimine</h2>
+
+    <div class="market-monitor-tabs" role="tablist" aria-label="Aruande tüüp">
+      <button
+        id="marketMonitorAnnualTab"
+        class="market-monitor-tab active"
+        type="button"
+        role="tab"
+        aria-selected="true"
+        aria-controls="marketMonitorAnnual">
+        Aastaaruanne
+      </button>
+
+      <button
+        id="marketMonitorQuarterlyTab"
+        class="market-monitor-tab"
+        type="button"
+        role="tab"
+        aria-selected="false"
+        aria-controls="marketMonitorQuarterly">
+        Kvartaliaruanne
+      </button>
+    </div>
+
+    <!-- AASTAARUANNE -->
+    <div
+      id="marketMonitorAnnual"
+      class="market-monitor-report"
+      role="tabpanel"
+      aria-labelledby="marketMonitorAnnualTab">
+
+      <p class="market-monitor-description">
+        Eesti fassaadikonstruktsioonide turu ettevõtete peamised finantsnäitajad. Käive — maksustatav käive.
+      </p>
+
+      <p class="quarterly-note">
+        Allikas: Registrite ja Infosüsteemide Keskuse andmed.
+      </p>
+
+      <div id="status">
+        Laadimine...
+      </div>
+
+      <div class="controls">
+
+        <label>
+          Aasta:
+          <select id="year"></select>
+        </label>
+
+        <label>
+          Sortimine:
+          <select id="sort">
+            <option value="turnover">Käive</option>
+            <option value="equity">Omakapital</option>
+            <option value="profit">Kasum</option>
+            <option value="margin">Kasumlikkus</option>
+            <option value="employees">Töötajad</option>
+            <option value="turnoverPerEmployee">Käive / töötaja</option>
+            <option value="name">Nimi A–Z</option>
+          </select>
+        </label>
+
+        <label>
+          Suund:
+          <select id="sortDirection">
+            <option value="desc">Kahanevalt ↓</option>
+            <option value="asc">Kasvavalt ↑</option>
+          </select>
+        </label>
+
+        <label>
+          Otsing:
+          <input
+            id="search"
+            type="search"
+            placeholder="Ettevõtte nimi"
+          >
+        </label>
+
+      </div>
+
+      <div class="table-wrap">
+
+        <table>
+
+          <thead>
+            <tr>
+              <th>Ettevõte</th>
+              <th>Aasta</th>
+              <th>Käive, €</th>
+              <th>Omakapital, €</th>
+              <th>Kasum, €</th>
+              <th>Kasumlikkus</th>
+              <th>Töötajad</th>
+              <th>Käive / töötaja</th>
+            </tr>
+          </thead>
+
+          <tbody id="companiesBody"></tbody>
+
+        </table>
+
+      </div>
+    </div>
+
+    <!-- KVARTALIARUANNE -->
+    <div
+      id="marketMonitorQuarterly"
+      class="market-monitor-report quarterly-report"
+      role="tabpanel"
+      aria-labelledby="marketMonitorQuarterlyTab"
+      hidden>
+
+      <p class="market-monitor-description">
+        Eesti fassaadikonstruktsioonide turu ettevõtete kvartalinäitajad.
+      </p>
+
+      <p class="quarterly-note">
+        Allikas: Maksu- ja Tolliameti (EMTA) andmed. Käive — maksustatav käive.
+      </p>
+
+      <div id="quarterlyStatus" class="market-monitor-quarterly-status">
+        Laadimine...
+      </div>
+
+      <div class="quarterly-controls">
+
+        <label>
+          Aasta:
+          <select id="quarterlyYear"></select>
+        </label>
+
+        <label>
+          Kvartal:
+          <select id="quarterlyQuarter"></select>
+        </label>
+
+        <label>
+          Sortimine:
+          <select id="quarterlySort">
+            <option value="taxableTurnover">Käive</option>
+            <option value="stateTaxes">Riiklikud maksud</option>
+            <option value="labourTaxes">Tööjõumaksud</option>
+            <option value="employees">Töötajad</option>
+            <option value="taxableTurnoverPerEmployee">Käive / töötaja</option>
+            <option value="name">Nimi A–Z</option>
+          </select>
+        </label>
+
+        <label>
+          Suund:
+          <select id="quarterlyDirection">
+            <option value="desc">Kahanevalt ↓</option>
+            <option value="asc">Kasvavalt ↑</option>
+          </select>
+        </label>
+
+        <label>
+          Otsing:
+          <input
+            id="quarterlySearch"
+            type="search"
+            placeholder="Ettevõtte nimi"
+          >
+        </label>
+
+      </div>
+
+      <div class="quarterly-table-wrap">
+
+        <table class="quarterly-table">
+
+          <thead>
+            <tr>
+              <th>Ettevõte</th>
+              <th>Periood</th>
+              <th>Käive, €</th>
+              <th>Riiklikud maksud, €</th>
+              <th>Tööjõumaksud, €</th>
+              <th>Töötajad</th>
+              <th>Käive / töötaja, €</th>
+            </tr>
+          </thead>
+
+          <tbody id="quarterlyBody"></tbody>
+
+        </table>
+
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
 <!-- CONTACTS -->
 <section id="contacts">
   <div class="card">
