@@ -3031,8 +3031,6 @@ right:30px;
 
 /* ---------- Таблица ---------- */
 
-/* ---------- Таблица ---------- */
-
 #market-monitor .table-wrap {
     width: 100%;
     overflow-x: auto;
@@ -3042,7 +3040,7 @@ right:30px;
     width: 100%;
     min-width: 0;
     border-collapse: collapse;
-    table-layout: auto;
+    table-layout: fixed;
 }
 
 #market-monitor th,
@@ -3050,6 +3048,7 @@ right:30px;
     padding: 9px 8px;
     border-bottom: 1px solid #ddd;
     text-align: right;
+    vertical-align: middle;
 }
 
 #market-monitor th {
@@ -3058,12 +3057,56 @@ right:30px;
     font-size: 14px;
     line-height: 1.25;
     white-space: normal;
-    vertical-align: middle;
+    overflow-wrap: break-word;
 }
 
 #market-monitor td {
     font-size: 14px;
     white-space: nowrap;
+}
+
+
+/* Ширины колонок */
+
+#market-monitor th:nth-child(1),
+#market-monitor td:nth-child(1) {
+    width: 20%;
+    text-align: left;
+}
+
+#market-monitor th:nth-child(2),
+#market-monitor td:nth-child(2) {
+    width: 6%;
+}
+
+#market-monitor th:nth-child(3),
+#market-monitor td:nth-child(3) {
+    width: 11%;
+}
+
+#market-monitor th:nth-child(4),
+#market-monitor td:nth-child(4) {
+    width: 18%;
+}
+
+#market-monitor th:nth-child(5),
+#market-monitor td:nth-child(5) {
+    width: 11%;
+}
+
+#market-monitor th:nth-child(6),
+#market-monitor td:nth-child(6) {
+    width: 12%;
+}
+
+#market-monitor th:nth-child(7),
+#market-monitor td:nth-child(7) {
+    width: 8%;
+}
+
+#market-monitor th:nth-child(8),
+#market-monitor td:nth-child(8) {
+    width: 14%;
 }
 
 #market-monitor th:first-child,
