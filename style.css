@@ -3015,17 +3015,30 @@ right:30px;
     display: flex;
     align-items: center;
     gap: 6px;
+
+    /* Все 4 группы могут сжиматься */
+    flex: 1 1 0;
+    min-width: 0;
+
+    /* Текст "Год:", "Сортировка:" и т.д. не переносим */
+    white-space: nowrap;
 }
 
 #market-monitor .controls select,
 #market-monitor .controls input {
+    flex: 1 1 0;
+
+    width: auto;
+    min-width: 0;
+    max-width: 100%;
+
     padding: 8px 10px;
     font-size: 14px;
     box-sizing: border-box;
 }
 
 #market-monitor .controls input {
-    min-width: 190px;
+    min-width: 0;
 }
 
 
