@@ -1540,6 +1540,206 @@ window.Hyphenopoly = {
   </div>
 </section>
 
+
+<!-- MARKET MONITOR -->
+<section id="market-monitor">
+  <div class="card">
+
+    <h2>Market Monitor</h2>
+
+    <div class="market-monitor-tabs" role="tablist" aria-label="Report type">
+      <button
+        id="marketMonitorAnnualTab"
+        class="market-monitor-tab active"
+        type="button"
+        role="tab"
+        aria-selected="true"
+        aria-controls="marketMonitorAnnual">
+        Annual Report
+      </button>
+
+      <button
+        id="marketMonitorQuarterlyTab"
+        class="market-monitor-tab"
+        type="button"
+        role="tab"
+        aria-selected="false"
+        aria-controls="marketMonitorQuarterly">
+        Quarterly Report
+      </button>
+    </div>
+
+    <!-- ANNUAL REPORT -->
+    <div
+      id="marketMonitorAnnual"
+      class="market-monitor-report"
+      role="tabpanel"
+      aria-labelledby="marketMonitorAnnualTab">
+
+      <p class="market-monitor-description">
+        Key financial indicators of companies in the Estonian façade construction market. Turnover — taxable turnover.
+      </p>
+
+      <p class="quarterly-note">
+        Source: Estonian Business Register data.
+      </p>
+
+      <div id="status">
+        Loading...
+      </div>
+
+      <div class="controls">
+
+        <label>
+          Year:
+          <select id="year"></select>
+        </label>
+
+        <label>
+          Sort:
+          <select id="sort">
+            <option value="turnover">Turnover</option>
+            <option value="equity">Equity</option>
+            <option value="profit">Profit</option>
+            <option value="margin">Profitability</option>
+            <option value="employees">Employees</option>
+            <option value="turnoverPerEmployee">Turnover / employee</option>
+            <option value="name">Name A–Z</option>
+          </select>
+        </label>
+
+        <label>
+          Direction:
+          <select id="sortDirection">
+            <option value="desc">Descending ↓</option>
+            <option value="asc">Ascending ↑</option>
+          </select>
+        </label>
+
+        <label>
+          Search:
+          <input
+            id="search"
+            type="search"
+            placeholder="Company name"
+          >
+        </label>
+
+      </div>
+
+      <div class="table-wrap">
+
+        <table>
+
+          <thead>
+            <tr>
+              <th>Company</th>
+              <th>Year</th>
+              <th>Turnover, €</th>
+              <th>Equity, €</th>
+              <th>Profit, €</th>
+              <th>Profitability</th>
+              <th>Employees</th>
+              <th>Turnover / employee</th>
+            </tr>
+          </thead>
+
+          <tbody id="companiesBody"></tbody>
+
+        </table>
+
+      </div>
+    </div>
+
+    <!-- QUARTERLY REPORT -->
+    <div
+      id="marketMonitorQuarterly"
+      class="market-monitor-report quarterly-report"
+      role="tabpanel"
+      aria-labelledby="marketMonitorQuarterlyTab"
+      hidden>
+
+      <p class="market-monitor-description">
+        Quarterly indicators of companies in the Estonian façade construction market.
+      </p>
+
+      <p class="quarterly-note">
+        Source: Estonian Tax and Customs Board (EMTA) data. Turnover — taxable turnover.
+      </p>
+
+      <div id="quarterlyStatus" class="market-monitor-quarterly-status">
+        Loading...
+      </div>
+
+      <div class="quarterly-controls">
+
+        <label>
+          Year:
+          <select id="quarterlyYear"></select>
+        </label>
+
+        <label>
+          Quarter:
+          <select id="quarterlyQuarter"></select>
+        </label>
+
+        <label>
+          Sort:
+          <select id="quarterlySort">
+            <option value="taxableTurnover">Turnover</option>
+            <option value="stateTaxes">State taxes</option>
+            <option value="labourTaxes">Labour taxes</option>
+            <option value="employees">Employees</option>
+            <option value="taxableTurnoverPerEmployee">Turnover / employee</option>
+            <option value="name">Name A–Z</option>
+          </select>
+        </label>
+
+        <label>
+          Direction:
+          <select id="quarterlyDirection">
+            <option value="desc">Descending ↓</option>
+            <option value="asc">Ascending ↑</option>
+          </select>
+        </label>
+
+        <label>
+          Search:
+          <input
+            id="quarterlySearch"
+            type="search"
+            placeholder="Company name"
+          >
+        </label>
+
+      </div>
+
+      <div class="quarterly-table-wrap">
+
+        <table class="quarterly-table">
+
+          <thead>
+            <tr>
+              <th>Company</th>
+              <th>Period</th>
+              <th>Turnover, €</th>
+              <th>State taxes, €</th>
+              <th>Labour taxes, €</th>
+              <th>Employees</th>
+              <th>Turnover / employee, €</th>
+            </tr>
+          </thead>
+
+          <tbody id="quarterlyBody"></tbody>
+
+        </table>
+
+      </div>
+    </div>
+
+  </div>
+</section>
+
 <!-- CONTACTS -->
 <section id="contacts">
   <div class="card">
