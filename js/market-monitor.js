@@ -179,7 +179,7 @@ function render() {
     const companyUrl = company.website || "#";
 
     const teatmikUrl =
-      `https://www.teatmik.ee/et/personlegal/${company.registryCode}`;
+      `https://www.teatmik.ee/ru/personlegal/${company.registryCode}`;
 
     const companyName = `
       <span class="company-cell">
