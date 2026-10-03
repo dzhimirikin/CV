@@ -3421,6 +3421,22 @@ right:30px;
     table-layout: auto;
 }
 
+#market-monitor .quarterly-table th:first-child,
+#market-monitor .quarterly-table td:first-child {
+    position: sticky;
+    left: 0;
+    background: #f3f3f3;
+    z-index: 2;
+}
+
+#market-monitor .quarterly-table td:first-child {
+    background: #fff;
+}
+
+#market-monitor .quarterly-table th:first-child {
+    z-index: 3;
+}
+
 
 #market-monitor .annual-table th,
 #market-monitor .quarterly-table th {
