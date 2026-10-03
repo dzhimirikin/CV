@@ -3312,39 +3312,12 @@ right:30px;
 
     /* ---------- Подписи перед значениями ---------- */
 
-    #market-monitor tbody td:nth-child(2)::before {
-        content: "Год";
-    }
-
-    #market-monitor tbody td:nth-child(3)::before {
-        content: "Оборот";
-    }
-
-    #market-monitor tbody td:nth-child(4)::before {
-        content: "Собственный капитал";
-    }
-
-    #market-monitor tbody td:nth-child(5)::before {
-        content: "Прибыль";
-    }
-
-    #market-monitor tbody td:nth-child(6)::before {
-        content: "Рентабельность";
-    }
-
-    #market-monitor tbody td:nth-child(7)::before {
-        content: "Сотрудники";
-    }
-
-    #market-monitor tbody td:nth-child(8)::before {
-        content: "Оборот / сотрудник";
-    }
-
-    #market-monitor tbody td:not(.company)::before {
-        float: left;
-        font-weight: 400;
-        color: #777;
-    }
+#market-monitor tbody td:not(.company)::before {
+    content: attr(data-label);
+    float: left;
+    font-weight: 400;
+    color: #777;
+}
 
 
     #market-monitor #status {
@@ -3674,35 +3647,12 @@ right:30px;
         flex-shrink: 0;
     }
 
-    #market-monitor .quarterly-table tbody td:nth-child(2)::before {
-        content: "Период";
-    }
-
-    #market-monitor .quarterly-table tbody td:nth-child(3)::before {
-        content: "Оборот";
-    }
-
-    #market-monitor .quarterly-table tbody td:nth-child(4)::before {
-        content: "Гос. налоги";
-    }
-
-    #market-monitor .quarterly-table tbody td:nth-child(5)::before {
-        content: "Налоги на труд";
-    }
-
-    #market-monitor .quarterly-table tbody td:nth-child(6)::before {
-        content: "Сотрудники";
-    }
-
-    #market-monitor .quarterly-table tbody td:nth-child(7)::before {
-        content: "Оборот / сотрудник";
-    }
-
-    #market-monitor .quarterly-table tbody td:not(:first-child)::before {
-        float: left;
-        font-weight: 400;
-        color: #777;
-    }
+#market-monitor .quarterly-table tbody td:not(:first-child)::before {
+    content: attr(data-label);
+    float: left;
+    font-weight: 400;
+    color: #777;
+}
 
     #market-monitor .market-monitor-quarterly-status {
         font-size: 13px;
