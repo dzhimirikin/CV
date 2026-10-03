@@ -3134,16 +3134,18 @@ right:30px;
 }
 
 #market-monitor td.company .company-cell {
-    max-width: 210px;
+    max-width: none;
 }
 
 
 /* ---------- Компания ---------- */
 
 #market-monitor .company-cell {
-    display: inline-flex;
+    display: flex;
     align-items: center;
+    justify-content: space-between;
     gap: 8px;
+    width: 100%;
 }
 
 #market-monitor .company-name,
@@ -3414,17 +3416,31 @@ right:30px;
 
 #market-monitor .quarterly-table {
     width: 100%;
-    min-width: 0;
+    min-width: 1250px;
     border-collapse: collapse;
-    table-layout: fixed;
+    table-layout: auto;
+}
+
+
+#market-monitor .annual-table th,
+#market-monitor .quarterly-table th {
+    text-align: center;
+    vertical-align: middle;
 }
 
 #market-monitor .quarterly-table th,
 #market-monitor .quarterly-table td {
     padding: 9px 8px;
     border-bottom: 1px solid #ddd;
-    text-align: right;
     vertical-align: middle;
+}
+
+#market-monitor .quarterly-table th {
+    text-align: center;
+}
+
+#market-monitor .quarterly-table td {
+    text-align: right;
 }
 
 #market-monitor .quarterly-table th {
@@ -3443,38 +3459,63 @@ right:30px;
 
 #market-monitor .quarterly-table th:nth-child(1),
 #market-monitor .quarterly-table td:nth-child(1) {
-    width: 24%;
+    width: 14%;
     text-align: left;
 }
 
 #market-monitor .quarterly-table th:nth-child(2),
 #market-monitor .quarterly-table td:nth-child(2) {
-    width: 9%;
+    width: 6%;
 }
 
 #market-monitor .quarterly-table th:nth-child(3),
 #market-monitor .quarterly-table td:nth-child(3) {
-    width: 16%;
+    width: 9%;
 }
 
 #market-monitor .quarterly-table th:nth-child(4),
 #market-monitor .quarterly-table td:nth-child(4) {
-    width: 14%;
+    width: 10%;
 }
 
 #market-monitor .quarterly-table th:nth-child(5),
 #market-monitor .quarterly-table td:nth-child(5) {
-    width: 14%;
+    width: 8%;
 }
 
 #market-monitor .quarterly-table th:nth-child(6),
 #market-monitor .quarterly-table td:nth-child(6) {
-    width: 10%;
+    width: 8%;
 }
 
 #market-monitor .quarterly-table th:nth-child(7),
 #market-monitor .quarterly-table td:nth-child(7) {
-    width: 13%;
+    width: 6%;
+}
+
+#market-monitor .quarterly-table th:nth-child(8),
+#market-monitor .quarterly-table td:nth-child(8) {
+    width: 9%;
+}
+
+#market-monitor .quarterly-table th:nth-child(9),
+#market-monitor .quarterly-table td:nth-child(9) {
+    width: 9%;
+}
+
+#market-monitor .quarterly-table th:nth-child(10),
+#market-monitor .quarterly-table td:nth-child(10) {
+    width: 8%;
+}
+
+#market-monitor .quarterly-table th:nth-child(11),
+#market-monitor .quarterly-table td:nth-child(11) {
+    width: 7%;
+}
+
+#market-monitor .quarterly-table th:nth-child(12),
+#market-monitor .quarterly-table td:nth-child(12) {
+    width: 6%;
 }
 
 #market-monitor .quarterly-company-cell {
@@ -3590,6 +3631,12 @@ right:30px;
         border-collapse: separate;
         border-spacing: 0 10px;
         table-layout: auto;
+    }
+
+    #market-monitor .annual-table th,
+    #market-monitor .quarterly-table th {
+        text-align: center;
+        vertical-align: middle;
     }
 
     #market-monitor .quarterly-table thead {
