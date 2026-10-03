@@ -1731,10 +1731,10 @@ window.Hyphenopoly = {
           Сортировка:
           <select id="sort">
             <option value="turnover">Оборот</option>
-            <option value="equity">Собственный капитал</option>
+            <option value="equity">Собств. капитал</option>
             <option value="profit">Прибыль</option>
-            <option value="margin">Рентабельность</option>
-            <option value="employees">Сотрудники</option>
+            <option value="margin">Рент-ность</option>
+            <option value="employees">Штат</option>
             <option value="turnoverPerEmployee">Оборот / сотрудник</option>
             <option value="name">Название A–Z</option>
           </select>
@@ -1768,10 +1768,10 @@ window.Hyphenopoly = {
               <th>Компания</th>
               <th>Год</th>
               <th>Оборот, €</th>
-              <th>Собственный капитал, €</th>
+              <th>Собств. капитал, €</th>
               <th>Прибыль, €</th>
-              <th>Рентабельность</th>
-              <th>Сотрудники</th>
+              <th>Рент-ность</th>
+              <th>Штат</th>
               <th>Оборот / сотрудник</th>
             </tr>
           </thead>
@@ -1796,7 +1796,7 @@ window.Hyphenopoly = {
       </p>
 
       <p class="quarterly-note">
-        Источник: данные EMTA. Оборот — налогооблагаемый оборот.
+        Источник: данные EMTA и открытого Inforegister. Оборот — налогооблагаемый оборот.
       </p>
 
       <div id="quarterlyStatus" class="market-monitor-quarterly-status">
@@ -1819,10 +1819,15 @@ window.Hyphenopoly = {
           Сортировка:
           <select id="quarterlySort">
             <option value="taxableTurnover">Оборот</option>
+            <option value="projectedTurnover">Прогнозный оборот</option>
             <option value="stateTaxes">Государственные налоги</option>
             <option value="labourTaxes">Налоги на труд</option>
-            <option value="employees">Сотрудники</option>
+            <option value="employees">Штат</option>
             <option value="taxableTurnoverPerEmployee">Оборот / сотрудник</option>
+            <option value="projectedLabourProductivity">Прогнозная производит. труда</option>
+            <option value="labourProductivity">Производит. труда</option>
+            <option value="profitPerEmployee">Прибыль / сотрудник</option>
+            <option value="averageGrossWage">Средняя брутто-зарплата</option>
             <option value="name">Название A–Z</option>
           </select>
         </label>
@@ -1855,10 +1860,15 @@ window.Hyphenopoly = {
               <th>Компания</th>
               <th>Период</th>
               <th>Оборот, €</th>
+              <th>Прогнозный оборот, €</th>
               <th>Гос. налоги, €</th>
               <th>Налоги на труд, €</th>
-              <th>Сотрудники</th>
+              <th>Штат</th>
               <th>Оборот / сотрудник, €</th>
+              <th>Прогнозная производит. труда, €</th>
+              <th>Производит. труда, €</th>
+              <th>Прибыль / сотрудник, €</th>
+              <th>Средняя брутто-зарплата, €</th>
             </tr>
           </thead>
 
