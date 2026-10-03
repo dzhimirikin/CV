@@ -1676,7 +1676,8 @@ window.Hyphenopoly = {
       </p>
 
       <p class="quarterly-note">
-        Source: Estonian Tax and Customs Board (EMTA) data. Turnover — taxable turnover.
+        Source: Estonian Tax and Customs Board (EMTA) and public Inforegister data.
+        Turnover — taxable turnover.
       </p>
 
       <div id="quarterlyStatus" class="market-monitor-quarterly-status">
@@ -1699,10 +1700,15 @@ window.Hyphenopoly = {
           Sort:
           <select id="quarterlySort">
             <option value="taxableTurnover">Turnover</option>
+            <option value="projectedTurnover">Projected turnover</option>
             <option value="stateTaxes">State taxes</option>
             <option value="labourTaxes">Labour taxes</option>
             <option value="employees">Employees</option>
             <option value="taxableTurnoverPerEmployee">Turnover / employee</option>
+            <option value="projectedLabourProductivity">Projected labour productivity</option>
+            <option value="labourProductivity">Labour productivity</option>
+            <option value="profitPerEmployee">Profit / employee</option>
+            <option value="averageGrossWage">Average gross wage</option>
             <option value="name">Name A–Z</option>
           </select>
         </label>
@@ -1735,10 +1741,15 @@ window.Hyphenopoly = {
               <th>Company</th>
               <th>Period</th>
               <th>Turnover, €</th>
+              <th>Projected turnover, €</th>
               <th>State taxes, €</th>
               <th>Labour taxes, €</th>
               <th>Employees</th>
               <th>Turnover / employee, €</th>
+              <th>Projected labour productivity, €</th>
+              <th>Labour productivity, €</th>
+              <th>Profit / employee, €</th>
+              <th>Average gross wage, €</th>
             </tr>
           </thead>
 
