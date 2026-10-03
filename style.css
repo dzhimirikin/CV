@@ -3423,10 +3423,11 @@ right:30px;
 
 /* ---------- Чередование строк ---------- */
 
-#market-monitor .annual-table tbody tr:nth-child(even),
-#market-monitor .quarterly-table tbody tr:nth-child(even) {
+#market-monitor tbody tr:nth-child(even) {
     background: #f7f7f7;
 }
+
+/* ---------- Фиксированный первый столбец ---------- */
 
 #market-monitor .quarterly-table th:first-child,
 #market-monitor .quarterly-table td:first-child {
@@ -3440,8 +3441,12 @@ right:30px;
     z-index: 3;
 }
 
-#market-monitor .quarterly-table td:first-child {
-    background: inherit;
+#market-monitor .quarterly-table tbody tr:nth-child(odd) td:first-child {
+    background: #fff;
+}
+
+#market-monitor .quarterly-table tbody tr:nth-child(even) td:first-child {
+    background: #f7f7f7;
 }
 
 
