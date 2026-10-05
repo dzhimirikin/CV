@@ -1,1 +1,51 @@
+name: Update Market Monitor
 
+on:
+  schedule:
+    # GitHub Actions uses UTC.
+    # 23:00 UTC = 01:00/02:00 Estonia depending on daylight saving time.
+    - cron: '0 23 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  update-market-monitor:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Dart
+        uses: dart-lang/setup-dart@v1
+        with:
+          sdk: stable
+
+      - name: Install dependencies
+        working-directory: MarketMonitor
+        run: dart pub get
+
+      - name: Run annual report parser
+        working-directory: MarketMonitor
+        run: dart run market_monitor.dart
+
+      - name: Run quarterly report parser
+        working-directory: MarketMonitor
+        run: dart run market_monitor_quarterly.dart
+
+      - name: Commit updated JSON files
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          git add MarketMonitor/companies.json
+          git add MarketMonitor/companies_quarterly.json
+
+          if git diff --cached --quiet; then
+            echo "No data changes."
+          else
+            git commit -m "Update Market Monitor data"
+            git push
+          fi
