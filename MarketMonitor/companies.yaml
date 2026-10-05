@@ -1,0 +1,120 @@
+companies:
+  - name: "Lümico OÜ"
+    registry_code: "12670869"
+    website: "https://www.lumico.ee/"
+
+  - name: "Malmerk Fassaadid AS"
+    registry_code: "10074956"
+    website: "https://malmerkfassaadid.ee/products"
+
+  - name: "Malmerk Klaasium OÜ"
+    registry_code: "12415120"
+    website: "https://malmerkklaasium.ee"
+
+  - name: "Fenster Alumiinium AS"
+    registry_code: "11240316"
+    website: "https://www.fenster.ee/ru"
+
+  - name: "Warmeco OÜ"
+    registry_code: "11538814"
+    website: "https://warmeco.ee/en/"
+
+  - name: "Semity OÜ"
+    registry_code: "14068817"
+    website: "https://semity.ee/ru"
+
+  - name: "Aru Grupp AS"
+    registry_code: "10108425"
+    website: "https://www.arugrupp.ee/ru"
+    note: "дерево и дерево-алюминий, удаленка"
+
+  - name: "Klaasmerk AS"
+    registry_code: "10074979"
+    website: "https://klaasmerk.ee/et/"
+
+  - name: "Alutec Group OÜ"
+    registry_code: "11888098"
+    website: "https://www.alutec.ee/"
+    note: "сидят вместе с AlüMaster или пилятся у них"
+
+  - name: "KODUAKEN OÜ"
+    registry_code: "10327363"
+    website: "https://www.koduaken.ee/"
+
+  - name: "Espak Alumiinium OÜ"
+    registry_code: "12450263"
+    website: "https://www.espakalumiinium.ee/"
+
+  - name: "Lariaare Alumiinium OÜ"
+    registry_code: "12777716"
+    website: "https://www.lariaare.ee/"
+
+  - name: "Trade Builder Baltic OÜ"
+    registry_code: "14838505"
+    website: "https://www.lwab.se/"
+    previous_name: "LW Swerige"
+
+  - name: "Seicom OÜ"
+    registry_code: "10853494"
+    website: "https://www.seicom.ee/"
+
+  - name: "Metek OÜ"
+    registry_code: "10300683"
+    website: "https://www.metek.ee/"
+
+  - name: "Tammer OÜ"
+    registry_code: "10394201"
+    website: "https://www.tammer.ee/"
+
+  - name: "MR Profiil OÜ"
+    registry_code: "12443180"
+    website: "https://www.mrprofiil.ee/"
+
+  - name: "Ferroloq OÜ"
+    registry_code: "16779971"
+    website: null
+
+  - name: "INTEXGLAS OÜ"
+    registry_code: "12755318"
+    website: "https://www.intexglas.ee/"
+
+  - name: "AlüMaster OÜ"
+    registry_code: "11540716"
+    website: "https://alumaster.ee/en/"
+
+  - name: "Alunord Alumiinium OÜ"
+    registry_code: "16851021"
+    website: "https://www.alunord.ee/"
+
+  - name: "Doordec OÜ"
+    registry_code: "11899541"
+    website: "https://www.doordec.ee/"
+
+  - name: "Saku Metall Uksetehas AS"
+    registry_code: "12318492"
+    website: null
+
+  - name: "Aluver Tootmine OÜ"
+    registry_code: "11950532"
+    website: null
+
+  - name: "Joveld OÜ"
+    registry_code: "10727039"
+    website: "https://www.joveld.ee/"
+
+  - name: "Viking Window AS"
+    registry_code: "10179359"
+    website: "https://www.viking.ee/"
+    note: "дерево и дерево-алюминий, удаленка"
+
+  - name: "Alumion Group OÜ"
+    registry_code: "17372421"
+    website: "https://alumion.ee/"
+
+  - name: "Klar Aknad OÜ"
+    registry_code: "12735008"
+    website: null
+
+  - name: "Alfasad OÜ"
+    registry_code: "12701966"
+    website: "https://alfacad.ee/"
