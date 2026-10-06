@@ -3872,10 +3872,14 @@ right:30px;
     }
 
     .market-summary-window {
+        box-sizing: border-box;
         width: 100%;
+        max-width: 100%;
         max-height: calc(100vh - 24px);
         padding: 22px 16px;
         border-radius: 10px;
+        overflow-y: auto;
+        overflow-x: hidden;
     }
 
     .market-summary-window h3 {
@@ -3888,13 +3892,39 @@ right:30px;
         font-size: 13px;
     }
 
+    .market-summary-table-wrap {
+        width: 100%;
+        overflow-x: hidden;
+    }
+
     .market-summary-table {
-        min-width: 320px;
+        width: 100%;
+        min-width: 0;
+        max-width: 100%;
+        table-layout: fixed;
         font-size: 14px;
     }
 
     .market-summary-table th,
     .market-summary-table td {
+        box-sizing: border-box;
         padding: 9px 8px;
+    }
+
+    .market-summary-table th:first-child,
+    .market-summary-table td:first-child {
+        width: 60%;
+        text-align: left;
+        white-space: normal;
+        overflow-wrap: break-word;
+    }
+
+    .market-summary-table th:last-child,
+    .market-summary-table td:last-child {
+        width: 40%;
+        text-align: right;
+        white-space: normal;
+        overflow-wrap: anywhere;
+        word-break: normal;
     }
 }
