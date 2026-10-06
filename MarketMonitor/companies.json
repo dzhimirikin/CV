@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-06T02:52:27.514696",
+  "updated": "2026-10-06T07:35:05.812525",
   "source": {
     "generalReports": "https://avaandmed.ariregister.rik.ee/sites/default/files/1.aruannete_yldandmed_kuni_31082026_0.zip",
     "keyIndicators": [
@@ -496,178 +496,6 @@
       ]
     },
     {
-      "name": "Aru Grupp AS",
-      "registryCode": "10108425",
-      "website": "https://www.arugrupp.ee/ru",
-      "note": "дерево и дерево-алюминий, удаленка",
-      "dataStatus": "ok",
-      "latest": {
-        "reportId": "3486882",
-        "year": 2025,
-        "submitted": "2025-12-31T00:00:00.000",
-        "turnover": 13051636.0,
-        "equity": 7564788.0,
-        "profit": -309683.0,
-        "employees": 159.0,
-        "margin": -2.3727523507397845,
-        "turnoverPerEmployee": 82085.7610062893
-      },
-      "history": [
-        {
-          "reportId": "3486882",
-          "year": 2025,
-          "submitted": "2025-12-31T00:00:00.000",
-          "turnover": 13051636.0,
-          "equity": 7564788.0,
-          "profit": -309683.0,
-          "employees": 159.0,
-          "margin": -2.3727523507397845,
-          "turnoverPerEmployee": 82085.7610062893
-        },
-        {
-          "reportId": "3165355",
-          "year": 2024,
-          "submitted": "2024-12-31T00:00:00.000",
-          "turnover": 13829214.0,
-          "equity": 7874471.0,
-          "profit": -330215.0,
-          "employees": 163.0,
-          "margin": -2.387807434319839,
-          "turnoverPerEmployee": 84841.8036809816
-        },
-        {
-          "reportId": "2826269",
-          "year": 2023,
-          "submitted": "2023-12-31T00:00:00.000",
-          "turnover": 14579632.0,
-          "equity": 8204686.0,
-          "profit": -498559.0,
-          "employees": 167.0,
-          "margin": -3.4195581891230176,
-          "turnoverPerEmployee": 87303.18562874252
-        },
-        {
-          "reportId": "2546385",
-          "year": 2022,
-          "submitted": "2022-12-31T00:00:00.000",
-          "turnover": 17117117.0,
-          "equity": 8856045.0,
-          "profit": 1254172.0,
-          "employees": 173.0,
-          "margin": 7.327004892237402,
-          "turnoverPerEmployee": 98942.87283236995
-        },
-        {
-          "reportId": "2267863",
-          "year": 2021,
-          "submitted": "2021-12-31T00:00:00.000",
-          "turnover": 15015581.0,
-          "equity": 7721873.0,
-          "profit": 1042080.0,
-          "employees": 173.0,
-          "margin": 6.93999119980772,
-          "turnoverPerEmployee": 86795.26589595375
-        },
-        {
-          "reportId": "1987715",
-          "year": 2020,
-          "submitted": "2020-12-31T00:00:00.000",
-          "turnover": 11978315.0,
-          "equity": 6679793.0,
-          "profit": 480091.0,
-          "employees": 165.0,
-          "margin": 4.008001125366965,
-          "turnoverPerEmployee": 72595.84848484848
-        }
-      ]
-    },
-    {
-      "name": "Klaasmerk AS",
-      "registryCode": "10074979",
-      "website": "https://klaasmerk.ee/et/",
-      "note": null,
-      "dataStatus": "ok",
-      "latest": {
-        "reportId": "3564531",
-        "year": 2025,
-        "submitted": "2025-12-31T00:00:00.000",
-        "turnover": 2324427.0,
-        "equity": 283954.0,
-        "profit": -514486.0,
-        "employees": 33.0,
-        "margin": -22.133885039194606,
-        "turnoverPerEmployee": 70437.18181818182
-      },
-      "history": [
-        {
-          "reportId": "3564531",
-          "year": 2025,
-          "submitted": "2025-12-31T00:00:00.000",
-          "turnover": 2324427.0,
-          "equity": 283954.0,
-          "profit": -514486.0,
-          "employees": 33.0,
-          "margin": -22.133885039194606,
-          "turnoverPerEmployee": 70437.18181818182
-        },
-        {
-          "reportId": "3269621",
-          "year": 2024,
-          "submitted": "2024-12-31T00:00:00.000",
-          "turnover": 2692179.0,
-          "equity": 798440.0,
-          "profit": -377781.0,
-          "employees": 45.0,
-          "margin": -14.032536469528958,
-          "turnoverPerEmployee": 59826.2
-        },
-        {
-          "reportId": "2928381",
-          "year": 2023,
-          "submitted": "2023-12-31T00:00:00.000",
-          "turnover": 3769292.0,
-          "equity": 1176221.0,
-          "profit": -179710.0,
-          "employees": 46.0,
-          "margin": -4.767738875099091,
-          "turnoverPerEmployee": 81941.13043478261
-        },
-        {
-          "reportId": "2618638",
-          "year": 2022,
-          "submitted": "2022-12-31T00:00:00.000",
-          "turnover": 4649520.0,
-          "equity": 1355931.0,
-          "profit": 264884.0,
-          "employees": 49.0,
-          "margin": 5.697018186823586,
-          "turnoverPerEmployee": 94888.16326530612
-        },
-        {
-          "reportId": "2359259",
-          "year": 2021,
-          "submitted": "2021-12-31T00:00:00.000",
-          "turnover": 3837823.0,
-          "equity": 1091047.0,
-          "profit": 55954.0,
-          "employees": 49.0,
-          "margin": 1.457961974796649,
-          "turnoverPerEmployee": 78322.91836734694
-        },
-        {
-          "reportId": "2031255",
-          "year": 2020,
-          "submitted": "2020-12-31T00:00:00.000",
-          "turnover": 3271409.0,
-          "equity": 1035093.0,
-          "profit": -56041.0,
-          "employees": 48.0,
-          "margin": -1.7130539165234306,
-          "turnoverPerEmployee": 68154.35416666667
-        }
-      ]
-    },
-    {
       "name": "Alutec Group OÜ",
       "registryCode": "11888098",
       "website": "https://www.alutec.ee/",
@@ -754,7 +582,7 @@
       ]
     },
     {
-      "name": "KODUAKEN OÜ",
+      "name": "Koduaken OÜ",
       "registryCode": "10327363",
       "website": "https://www.koduaken.ee/",
       "note": null,
@@ -1484,7 +1312,7 @@
       ]
     },
     {
-      "name": "INTEXGLAS OÜ",
+      "name": "Intexglas OÜ",
       "registryCode": "12755318",
       "website": "https://www.intexglas.ee/",
       "note": null,
@@ -1694,92 +1522,6 @@
           "employees": 0.0,
           "margin": null,
           "turnoverPerEmployee": null
-        }
-      ]
-    },
-    {
-      "name": "Doordec OÜ",
-      "registryCode": "11899541",
-      "website": "https://www.doordec.ee/",
-      "note": null,
-      "dataStatus": "ok",
-      "latest": {
-        "reportId": "3399064",
-        "year": 2025,
-        "submitted": "2025-12-31T00:00:00.000",
-        "turnover": 7907658.0,
-        "equity": 2256286.0,
-        "profit": 861784.0,
-        "employees": 78.0,
-        "margin": 10.89809397422094,
-        "turnoverPerEmployee": 101380.23076923077
-      },
-      "history": [
-        {
-          "reportId": "3399064",
-          "year": 2025,
-          "submitted": "2025-12-31T00:00:00.000",
-          "turnover": 7907658.0,
-          "equity": 2256286.0,
-          "profit": 861784.0,
-          "employees": 78.0,
-          "margin": 10.89809397422094,
-          "turnoverPerEmployee": 101380.23076923077
-        },
-        {
-          "reportId": "3110737",
-          "year": 2024,
-          "submitted": "2024-12-31T00:00:00.000",
-          "turnover": 7841045.0,
-          "equity": 1394502.0,
-          "profit": 177291.0,
-          "employees": 76.0,
-          "margin": 2.2610634169297588,
-          "turnoverPerEmployee": 103171.6447368421
-        },
-        {
-          "reportId": "2788132",
-          "year": 2023,
-          "submitted": "2023-12-31T00:00:00.000",
-          "turnover": 8454454.0,
-          "equity": 1217211.0,
-          "profit": 405323.0,
-          "employees": 73.0,
-          "margin": 4.794194870538062,
-          "turnoverPerEmployee": 115814.43835616438
-        },
-        {
-          "reportId": "2473508",
-          "year": 2022,
-          "submitted": "2022-12-31T00:00:00.000",
-          "turnover": 7312422.0,
-          "equity": 2100416.0,
-          "profit": 574540.0,
-          "employees": 63.0,
-          "margin": 7.857041073395381,
-          "turnoverPerEmployee": 116070.19047619047
-        },
-        {
-          "reportId": "2170654",
-          "year": 2021,
-          "submitted": "2021-12-31T00:00:00.000",
-          "turnover": 5823169.0,
-          "equity": 1725876.0,
-          "profit": 98326.0,
-          "employees": 61.0,
-          "margin": 1.6885307639190963,
-          "turnoverPerEmployee": 95461.7868852459
-        },
-        {
-          "reportId": "1901902",
-          "year": 2020,
-          "submitted": "2020-12-31T00:00:00.000",
-          "turnover": 5718258.0,
-          "equity": 1827550.0,
-          "profit": 590592.0,
-          "employees": 59.0,
-          "margin": 10.328180365418978,
-          "turnoverPerEmployee": 96919.62711864407
         }
       ]
     },
@@ -2027,81 +1769,6 @@
           "employees": 13.0,
           "margin": -4.870518632192147,
           "turnoverPerEmployee": 76191.53846153847
-        }
-      ]
-    },
-    {
-      "name": "Viking Window AS",
-      "registryCode": "10179359",
-      "website": "https://www.viking.ee/",
-      "note": "дерево и дерево-алюминий, удаленка",
-      "dataStatus": "ok",
-      "latest": {
-        "reportId": "3118783",
-        "year": 2024,
-        "submitted": "2024-12-31T00:00:00.000",
-        "turnover": 13241618.0,
-        "equity": 6829303.0,
-        "profit": -303576.0,
-        "employees": 111.0,
-        "margin": -2.292589923678511,
-        "turnoverPerEmployee": 119293.85585585586
-      },
-      "history": [
-        {
-          "reportId": "3118783",
-          "year": 2024,
-          "submitted": "2024-12-31T00:00:00.000",
-          "turnover": 13241618.0,
-          "equity": 6829303.0,
-          "profit": -303576.0,
-          "employees": 111.0,
-          "margin": -2.292589923678511,
-          "turnoverPerEmployee": 119293.85585585586
-        },
-        {
-          "reportId": "2791905",
-          "year": 2023,
-          "submitted": "2023-12-31T00:00:00.000",
-          "turnover": 14705027.0,
-          "equity": 7402879.0,
-          "profit": 48291.0,
-          "employees": 125.0,
-          "margin": 0.32839790093551,
-          "turnoverPerEmployee": 117640.216
-        },
-        {
-          "reportId": "2467776",
-          "year": 2022,
-          "submitted": "2022-12-31T00:00:00.000",
-          "turnover": 21501073.0,
-          "equity": 7644588.0,
-          "profit": 2509058.0,
-          "employees": 130.0,
-          "margin": 11.669454822091902,
-          "turnoverPerEmployee": 165392.86923076923
-        },
-        {
-          "reportId": "2178860",
-          "year": 2021,
-          "submitted": "2021-12-31T00:00:00.000",
-          "turnover": 14913497.0,
-          "equity": 5208640.0,
-          "profit": 572349.0,
-          "employees": 130.0,
-          "margin": 3.8377920349600094,
-          "turnoverPerEmployee": 114719.2076923077
-        },
-        {
-          "reportId": "1894040",
-          "year": 2020,
-          "submitted": "2020-12-31T00:00:00.000",
-          "turnover": 11969162.0,
-          "equity": 4777846.0,
-          "profit": 241155.0,
-          "employees": 117.0,
-          "margin": 2.0148027071569423,
-          "turnoverPerEmployee": 102300.52991452992
         }
       ]
     },
