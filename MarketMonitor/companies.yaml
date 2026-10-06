@@ -97,10 +97,10 @@ companies:
     registry_code: "12701966"
     website: "https://alfacad.ee/"
 
-    - name: "Stamper Solution OÜ"
+  - name: "Stamper Solution OÜ"
     registry_code: "11280936"
     website: null 
 
-    - name: "Metus-Est AS"
+  - name: "Metus-Est AS"
     registry_code: "10195826"
     website: null
