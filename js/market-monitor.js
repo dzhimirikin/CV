@@ -17,6 +17,13 @@
   const body = document.getElementById("companiesBody");
   const status = document.getElementById("status");
   const summaryButton = document.getElementById("marketAnnualSummaryButton");
+  let selectionContainer = document.getElementById("marketAnnualSelection");
+  let selectAllCheckbox = document.getElementById("marketAnnualSelectAll");
+  let selectAllLabel = document.getElementById("marketAnnualSelectAllLabel");
+
+  const SELECTION_KEY = "marketMonitorSelectedCompanies";
+  let selectedCompanies = new Set();
+  let hasSavedSelection = false;
 
   if (!yearSelect || !sortSelect || !sortDirection || !searchInput || !body || !status) return;
 
@@ -68,12 +75,7 @@
   }
 
 
-
-  /* ---------- Company selection for Market Summary ---------- */
-
-  const SELECTION_STORAGE_KEY = "marketMonitorExcludedCompanies";
-
-  function companyKey(company) {
+  function companyId(company) {
     return String(
       company.registryCode ||
       company.registry_code ||
@@ -82,155 +84,113 @@
     );
   }
 
-  function loadExcludedCompanies() {
+  function loadSelection() {
     try {
-      const raw = sessionStorage.getItem(SELECTION_STORAGE_KEY);
-      const list = raw ? JSON.parse(raw) : [];
-      return new Set(Array.isArray(list) ? list.map(String) : []);
-    } catch {
-      return new Set();
+      const saved = JSON.parse(sessionStorage.getItem(SELECTION_KEY) || "null");
+      if (Array.isArray(saved)) {
+        selectedCompanies = new Set(saved.map(String));
+        hasSavedSelection = true;
+      }
+    } catch (error) {
+      selectedCompanies = new Set();
     }
   }
 
-  let excludedCompanies = loadExcludedCompanies();
+  function saveSelection() {
+    sessionStorage.setItem(SELECTION_KEY, JSON.stringify([...selectedCompanies]));
+  }
 
-  function saveExcludedCompanies() {
-    try {
-      sessionStorage.setItem(
-        SELECTION_STORAGE_KEY,
-        JSON.stringify([...excludedCompanies])
-      );
-    } catch {
-      /* Ignore storage errors. */
+  function ensureSelection() {
+    const ids = companies.map(companyId).filter(Boolean);
+    if (!hasSavedSelection) {
+      selectedCompanies = new Set(ids);
+      saveSelection();
+      hasSavedSelection = true;
+      return;
+    }
+
+    const valid = new Set(ids);
+    selectedCompanies = new Set(
+      [...selectedCompanies].filter(id => valid.has(id))
+    );
+
+    if (!selectedCompanies.size && ids.length) {
+      selectedCompanies = new Set(ids);
+    }
+    saveSelection();
+  }
+
+  function updateSelectAllState() {
+    if (!selectAllCheckbox) return;
+
+    const ids = companies.map(companyId).filter(Boolean);
+    const allSelected = ids.length > 0 && ids.every(id => selectedCompanies.has(id));
+    selectAllCheckbox.checked = allSelected;
+    selectAllCheckbox.indeterminate = !allSelected && ids.some(id => selectedCompanies.has(id));
+
+    if (selectAllLabel) {
+      selectAllLabel.textContent = allSelected
+        ? (t("summaryDeselectAll") || "Deselect all")
+        : (t("summarySelectAll") || "Select all");
     }
   }
 
-  function isCompanySelected(company) {
-    return !excludedCompanies.has(companyKey(company));
-  }
-
-  function setCompanySelected(company, selected) {
-    const key = companyKey(company);
-    if (!key) return;
-
-    if (selected) {
-      excludedCompanies.delete(key);
-    } else {
-      excludedCompanies.add(key);
-    }
-
-    saveExcludedCompanies();
-    updateSelectionMaster();
-  }
-
-  function selectionTexts() {
-    const language = document.documentElement.lang || "en";
-    if (language === "ru") {
-      return { select: "Выделить все", deselect: "Снять выделение со всех" };
-    }
-    if (language === "et") {
-      return { select: "Vali kõik", deselect: "Tühista kõik valikud" };
-    }
-    return { select: "Select all", deselect: "Deselect all" };
-  }
-
-  function ensureSelectionControls() {
-    const panel = body.closest(".market-monitor-report");
-    if (!panel) return;
-
-    let action = panel.querySelector(".market-selection-action");
-
-    if (!action) {
-      action = document.createElement("div");
-      action.className = "market-selection-action";
-      action.innerHTML = `
+  function setupSelection() {
+    if (!selectionContainer && summaryButton) {
+      selectionContainer = document.createElement("div");
+      selectionContainer.id = "marketAnnualSelection";
+      selectionContainer.className = "market-selection-action";
+      selectionContainer.innerHTML = `
         <label class="market-selection-label">
-          <input
-            type="checkbox"
-            class="market-selection-master"
-            style="accent-color:#1f2933;"
-          >
-          <span class="market-selection-text"></span>
+          <input id="marketAnnualSelectAll" type="checkbox" checked>
+          <span id="marketAnnualSelectAllLabel"></span>
         </label>
       `;
-
-      const tableWrap = panel.querySelector(".table-wrap, .quarterly-table-wrap");
-      if (tableWrap) {
-        tableWrap.parentNode.insertBefore(action, tableWrap);
-      }
+      summaryButton.parentElement.insertAdjacentElement("afterend", selectionContainer);
     }
 
-    const master = action.querySelector(".market-selection-master");
+    selectAllCheckbox = selectionContainer?.querySelector("#marketAnnualSelectAll") || selectAllCheckbox;
+    selectAllLabel = selectionContainer?.querySelector("#marketAnnualSelectAllLabel") || selectAllLabel;
 
-    if (master && !master.dataset.bound) {
-      master.dataset.bound = "true";
+    if (!selectionContainer || !selectAllCheckbox) return;
 
-      master.addEventListener("change", () => {
-        const selected = master.checked;
-
-        companies.forEach(company => {
-          const key = companyKey(company);
-          if (!key) return;
-
-          if (selected) {
-            excludedCompanies.delete(key);
-          } else {
-            excludedCompanies.add(key);
-          }
-        });
-
-        saveExcludedCompanies();
-        render();
-      });
-    }
-
-    updateSelectionMaster();
-  }
-
-  function updateSelectionMaster() {
-    const panel = body.closest(".market-monitor-report");
-    const master = panel?.querySelector(".market-selection-master");
-    const text = panel?.querySelector(".market-selection-text");
-
-    if (!master || !text) return;
-
-    const validCompanies = companies.filter(company => companyKey(company));
-    const allSelected =
-      validCompanies.length > 0 &&
-      validCompanies.every(company => isCompanySelected(company));
-
-    master.checked = allSelected;
-    master.indeterminate = false;
-
-    const labels = selectionTexts();
-    text.textContent = allSelected ? labels.deselect : labels.select;
-  }
-
-  function addCompanySelectionHandlers() {
-    body.querySelectorAll(".market-company-select").forEach(input => {
-      input.addEventListener("change", () => {
-        const key = input.dataset.companyKey;
-        const company = companies.find(item => companyKey(item) === key);
-        if (!company) return;
-
-        setCompanySelected(company, input.checked);
-        render();
-      });
+    selectAllCheckbox.addEventListener("change", () => {
+      const ids = companies.map(companyId).filter(Boolean);
+      selectedCompanies = selectAllCheckbox.checked
+        ? new Set(ids)
+        : new Set();
+      saveSelection();
+      render();
     });
+
+    body.addEventListener("change", event => {
+      const checkbox = event.target.closest(".market-company-checkbox");
+      if (!checkbox) return;
+
+      const id = checkbox.dataset.companyId || "";
+      if (checkbox.checked) selectedCompanies.add(id);
+      else selectedCompanies.delete(id);
+
+      saveSelection();
+      updateSelectAllState();
+    });
+
+    updateSelectAllState();
   }
+
 
   function getSummaryModal() {
-    let modal = document.getElementById("marketSummaryModal");
+    let modal = document.getElementById("marketAnnualSummaryModal");
     if (modal) return modal;
 
     modal = document.createElement("div");
-    modal.id = "marketSummaryModal";
+    modal.id = "marketAnnualSummaryModal";
     modal.className = "market-summary-modal";
     modal.hidden = true;
     modal.innerHTML = `
-      <div class="market-summary-window" role="dialog" aria-modal="true" aria-labelledby="marketSummaryTitle">
+      <div class="market-summary-window" role="dialog" aria-modal="true" aria-labelledby="marketAnnualSummaryTitle">
         <button type="button" class="market-summary-close" aria-label="${escapeHtml(t("summaryClose") || "Close")}">×</button>
-        <h3 id="marketSummaryTitle"></h3>
+        <h3 id="marketAnnualSummaryTitle"></h3>
         <div class="market-summary-subtitle"></div>
         <div class="market-summary-table-wrap">
           <table class="market-summary-table">
@@ -269,9 +229,9 @@
     const query = searchInput.value.trim().toLowerCase();
 
     const rows = companies
-      .filter(company => isCompanySelected(company))
       .map(company => ({ company, record: getRecord(company, year) }))
       .filter(item =>
+        selectedCompanies.has(companyId(item.company)) &&
         String(item.company.name || "").toLowerCase().includes(query) &&
         item.record != null
       );
@@ -322,7 +282,7 @@
       : null;
 
     const modal = getSummaryModal();
-    const title = modal.querySelector("#marketSummaryTitle");
+    const title = modal.querySelector("#marketAnnualSummaryTitle");
     const subtitle = modal.querySelector(".market-summary-subtitle");
     const headerCells = modal.querySelectorAll("thead th");
     const tbody = modal.querySelector("tbody");
@@ -394,7 +354,6 @@
   }
 
   function render() {
-    ensureSelectionControls();
     const year = yearSelect.value;
     const query = searchInput.value.trim().toLowerCase();
     const mobileLabels = getMobileLabels();
@@ -455,15 +414,15 @@
       return `<tr>
         <td class="company">
         <span class="company-cell">
-            <input
-              type="checkbox"
-              class="market-company-select"
-              data-company-key="${escapeHtml(companyKey(company))}"
-              ${isCompanySelected(company) ? "checked" : ""}
-              style="accent-color:#1f2933; flex:0 0 auto;"
-              aria-label="${escapeHtml(company.name)}"
-            >
-            <span class="company-rank">${index + 1}/${total}</span>
+            <span class="company-selection">
+              <input
+                type="checkbox"
+                class="market-company-checkbox"
+                data-company-id="${escapeHtml(companyId(company))}"
+                ${selectedCompanies.has(companyId(company)) ? "checked" : ""}
+                aria-label="${escapeHtml(company.name || "Company")}">
+              <span class="company-rank">${index + 1}/${total}</span>
+            </span>
             ${companyName}
             ${teatmik}
         </span>
@@ -478,9 +437,6 @@
       </tr>`;
     }).join("");
 
-    addCompanySelectionHandlers();
-    updateSelectionMaster();
-
     const rowsWithData = rows.filter(({ record }) => record != null).length;
     const periodLabel = year === "latest" ? (t("statusLatest") || "Latest available") : year;
 
@@ -488,6 +444,8 @@
       `${t("statusCompanies") || "Companies"}: ${rows.length} · ` +
       `${t("statusWithData") || "With data"}: ${rowsWithData} · ` +
       `${t("statusPeriod") || "Period"}: ${periodLabel}`;
+
+    updateSelectAllState();
   }
 
   async function loadData() {
@@ -497,6 +455,9 @@
 
       const data = await response.json();
       companies = Array.isArray(data.companies) ? data.companies : [];
+      loadSelection();
+      ensureSelection();
+      updateSelectAllState();
 
       const updatedElement = document.getElementById("marketMonitorAnnualUpdated");
       if (updatedElement && data.updated) {
@@ -534,5 +495,6 @@
     summaryButton.addEventListener("click", showAnnualSummary);
   }
 
+  setupSelection();
   loadData();
 })();
