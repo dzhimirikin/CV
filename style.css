@@ -3044,6 +3044,17 @@ right:30px;
 }
 
 
+
+/* ---------- Кнопка показателей рынка ---------- */
+
+#market-monitor .market-summary-action {
+    margin: 0 0 16px;
+}
+
+#market-monitor .market-summary-action .cv-link {
+    width: auto;
+}
+
 /* ---------- Таблица ---------- */
 
 #market-monitor .table-wrap {
@@ -3409,6 +3420,13 @@ right:30px;
     box-sizing: border-box;
 }
 
+
+/* ---------- Кнопка показателей рынка — Quarterly ---------- */
+
+#market-monitor .quarterly-controls + .market-summary-action {
+    margin-top: -4px;
+}
+
 #market-monitor .quarterly-table-wrap {
     width: 100%;
     overflow-x: auto;
@@ -3731,5 +3749,152 @@ right:30px;
 
     #market-monitor .market-monitor-quarterly-status {
         font-size: 13px;
+    }
+}
+
+/* ============================================================
+   MARKET MONITOR — SUMMARY MODAL
+============================================================ */
+
+.market-summary-modal {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+    background: rgba(0, 0, 0, 0.55);
+    box-sizing: border-box;
+}
+
+.market-summary-modal[hidden] {
+    display: none;
+}
+
+.market-summary-window {
+    position: relative;
+    width: min(760px, 100%);
+    max-height: calc(100vh - 48px);
+    overflow-y: auto;
+    padding: 28px;
+    border-radius: 12px;
+    background: #fff;
+    color: #1f2933;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.25);
+    box-sizing: border-box;
+}
+
+.market-summary-window h3 {
+    margin: 0 40px 6px 0;
+    font-size: 24px;
+    line-height: 1.25;
+}
+
+.market-summary-subtitle {
+    margin: 0 0 20px;
+    font-size: 14px;
+    color: #6b7280;
+}
+
+.market-summary-close {
+    position: absolute;
+    top: 14px;
+    right: 16px;
+    width: 36px;
+    height: 36px;
+    padding: 0;
+    border: 0;
+    border-radius: 6px;
+    background: transparent;
+    color: #1f2933;
+    font-size: 28px;
+    line-height: 36px;
+    text-align: center;
+    cursor: pointer;
+}
+
+.market-summary-close:hover {
+    background: #f0f2f4;
+}
+
+.market-summary-table-wrap {
+    width: 100%;
+    overflow-x: auto;
+}
+
+.market-summary-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 15px;
+}
+
+.market-summary-table th,
+.market-summary-table td {
+    padding: 10px 12px;
+    border-bottom: 1px solid #e5e7eb;
+    text-align: left;
+    vertical-align: middle;
+}
+
+.market-summary-table th {
+    font-weight: 600;
+    background: #f5f6f7;
+}
+
+.market-summary-table td:last-child,
+.market-summary-table th:last-child {
+    text-align: right;
+    white-space: nowrap;
+}
+
+.market-summary-table tbody tr:last-child td {
+    border-bottom: 0;
+}
+
+
+/* ============================================================
+   MARKET MONITOR — SUMMARY MODAL MOBILE
+============================================================ */
+
+@media (max-width: 700px) {
+
+    #market-monitor .market-summary-action {
+        margin: 0 0 14px;
+    }
+
+    #market-monitor .market-summary-action .cv-link {
+        max-width: 100%;
+    }
+
+    .market-summary-modal {
+        padding: 12px;
+    }
+
+    .market-summary-window {
+        width: 100%;
+        max-height: calc(100vh - 24px);
+        padding: 22px 16px;
+        border-radius: 10px;
+    }
+
+    .market-summary-window h3 {
+        margin-right: 38px;
+        font-size: 21px;
+    }
+
+    .market-summary-subtitle {
+        margin-bottom: 16px;
+        font-size: 13px;
+    }
+
+    .market-summary-table {
+        min-width: 320px;
+        font-size: 14px;
+    }
+
+    .market-summary-table th,
+    .market-summary-table td {
+        padding: 9px 8px;
     }
 }
