@@ -23,21 +23,12 @@ companies:
     registry_code: "14068817"
     website: "https://semity.ee/ru"
 
-  - name: "Aru Grupp AS"
-    registry_code: "10108425"
-    website: "https://www.arugrupp.ee/ru"
-    note: "дерево и дерево-алюминий, удаленка"
-
-  - name: "Klaasmerk AS"
-    registry_code: "10074979"
-    website: "https://klaasmerk.ee/et/"
-
   - name: "Alutec Group OÜ"
     registry_code: "11888098"
     website: "https://www.alutec.ee/"
     note: "сидят вместе с AlüMaster или пилятся у них"
 
-  - name: "KODUAKEN OÜ"
+  - name: "Koduaken OÜ"
     registry_code: "10327363"
     website: "https://www.koduaken.ee/"
 
@@ -74,7 +65,7 @@ companies:
     registry_code: "16779971"
     website: null
 
-  - name: "INTEXGLAS OÜ"
+  - name: "Intexglas OÜ"
     registry_code: "12755318"
     website: "https://www.intexglas.ee/"
 
@@ -85,10 +76,6 @@ companies:
   - name: "Alunord Alumiinium OÜ"
     registry_code: "16851021"
     website: "https://www.alunord.ee/"
-
-  - name: "Doordec OÜ"
-    registry_code: "11899541"
-    website: "https://www.doordec.ee/"
 
   - name: "Saku Metall Uksetehas AS"
     registry_code: "12318492"
@@ -101,11 +88,6 @@ companies:
   - name: "Joveld OÜ"
     registry_code: "10727039"
     website: "https://www.joveld.ee/"
-
-  - name: "Viking Window AS"
-    registry_code: "10179359"
-    website: "https://www.viking.ee/"
-    note: "дерево и дерево-алюминий, удаленка"
 
   - name: "Alumion Group OÜ"
     registry_code: "17372421"
