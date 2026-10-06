@@ -79,11 +79,11 @@ companies:
 
   - name: "Saku Metall Uksetehas AS"
     registry_code: "12318492"
-    website: null
+    website: "https://sakumetall.ee/uksetehas/"
 
   - name: "Aluver Tootmine OÜ"
     registry_code: "11950532"
-    website: null
+    website: "https://aluver.ee/"
 
   - name: "Joveld OÜ"
     registry_code: "10727039"
