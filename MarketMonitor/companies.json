@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-06T07:35:05.812525",
+  "updated": "2026-10-06T08:10:34.921760",
   "source": {
     "generalReports": "https://avaandmed.ariregister.rik.ee/sites/default/files/1.aruannete_yldandmed_kuni_31082026_0.zip",
     "keyIndicators": [
@@ -1780,92 +1780,6 @@
       "dataStatus": "no_report",
       "latest": null,
       "history": []
-    },
-    {
-      "name": "Klar Aknad OÜ",
-      "registryCode": "12735008",
-      "website": null,
-      "note": null,
-      "dataStatus": "ok",
-      "latest": {
-        "reportId": "3468011",
-        "year": 2025,
-        "submitted": "2025-12-31T00:00:00.000",
-        "turnover": 14659021.0,
-        "equity": 518739.0,
-        "profit": -3758121.0,
-        "employees": null,
-        "margin": -25.636916680861567,
-        "turnoverPerEmployee": null
-      },
-      "history": [
-        {
-          "reportId": "3468011",
-          "year": 2025,
-          "submitted": "2025-12-31T00:00:00.000",
-          "turnover": 14659021.0,
-          "equity": 518739.0,
-          "profit": -3758121.0,
-          "employees": null,
-          "margin": -25.636916680861567,
-          "turnoverPerEmployee": null
-        },
-        {
-          "reportId": "3198865",
-          "year": 2024,
-          "submitted": "2024-12-31T00:00:00.000",
-          "turnover": 13466712.0,
-          "equity": 2246860.0,
-          "profit": -2291051.0,
-          "employees": null,
-          "margin": -17.01269768002761,
-          "turnoverPerEmployee": null
-        },
-        {
-          "reportId": "2947488",
-          "year": 2023,
-          "submitted": "2023-12-31T00:00:00.000",
-          "turnover": 15306967.0,
-          "equity": -7828876.0,
-          "profit": -2428471.0,
-          "employees": null,
-          "margin": -15.865135137483474,
-          "turnoverPerEmployee": null
-        },
-        {
-          "reportId": "2577828",
-          "year": 2022,
-          "submitted": "2022-12-31T00:00:00.000",
-          "turnover": 20915524.0,
-          "equity": -5392682.0,
-          "profit": -4315283.0,
-          "employees": null,
-          "margin": -20.6319621731686,
-          "turnoverPerEmployee": null
-        },
-        {
-          "reportId": "2420711",
-          "year": 2021,
-          "submitted": "2021-12-31T00:00:00.000",
-          "turnover": 14423820.0,
-          "equity": -1099899.0,
-          "profit": -2321979.0,
-          "employees": null,
-          "margin": -16.098225019447,
-          "turnoverPerEmployee": null
-        },
-        {
-          "reportId": "2071615",
-          "year": 2020,
-          "submitted": "2020-12-31T00:00:00.000",
-          "turnover": 8558088.0,
-          "equity": -4671520.0,
-          "profit": -1642427.0,
-          "employees": null,
-          "margin": -19.19151801196716,
-          "turnoverPerEmployee": null
-        }
-      ]
     },
     {
       "name": "Alfasad OÜ",
