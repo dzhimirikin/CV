@@ -3745,17 +3745,23 @@ right:30px;
    ============================================================ */
 
 #market-monitor .market-selection-action {
-    margin: 0 0 12px;
+    margin: 4px 0 18px;
+    padding: 8px 12px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    background: #f7f7f7;
 }
 
 #market-monitor .market-selection-label {
-    display: inline-flex;
+    display: flex;
     align-items: center;
-    gap: 7px;
+    gap: 8px;
+    width: fit-content;
     font-size: 14px;
     color: #444;
     cursor: pointer;
     user-select: none;
+    font-weight: 500;
 }
 
 #market-monitor .market-selection-label input,
