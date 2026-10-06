@@ -3852,6 +3852,16 @@ right:30px;
     border-bottom: 0;
 }
 
+/* ---------- Цветные значения в итогах ---------- */
+
+.market-summary-positive {
+    color: #16803c;
+}
+
+.market-summary-negative {
+    color: #b42318;
+}
+
 
 /* ============================================================
    MARKET MONITOR — SUMMARY MODAL MOBILE
