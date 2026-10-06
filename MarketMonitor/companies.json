@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-06T08:10:34.921760",
+  "updated": "2026-10-06T11:07:29.760321",
   "source": {
     "generalReports": "https://avaandmed.ariregister.rik.ee/sites/default/files/1.aruannete_yldandmed_kuni_31082026_0.zip",
     "keyIndicators": [
@@ -1863,6 +1863,123 @@
           "profit": 15084.0,
           "employees": 0.0,
           "margin": 48.5609426308673,
+          "turnoverPerEmployee": null
+        }
+      ]
+    },
+    {
+      "name": "Stamper Solution OÜ",
+      "registryCode": "11280936",
+      "website": null,
+      "note": null,
+      "dataStatus": "ok",
+      "latest": {
+        "reportId": "3454135",
+        "year": 2025,
+        "submitted": "2025-12-31T00:00:00.000",
+        "turnover": 988032.0,
+        "equity": -969667.0,
+        "profit": -1195541.0,
+        "employees": 14.0,
+        "margin": -121.00225498769271,
+        "turnoverPerEmployee": 70573.71428571429
+      },
+      "history": [
+        {
+          "reportId": "3454135",
+          "year": 2025,
+          "submitted": "2025-12-31T00:00:00.000",
+          "turnover": 988032.0,
+          "equity": -969667.0,
+          "profit": -1195541.0,
+          "employees": 14.0,
+          "margin": -121.00225498769271,
+          "turnoverPerEmployee": 70573.71428571429
+        },
+        {
+          "reportId": "2891139",
+          "year": 2023,
+          "submitted": "2023-12-31T00:00:00.000",
+          "turnover": 3982746.0,
+          "equity": 405796.0,
+          "profit": 200520.0,
+          "employees": 26.0,
+          "margin": 5.034717252870256,
+          "turnoverPerEmployee": 153182.53846153847
+        },
+        {
+          "reportId": "2533082",
+          "year": 2022,
+          "submitted": "2022-12-31T00:00:00.000",
+          "turnover": 2488587.0,
+          "equity": 205276.0,
+          "profit": 52988.0,
+          "employees": 13.0,
+          "margin": 2.129240408312026,
+          "turnoverPerEmployee": 191429.76923076922
+        },
+        {
+          "reportId": "2313905",
+          "year": 2021,
+          "submitted": "2021-12-31T00:00:00.000",
+          "turnover": 277949.0,
+          "equity": 152288.0,
+          "profit": 52254.0,
+          "employees": 1.0,
+          "margin": 18.79985177136813,
+          "turnoverPerEmployee": 277949.0
+        },
+        {
+          "reportId": "2074878",
+          "year": 2020,
+          "submitted": "2020-12-31T00:00:00.000",
+          "turnover": 83374.0,
+          "equity": 100034.0,
+          "profit": 91655.0,
+          "employees": 1.0,
+          "margin": 109.93235301173027,
+          "turnoverPerEmployee": 83374.0
+        }
+      ]
+    },
+    {
+      "name": "Metus-Est AS",
+      "registryCode": "10195826",
+      "website": null,
+      "note": null,
+      "dataStatus": "ok",
+      "latest": {
+        "reportId": "2284978",
+        "year": 2021,
+        "submitted": "2021-12-31T00:00:00.000",
+        "turnover": 11198783.0,
+        "equity": 2298741.0,
+        "profit": -430725.0,
+        "employees": null,
+        "margin": -3.8461768568959678,
+        "turnoverPerEmployee": null
+      },
+      "history": [
+        {
+          "reportId": "2284978",
+          "year": 2021,
+          "submitted": "2021-12-31T00:00:00.000",
+          "turnover": 11198783.0,
+          "equity": 2298741.0,
+          "profit": -430725.0,
+          "employees": null,
+          "margin": -3.8461768568959678,
+          "turnoverPerEmployee": null
+        },
+        {
+          "reportId": "2057650",
+          "year": 2020,
+          "submitted": "2020-12-31T00:00:00.000",
+          "turnover": 10147977.0,
+          "equity": 2729467.0,
+          "profit": 3176.0,
+          "employees": null,
+          "margin": 0.03129687818567189,
           "turnoverPerEmployee": null
         }
       ]
