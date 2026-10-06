@@ -25,6 +25,107 @@
 
   let companies = [];
 
+  const SELECTION_KEY = "marketMonitorExcludedCompanies";
+
+  function companyKey(company) {
+    return String(
+      company.registryCode ||
+      company.registry_code ||
+      company.name ||
+      ""
+    ).trim().toLowerCase();
+  }
+
+  function getExcludedCompanies() {
+    try {
+      const raw = sessionStorage.getItem(SELECTION_KEY);
+      const values = raw ? JSON.parse(raw) : [];
+      return new Set(Array.isArray(values) ? values.map(String) : []);
+    } catch {
+      return new Set();
+    }
+  }
+
+  function saveExcludedCompanies(excluded) {
+    try {
+      sessionStorage.setItem(SELECTION_KEY, JSON.stringify([...excluded]));
+    } catch {
+      // Ignore storage errors.
+    }
+  }
+
+  function isCompanySelected(company) {
+    return !getExcludedCompanies().has(companyKey(company));
+  }
+
+  function setCompanySelected(company, selected) {
+    const excluded = getExcludedCompanies();
+    const key = companyKey(company);
+    if (!key) return;
+    if (selected) excluded.delete(key);
+    else excluded.add(key);
+    saveExcludedCompanies(excluded);
+    window.dispatchEvent(new CustomEvent("marketMonitorSelectionChanged"));
+  }
+
+  function setAllCompaniesSelected(selected) {
+    const excluded = getExcludedCompanies();
+    companies.forEach(company => {
+      const key = companyKey(company);
+      if (!key) return;
+      if (selected) excluded.delete(key);
+      else excluded.add(key);
+    });
+    saveExcludedCompanies(excluded);
+    window.dispatchEvent(new CustomEvent("marketMonitorSelectionChanged"));
+  }
+
+  function allCompaniesSelected() {
+    return companies.length > 0 && companies.every(company => isCompanySelected(company));
+  }
+
+  function ensureSelectionControl() {
+    let control = document.getElementById("marketQuarterlySelectionControl");
+    if (control) return control;
+
+    const tableWrap = document.querySelector("#marketMonitorQuarterly .quarterly-table-wrap");
+    if (!tableWrap) return null;
+
+    control = document.createElement("div");
+    control.id = "marketQuarterlySelectionControl";
+    control.className = "market-selection-action";
+    control.innerHTML = `
+      <label class="market-selection-label">
+        <input id="marketQuarterlySelectAll" type="checkbox">
+        <span></span>
+      </label>`;
+    tableWrap.parentNode.insertBefore(control, tableWrap);
+
+    const checkbox = control.querySelector("input");
+    checkbox.addEventListener("change", () => {
+      setAllCompaniesSelected(checkbox.checked);
+    });
+
+    return control;
+  }
+
+  function updateSelectionControl() {
+    const control = ensureSelectionControl();
+    if (!control) return;
+    const checkbox = control.querySelector("input");
+    const label = control.querySelector("span");
+    const selected = allCompaniesSelected();
+    checkbox.checked = selected;
+    checkbox.indeterminate = false;
+    checkbox.setAttribute(
+      "aria-label",
+      t(selected ? "summaryDeselectAll" : "summarySelectAll") ||
+        (selected ? "Deselect all" : "Select all")
+    );
+    label.textContent = t(selected ? "summaryDeselectAll" : "summarySelectAll") ||
+      (selected ? "Deselect all" : "Select all");
+  }
+
   const lang = ["en", "et", "ru"].includes(document.documentElement.lang)
     ? document.documentElement.lang
     : "en";
@@ -179,7 +280,7 @@
         company,
         record: getRecord(company, year, quarter)
       }))
-      .filter(item => item.record != null);
+      .filter(item => item.record != null && isCompanySelected(item.company));
 
     const sum = key => rows
       .filter(({ record }) => record?.[key] != null)
@@ -423,7 +524,15 @@
       return `<tr>
         <td>
           <span class="quarterly-company-cell">
-              <span class="company-rank">${index + 1}/${total}</span>
+              <span class="company-selection">
+                <input
+                  class="market-company-checkbox"
+                  type="checkbox"
+                  data-company-key="${escapeHtml(companyKey(company))}"
+                  ${isCompanySelected(company) ? "checked" : ""}
+                  aria-label="${escapeHtml(company.name || "Company")}">
+                <span class="company-rank">${index + 1}/${total}</span>
+              </span>
               ${companyName}
               ${teatmik}
           </span>
@@ -441,6 +550,15 @@
         <td data-label="${label(11)}">${euro(record?.averageGrossWage)}</td>
       </tr>`;
     }).join("");
+
+    body.querySelectorAll(".market-company-checkbox").forEach(checkbox => {
+      checkbox.addEventListener("change", () => {
+        const company = companies.find(item => companyKey(item) === checkbox.dataset.companyKey);
+        if (company) setCompanySelected(company, checkbox.checked);
+      });
+    });
+
+    updateSelectionControl();
 
     const availableCount = rows.filter(item => item.record != null).length;
 
@@ -497,6 +615,8 @@
   if (summaryButton) {
     summaryButton.addEventListener("click", showQuarterlySummary);
   }
+
+  window.addEventListener("marketMonitorSelectionChanged", render);
 
   loadData();
 })();
