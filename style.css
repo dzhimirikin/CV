@@ -3793,3 +3793,178 @@ right:30px;
         font-size: 14px;
     }
 }
+
+/* ============================================================
+   MARKET SUMMARY MODAL
+============================================================ */
+
+.market-summary-modal {
+  position: fixed;
+  inset: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 20px;
+
+  background: rgba(0, 0, 0, 0.45);
+
+  z-index: 9999;
+}
+
+/* hidden должен действительно скрывать модальное окно */
+.market-summary-modal[hidden] {
+  display: none;
+}
+
+
+.market-summary-window {
+  position: relative;
+
+  width: min(520px, 100%);
+  max-height: 80vh;
+
+  overflow: auto;
+
+  background: #fff;
+  color: #1f2933;
+
+  border-radius: 8px;
+
+  padding: 24px;
+
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+}
+
+
+.market-summary-window h3 {
+  margin: 0 0 8px;
+  padding-right: 35px;
+
+  font-size: 22px;
+}
+
+
+.market-summary-subtitle {
+  margin-bottom: 18px;
+
+  color: #666;
+
+  font-size: 14px;
+}
+
+
+.market-summary-close {
+  position: absolute;
+
+  top: 10px;
+  right: 12px;
+
+  width: 32px;
+  height: 32px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 0;
+
+  border: none;
+  border-radius: 50%;
+
+  background: transparent;
+  color: #555;
+
+  font-size: 24px;
+  line-height: 1;
+
+  cursor: pointer;
+}
+
+
+.market-summary-close:hover {
+  background: #eee;
+  color: #111;
+}
+
+
+.market-summary-table-wrap {
+  width: 100%;
+  overflow-x: auto;
+}
+
+
+.market-summary-table {
+  width: 100%;
+
+  border-collapse: collapse;
+
+  font-size: 14px;
+}
+
+
+.market-summary-table th,
+.market-summary-table td {
+  padding: 10px 8px;
+
+  border-bottom: 1px solid #ddd;
+
+  text-align: left;
+}
+
+
+.market-summary-table th {
+  background: #f5f5f5;
+
+  font-weight: 600;
+}
+
+
+.market-summary-table td:last-child,
+.market-summary-table th:last-child {
+  text-align: right;
+}
+
+
+.market-summary-positive {
+  color: #187a3d;
+  font-weight: 600;
+}
+
+
+.market-summary-negative {
+  color: #b42318;
+  font-weight: 600;
+}
+
+
+/* ---------------- MARKET SUMMARY MOBILE ---------------- */
+
+@media (max-width: 768px) {
+
+  .market-summary-modal {
+    padding: 12px;
+  }
+
+  .market-summary-window {
+    width: 100%;
+    max-height: 85vh;
+
+    padding: 20px 16px;
+  }
+
+  .market-summary-window h3 {
+    font-size: 20px;
+  }
+
+  .market-summary-table {
+    font-size: 13px;
+  }
+
+  .market-summary-table th,
+  .market-summary-table td {
+    padding: 8px 6px;
+  }
+
+}
