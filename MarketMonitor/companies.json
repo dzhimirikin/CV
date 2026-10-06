@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-06T11:07:29.760321",
+  "updated": "2026-10-06T11:54:59.105890",
   "source": {
     "generalReports": "https://avaandmed.ariregister.rik.ee/sites/default/files/1.aruannete_yldandmed_kuni_31082026_0.zip",
     "keyIndicators": [
@@ -1528,7 +1528,7 @@
     {
       "name": "Saku Metall Uksetehas AS",
       "registryCode": "12318492",
-      "website": null,
+      "website": "https://sakumetall.ee/uksetehas/",
       "note": null,
       "dataStatus": "ok",
       "latest": {
@@ -1603,7 +1603,7 @@
     {
       "name": "Aluver Tootmine OÜ",
       "registryCode": "11950532",
-      "website": null,
+      "website": "https://aluver.ee/",
       "note": null,
       "dataStatus": "ok",
       "latest": {
