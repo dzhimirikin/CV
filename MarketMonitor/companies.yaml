@@ -104,3 +104,7 @@ companies:
   - name: "Metus-Est AS"
     registry_code: "10195826"
     website: null
+
+  - name: "Alukon OÜ"
+    registry_code: "16469420"
+    website: "https://alucon.ee/"
