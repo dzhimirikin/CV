@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-07T02:14:21.103954",
+  "updated": "2026-10-07T21:02:00.513795",
   "source": {
     "generalReports": "https://avaandmed.ariregister.rik.ee/sites/default/files/1.aruannete_yldandmed_kuni_31082026_0.zip",
     "keyIndicators": [
@@ -1981,6 +1981,70 @@
           "employees": null,
           "margin": 0.03129687818567189,
           "turnoverPerEmployee": null
+        }
+      ]
+    },
+    {
+      "name": "Alukon OÜ",
+      "registryCode": "16469420",
+      "website": "https://alucon.ee/",
+      "note": null,
+      "dataStatus": "ok",
+      "latest": {
+        "reportId": "3427969",
+        "year": 2025,
+        "submitted": "2025-12-31T00:00:00.000",
+        "turnover": 276998.0,
+        "equity": 111254.0,
+        "profit": 20852.0,
+        "employees": 1.0,
+        "margin": 7.527852186658388,
+        "turnoverPerEmployee": 276998.0
+      },
+      "history": [
+        {
+          "reportId": "3427969",
+          "year": 2025,
+          "submitted": "2025-12-31T00:00:00.000",
+          "turnover": 276998.0,
+          "equity": 111254.0,
+          "profit": 20852.0,
+          "employees": 1.0,
+          "margin": 7.527852186658388,
+          "turnoverPerEmployee": 276998.0
+        },
+        {
+          "reportId": "3246231",
+          "year": 2024,
+          "submitted": "2024-12-31T00:00:00.000",
+          "turnover": 149811.0,
+          "equity": 90402.0,
+          "profit": 15493.0,
+          "employees": 1.0,
+          "margin": 10.341697205145149,
+          "turnoverPerEmployee": 149811.0
+        },
+        {
+          "reportId": "2938678",
+          "year": 2023,
+          "submitted": "2023-12-31T00:00:00.000",
+          "turnover": 524156.0,
+          "equity": 74909.0,
+          "profit": 50063.0,
+          "employees": 1.0,
+          "margin": 9.551164157235633,
+          "turnoverPerEmployee": 524156.0
+        },
+        {
+          "reportId": "2542913",
+          "year": 2022,
+          "submitted": "2022-12-31T00:00:00.000",
+          "turnover": 106876.0,
+          "equity": 23793.0,
+          "profit": 23793.0,
+          "employees": 1.0,
+          "margin": 22.262247838616712,
+          "turnoverPerEmployee": 106876.0
         }
       ]
     }
