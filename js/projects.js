@@ -725,42 +725,94 @@ videoMenu.appendChild(link);
     /* ==============================
        Gallery Filter
     ============================== */
-function filterGalleryImages() {
+    function filterGalleryImages() {
 
-    galleryImages.forEach(img => {
+        galleryImages.forEach(img => {
 
-        const projectCode = img.getAttribute('href').split('/')[0];
+            const projectFolder =
+                img.getAttribute('href').split('/')[0];
 
-        const card = Array.from(projectCards).find(
-            c => c.dataset.project === projectCode
-        );
+            /* Находим карточку, которой принадлежит фото */
 
-        if (!card) return;
+            const card =
+                Array.from(projectCards).find(card => {
 
-        if (showingAll) {
+                    /* Обычный случай:
+                       папка = data-project */
 
-            img.style.display = '';
+                    if (card.dataset.project === projectFolder) {
+                        return true;
+                    }
 
-        } else if (currentProjectCard) {
+                    /* Особый случай:
+                       папка фото определяется по первой фотографии карточки */
+
+                    const cardImg =
+                        card.querySelector(':scope > img');
+
+                    if (!cardImg) return false;
+
+                    const cardFolder =
+                        cardImg.getAttribute('src').split('/')[0];
+
+                    return cardFolder === projectFolder;
+
+                });
+
+
+            /* Если карточка не найдена —
+               фотографию не показываем */
+
+            if (!card) {
+
+                img.style.display = 'none';
+
+                return;
+
+            }
+
+
+            /* ==================================================
+               SHOW ALL
+            ================================================== */
+
+            if (showingAll) {
+
+                img.style.display = '';
+
+                return;
+
+            }
+
+
+            /* ==================================================
+               АКТИВИРОВАН КОНКРЕТНЫЙ ПРОЕКТ
+            ================================================== */
+
+            if (currentProjectCard) {
+
+                img.style.display =
+                    card === currentProjectCard
+                        ? ''
+                        : 'none';
+
+                return;
+
+            }
+
+
+            /* ==================================================
+               РАБОТАЕТ ФИЛЬТР ПРОЕКТОВ
+            ================================================== */
 
             img.style.display =
-                (projectCode === currentProjectCard.dataset.project)
+                card.dataset.filterMatch === 'true'
                     ? ''
                     : 'none';
 
-        } else {
+        });
 
-            /* ВАЖНО: проверяем видимость карточки */
-
-            img.style.display =
-                card.dataset.filterMatch !== 'true'
-                    ? 'none'
-                    : '';
-        }
-
-    });
-
-}
+    }
 
     /* ==============================
        Project Click

@@ -1,118 +1,239 @@
 document.addEventListener("DOMContentLoaded", () => {
 
-const galleryLinks = document.querySelectorAll("#gallery .gallery a");
-let currentIndex = 0;
+    const allGalleryLinks =
+        Array.from(document.querySelectorAll("#gallery .gallery a"));
 
-galleryLinks.forEach((link, index) => {
-
-link.addEventListener("click", e => {
-
-e.preventDefault();
-currentIndex = index;
-
-/* удаляем старый lightbox если он есть */
-
-const old = document.querySelector(".lightbox-overlay");
-if(old) old.remove();
-
-openLightbox(link.href);
-
-});
-
-});
-
-function openLightbox(src){
-
-const overlay = document.createElement("div");
-overlay.className = "lightbox-overlay";
-
-const img = document.createElement("img");
-img.className = "lightbox-img";
-img.src = src;
-
-const closeBtn = document.createElement("button");
-closeBtn.className = "lightbox-close";
-closeBtn.textContent = "×";
-
-const prev = document.createElement("button");
-prev.className = "lightbox-prev";
-prev.textContent = "‹";
-
-const next = document.createElement("button");
-next.className = "lightbox-next";
-next.textContent = "›";
-
-overlay.append(img, closeBtn, prev, next);
-document.body.appendChild(overlay);
+    let galleryLinks = [];
+    let currentIndex = 0;
 
 
-/* ---------- перелистывание ---------- */
+    /* ============================================================
+       ФОРМИРУЕМ АКТУАЛЬНЫЙ СПИСОК ФОТОГРАФИЙ
+    ============================================================ */
 
-function showPrev(){
-currentIndex = (currentIndex - 1 + galleryLinks.length) % galleryLinks.length;
-img.src = galleryLinks[currentIndex].href;
-}
+    function updateGalleryLinks() {
 
-function showNext(){
-currentIndex = (currentIndex + 1) % galleryLinks.length;
-img.src = galleryLinks[currentIndex].href;
-}
+        galleryLinks = allGalleryLinks.filter(link => {
 
+            const img = link.querySelector("img");
 
-/* ---------- кнопки ---------- */
+            if (!img) return false;
 
-prev.onclick = () => {
-showPrev();
-};
+            return link.style.display !== "none";
 
-next.onclick = () => {
-showNext();
-};
+        });
+
+    }
 
 
-/* ---------- клавиатура ---------- */
+    /* ============================================================
+       ОТКРЫТИЕ ФОТО
+    ============================================================ */
 
-function handleKey(e){
+    allGalleryLinks.forEach(link => {
 
-if(e.key === "ArrowLeft"){
-showPrev();
-}
+        link.addEventListener("click", e => {
 
-else if(e.key === "ArrowRight"){
-showNext();
-}
+            e.preventDefault();
 
-else if(e.key === "Escape"){
-closeLightbox();
-}
+            updateGalleryLinks();
 
-}
+            currentIndex = galleryLinks.indexOf(link);
 
-document.addEventListener("keydown", handleKey);
+            if (currentIndex === -1) return;
 
+            const old =
+                document.querySelector(".lightbox-overlay");
 
-/* ---------- закрытие ---------- */
+            if (old) old.remove();
 
-function closeLightbox(){
+            openLightbox(link.href);
 
-document.removeEventListener("keydown", handleKey);
-overlay.remove();
+        });
 
-}
-
-closeBtn.onclick = closeLightbox;
+    });
 
 
-/* ---------- клик по фону ---------- */
+    /* ============================================================
+       LIGHTBOX
+    ============================================================ */
 
-overlay.addEventListener("click", e => {
+    function openLightbox(src) {
 
-if(e.target === overlay){
-closeLightbox();
-}
+        const overlay =
+            document.createElement("div");
 
-});
+        overlay.className =
+            "lightbox-overlay";
 
-}
+
+        const img =
+            document.createElement("img");
+
+        img.className =
+            "lightbox-img";
+
+        img.src = src;
+
+
+        const closeBtn =
+            document.createElement("button");
+
+        closeBtn.className =
+            "lightbox-close";
+
+        closeBtn.textContent =
+            "×";
+
+
+        const prev =
+            document.createElement("button");
+
+        prev.className =
+            "lightbox-prev";
+
+        prev.textContent =
+            "‹";
+
+
+        const next =
+            document.createElement("button");
+
+        next.className =
+            "lightbox-next";
+
+        next.textContent =
+            "›";
+
+
+        overlay.append(
+            img,
+            closeBtn,
+            prev,
+            next
+        );
+
+        document.body.appendChild(overlay);
+
+
+        /* ========================================================
+           ПЕРЕЛИСТЫВАНИЕ
+        ======================================================== */
+
+        function showPrev() {
+
+            if (!galleryLinks.length) return;
+
+            currentIndex =
+                (currentIndex - 1 + galleryLinks.length)
+                % galleryLinks.length;
+
+            img.src =
+                galleryLinks[currentIndex].href;
+        }
+
+
+        function showNext() {
+
+            if (!galleryLinks.length) return;
+
+            currentIndex =
+                (currentIndex + 1)
+                % galleryLinks.length;
+
+            img.src =
+                galleryLinks[currentIndex].href;
+        }
+
+
+        /* ========================================================
+           КНОПКИ
+        ======================================================== */
+
+        prev.onclick = () => {
+
+            showPrev();
+
+        };
+
+
+        next.onclick = () => {
+
+            showNext();
+
+        };
+
+
+        /* ========================================================
+           КЛАВИАТУРА
+        ======================================================== */
+
+        function handleKey(e) {
+
+            if (e.key === "ArrowLeft") {
+
+                showPrev();
+
+            }
+
+            else if (e.key === "ArrowRight") {
+
+                showNext();
+
+            }
+
+            else if (e.key === "Escape") {
+
+                closeLightbox();
+
+            }
+
+        }
+
+
+        document.addEventListener(
+            "keydown",
+            handleKey
+        );
+
+
+        /* ========================================================
+           ЗАКРЫТИЕ
+        ======================================================== */
+
+        function closeLightbox() {
+
+            document.removeEventListener(
+                "keydown",
+                handleKey
+            );
+
+            overlay.remove();
+
+        }
+
+
+        closeBtn.onclick =
+            closeLightbox;
+
+
+        /* ========================================================
+           КЛИК ПО ФОНУ
+        ======================================================== */
+
+        overlay.addEventListener(
+            "click",
+            e => {
+
+                if (e.target === overlay) {
+
+                    closeLightbox();
+
+                }
+
+            }
+        );
+
+    }
 
 });
