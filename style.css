@@ -4252,3 +4252,42 @@ right:30px;
   }
 
 }
+
+/* ============================================================
+   GALLERY — TABLET / PHONE IN DESKTOP MODE
+   769–1024px
+============================================================ */
+
+@media (min-width: 769px) and (max-width: 1024px) {
+
+  #gallery .show-all-card {
+    width: 220px;
+    flex: 0 0 220px;
+    box-sizing: border-box;
+  }
+
+  #gallery .show-all-card .cv-link {
+    width: 220px;
+    min-width: 220px;
+    max-width: 220px;
+    box-sizing: border-box;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  }
+
+  #gallery .show-all-card .video-dropdown {
+    width: 220px;
+    min-width: 220px;
+    max-width: 220px;
+  }
+
+  #gallery .show-all-card .video-dropdown .cv-link {
+    width: 220px;
+    min-width: 220px;
+    max-width: 220px;
+  }
+
+}
