@@ -4290,4 +4290,31 @@ right:30px;
     max-width: 220px;
   }
 
+#gallery > .card {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: stretch;
+  column-gap: 24px;
+}
+
+#gallery > .card > h2 {
+  flex: 0 0 100%;
+  margin-bottom: 20px;
+}
+
+#gallery .show-all-card {
+  flex: 0 0 220px;
+  width: 220px;
+  margin: 0;
+  align-self: stretch;
+}
+
+#gallery .gallery-wrapper {
+  flex: 1 1 0;
+  min-width: 0;
+  width: auto;
+  margin: 0;
+  align-self: stretch;
+}
+
 }
