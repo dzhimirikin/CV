@@ -123,6 +123,9 @@ projectCards.forEach(card => {
     const profileFilter    = document.getElementById('profileFilter');
     const companyFilter    = document.getElementById('companyFilter');
 
+    const showProjectCardsCheckbox = document.getElementById('showProjectCards');
+    const showProjectCardsLabel = showProjectCardsCheckbox?.closest('label')?.querySelector('span');
+
     const yearCombo        = document.querySelector('.filter-item:first-child .combo-row');
     const companyCombo     = document.querySelector('.company-row .combo-row');
 
@@ -132,6 +135,7 @@ projectCards.forEach(card => {
     let currentProjectCard = null;
     let lastFocusedProject = null;
     let showingAll = false;
+    let showProjectCards = false;
 
     /* ==============================
        SCROLL SPEED SETTINGS
@@ -370,7 +374,7 @@ projectCards.forEach(card => {
         );
     }
 
-    /* ===== NEW ===== */
+
     function updateProjectsCounter() {
 
         if (!projectsCounter) return;
@@ -378,10 +382,58 @@ projectCards.forEach(card => {
         const totalProjects = projectCards.length;
 
         const visibleProjects = Array.from(projectCards)
-            .filter(card => card.style.display !== 'none')
+            .filter(card => card.dataset.filterMatch === 'true')
             .length;
 
         projectsCounter.textContent = `${visibleProjects}/${totalProjects}`;
+    }
+
+
+    function updateProjectCardsVisibility() {
+
+        const hasActiveFilters = filtersActive();
+
+        projectCards.forEach(card => {
+
+            const filterMatch =
+                card.dataset.filterMatch === 'true';
+
+            if (hasActiveFilters) {
+
+                card.style.display =
+                    filterMatch ? '' : 'none';
+
+            } else {
+
+                card.style.display =
+                    showProjectCards ? '' : 'none';
+            }
+        });
+    }
+
+
+    function updateProjectCardsCheckboxState() {
+
+        if (!showProjectCardsCheckbox) return;
+
+        showProjectCardsCheckbox.disabled =
+            filtersActive();
+    }
+
+
+    function updateProjectCardsLabel() {
+
+        if (!showProjectCardsLabel) return;
+
+        const label =
+            showProjectCardsLabel.closest('label');
+
+        if (!label) return;
+
+        showProjectCardsLabel.textContent =
+            showProjectCards
+                ? label.dataset.hide
+                : label.dataset.show;
     }
 
     /* ==============================
@@ -701,7 +753,7 @@ function filterGalleryImages() {
             /* ВАЖНО: проверяем видимость карточки */
 
             img.style.display =
-                card.style.display === 'none'
+                card.dataset.filterMatch !== 'true'
                     ? 'none'
                     : '';
         }
@@ -756,37 +808,48 @@ function filterGalleryImages() {
         projectCards.forEach(project => {
 
             const years =
-                project.dataset.years.split(',').map(y => y.trim());
+                project.dataset.years
+                    .split(',')
+                    .map(y => y.trim());
 
-                const companyId = project.dataset.companyId;
+            const companyId =
+                project.dataset.companyId;
 
             const yearMatch =
-                selectedYear === 'all' || years.includes(selectedYear);
+                selectedYear === 'all' ||
+                years.includes(selectedYear);
 
-    const prof1 = project.dataset.prof_1;
-    const prof2 = project.dataset.prof_2;
-    const prof3 = project.dataset.prof_3;
+            const prof1 = project.dataset.prof_1;
+            const prof2 = project.dataset.prof_2;
+            const prof3 = project.dataset.prof_3;
 
-    const profileMatch =
-        selectedProfile === 'all' ||
-        selectedProfile === prof1 ||
-        selectedProfile === prof2 ||
-        selectedProfile === prof3;
+            const profileMatch =
+                selectedProfile === 'all' ||
+                selectedProfile === prof1 ||
+                selectedProfile === prof2 ||
+                selectedProfile === prof3;
 
-    const companyMatch =
-        selectedCompany === 'all' || companyId === selectedCompany;
+            const companyMatch =
+                selectedCompany === 'all' ||
+                companyId === selectedCompany;
 
-    project.style.display =
-        (yearMatch && companyMatch && profileMatch)
-            ? ''
-            : 'none';
+            const filterMatch =
+                yearMatch &&
+                companyMatch &&
+                profileMatch;
+
+            project.dataset.filterMatch =
+                filterMatch ? 'true' : 'false';
 
             project.classList.remove('project-active');
         });
 
-        filterGalleryImages();
-        updateButtons();
-        updateProjectsCounter(); /* NEW */
+    updateProjectCardsVisibility();
+    updateProjectCardsCheckboxState();
+    filterGalleryImages();
+    updateButtons();
+    updateProjectsCounter();
+    updateProjectCardsLabel();
     }
 
     yearFilter?.addEventListener('change', () => {
@@ -796,6 +859,15 @@ function filterGalleryImages() {
 
     profileFilter?.addEventListener('change', filterProjects);
     companyFilter?.addEventListener('change', filterProjects);
+
+    showProjectCardsCheckbox?.addEventListener('change', () => {
+
+        showProjectCards =
+            showProjectCardsCheckbox.checked;
+
+        updateProjectCardsVisibility();
+        updateProjectCardsLabel();
+    });
 
     /* ==============================
        Smooth Scroll
