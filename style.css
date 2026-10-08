@@ -4254,14 +4254,20 @@ right:30px;
 }
 
 /* ============================================================
-   GALLERY — TABLET / PHONE IN DESKTOP MODE
-   769–1024px
+   GALLERY — INTERMEDIATE MODE
+   481–1024px
+
+   481–768px  — phone / desktop-mode
+   769–1024px — tablet / desktop-mode
+
+   480px and below remain TRUE MOBILE.
 ============================================================ */
 
-@media (min-width: 769px) and (max-width: 1024px) {
+@media (min-width: 481px) and (max-width: 1024px) {
 
   /* ==========================================================
      GALLERY LAYOUT
+     Controls left / photos right
   ========================================================== */
 
   #gallery > .card {
@@ -4279,7 +4285,7 @@ right:30px;
 
   /* ==========================================================
      CONTROL COLUMN
-     Fixed width — does NOT expand with viewport
+     Fixed 220px — must NOT stretch with viewport
   ========================================================== */
 
   #gallery .show-all-card {
@@ -4304,6 +4310,7 @@ right:30px;
 
   #gallery .show-all-card .cv-link {
     display: flex;
+
     flex: 0 0 42px;
 
     width: 220px;
@@ -4326,6 +4333,7 @@ right:30px;
     position: relative;
 
     display: flex;
+
     flex: 0 0 42px;
 
     width: 220px;
@@ -4352,8 +4360,8 @@ right:30px;
 
   /* ==========================================================
      PHOTO WINDOW
-     Width = all remaining space
-     Height follows number of controls
+     Remaining width
+     Height follows control column
   ========================================================== */
 
   #gallery .gallery-wrapper {
@@ -4407,7 +4415,7 @@ right:30px;
 
   /* ==========================================================
      DYNAMIC PHOTO HEIGHT
-     Same principle as desktop
+     Same values as working desktop Gallery
   ========================================================== */
 
   /* 6 controls */
