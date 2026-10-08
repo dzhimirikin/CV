@@ -4256,12 +4256,13 @@ right:30px;
 /* ============================================================
    GALLERY — TABLET / PHONE IN DESKTOP MODE
    769–1024px
-   Same Gallery logic as desktop
 ============================================================ */
 
 @media (min-width: 769px) and (max-width: 1024px) {
 
-  /* ---------------- LAYOUT ---------------- */
+  /* ==========================================================
+     GALLERY LAYOUT
+  ========================================================== */
 
   #gallery > .card {
     display: flex;
@@ -4276,7 +4277,10 @@ right:30px;
   }
 
 
-  /* ---------------- CONTROL COLUMN ---------------- */
+  /* ==========================================================
+     CONTROL COLUMN
+     Fixed width — does NOT expand with viewport
+  ========================================================== */
 
   #gallery .show-all-card {
     display: flex;
@@ -4285,42 +4289,72 @@ right:30px;
 
     gap: 10px;
 
-    align-self: start;
-
-    height: max-content;
-    margin: 0;
-
     width: 220px;
+    min-width: 220px;
+    max-width: 220px;
+
     flex: 0 0 220px;
 
+    height: max-content;
+
+    margin: 0;
+
     box-sizing: border-box;
   }
 
-  #gallery .show-all-card > .cv-link,
-  #gallery .show-all-card > .video-dropdown {
+  #gallery .show-all-card .cv-link {
+    display: flex;
     flex: 0 0 42px;
+
+    width: 220px;
+    min-width: 220px;
+    max-width: 220px;
+
     height: 42px;
     min-height: 42px;
 
     margin: 0;
 
-    width: 100%;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+
     box-sizing: border-box;
   }
 
-  #gallery .show-all-card > .video-dropdown {
+  #gallery .show-all-card .video-dropdown {
     position: relative;
-  }
 
-  #gallery .show-all-card > .video-dropdown > .cv-link {
-    width: 100%;
+    display: flex;
+    flex: 0 0 42px;
+
+    width: 220px;
+    min-width: 220px;
+    max-width: 220px;
+
     height: 42px;
     min-height: 42px;
+
+    box-sizing: border-box;
+  }
+
+  #gallery .show-all-card .video-dropdown .cv-link {
+    width: 220px;
+    min-width: 220px;
+    max-width: 220px;
+
+    height: 42px;
+    min-height: 42px;
+
     margin: 0;
   }
 
 
-  /* ---------------- PHOTO WINDOW ---------------- */
+  /* ==========================================================
+     PHOTO WINDOW
+     Width = all remaining space
+     Height follows number of controls
+  ========================================================== */
 
   #gallery .gallery-wrapper {
     flex: 1 1 0;
@@ -4340,25 +4374,28 @@ right:30px;
   }
 
   #gallery .gallery {
-    height: 100%;
-    min-height: 0;
-
     display: flex;
     flex-wrap: nowrap;
     align-items: stretch;
+
+    height: 100%;
+    min-height: 0;
 
     box-sizing: border-box;
   }
 
   #gallery .gallery a {
-    height: 100%;
-
     display: flex;
     flex: 0 0 auto;
+
+    height: 100%;
+
     align-items: stretch;
   }
 
   #gallery .gallery img {
+    display: block;
+
     height: 100%;
     width: auto;
 
@@ -4368,7 +4405,10 @@ right:30px;
   }
 
 
-  /* ---------------- DYNAMIC HEIGHT ---------------- */
+  /* ==========================================================
+     DYNAMIC PHOTO HEIGHT
+     Same principle as desktop
+  ========================================================== */
 
   /* 6 controls */
   #gallery .show-all-card:has(> :nth-child(6))
