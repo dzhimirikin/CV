@@ -1142,11 +1142,14 @@ footer {
 }
 
 
+
 /* ============================================================
    CV BUTTON
 ============================================================ */
 #cv .cv-link {
   display: inline-block;
+  width: 215px;
+  box-sizing: border-box;
   padding: 10px 20px;
   background: #1f2933;
   color: #fff;
@@ -1177,9 +1180,8 @@ footer {
   opacity: 0.85;
 }
 
-
 /* ---------------- CV MOBILE ---------------- */
-@media (max-width:768px) {
+@media (max-width: 480px) {
   #cv .cv-link {
     display: block;
     width: 100%;
@@ -1187,6 +1189,7 @@ footer {
     margin-top: 10px;
   }
 }
+
 
 
 /* ============================================================
