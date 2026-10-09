@@ -24,7 +24,7 @@
   let selectAllCheckbox = document.getElementById("marketQuarterlySelectAll");
   let selectAllLabel = document.getElementById("marketQuarterlySelectAllLabel");
 
-  const SELECTION_KEY = "marketMonitorQuarterlySelectedCompanies";
+  const SELECTION_KEY = "marketMonitorSelectedCompanies";
   let selectedCompanies = new Set();
   let hasSavedSelection = false;
 
@@ -150,7 +150,11 @@
   }
 
   function saveSelection() {
-    sessionStorage.setItem(SELECTION_KEY, JSON.stringify([...selectedCompanies]));
+    const values = [...selectedCompanies];
+    sessionStorage.setItem(SELECTION_KEY, JSON.stringify(values));
+    window.dispatchEvent(new CustomEvent("market-monitor-selection-change", {
+      detail: { selectedCompanies: values }
+    }));
   }
 
   function ensureSelection() {
@@ -228,6 +232,82 @@
     updateSelectAllState();
   }
 
+
+
+  function updatePresetButtons(preset) {
+    const buttons = selectionContainer?.querySelectorAll("[data-selection-preset]");
+    if (!buttons) return;
+    buttons.forEach(button => {
+      const active = button.dataset.selectionPreset === preset;
+      button.classList.toggle("active", active);
+      button.setAttribute("aria-pressed", active ? "true" : "false");
+    });
+  }
+
+  function setupSelectionPresetButtons() {
+    if (!selectionContainer) return;
+    const buttons = selectionContainer.querySelectorAll("[data-selection-preset]");
+    if (!buttons.length) return;
+
+    updatePresetButtons(sessionStorage.getItem("marketMonitorSelectionPreset") || "");
+
+    buttons.forEach(button => {
+      button.addEventListener("click", async () => {
+        const preset = button.dataset.selectionPreset;
+        if (!["Al", "Fe"].includes(preset)) return;
+        buttons.forEach(item => item.disabled = true);
+        try {
+          const folder = window.location.pathname.includes("/MarketMonitor/") ? "" : "MarketMonitor/";
+          const filename = preset === "Al" ? "selection_annual_al.json" : "selection_annual_fe.json";
+          const response = await fetch(`${folder}${filename}`, { cache: "no-cache" });
+          if (!response.ok) throw new Error(`HTTP ${response.status}`);
+          const parsed = await response.json();
+          const imported = parsed && parsed.format === "market-monitor-company-selection" &&
+            parsed.version === 1 && Array.isArray(parsed.selectedCompanies)
+              ? parsed.selectedCompanies : null;
+          if (!imported || imported.some(value =>
+            typeof value !== "string" && typeof value !== "number"
+          )) throw new Error("Invalid selection file");
+
+          const available = new Set(companies.map(companyId).filter(Boolean));
+          selectedCompanies = new Set(imported.map(String).filter(id => available.has(id)));
+          hasSavedSelection = true;
+          saveSelection();
+          sessionStorage.setItem("marketMonitorSelectionPreset", preset);
+          window.dispatchEvent(new CustomEvent("market-monitor-preset-change", { detail: { preset } }));
+          updatePresetButtons(preset);
+          render();
+          updateSelectAllState();
+        } catch (error) {
+          console.error("Market Monitor selection preset:", error);
+          window.alert(document.documentElement.lang === "ru"
+            ? "Не удалось загрузить предвыборку. Проверьте JSON-файл в папке MarketMonitor."
+            : document.documentElement.lang === "et"
+              ? "Eelvalikut ei õnnestunud laadida. Kontrollige JSON-faili kaustas MarketMonitor."
+              : "Could not load the preset. Check the JSON file in the MarketMonitor folder.");
+        } finally {
+          buttons.forEach(item => item.disabled = false);
+        }
+      });
+    });
+
+    window.addEventListener("market-monitor-preset-change", event => {
+      updatePresetButtons(event.detail?.preset || "");
+    });
+  }
+
+  function setupSharedSelectionSync() {
+    window.addEventListener("market-monitor-selection-change", event => {
+      if (!Array.isArray(event.detail?.selectedCompanies)) return;
+      const available = new Set(companies.map(companyId).filter(Boolean));
+      selectedCompanies = new Set(
+        event.detail.selectedCompanies.map(String).filter(id => available.has(id))
+      );
+      hasSavedSelection = true;
+      render();
+      updateSelectAllState();
+    });
+  }
 
 
   function setupSelectionFileActions() {
@@ -894,6 +974,8 @@
   }
 
   setupSelection();
+  setupSharedSelectionSync();
+  setupSelectionPresetButtons();
   setupSelectionFileActions();
   loadData();
 })();
