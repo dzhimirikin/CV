@@ -548,6 +548,20 @@
       const previousYear = yearSelect.value;
       const previousQuarter = quarterSelect.value;
 
+      // The quarter selector is normally populated only with quarters available
+      // for the currently selected year. During range export, however, the year
+      // changes programmatically and its options are not refreshed. Ensure all
+      // four quarter options exist so assigning Q3/Q4 cannot silently set value="".
+      const quarterPrefix = t("quarterPrefix") || "Q";
+      [1, 2, 3, 4].forEach(rangeQuarter => {
+        if (![...quarterSelect.options].some(option => Number(option.value) === rangeQuarter)) {
+          const option = document.createElement("option");
+          option.value = String(rangeQuarter);
+          option.textContent = `${quarterPrefix}${rangeQuarter}`;
+          quarterSelect.appendChild(option);
+        }
+      });
+
       [1, 2, 3, 4].forEach(rangeQuarter => {
         yearSelect.value = String(rangeYear);
         quarterSelect.value = String(rangeQuarter);
