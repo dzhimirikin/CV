@@ -24,7 +24,7 @@
   let selectAllCheckbox = document.getElementById("marketQuarterlySelectAll");
   let selectAllLabel = document.getElementById("marketQuarterlySelectAllLabel");
 
-  const SELECTION_KEY = "marketMonitorSelectedCompanies";
+  const SELECTION_KEY = "marketMonitorQuarterlySelectedCompanies";
   let selectedCompanies = new Set();
   let hasSavedSelection = false;
 
@@ -167,9 +167,6 @@
       [...selectedCompanies].filter(id => valid.has(id))
     );
 
-    if (!selectedCompanies.size && ids.length) {
-      selectedCompanies = new Set(ids);
-    }
     saveSelection();
   }
 
@@ -231,6 +228,110 @@
     updateSelectAllState();
   }
 
+
+
+  function setupSelectionFileActions() {
+    const exportButton = document.getElementById("marketQuarterlyExportSelection");
+    const importButton = document.getElementById("marketQuarterlyImportSelection");
+    const fileInput = document.getElementById("marketQuarterlyImportSelectionFile");
+    if (!exportButton || !importButton || !fileInput) return;
+
+    const messages = {
+      en: {
+        exported: "Selection exported.",
+        imported: count => `Selection imported: ${count} companies selected.`,
+        invalid: "This file is not a valid company selection file.",
+        readError: "Could not read the selected file.",
+        noCompanies: "No matching companies were found in this file."
+      },
+      et: {
+        exported: "Valik eksporditud.",
+        imported: count => `Valik imporditud: valitud ettevõtteid ${count}.`,
+        invalid: "See fail ei ole kehtiv ettevõtete valiku fail.",
+        readError: "Valitud faili ei õnnestunud lugeda.",
+        noCompanies: "Failist ei leitud sobivaid ettevõtteid."
+      },
+      ru: {
+        exported: "Выборка экспортирована.",
+        imported: count => `Выборка импортирована: выбрано компаний — ${count}.`,
+        invalid: "Это не файл корректной выборки компаний.",
+        readError: "Не удалось прочитать выбранный файл.",
+        noCompanies: "В файле не найдено подходящих компаний."
+      }
+    };
+    const language = ["en", "et", "ru"].includes(document.documentElement.lang)
+      ? document.documentElement.lang
+      : "en";
+    const message = messages[language];
+
+    exportButton.addEventListener("click", event => {
+      event.preventDefault();
+      const payload = {
+        format: "market-monitor-company-selection",
+        version: 1,
+        exportedAt: new Date().toISOString(),
+        selectedCompanies: [...selectedCompanies]
+      };
+      const blob = new Blob([JSON.stringify(payload, null, 2)], {
+        type: "application/json;charset=utf-8"
+      });
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement("a");
+      link.href = url;
+      link.download = "market-monitor-quarterly-selection.json";
+      document.body.appendChild(link);
+      link.click();
+      link.remove();
+      URL.revokeObjectURL(url);
+      window.alert(message.exported);
+    });
+
+    importButton.addEventListener("click", event => {
+      event.preventDefault();
+      fileInput.value = "";
+      fileInput.click();
+    });
+
+    fileInput.addEventListener("change", async () => {
+      const file = fileInput.files && fileInput.files[0];
+      if (!file) return;
+      try {
+        const parsed = JSON.parse(await file.text());
+        const imported = Array.isArray(parsed)
+          ? parsed
+          : parsed && parsed.format === "market-monitor-company-selection" &&
+            parsed.version === 1 && Array.isArray(parsed.selectedCompanies)
+              ? parsed.selectedCompanies
+              : null;
+
+        if (!imported || imported.some(value =>
+          typeof value !== "string" && typeof value !== "number"
+        )) {
+          window.alert(message.invalid);
+          return;
+        }
+
+        const available = new Set(companies.map(companyId).filter(Boolean));
+        selectedCompanies = new Set(
+          imported.map(value => String(value)).filter(id => available.has(id))
+        );
+        hasSavedSelection = true;
+        saveSelection();
+        render();
+        updateSelectAllState();
+
+        if (imported.length > 0 && selectedCompanies.size === 0) {
+          window.alert(message.noCompanies);
+        } else {
+          window.alert(message.imported(selectedCompanies.size));
+        }
+      } catch (error) {
+        window.alert(message.readError);
+      } finally {
+        fileInput.value = "";
+      }
+    });
+  }
 
 
   function downloadCsv(filename, rows) {
@@ -793,5 +894,6 @@
   }
 
   setupSelection();
+  setupSelectionFileActions();
   loadData();
 })();
