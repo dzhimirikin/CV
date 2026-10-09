@@ -316,7 +316,7 @@
       let to = Number(toSelect.value);
       if (!Number.isFinite(from) || !Number.isFinite(to)) return;
       if (from > to) [from, to] = [to, from];
-      const rows = [["Period", "Indicator", "Value"]];
+      const rows = [];
       getYears().map(Number).filter(y => y >= from && y <= to).sort((a,b) => a-b)
         .forEach(year => exportRange(year, rows));
       if (rows.length < 2) {
@@ -548,7 +548,7 @@
       const previousYear = yearSelect.value;
       const previousQuarter = quarterSelect.value;
 
-      availableQuarters(rangeYear).slice().sort((x, y) => x - y).forEach(rangeQuarter => {
+      [1, 2, 3, 4].forEach(rangeQuarter => {
         yearSelect.value = String(rangeYear);
         quarterSelect.value = String(rangeQuarter);
         showQuarterlySummary();
