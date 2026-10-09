@@ -156,6 +156,7 @@
     if (!selectionContainer || !selectAllCheckbox) return;
 
     selectAllCheckbox.addEventListener("change", () => {
+      selectAllCheckbox.blur();
       const ids = companies.map(companyId).filter(Boolean);
       selectedCompanies = selectAllCheckbox.checked
         ? new Set(ids)
@@ -168,6 +169,7 @@
       const checkbox = event.target.closest(".market-company-checkbox");
       if (!checkbox) return;
 
+      checkbox.blur();
       const id = checkbox.dataset.companyId || "";
       if (checkbox.checked) selectedCompanies.add(id);
       else selectedCompanies.delete(id);
