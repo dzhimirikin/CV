@@ -183,7 +183,7 @@
   function downloadCsv(filename, rows) {
     const csvCell = value => {
       const text = String(value ?? "");
-      return /[;"\r\n]/u.test(text) ? `"${text.replaceAll('"', '""')}"` : text;
+      return /[,;"\r\n]/u.test(text) ? `"${text.replaceAll('"', '""')}"` : text;
     };
     const csv = "\uFEFF" + rows.map(row => row.map(csvCell).join(",")).join("\r\n");
     const blob = new Blob([csv], { type: "text/csv;charset=utf-8;" });
