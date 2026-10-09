@@ -316,19 +316,7 @@
       let to = Number(toSelect.value);
       if (!Number.isFinite(from) || !Number.isFinite(to)) return;
       if (from > to) [from, to] = [to, from];
-      const rows = [[
-        t("csvPeriod") || "Period",
-        t("summaryTurnover") || "Turnover, €",
-        t("summaryProjectedTurnover") || "Projected turnover, €",
-        t("summaryStateTaxes") || "State taxes, €",
-        t("summaryLabourTaxes") || "Labour taxes, €",
-        t("summaryEmployees") || "Employees",
-        t("summaryTurnoverPerEmployee") || "Turnover / employee, €",
-        t("summaryProjectedProductivity") || "Projected labour productivity, €",
-        t("summaryProductivity") || "Labour productivity, €",
-        t("summaryProfitPerEmployee") || "Profit / employee, €",
-        t("summaryAverageWage") || "Average gross wage, €"
-      ]];
+      const rows = [["Period", "Indicator", "Value"]];
       getYears().map(Number).filter(y => y >= from && y <= to).sort((a,b) => a-b)
         .forEach(year => exportRange(year, rows));
       if (rows.length === 1) {
@@ -341,16 +329,12 @@
   }
 
   function currentSummaryCsvRows(modal, period) {
-    const headers = [t("csvPeriod") || "Period"];
-    const values = [period];
+    const rows = [["Period", "Indicator", "Value"]];
     modal.querySelectorAll(".market-summary-table tbody tr").forEach(tr => {
       const cells = tr.querySelectorAll("td");
-      if (cells.length >= 2) {
-        headers.push(cells[0].textContent.trim());
-        values.push(cells[1].textContent.trim());
-      }
+      if (cells.length >= 2) rows.push([period, cells[0].textContent.trim(), cells[1].textContent.trim()]);
     });
-    return [headers, values];
+    return rows;
   }
 
   function getSummaryModal() {
@@ -557,34 +541,29 @@
     ).join("");
 
     setupCsvExport(modal, availableYears, (rangeYear, csvRows) => {
-      availableQuarters(rangeYear).slice().sort((a,b) => a-b).forEach(rangeQuarter => {
-        const dataRows = companies.filter(company => selectedCompanies.has(companyId(company)))
-          .map(company => ({ company, record: getRecord(company, rangeYear, rangeQuarter) }))
-          .filter(item => item.record != null);
-        const sum = key => dataRows.filter(({record}) => record?.[key] != null)
-          .reduce((total, {record}) => total + Number(record[key] || 0), 0);
-        const employees = sum("employees");
-        const turnoverRows = dataRows.filter(({record}) => record?.taxableTurnover != null && record?.employees != null);
-        const projectedRows = dataRows.filter(({record}) => record?.projectedTurnover != null && record?.employees != null);
-        const profitRows = dataRows.filter(({record}) => record?.profitPerEmployee != null && record?.employees != null);
-        const wageRows = dataRows.filter(({record}) => record?.averageGrossWage != null && record?.employees != null);
-        const weighted = (arr, valueKey) => arr.reduce((s,x) => s + Number(x.record[valueKey] || 0) * Number(x.record.employees || 0), 0);
-        const employeeSum = arr => arr.reduce((s,x) => s + Number(x.record.employees || 0), 0);
+      // Reuse the same report-generation module for each quarter in the selected years.
+      const previousYear = yearSelect.value;
+      const previousQuarter = quarterSelect.value;
+
+      availableQuarters(rangeYear).slice().sort((a, b) => a - b).forEach(rangeQuarter => {
+        yearSelect.value = String(rangeYear);
+        quarterSelect.value = String(rangeQuarter);
+        showQuarterlySummary();
+
+        const reportModal = document.getElementById("marketQuarterlySummaryModal");
         const period = `${rangeYear}-Q${rangeQuarter}`;
-        csvRows.push([
-          period,
-          sum("taxableTurnover"),
-          sum("projectedTurnover"),
-          sum("stateTaxes"),
-          sum("labourTaxes"),
-          employees,
-          employeeSum(turnoverRows) ? turnoverRows.reduce((s,x) => s + Number(x.record.taxableTurnover || 0),0) / employeeSum(turnoverRows) : "",
-          employeeSum(projectedRows) ? projectedRows.reduce((s,x) => s + Number(x.record.projectedTurnover || 0),0) / employeeSum(projectedRows) : "",
-          employeeSum(turnoverRows) ? turnoverRows.reduce((s,x) => s + Number(x.record.taxableTurnover || 0),0) / employeeSum(turnoverRows) : "",
-          employeeSum(profitRows) ? weighted(profitRows, "profitPerEmployee") / employeeSum(profitRows) : "",
-          employeeSum(wageRows) ? weighted(wageRows, "averageGrossWage") / employeeSum(wageRows) : ""
-        ]);
+        const reportRows = [...reportModal.querySelectorAll(".market-summary-table tbody tr")];
+        reportRows.forEach(tr => {
+          const cells = tr.querySelectorAll("td");
+          if (cells.length >= 2) {
+            csvRows.push([period, cells[0].textContent.trim(), cells[1].textContent.trim()]);
+          }
+        });
       });
+
+      yearSelect.value = previousYear;
+      quarterSelect.value = previousQuarter;
+      showQuarterlySummary();
     }, () => {
       const period = modal.querySelector(".market-summary-subtitle").textContent.split("·")[0].trim();
       return { filename: period.toLowerCase().replace(/[^a-z0-9]+/giu, "-").replace(/^-|-$/gu, ""),

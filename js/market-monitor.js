@@ -450,24 +450,22 @@
     ).join("");
 
     setupCsvExport(modal, availableYears, (rangeYear, csvRows) => {
-      const dataRows = companies
-        .map(company => ({ company, record: getRecord(company, rangeYear) }))
-        .filter(item => selectedCompanies.has(companyId(item.company)) && item.record != null);
-      const sum = key => dataRows.filter(({record}) => record?.[key] != null)
-        .reduce((total, {record}) => total + Number(record[key] || 0), 0);
-      const turnover = sum("turnover"), equity = sum("equity"), profit = sum("profit"), employees = sum("employees");
-      const turnoverRows = dataRows.filter(({record}) => record?.turnover != null && record?.employees != null);
-      const profitRows = dataRows.filter(({record}) => record?.profit != null && record?.employees != null);
-      const turnoverTotal = turnoverRows.reduce((s, x) => s + Number(x.record.turnover || 0), 0);
-      const turnoverEmployees = turnoverRows.reduce((s, x) => s + Number(x.record.employees || 0), 0);
-      const profitTotal = profitRows.reduce((s, x) => s + Number(x.record.profit || 0), 0);
-      const profitEmployees = profitRows.reduce((s, x) => s + Number(x.record.employees || 0), 0);
-      [
-        ["Turnover, €", turnover], ["Equity, €", equity], ["Profit, €", profit],
-        ["Profitability, %", turnover ? profit / turnover * 100 : null], ["Employees", employees],
-        ["Turnover / employee, €", turnoverEmployees ? turnoverTotal / turnoverEmployees : null],
-        ["Profit / employee, €", profitEmployees ? profitTotal / profitEmployees : null]
-      ].forEach(([label, value]) => csvRows.push([String(rangeYear), label, value == null ? "" : value]));
+      // Reuse the same report-generation module for each year.
+      const previousYear = yearSelect.value;
+      yearSelect.value = String(rangeYear);
+      showAnnualSummary();
+
+      const reportModal = document.getElementById("marketAnnualSummaryModal");
+      const reportRows = [...reportModal.querySelectorAll(".market-summary-table tbody tr")];
+      reportRows.forEach(tr => {
+        const cells = tr.querySelectorAll("td");
+        if (cells.length >= 2) {
+          csvRows.push([String(rangeYear), cells[0].textContent.trim(), cells[1].textContent.trim()]);
+        }
+      });
+
+      yearSelect.value = previousYear;
+      showAnnualSummary();
     }, () => {
       const period = modal.querySelector(".market-summary-subtitle").textContent.split("·")[0].trim();
       return { filename: period.toLowerCase().replace(/[^a-z0-9]+/giu, "-").replace(/^-|-$/gu, ""),
