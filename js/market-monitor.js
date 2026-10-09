@@ -185,7 +185,7 @@
       const text = String(value ?? "");
       return /[;"\r\n]/u.test(text) ? `"${text.replaceAll('"', '""')}"` : text;
     };
-    const csv = "\uFEFF" + rows.map(row => row.map(csvCell).join(";")).join("\r\n");
+    const csv = "\uFEFF" + rows.map(row => row.map(csvCell).join(",")).join("\r\n");
     const blob = new Blob([csv], { type: "text/csv;charset=utf-8;" });
     const url = URL.createObjectURL(blob);
     const link = document.createElement("a");
@@ -266,7 +266,7 @@
       const rows = [["Period", "Indicator", "Value"]];
       getYears().map(Number).filter(y => y >= from && y <= to).sort((a,b) => a-b)
         .forEach(year => exportRange(year, rows));
-      if (rows.length === 1) {
+      if (rows.length < 2) {
         alert("No data available for the selected period.");
         return;
       }
@@ -276,12 +276,16 @@
   }
 
   function currentSummaryCsvRows(modal, period) {
-    const rows = [["Period", "Indicator", "Value"]];
+    const headers = [t("csvYear") || "Year"];
+    const values = [period];
     modal.querySelectorAll(".market-summary-table tbody tr").forEach(tr => {
       const cells = tr.querySelectorAll("td");
-      if (cells.length >= 2) rows.push([period, cells[0].textContent.trim(), cells[1].textContent.trim()]);
+      if (cells.length >= 2) {
+        headers.push(cells[0].textContent.trim());
+        values.push(cells[1].textContent.trim());
+      }
     });
-    return rows;
+    return [headers, values];
   }
 
   function getSummaryModal() {
@@ -450,19 +454,19 @@
     ).join("");
 
     setupCsvExport(modal, availableYears, (rangeYear, csvRows) => {
-      // Reuse the same report-generation module for each year.
       const previousYear = yearSelect.value;
       yearSelect.value = String(rangeYear);
       showAnnualSummary();
 
       const reportModal = document.getElementById("marketAnnualSummaryModal");
       const reportRows = [...reportModal.querySelectorAll(".market-summary-table tbody tr")];
-      reportRows.forEach(tr => {
-        const cells = tr.querySelectorAll("td");
-        if (cells.length >= 2) {
-          csvRows.push([String(rangeYear), cells[0].textContent.trim(), cells[1].textContent.trim()]);
-        }
-      });
+      const labels = reportRows.map(tr => tr.querySelectorAll("td")[0]?.textContent.trim() || "");
+      const values = reportRows.map(tr => tr.querySelectorAll("td")[1]?.textContent.trim() || "");
+
+      if (csvRows.length === 0) {
+        csvRows.push([t("csvYear") || "Year", ...labels]);
+      }
+      csvRows.push([String(rangeYear), ...values]);
 
       yearSelect.value = previousYear;
       showAnnualSummary();
