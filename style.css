@@ -4622,3 +4622,43 @@ right:30px;
   flex-wrap: wrap;
   gap: 8px;
 }
+
+
+/* ============================================================
+   MARKET MONITOR — Al / Fe PRESET BUTTONS
+============================================================ */
+
+.market-selection-topline {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.market-selection-presets {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.market-selection-preset {
+  min-width: 38px;
+  padding: 4px 9px;
+  border: 1px solid #aeb6bf;
+  border-radius: 4px;
+  background: transparent;
+  color: inherit;
+  cursor: pointer;
+}
+
+.market-selection-preset.active {
+  border: 2px solid #1f2933;
+  padding: 3px 8px;
+  background: transparent;
+}
+
+.market-selection-preset:disabled {
+  opacity: 0.55;
+  cursor: wait;
+}
