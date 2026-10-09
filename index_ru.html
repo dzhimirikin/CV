@@ -1839,6 +1839,35 @@ window.Hyphenopoly = {
         </button>
       </div>
 
+      <div class="market-selection-file-actions">
+        <button
+          id="marketAnnualExportSelection"
+          class="cv-link market-selection-file-button"
+          type="button">
+          Экспорт выделения
+        </button>
+
+        <button
+          id="marketAnnualImportSelection"
+          class="cv-link market-selection-file-button"
+          type="button">
+          Импорт выделения
+        </button>
+
+        <input
+          id="marketAnnualImportSelectionFile"
+          type="file"
+          accept=".json,application/json"
+          hidden>
+      </div>
+
+      <div id="marketAnnualSelection" class="market-selection-action">
+        <label class="market-selection-label">
+          <input id="marketAnnualSelectAll" type="checkbox" checked>
+          <span id="marketAnnualSelectAllLabel">Выделить все</span>
+        </label>
+      </div>
+
       <div class="table-wrap">
 
         <table>
@@ -1944,6 +1973,35 @@ window.Hyphenopoly = {
           type="button">
           Показатели рынка
         </button>
+      </div>
+
+      <div class="market-selection-file-actions">
+        <button
+          id="marketQuarterlyExportSelection"
+          class="cv-link market-selection-file-button"
+          type="button">
+          Экспорт выделения
+        </button>
+
+        <button
+          id="marketQuarterlyImportSelection"
+          class="cv-link market-selection-file-button"
+          type="button">
+          Импорт выделения
+        </button>
+
+        <input
+          id="marketQuarterlyImportSelectionFile"
+          type="file"
+          accept=".json,application/json"
+          hidden>
+      </div>
+
+      <div id="marketQuarterlySelection" class="market-selection-action">
+        <label class="market-selection-label">
+          <input id="marketQuarterlySelectAll" type="checkbox" checked>
+          <span id="marketQuarterlySelectAllLabel">Выделить все</span>
+        </label>
       </div>
 
       <div class="quarterly-table-wrap">

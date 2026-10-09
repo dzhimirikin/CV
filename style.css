@@ -783,12 +783,16 @@ html[lang="ru"] {
 
 .publications-list a {
   display: inline-block;
+  box-sizing: border-box;
+  width: 215px;
+  max-width: 100%;
   padding: 10px 15px;
   background: #1f2933;
   color: #fff;
   text-decoration: none;
   border-radius: 4px;
   font-size: 16px;
+  text-align: center;
   transition: background 0.3s;
 }
 
@@ -796,10 +800,8 @@ html[lang="ru"] {
   background: #11171a;
 }
 
-
 /* ---------------- PUBLICATIONS MOBILE ---------------- */
-@media (max-width: 768px) {
-
+@media (max-width: 480px) {
   .publications-list a {
     display: block;
     width: 100%;
@@ -1191,7 +1193,7 @@ footer {
    DRAWINGS SECTION
 ============================================================ */
 #drawings .card {
-  padding: 25px 25px 5px 25px; /* верх/лево/низ/право, минимальный нижний отступ */
+  padding: 25px 25px 5px 25px;
   background: #fff;
   border-radius: 6px;
   box-shadow: 0 2px 8px rgba(0,0,0,0.12);
@@ -1199,20 +1201,16 @@ footer {
 
 /* ---------------- DRAWINGS LINKS ---------------- */
 .drawing-links {
-  margin-top: 10px; /* чуть меньше, чем было */
+  margin-top: 10px;
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
 }
 
-.drawing-links .cv-link,
-.access-btn {
+.drawing-links .cv-link {
   flex: 1;
   text-align: center;
   min-width: 150px;
-}
-
-.drawing-links .cv-link {
   display: inline-block;
   padding: 10px 20px;
   background: #1f2933;
@@ -1223,39 +1221,61 @@ footer {
   font-size: 16px;
 }
 
+/* ---------------- REQUEST ACCESS BUTTON ---------------- */
+#drawings .access-btn {
+  display: block;
+  width: 215px;
+  max-width: 100%;
+  box-sizing: border-box;
+  flex: none;
+  text-align: center;
+  padding: 10px 20px;
+  background: #1f2933;
+  color: #fff;
+  text-decoration: none;
+  border: none;
+  border-radius: 6px;
+  transition: background 0.25s;
+  font-size: 16px;
+  margin-bottom: 4px;
+}
+
 .drawing-links .cv-link:hover,
-.access-btn:hover {
+#drawings .access-btn:hover {
   background: #11171a;
 }
 
 /* Отступ после текста перед кнопкой Request Access */
 #drawings p + .access-btn {
-  margin-top: 12px; /* расстояние между текстом и кнопкой */
+  margin-top: 12px;
 }
 
 /* ---------------- DRAWINGS MOBILE ---------------- */
-@media (max-width:768px) {
+@media (max-width: 768px) {
   .drawing-links {
     flex-direction: column;
   }
 
-  .drawing-links .cv-link,
-  .access-btn {
+  .drawing-links .cv-link {
     width: 100%;
+    box-sizing: border-box;
   }
 
   #drawings .card {
-    padding-bottom: 5px; /* минимальный нижний отступ и на мобильном */
+    padding-bottom: 5px;
+  }
+}
+
+/* Request Access растягивается только на узких экранах */
+@media (max-width: 480px) {
+  #drawings .access-btn {
+    width: 100%;
   }
 }
 
 /* ---------------- ADJUST BUTTON MARGINS ---------------- */
-#drawings .access-btn {
-  margin-bottom: 4px;  /* немного места под кнопкой */
-}
-
 #drawings .password-entry {
-  margin-top: 0;       /* без лишнего отступа сверху */
+  margin-top: 0;
 }
 
 
@@ -3787,6 +3807,72 @@ right:30px;
 
     #market-monitor .market-selection-label {
         font-size: 14px;
+    }
+}
+
+/* ============================================================
+   MARKET MONITOR — SELECTION FILE BUTTONS
+============================================================ */
+
+#market-monitor .market-summary-action,
+#market-monitor .market-selection-file-actions {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0;
+}
+
+#market-monitor .market-summary-action {
+    margin: 8px 0 0;
+}
+
+#market-monitor .market-selection-file-actions {
+    margin: 0 0 6px;
+}
+
+#market-monitor .market-summary-action .cv-link,
+#market-monitor .market-selection-file-actions .cv-link {
+    display: block;
+    box-sizing: border-box;
+    width: 215px;
+    margin: 0 0 8px;
+    padding: 10px 20px;
+    text-align: center;
+    border-radius: 4px;
+    font-size: 16px;
+    transition: background 0.3s;
+}
+
+#market-monitor .market-summary-action .cv-link:last-child {
+    margin-bottom: 18px;
+}
+
+#market-monitor .market-selection-file-actions .cv-link:last-child {
+    margin-bottom: 0;
+}
+
+#market-monitor .market-summary-action .cv-link:last-child {
+    margin-bottom: 8px;
+}
+
+#market-monitor .market-summary-action .cv-link:hover:not(.disabled),
+#market-monitor .market-selection-file-actions .cv-link:hover:not(.disabled) {
+    background: #11171a;
+}
+
+@media (max-width: 480px) {
+    #market-monitor .market-summary-action {
+        margin-top: 10px;
+    }
+
+    #market-monitor .market-selection-file-actions {
+        margin-bottom: 10px;
+    }
+
+    #market-monitor .market-summary-action .cv-link,
+    #market-monitor .market-selection-file-actions .cv-link {
+        width: 100%;
+        margin-bottom: 8px;
     }
 }
 
