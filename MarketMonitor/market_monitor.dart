@@ -27,14 +27,6 @@ const indicatorUrls = <String>[
       '4.2020_aruannete_elemendid_kuni_31082026_0.zip',
   'https://avaandmed.ariregister.rik.ee/sites/default/files/'
       '4.2019_aruannete_elemendid_kuni_31082026_0.zip',
-  'https://avaandmed.ariregister.rik.ee/sites/default/files/'
-      '4.2018_aruannete_elemendid_kuni_31082026_0.zip',
-  'https://avaandmed.ariregister.rik.ee/sites/default/files/'
-      '4.2017_aruannete_elemendid_kuni_31082026_0.zip',
-  'https://avaandmed.ariregister.rik.ee/sites/default/files/'
-      '4.2016_aruannete_elemendid_kuni_31082026_0.zip',
-  'https://avaandmed.ariregister.rik.ee/sites/default/files/'
-      '4.2015_aruannete_elemendid_kuni_31082026_0.zip',
 ];
 
 const outputFile = 'companies.json';
@@ -62,8 +54,8 @@ Future<void> main() async {
 
   print('Matching reports found: ${reports.length}');
 
-  // 2. Key indicators: merge the 2025 through 2015 datasets.
-  print('\n[2/2] Downloading key indicators (2025 through 2015)...');
+  // 2. Key indicators: merge the 2025 through 2019 datasets.
+  print('\n[2/2] Downloading key indicators (2025 through 2019)...');
 
   final reportIds = reports.values
       .expand((list) => list)
