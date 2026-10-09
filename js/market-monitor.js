@@ -136,11 +136,6 @@
     }
   }
 
-  function clearSelectionFocus() {
-    const activeElement = document.activeElement;
-    if (activeElement instanceof HTMLElement) activeElement.blur();
-  }
-
   function setupSelection() {
     if (!selectionContainer && summaryButton) {
       selectionContainer = document.createElement("div");
@@ -161,34 +156,40 @@
     if (!selectionContainer || !selectAllCheckbox) return;
 
     selectAllCheckbox.addEventListener("change", () => {
-      selectAllCheckbox.blur();
+      clearActivePreset();
       const ids = companies.map(companyId).filter(Boolean);
       selectedCompanies = selectAllCheckbox.checked
         ? new Set(ids)
         : new Set();
       saveSelection();
       render();
-      clearSelectionFocus();
     });
 
     body.addEventListener("change", event => {
       const checkbox = event.target.closest(".market-company-checkbox");
       if (!checkbox) return;
 
-      checkbox.blur();
+      clearActivePreset();
       const id = checkbox.dataset.companyId || "";
       if (checkbox.checked) selectedCompanies.add(id);
       else selectedCompanies.delete(id);
 
       saveSelection();
       updateSelectAllState();
-      clearSelectionFocus();
     });
 
     updateSelectAllState();
   }
 
 
+
+  function clearActivePreset() {
+    sessionStorage.removeItem("marketMonitorSelectionPreset");
+    updatePresetButtons("");
+    window.dispatchEvent(new CustomEvent("market-monitor-preset-change", {
+      detail: { preset: "" }
+    }));
+  }
 
   function updatePresetButtons(preset) {
     const buttons = selectionContainer?.querySelectorAll("[data-selection-preset]");
@@ -243,7 +244,6 @@
               : "Could not load the preset. Check the JSON file in the MarketMonitor folder.");
         } finally {
           buttons.forEach(item => item.disabled = false);
-          clearSelectionFocus();
         }
       });
     });
@@ -356,7 +356,6 @@
         saveSelection();
         render();
         updateSelectAllState();
-        clearSelectionFocus();
 
         if (imported.length > 0 && selectedCompanies.size === 0) {
           window.alert(message.noCompanies);
