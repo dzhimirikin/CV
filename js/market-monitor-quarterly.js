@@ -232,6 +232,111 @@
   }
 
 
+
+  function downloadCsv(filename, rows) {
+    const csvCell = value => {
+      const text = String(value ?? "");
+      return /[;"\r\n]/u.test(text) ? `"${text.replaceAll('"', '""')}"` : text;
+    };
+    const csv = "\uFEFF" + rows.map(row => row.map(csvCell).join(";")).join("\r\n");
+    const blob = new Blob([csv], { type: "text/csv;charset=utf-8;" });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement("a");
+    link.href = url;
+    link.download = filename;
+    document.body.appendChild(link);
+    link.click();
+    link.remove();
+    URL.revokeObjectURL(url);
+  }
+
+  function setupCsvExport(modal, getYears, exportRange, getCurrent) {
+    const saveButton = modal.querySelector(".market-summary-save-csv");
+    const options = modal.querySelector(".market-csv-options");
+    if (!saveButton || !options || saveButton.dataset.ready === "1") return;
+    saveButton.dataset.ready = "1";
+
+    const fromSelect = modal.querySelector(".market-csv-from");
+    const toSelect = modal.querySelector(".market-csv-to");
+    const yearsWrap = modal.querySelector(".market-csv-years");
+    const radios = [...modal.querySelectorAll('input[name="marketCsvPeriod"]')];
+    const downloadButton = modal.querySelector(".market-csv-download");
+    const cancelButton = modal.querySelector(".market-csv-cancel");
+
+    const lang = document.documentElement.lang || "en";
+    const labels = {
+      en: ["Save to CSV", "Choose the period to export", "Save current period", "Choose a year range", "From", "To", "Download CSV", "Cancel"],
+      et: ["Salvesta CSV-na", "Vali ekspordi periood", "Salvesta praegune periood", "Vali aastate vahemik", "Alates", "Kuni", "Laadi CSV alla", "Tühista"],
+      ru: ["Сохранить в CSV", "Выберите период для экспорта", "Сохранить текущий период", "Выбрать интервал лет", "С года", "По год", "Скачать CSV", "Отмена"]
+    }[lang] || ["Save to CSV", "Choose the period to export", "Save current period", "Choose a year range", "From", "To", "Download CSV", "Cancel"];
+
+    saveButton.textContent = labels[0];
+    modal.querySelector(".market-csv-prompt").textContent = labels[1];
+    modal.querySelector(".market-csv-current-label").textContent = labels[2];
+    modal.querySelector(".market-csv-range-label").textContent = labels[3];
+    modal.querySelector(".market-csv-from-label").textContent = labels[4];
+    modal.querySelector(".market-csv-to-label").textContent = labels[5];
+    downloadButton.textContent = labels[6];
+    cancelButton.textContent = labels[7];
+
+    const fillSelect = (select, years, selected) => {
+      select.innerHTML = "";
+      years.forEach(year => {
+        const option = document.createElement("option");
+        option.value = String(year);
+        option.textContent = String(year);
+        select.appendChild(option);
+      });
+      if (years.includes(Number(selected))) select.value = String(selected);
+    };
+    const updateMode = () => {
+      yearsWrap.hidden = radios.find(r => r.checked)?.value !== "range";
+    };
+
+    saveButton.addEventListener("click", () => {
+      const years = [...new Set(getYears().map(Number))].sort((a, b) => a - b);
+      if (!years.length) return;
+      fillSelect(fromSelect, years, years[0]);
+      fillSelect(toSelect, years, years[years.length - 1]);
+      radios[0].checked = true;
+      updateMode();
+      options.hidden = !options.hidden;
+    });
+    radios.forEach(r => r.addEventListener("change", updateMode));
+    cancelButton.addEventListener("click", () => { options.hidden = true; });
+
+    downloadButton.addEventListener("click", () => {
+      if (radios.find(r => r.checked)?.value !== "range") {
+        const current = getCurrent();
+        downloadCsv(`market-indicators-${current.filename}.csv`, current.rows);
+        options.hidden = true;
+        return;
+      }
+      let from = Number(fromSelect.value);
+      let to = Number(toSelect.value);
+      if (!Number.isFinite(from) || !Number.isFinite(to)) return;
+      if (from > to) [from, to] = [to, from];
+      const rows = [["Period", "Indicator", "Value"]];
+      getYears().map(Number).filter(y => y >= from && y <= to).sort((a,b) => a-b)
+        .forEach(year => exportRange(year, rows));
+      if (rows.length === 1) {
+        alert("No data available for the selected period.");
+        return;
+      }
+      downloadCsv(`market-indicators-${from}-${to}.csv`, rows);
+      options.hidden = true;
+    });
+  }
+
+  function currentSummaryCsvRows(modal, period) {
+    const rows = [["Period", "Indicator", "Value"]];
+    modal.querySelectorAll(".market-summary-table tbody tr").forEach(tr => {
+      const cells = tr.querySelectorAll("td");
+      if (cells.length >= 2) rows.push([period, cells[0].textContent.trim(), cells[1].textContent.trim()]);
+    });
+    return rows;
+  }
+
   function getSummaryModal() {
     let modal = document.getElementById("marketQuarterlySummaryModal");
     if (modal) return modal;
@@ -255,6 +360,22 @@
             </thead>
             <tbody></tbody>
           </table>
+        </div>
+        <div class="market-summary-actions">
+          <button type="button" class="cv-link market-summary-save-csv">Save to CSV</button>
+        </div>
+        <div class="market-csv-options" hidden>
+          <p class="market-csv-prompt">Choose the period to export</p>
+          <label class="market-csv-choice"><input type="radio" name="marketCsvPeriod" value="current" checked> <span class="market-csv-current-label">Save current period</span></label>
+          <label class="market-csv-choice"><input type="radio" name="marketCsvPeriod" value="range"> <span class="market-csv-range-label">Choose a year range</span></label>
+          <div class="market-csv-years" hidden>
+            <label><span class="market-csv-from-label">From</span> <select class="market-csv-from"></select></label>
+            <label><span class="market-csv-to-label">To</span> <select class="market-csv-to"></select></label>
+          </div>
+          <div class="market-csv-actions">
+            <button type="button" class="cv-link market-csv-download">Download CSV</button>
+            <button type="button" class="cv-link market-csv-cancel">Cancel</button>
+          </div>
         </div>
       </div>
     `;
@@ -418,6 +539,37 @@
     tbody.innerHTML = labels.map(([label, value, className]) =>
       `<tr><td>${escapeHtml(label)}</td><td class="${className || ""}">${escapeHtml(value)}</td></tr>`
     ).join("");
+
+    setupCsvExport(modal, availableYears, (rangeYear, csvRows) => {
+      availableQuarters(rangeYear).slice().sort((a,b) => a-b).forEach(rangeQuarter => {
+        const dataRows = companies.filter(company => selectedCompanies.has(companyId(company)))
+          .map(company => ({ company, record: getRecord(company, rangeYear, rangeQuarter) }))
+          .filter(item => item.record != null);
+        const sum = key => dataRows.filter(({record}) => record?.[key] != null)
+          .reduce((total, {record}) => total + Number(record[key] || 0), 0);
+        const employees = sum("employees");
+        const turnoverRows = dataRows.filter(({record}) => record?.taxableTurnover != null && record?.employees != null);
+        const projectedRows = dataRows.filter(({record}) => record?.projectedTurnover != null && record?.employees != null);
+        const profitRows = dataRows.filter(({record}) => record?.profitPerEmployee != null && record?.employees != null);
+        const wageRows = dataRows.filter(({record}) => record?.averageGrossWage != null && record?.employees != null);
+        const weighted = (arr, valueKey) => arr.reduce((s,x) => s + Number(x.record[valueKey] || 0) * Number(x.record.employees || 0), 0);
+        const employeeSum = arr => arr.reduce((s,x) => s + Number(x.record.employees || 0), 0);
+        const period = `${rangeYear}-Q${rangeQuarter}`;
+        [
+          ["Turnover, €", sum("taxableTurnover")], ["Projected turnover, €", sum("projectedTurnover")],
+          ["State taxes, €", sum("stateTaxes")], ["Labour taxes, €", sum("labourTaxes")], ["Employees", employees],
+          ["Turnover / employee, €", employeeSum(turnoverRows) ? turnoverRows.reduce((s,x) => s + Number(x.record.taxableTurnover || 0),0) / employeeSum(turnoverRows) : null],
+          ["Projected labour productivity, €", employeeSum(projectedRows) ? projectedRows.reduce((s,x) => s + Number(x.record.projectedTurnover || 0),0) / employeeSum(projectedRows) : null],
+          ["Labour productivity, €", employeeSum(turnoverRows) ? turnoverRows.reduce((s,x) => s + Number(x.record.taxableTurnover || 0),0) / employeeSum(turnoverRows) : null],
+          ["Profit / employee, €", employeeSum(profitRows) ? weighted(profitRows, "profitPerEmployee") / employeeSum(profitRows) : null],
+          ["Average gross wage, €", employeeSum(wageRows) ? weighted(wageRows, "averageGrossWage") / employeeSum(wageRows) : null]
+        ].forEach(([label, value]) => csvRows.push([period, label, value == null ? "" : value]));
+      });
+    }, () => {
+      const period = modal.querySelector(".market-summary-subtitle").textContent.split("·")[0].trim();
+      return { filename: period.toLowerCase().replace(/[^a-z0-9]+/giu, "-").replace(/^-|-$/gu, ""),
+        rows: currentSummaryCsvRows(modal, period) };
+    });
 
     modal.hidden = false;
   }
