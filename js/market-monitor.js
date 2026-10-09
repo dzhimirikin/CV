@@ -136,6 +136,11 @@
     }
   }
 
+  function clearSelectionFocus() {
+    const activeElement = document.activeElement;
+    if (activeElement instanceof HTMLElement) activeElement.blur();
+  }
+
   function setupSelection() {
     if (!selectionContainer && summaryButton) {
       selectionContainer = document.createElement("div");
@@ -163,6 +168,7 @@
         : new Set();
       saveSelection();
       render();
+      clearSelectionFocus();
     });
 
     body.addEventListener("change", event => {
@@ -176,6 +182,7 @@
 
       saveSelection();
       updateSelectAllState();
+      clearSelectionFocus();
     });
 
     updateSelectAllState();
@@ -236,6 +243,7 @@
               : "Could not load the preset. Check the JSON file in the MarketMonitor folder.");
         } finally {
           buttons.forEach(item => item.disabled = false);
+          clearSelectionFocus();
         }
       });
     });
@@ -348,6 +356,7 @@
         saveSelection();
         render();
         updateSelectAllState();
+        clearSelectionFocus();
 
         if (imported.length > 0 && selectedCompanies.size === 0) {
           window.alert(message.noCompanies);
