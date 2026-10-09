@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-09T02:54:26.766921",
+  "updated": "2026-10-09T05:40:30.675528",
   "source": {
     "generalReports": "https://avaandmed.ariregister.rik.ee/sites/default/files/1.aruannete_yldandmed_kuni_31082026_0.zip",
     "keyIndicators": [
@@ -8,7 +8,8 @@
       "https://avaandmed.ariregister.rik.ee/sites/default/files/4.2023_aruannete_elemendid_kuni_31082026_0.zip",
       "https://avaandmed.ariregister.rik.ee/sites/default/files/4.2022_aruannete_elemendid_kuni_31082026_0.zip",
       "https://avaandmed.ariregister.rik.ee/sites/default/files/4.2021_aruannete_elemendid_kuni_31082026_0.zip",
-      "https://avaandmed.ariregister.rik.ee/sites/default/files/4.2020_aruannete_elemendid_kuni_31082026_0.zip"
+      "https://avaandmed.ariregister.rik.ee/sites/default/files/4.2020_aruannete_elemendid_kuni_31082026_0.zip",
+      "https://avaandmed.ariregister.rik.ee/sites/default/files/4.2019_aruannete_elemendid_kuni_31082026_0.zip"
     ]
   },
   "companies": [
@@ -84,6 +85,17 @@
           "employees": 9.0,
           "margin": -5.159982756471941,
           "turnoverPerEmployee": 217537.33333333334
+        },
+        {
+          "reportId": "1753051",
+          "year": 2019,
+          "submitted": "2019-12-31T00:00:00.000",
+          "turnover": 1592795.0,
+          "equity": 566638.0,
+          "profit": 6227.0,
+          "employees": 7.0,
+          "margin": 0.3909479876569175,
+          "turnoverPerEmployee": 227542.14285714287
         }
       ]
     },
@@ -170,6 +182,17 @@
           "employees": 48.0,
           "margin": -0.9187797574235619,
           "turnoverPerEmployee": 126465.29166666667
+        },
+        {
+          "reportId": "1681552",
+          "year": 2019,
+          "submitted": "2019-12-31T00:00:00.000",
+          "turnover": 7726003.0,
+          "equity": 488770.0,
+          "profit": -191573.0,
+          "employees": 54.0,
+          "margin": -2.479587439973813,
+          "turnoverPerEmployee": 143074.12962962964
         }
       ]
     },
@@ -256,6 +279,17 @@
           "employees": 48.0,
           "margin": 5.342521673286627,
           "turnoverPerEmployee": 98140.6875
+        },
+        {
+          "reportId": "1690525",
+          "year": 2019,
+          "submitted": "2019-12-31T00:00:00.000",
+          "turnover": 5050094.0,
+          "equity": 1577535.0,
+          "profit": 189442.0,
+          "employees": 49.0,
+          "margin": 3.751256907297171,
+          "turnoverPerEmployee": 103063.14285714286
         }
       ]
     },
@@ -331,6 +365,17 @@
           "employees": 49.0,
           "margin": 7.642002733206346,
           "turnoverPerEmployee": 135372.14285714287
+        },
+        {
+          "reportId": "1789387",
+          "year": 2019,
+          "submitted": "2019-12-31T00:00:00.000",
+          "turnover": 4661064.0,
+          "equity": 1022205.0,
+          "profit": 250097.0,
+          "employees": 35.0,
+          "margin": 5.365663290613474,
+          "turnoverPerEmployee": 133173.25714285715
         }
       ]
     },
@@ -417,6 +462,17 @@
           "employees": 30.0,
           "margin": 8.729534492576885,
           "turnoverPerEmployee": 221730.8
+        },
+        {
+          "reportId": "1722534",
+          "year": 2019,
+          "submitted": "2019-12-31T00:00:00.000",
+          "turnover": 6050279.0,
+          "equity": 2532785.0,
+          "profit": 865112.0,
+          "employees": 27.0,
+          "margin": 14.298712505654699,
+          "turnoverPerEmployee": 224084.40740740742
         }
       ]
     },
@@ -492,6 +548,17 @@
           "employees": 8.0,
           "margin": 7.7530031725306685,
           "turnoverPerEmployee": 279548.125
+        },
+        {
+          "reportId": "1720825",
+          "year": 2019,
+          "submitted": "2019-12-31T00:00:00.000",
+          "turnover": 3007173.0,
+          "equity": 437095.0,
+          "profit": 181557.0,
+          "employees": 7.0,
+          "margin": 6.0374644225656455,
+          "turnoverPerEmployee": 429596.14285714284
         }
       ]
     },
@@ -578,6 +645,17 @@
           "employees": 3.0,
           "margin": 11.874185648059258,
           "turnoverPerEmployee": 454860.6666666667
+        },
+        {
+          "reportId": "1719146",
+          "year": 2019,
+          "submitted": "2019-12-31T00:00:00.000",
+          "turnover": 1515168.0,
+          "equity": 471797.0,
+          "profit": 37662.0,
+          "employees": 3.0,
+          "margin": 2.4856649559652793,
+          "turnoverPerEmployee": 505056.0
         }
       ]
     },
@@ -664,6 +742,17 @@
           "employees": 38.0,
           "margin": -3.006301264843113,
           "turnoverPerEmployee": 86569.92105263157
+        },
+        {
+          "reportId": "1714720",
+          "year": 2019,
+          "submitted": "2019-12-31T00:00:00.000",
+          "turnover": 3230550.0,
+          "equity": 640368.0,
+          "profit": 67553.0,
+          "employees": 40.0,
+          "margin": 2.0910680843819165,
+          "turnoverPerEmployee": 80763.75
         }
       ]
     },
@@ -750,6 +839,17 @@
           "employees": 7.0,
           "margin": 0.8083988398551,
           "turnoverPerEmployee": 108804.14285714286
+        },
+        {
+          "reportId": "1712470",
+          "year": 2019,
+          "submitted": "2019-12-31T00:00:00.000",
+          "turnover": 1041984.0,
+          "equity": 180383.0,
+          "profit": 9303.0,
+          "employees": 7.0,
+          "margin": 0.8928160125299428,
+          "turnoverPerEmployee": 148854.85714285713
         }
       ]
     },
@@ -836,6 +936,17 @@
           "employees": 7.0,
           "margin": 0.997030480549816,
           "turnoverPerEmployee": 169532.0
+        },
+        {
+          "reportId": "1724971",
+          "year": 2019,
+          "submitted": "2019-12-31T00:00:00.000",
+          "turnover": 1209715.0,
+          "equity": 34718.0,
+          "profit": 16425.0,
+          "employees": 7.0,
+          "margin": 1.3577578189904234,
+          "turnoverPerEmployee": 172816.42857142858
         }
       ]
     },
@@ -1008,6 +1119,17 @@
           "employees": 52.0,
           "margin": 1.6304189926875372,
           "turnoverPerEmployee": 151577.36538461538
+        },
+        {
+          "reportId": "1712781",
+          "year": 2019,
+          "submitted": "2019-12-31T00:00:00.000",
+          "turnover": 7719456.0,
+          "equity": 2100026.0,
+          "profit": 68859.0,
+          "employees": 49.0,
+          "margin": 0.8920188158336546,
+          "turnoverPerEmployee": 157539.91836734695
         }
       ]
     },
@@ -1094,6 +1216,17 @@
           "employees": 102.0,
           "margin": 12.495638024595285,
           "turnoverPerEmployee": 143367.99019607843
+        },
+        {
+          "reportId": "1807264",
+          "year": 2019,
+          "submitted": "2019-12-31T00:00:00.000",
+          "turnover": 13690313.0,
+          "equity": -1181166.0,
+          "profit": -1131257.0,
+          "employees": 138.0,
+          "margin": -8.263193105957475,
+          "turnoverPerEmployee": 99205.16666666667
         }
       ]
     },
@@ -1180,6 +1313,17 @@
           "employees": 177.0,
           "margin": 6.22357954810687,
           "turnoverPerEmployee": 134341.54802259887
+        },
+        {
+          "reportId": "1677271",
+          "year": 2019,
+          "submitted": "2019-12-31T00:00:00.000",
+          "turnover": 24339174.0,
+          "equity": 5935118.0,
+          "profit": 1373170.0,
+          "employees": 180.0,
+          "margin": 5.641810194544811,
+          "turnoverPerEmployee": 135217.63333333333
         }
       ]
     },
@@ -1266,6 +1410,17 @@
           "employees": 1.0,
           "margin": -16.792750197005514,
           "turnoverPerEmployee": 12690.0
+        },
+        {
+          "reportId": "1881509",
+          "year": 2019,
+          "submitted": "2019-12-31T00:00:00.000",
+          "turnover": 18685.0,
+          "equity": 65608.0,
+          "profit": 1629.0,
+          "employees": 0.0,
+          "margin": 8.718223173668719,
+          "turnoverPerEmployee": null
         }
       ]
     },
@@ -1394,6 +1549,17 @@
           "employees": 4.0,
           "margin": 1.4775145576576787,
           "turnoverPerEmployee": 213805.0
+        },
+        {
+          "reportId": "1719049",
+          "year": 2019,
+          "submitted": "2019-12-31T00:00:00.000",
+          "turnover": 700564.0,
+          "equity": 108248.0,
+          "profit": 59658.0,
+          "employees": 3.0,
+          "margin": 8.515710199210922,
+          "turnoverPerEmployee": 233521.33333333334
         }
       ]
     },
@@ -1480,6 +1646,17 @@
           "employees": 15.0,
           "margin": 0.7122802309923384,
           "turnoverPerEmployee": 94906.46666666666
+        },
+        {
+          "reportId": "1731803",
+          "year": 2019,
+          "submitted": "2019-12-31T00:00:00.000",
+          "turnover": 1717416.0,
+          "equity": 712554.0,
+          "profit": 286966.0,
+          "employees": 12.0,
+          "margin": 16.70917238455913,
+          "turnoverPerEmployee": 143118.0
         }
       ]
     },
@@ -1597,6 +1774,17 @@
           "employees": null,
           "margin": -2.5837476403098405,
           "turnoverPerEmployee": null
+        },
+        {
+          "reportId": "1862614",
+          "year": 2019,
+          "submitted": "2019-12-31T00:00:00.000",
+          "turnover": 12247551.0,
+          "equity": 838491.0,
+          "profit": 517820.0,
+          "employees": null,
+          "margin": 4.2279472851348,
+          "turnoverPerEmployee": null
         }
       ]
     },
@@ -1683,6 +1871,17 @@
           "employees": 20.0,
           "margin": 1.7803881500795513,
           "turnoverPerEmployee": 186546.4
+        },
+        {
+          "reportId": "1725715",
+          "year": 2019,
+          "submitted": "2019-12-31T00:00:00.000",
+          "turnover": 3865914.0,
+          "equity": 798146.0,
+          "profit": -22749.0,
+          "employees": 20.0,
+          "margin": -0.5884507518791158,
+          "turnoverPerEmployee": 193295.7
         }
       ]
     },
@@ -1769,6 +1968,17 @@
           "employees": 13.0,
           "margin": -4.870518632192147,
           "turnoverPerEmployee": 76191.53846153847
+        },
+        {
+          "reportId": "1672015",
+          "year": 2019,
+          "submitted": "2019-12-31T00:00:00.000",
+          "turnover": 1639951.0,
+          "equity": 654284.0,
+          "profit": 161081.0,
+          "employees": 12.0,
+          "margin": 9.82230566644979,
+          "turnoverPerEmployee": 136662.58333333334
         }
       ]
     },
@@ -1864,6 +2074,17 @@
           "employees": 0.0,
           "margin": 48.5609426308673,
           "turnoverPerEmployee": null
+        },
+        {
+          "reportId": "1671105",
+          "year": 2019,
+          "submitted": "2019-12-31T00:00:00.000",
+          "turnover": 18230.0,
+          "equity": 20662.0,
+          "profit": 2759.0,
+          "employees": 0.0,
+          "margin": 15.134393856280855,
+          "turnoverPerEmployee": null
         }
       ]
     },
@@ -1939,6 +2160,17 @@
           "employees": 1.0,
           "margin": 109.93235301173027,
           "turnoverPerEmployee": 83374.0
+        },
+        {
+          "reportId": "1867044",
+          "year": 2019,
+          "submitted": "2019-12-31T00:00:00.000",
+          "turnover": 13572.0,
+          "equity": 8379.0,
+          "profit": -293.0,
+          "employees": 1.0,
+          "margin": -2.158856469201297,
+          "turnoverPerEmployee": 13572.0
         }
       ]
     },
@@ -1980,6 +2212,17 @@
           "profit": 3176.0,
           "employees": null,
           "margin": 0.03129687818567189,
+          "turnoverPerEmployee": null
+        },
+        {
+          "reportId": "1738319",
+          "year": 2019,
+          "submitted": "2019-12-31T00:00:00.000",
+          "turnover": 12971854.0,
+          "equity": 2726291.0,
+          "profit": 158977.0,
+          "employees": null,
+          "margin": 1.2255534174220586,
           "turnoverPerEmployee": null
         }
       ]
