@@ -4484,3 +4484,52 @@ right:30px;
   }
 
 }
+
+.market-summary-actions {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 16px;
+}
+
+.market-csv-options {
+  display: grid;
+  gap: 12px;
+  margin-top: 14px;
+  padding: 14px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+}
+
+.market-csv-options[hidden],
+.market-csv-years[hidden] {
+  display: none;
+}
+
+.market-csv-choice {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.market-csv-years {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.market-csv-years label {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.market-csv-years select {
+  max-width: 100%;
+  padding: 8px;
+}
+
+.market-csv-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
