@@ -163,7 +163,7 @@ Future<void> main() async {
         'profitPerEmployee',
         'averageGrossWage',
       ],
-      'targetYearRange': '2020-2026',
+      'targetYearRange': '2015-2026',
     },
     'companies': result,
   };
@@ -618,7 +618,7 @@ Future<void> enrichFromInforegister(
       var enriched = 0;
 
       for (final irRecord in inforegisterRecords) {
-        if (irRecord.year < 2020 || irRecord.year > 2026) continue;
+        if (irRecord.year < 2015 || irRecord.year > 2026) continue;
 
         final list = quarterly.putIfAbsent(
           company.registryCode,
@@ -768,7 +768,7 @@ List<QuarterRecord> parseInforegisterQuarterly(String html) {
 
       final period = parseInforegisterPeriod(row.first);
       if (period == null) continue;
-      if (period.year < 2020 || period.year > 2026) continue;
+      if (period.year < 2015 || period.year > 2026) continue;
       if (row.length < 7) continue;
 
       final key = '${period.year}-Q${period.quarter}';
@@ -793,7 +793,7 @@ List<QuarterRecord> parseInforegisterQuarterly(String html) {
 
       final period = parseInforegisterPeriod(row.first);
       if (period == null) continue;
-      if (period.year < 2020 || period.year > 2026) continue;
+      if (period.year < 2015 || period.year > 2026) continue;
       if (row.length < 5) continue;
 
       final key = '${period.year}-Q${period.quarter}';
