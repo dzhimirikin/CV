@@ -1703,12 +1703,12 @@ footer {
   overflow: hidden;
   display: flex;
   justify-content: center;
-  align-items: flex-start;
+  align-items: center;
 }
 
 .carousel {
   position: relative;
-  width: 260px;
+  width: 226px;
   height: 320px;
   transform-style: preserve-3d;
   transform: rotateY(0deg);
@@ -1725,13 +1725,12 @@ footer {
   border-radius: 8px;
   box-shadow: 0 10px 25px rgba(0,0,0,0.25);
   cursor: pointer;
-  transition: transform 0.3s ease, filter 0.3s ease, box-shadow 0.3s ease;
+  transition: filter 0.3s ease, box-shadow 0.3s ease;
 }
 
 .carousel img:hover,
 .carousel img:focus,
 .carousel img:active {
-  transform: scale(1.03);
   filter: brightness(0.95);
   box-shadow: 0 12px 24px rgba(0,0,0,0.15);
 }
@@ -1779,15 +1778,15 @@ footer {
 /* MOBILE */
 
 @media (max-width: 768px) {
-
   .carousel-container {
     height: 280px;
     perspective: 800px;
+    align-items: center;
   }
 
   .carousel {
-    width: 180px;
-    height: 230px;
+    width: 155px;
+    height: 219px;
   }
 
   .carousel-controls {
@@ -1798,7 +1797,66 @@ footer {
     padding: 8px 14px;
     font-size: 14px;
   }
+}
 
+/* ------------------------------- */
+/* CURRENT CERTIFICATE TITLE */
+
+#certificates .certificate-current-title {
+  margin: 0 0 12px;
+  color: #1f2933;
+  font-size: 17px;
+  font-weight: 600;
+  line-height: 1.4;
+  text-align: center;
+}
+
+@media (max-width: 768px) {
+  #certificates .certificate-current-title {
+    margin-bottom: 8px;
+    font-size: 15px;
+  }
+}
+
+/* ------------------------------- */
+/* CERTIFICATE POSITION DOTS */
+
+#certificates .certificate-dots {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 18px auto 8px;
+}
+
+#certificates .certificate-dot {
+  flex: 0 0 auto;
+  width: 8px;
+  height: 8px;
+  padding: 0;
+  border: none;
+  border-radius: 50%;
+  background: #c7cdd2;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.2s;
+}
+
+#certificates .certificate-dot[aria-current="true"] {
+  background: #1f2933;
+  transform: scale(1.4);
+}
+
+#certificates .certificate-dot:focus-visible {
+  outline: 2px solid #647789;
+  outline-offset: 3px;
+}
+
+@media (max-width: 768px) {
+  #certificates .certificate-dots {
+    gap: 9px;
+    margin: 14px auto 8px;
+  }
 }
 
 

@@ -1401,29 +1401,38 @@ window.Hyphenopoly = {
   <div class="card">
     <h2>Certificates</h2>
 
+    <div
+      class="certificate-current-title"
+      id="certificateCurrentTitle"
+      aria-live="polite"
+    >Certificate 1</div>
+
     <div class="carousel-container">
       <div class="carousel" id="certCarousel">
-
-        <img src="Certificates/cert1.jpg" alt="Certificate 1">
-        <img src="Certificates/cert2.jpg" alt="Certificate 2">
-        <img src="Certificates/cert3.jpg" alt="Certificate 3">
-        <img src="Certificates/cert4.jpg" alt="Certificate 4">
-        <img src="Certificates/cert5.jpg" alt="Certificate 5">
-        <img src="Certificates/cert6.jpg" alt="Certificate 6">
-        <img src="Certificates/cert7.jpg" alt="Certificate 7">
-        <img src="Certificates/cert8.jpg" alt="Certificate 8">
-        <img src="Certificates/cert9.jpg" alt="Certificate 9">
-        <img src="Certificates/cert10.jpg" alt="Certificate 10">
-        <img src="Certificates/cert11.jpg" alt="Certificate 11">
-        <img src="Certificates/cert12.jpg" alt="Certificate 12">
-		<img src="Certificates/cert13.jpg" alt="Certificate 13">
-
+        <img src="Certificates/cert1.jpg" alt="Certificate 1" data-title="Certificate 1">
+        <img src="Certificates/cert2.jpg" alt="Certificate 2" data-title="Certificate 2">
+        <img src="Certificates/cert3.jpg" alt="Certificate 3" data-title="Certificate 3">
+        <img src="Certificates/cert4.jpg" alt="Certificate 4" data-title="Certificate 4">
+        <img src="Certificates/cert5.jpg" alt="Certificate 5" data-title="Certificate 5">
+        <img src="Certificates/cert6.jpg" alt="Certificate 6" data-title="Certificate 6">
+        <img src="Certificates/cert7.jpg" alt="Certificate 7" data-title="Certificate 7">
+        <img src="Certificates/cert8.jpg" alt="Certificate 8" data-title="Certificate 8">
+        <img src="Certificates/cert9.jpg" alt="Certificate 9" data-title="Certificate 9">
+        <img src="Certificates/cert10.jpg" alt="Certificate 10" data-title="Certificate 10">
+        <img src="Certificates/cert11.jpg" alt="Certificate 11" data-title="Certificate 11">
+        <img src="Certificates/cert12.jpg" alt="Certificate 12" data-title="Certificate 12">
+        <img src="Certificates/cert13.jpg" alt="Certificate 13" data-title="Certificate 13">
       </div>
     </div>
 
+    <div class="certificate-dots" id="certificateDots"
+         aria-label="Choose certificate"></div>
+
     <div class="carousel-controls">
-      <button onclick="rotateCarousel(-1)">‹</button>
-      <button onclick="rotateCarousel(1)">›</button>
+      <button type="button" onclick="rotateCarousel(-1)"
+              aria-label="Previous certificate">‹</button>
+      <button type="button" onclick="rotateCarousel(1)"
+              aria-label="Next certificate">›</button>
     </div>
   </div>
 </section>
