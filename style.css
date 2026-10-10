@@ -705,9 +705,13 @@ html[lang="ru"] {
 }
 
 
-/* название программы */
+/* Название программы: перенос длинных названий без сжатия прогресс-бара */
 .skill-name{
   flex:0 0 200px;
+  min-width:0;
+  white-space:normal;
+  overflow-wrap:anywhere;
+  line-height:1.25;
 }
 
 
