@@ -4662,3 +4662,105 @@ right:30px;
   opacity: 0.55;
   cursor: wait;
 }
+
+/* ============================================================
+   PROJECT FILTERS — LIGHT MARKET MONITOR STYLE
+   Чёрно-белая гамма, без синего акцента
+   ============================================================ */
+
+/* Комбобоксы */
+.project-filter select.combo,
+.company-row select.combo {
+  background-color: #fff;
+  color: #1f2933;
+  border: 1px solid #c9cdd1;
+  box-shadow: none;
+  transition: border-color 0.18s ease,
+              box-shadow 0.18s ease;
+}
+
+.project-filter select.combo:hover,
+.company-row select.combo:hover {
+  background-color: #fff;
+  border-color: #8b9299;
+}
+
+/* Фокус: чёрная рамка и серая подсветка */
+.project-filter select.combo:focus,
+.company-row select.combo:focus {
+  background-color: #fff;
+  color: #1f2933;
+  border-color: #1f2933;
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(31, 41, 51, 0.12);
+}
+
+/* Кнопки сброса фильтров */
+.combo-reset {
+  background: #fff;
+  color: #5f6670;
+  border: 1px solid #c9cdd1;
+  box-shadow: none;
+  transition: border-color 0.18s ease,
+              color 0.18s ease,
+              box-shadow 0.18s ease;
+}
+
+.combo-reset:hover {
+  background: #fff;
+  color: #1f2933;
+  border-color: #8b9299;
+}
+
+/* Фокус и нажатие кнопки сброса */
+.combo-reset:focus,
+.combo-reset:active,
+.combo-reset:focus-visible {
+  background: #fff;
+  color: #1f2933;
+  border-color: #1f2933;
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(31, 41, 51, 0.12);
+}
+
+/* Мобильная версия */
+@media (max-width: 768px) {
+  .project-filter select.combo,
+  .company-row select.combo {
+    background-color: #fff;
+    color: #1f2933;
+  }
+
+  .project-filter select.combo:focus,
+  .company-row select.combo:focus,
+  .combo-reset:focus,
+  .combo-reset:active {
+    background-color: #fff;
+  }
+}
+
+/* ============================================================
+   PROJECT FILTERS — REMOVE LEGACY EFFECTS
+============================================================ */
+
+.project-filter select.combo,
+.company-row select.combo,
+.project-filter select.combo:hover,
+.project-filter select.combo:focus,
+.company-row select.combo:hover,
+.company-row select.combo:focus {
+  box-shadow: none;
+  background-image: none;
+  text-shadow: none;
+}
+
+.combo-reset,
+.combo-reset:hover,
+.combo-reset:focus,
+.combo-reset:active,
+.combo-reset:focus-visible {
+  box-shadow: none;
+  text-shadow: none;
+  transform: none;
+  outline: none;
+}
