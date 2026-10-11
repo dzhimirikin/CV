@@ -108,3 +108,15 @@ companies:
   - name: "Alukon OÜ"
     registry_code: "16469420"
     website: "https://alucon.ee/"
+
+  - name: "All Solutions OÜ"
+    registry_code: "10931857"
+    website: "https://alls.ee/"
+
+  - name: "Luminum OÜ"
+    registry_code: "14354196"
+    website: "https://luminum.ee/"
+
+  - name: "Fasprof OÜ"
+    registry_code: "14035700"
+    website: "https://fasprof.ee/"
