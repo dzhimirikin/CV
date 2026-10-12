@@ -168,6 +168,24 @@ Future<void> main() async {
     'companies': result,
   };
 
+  // Archive the previous JSON before replacing it. The archive name uses
+  // the current date; another run on the same day replaces that day's copy.
+  final archiveDirectory = Directory('archive');
+  await archiveDirectory.create(recursive: true);
+
+  final currentOutput = File(outputFile);
+  if (await currentOutput.exists()) {
+    final now = DateTime.now();
+    final year = now.year.toString().padLeft(4, '0');
+    final month = now.month.toString().padLeft(2, '0');
+    final day = now.day.toString().padLeft(2, '0');
+    final dateStamp = '$year-$month-$day';
+    final archivePath =
+        '${archiveDirectory.path}/companies_quarterly_$dateStamp.json';
+    await currentOutput.copy(archivePath);
+    print('Archived previous JSON: $archivePath');
+  }
+
   await File(outputFile).writeAsString(
     const JsonEncoder.withIndent('  ').convert(output),
     encoding: utf8,
