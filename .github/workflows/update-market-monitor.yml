@@ -35,16 +35,17 @@ jobs:
         working-directory: MarketMonitor
         run: dart run market_monitor_quarterly.dart
 
-      - name: Commit updated JSON files
+      - name: Commit updated JSON files and archive
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
           git add MarketMonitor/companies.json
           git add MarketMonitor/companies_quarterly.json
+          git add MarketMonitor/archive/
 
           if git diff --cached --quiet; then
-            echo "No data changes."
+            echo "No data or archive changes."
           else
             git commit -m "Update Market Monitor data"
             git push
