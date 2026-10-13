@@ -120,3 +120,11 @@ companies:
   - name: "Fasprof OÜ"
     registry_code: "14035700"
     website: "https://fasprof.ee/"
+
+  - name: "Windoor AS"
+    registry_code: "10506628"
+    website: null
+
+  - name: "Windoor Facades OÜ"
+    registry_code: "12581775"
+    website: null
