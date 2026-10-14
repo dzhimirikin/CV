@@ -129,13 +129,32 @@ document.addEventListener('DOMContentLoaded', () => {
       'certificateCurrentTitle'
     );
 
-    if (currentTitle) {
-      const activeImage = images[currentIndex];
+    const activeImage = images[currentIndex];
 
+    if (currentTitle) {
       currentTitle.textContent =
         activeImage.dataset.title ||
         activeImage.alt ||
         '';
+    }
+
+    // Обновление кнопки материалов для выбранного сертификата
+    const materialsButton = document.getElementById('downloadMaterialsBtn');
+
+    if (materialsButton) {
+      const materialsUrl = activeImage.dataset.materials?.trim();
+
+      if (materialsUrl) {
+        materialsButton.href = materialsUrl;
+        materialsButton.classList.remove('disabled');
+        materialsButton.setAttribute('aria-disabled', 'false');
+        materialsButton.removeAttribute('tabindex');
+      } else {
+        materialsButton.href = '#';
+        materialsButton.classList.add('disabled');
+        materialsButton.setAttribute('aria-disabled', 'true');
+        materialsButton.setAttribute('tabindex', '-1');
+      }
     }
 
     // После выбора нового сертификата пересчитываем масштабы
