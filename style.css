@@ -1745,6 +1745,33 @@ footer {
 
 
 /* ------------------------------- */
+/* CERTIFICATE MATERIALS BUTTON */
+
+#certificates .certificate-actions {
+  display: flex;
+  justify-content: flex-start;
+  margin-bottom: 16px;
+}
+
+#certificates #downloadMaterialsBtn {
+  display: flex;
+  width: 215px;
+  box-sizing: border-box;
+  text-align: center;
+  text-decoration: none;
+}
+
+/* ------------------------------- */
+/* CERTIFICATE MATERIALS — MOBILE */
+
+@media (max-width: 480px) {
+  #certificates #downloadMaterialsBtn {
+    width: 100%;
+    max-width: 100%;
+  }
+}
+
+/* ------------------------------- */
 /* CAROUSEL CONTROLS */
 
 .carousel-controls {
