@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-13T03:30:21.209735",
+  "updated": "2026-10-14T01:47:50.464750",
   "source": {
     "generalReports": "https://avaandmed.ariregister.rik.ee/sites/default/files/1.aruannete_yldandmed_kuni_31082026_0.zip",
     "keyIndicators": [
@@ -2579,6 +2579,145 @@
           "employees": 4.0,
           "margin": -4.899930058643138,
           "turnoverPerEmployee": 37174.0
+        }
+      ]
+    },
+    {
+      "name": "Windoor AS",
+      "registryCode": "10506628",
+      "website": null,
+      "note": null,
+      "dataStatus": "ok",
+      "latest": {
+        "reportId": "3524341",
+        "year": 2025,
+        "submitted": "2025-12-31T00:00:00.000",
+        "turnover": null,
+        "equity": 13451945.0,
+        "profit": 2263696.0,
+        "employees": 0.0,
+        "margin": null,
+        "turnoverPerEmployee": null
+      },
+      "history": [
+        {
+          "reportId": "3524341",
+          "year": 2025,
+          "submitted": "2025-12-31T00:00:00.000",
+          "turnover": null,
+          "equity": 13451945.0,
+          "profit": 2263696.0,
+          "employees": 0.0,
+          "margin": null,
+          "turnoverPerEmployee": null
+        },
+        {
+          "reportId": "3380389",
+          "year": 2024,
+          "submitted": "2024-12-31T00:00:00.000",
+          "turnover": 0.0,
+          "equity": 11188249.0,
+          "profit": 2962579.0,
+          "employees": 0.0,
+          "margin": null,
+          "turnoverPerEmployee": null
+        },
+        {
+          "reportId": "3380381",
+          "year": 2023,
+          "submitted": "2023-12-31T00:00:00.000",
+          "turnover": 9000.0,
+          "equity": 8225670.0,
+          "profit": 2256811.0,
+          "employees": 0.0,
+          "margin": 25075.67777777778,
+          "turnoverPerEmployee": null
+        },
+        {
+          "reportId": "3380293",
+          "year": 2022,
+          "submitted": "2022-12-31T00:00:00.000",
+          "turnover": 10828.0,
+          "equity": 5968859.0,
+          "profit": 1998854.0,
+          "employees": 2.0,
+          "margin": 18460.04802364241,
+          "turnoverPerEmployee": 5414.0
+        },
+        {
+          "reportId": "3380209",
+          "year": 2021,
+          "submitted": "2021-12-31T00:00:00.000",
+          "turnover": 709471.0,
+          "equity": 3970005.0,
+          "profit": 2218964.0,
+          "employees": 20.0,
+          "margin": 312.7631714333637,
+          "turnoverPerEmployee": 35473.55
+        },
+        {
+          "reportId": "2144462",
+          "year": 2020,
+          "submitted": "2020-12-31T00:00:00.000",
+          "turnover": 733790.0,
+          "equity": 1751041.0,
+          "profit": 472365.0,
+          "employees": 25.0,
+          "margin": 64.37332206762153,
+          "turnoverPerEmployee": 29351.6
+        },
+        {
+          "reportId": "2142304",
+          "year": 2019,
+          "submitted": "2019-12-31T00:00:00.000",
+          "turnover": 3204696.0,
+          "equity": 1278677.0,
+          "profit": 219310.0,
+          "employees": 42.0,
+          "margin": 6.843394818104431,
+          "turnoverPerEmployee": 76302.28571428571
+        }
+      ]
+    },
+    {
+      "name": "Windoor Facades OÜ",
+      "registryCode": "12581775",
+      "website": null,
+      "note": null,
+      "dataStatus": "ok",
+      "latest": {
+        "reportId": "1794155",
+        "year": 2020,
+        "submitted": "2020-12-31T00:00:00.000",
+        "turnover": 192423.0,
+        "equity": 853971.0,
+        "profit": 32485.0,
+        "employees": 2.0,
+        "margin": 16.882077506327207,
+        "turnoverPerEmployee": 96211.5
+      },
+      "history": [
+        {
+          "reportId": "1794155",
+          "year": 2020,
+          "submitted": "2020-12-31T00:00:00.000",
+          "turnover": 192423.0,
+          "equity": 853971.0,
+          "profit": 32485.0,
+          "employees": 2.0,
+          "margin": 16.882077506327207,
+          "turnoverPerEmployee": 96211.5
+        },
+        {
+          "reportId": "1723313",
+          "year": 2019,
+          "submitted": "2019-12-31T00:00:00.000",
+          "turnover": 77970.0,
+          "equity": 816486.0,
+          "profit": -164489.0,
+          "employees": 0.0,
+          "margin": -210.96447351545464,
+          "turnoverPerEmployee": null
         }
       ]
     }
