@@ -82,8 +82,50 @@ document.addEventListener("DOMContentLoaded", () => {
         closeBtn.className =
             "lightbox-close";
 
-        closeBtn.textContent =
-            "×";
+        closeBtn.type = "button";
+        closeBtn.setAttribute("aria-label", "Close image viewer");
+        closeBtn.textContent = "×";
+
+        // Круглая кнопка закрытия: белый крест и белый контур.
+        // При наведении/нажатии круг становится белым, крест — чёрным.
+        Object.assign(closeBtn.style, {
+            position: "absolute",
+            top: "18px",
+            right: "18px",
+            zIndex: "10001",
+            width: "42px",
+            height: "42px",
+            padding: "0",
+            border: "1px solid #fff",
+            borderRadius: "50%",
+            background: "transparent",
+            color: "#fff",
+            font: "32px/38px Arial, sans-serif",
+            textAlign: "center",
+            cursor: "pointer",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            boxSizing: "border-box",
+            transition: "background-color 0.15s ease, color 0.15s ease"
+        });
+
+        const activateCloseButton = () => {
+            closeBtn.style.backgroundColor = "#fff";
+            closeBtn.style.color = "#000";
+        };
+
+        const resetCloseButton = () => {
+            closeBtn.style.backgroundColor = "transparent";
+            closeBtn.style.color = "#fff";
+        };
+
+        closeBtn.addEventListener("mouseenter", activateCloseButton);
+        closeBtn.addEventListener("mousedown", activateCloseButton);
+        closeBtn.addEventListener("mouseup", activateCloseButton);
+        closeBtn.addEventListener("mouseleave", resetCloseButton);
+        closeBtn.addEventListener("focus", activateCloseButton);
+        closeBtn.addEventListener("blur", resetCloseButton);
 
 
         const prev =
@@ -92,18 +134,65 @@ document.addEventListener("DOMContentLoaded", () => {
         prev.className =
             "lightbox-prev";
 
-        prev.textContent =
-            "‹";
-
+        prev.textContent = "‹";
+        prev.type = "button";
+        prev.setAttribute("aria-label", "Previous photo");
 
         const next =
             document.createElement("button");
 
-        next.className =
-            "lightbox-next";
+        next.className = "lightbox-next";
+        next.textContent = "›";
+        next.type = "button";
+        next.setAttribute("aria-label", "Next photo");
 
-        next.textContent =
-            "›";
+        // Стрелки оформлены в той же логике, что и крестик:
+        // белый символ в круге с белой обводкой; при наведении
+        // круг становится белым, а символ — чёрным.
+        const styleArrowButton = (button, side) => {
+            Object.assign(button.style, {
+                position: "absolute",
+                top: "50%",
+                [side]: "18px",
+                transform: "translateY(-50%)",
+                zIndex: "10001",
+                width: "42px",
+                height: "42px",
+                padding: "0",
+                border: "1px solid #fff",
+                borderRadius: "50%",
+                background: "transparent",
+                color: "#fff",
+                font: "32px/38px Arial, sans-serif",
+                textAlign: "center",
+                cursor: "pointer",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                boxSizing: "border-box",
+                transition: "background-color 0.15s ease, color 0.15s ease"
+            });
+
+            const activate = () => {
+                button.style.backgroundColor = "#fff";
+                button.style.color = "#000";
+            };
+
+            const reset = () => {
+                button.style.backgroundColor = "transparent";
+                button.style.color = "#fff";
+            };
+
+            button.addEventListener("mouseenter", activate);
+            button.addEventListener("mousedown", activate);
+            button.addEventListener("mouseup", activate);
+            button.addEventListener("mouseleave", reset);
+            button.addEventListener("focus", activate);
+            button.addEventListener("blur", reset);
+        };
+
+        styleArrowButton(prev, "left");
+        styleArrowButton(next, "right");
 
 
         overlay.append(
