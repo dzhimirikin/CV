@@ -864,6 +864,12 @@
         company.registry_code ||
         "";
 
+      const registerUrl = registryCode
+        ? `https://ariregister.rik.ee/eng/company/${encodeURIComponent(
+            registryCode
+          )}`
+        : "";
+
       const teatmikUrl = registryCode
         ? `https://www.teatmik.ee/${lang}/personlegal/${encodeURIComponent(
             registryCode
@@ -880,6 +886,15 @@
         : `<span class="quarterly-company-name">${escapeHtml(
             company.name
           )}</span>`;
+
+      const register = registerUrl
+        ? `<a href="${registerUrl}"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="quarterly-teatmik quarterly-register"
+              title="Commercial Register (RIK)"
+              aria-label="Commercial Register (RIK)"><span style="color: #0080BA;">R</span></a>`
+        : "";
 
       const teatmik = teatmikUrl
         ? `<a href="${teatmikUrl}"
@@ -905,6 +920,7 @@
                 <span class="company-rank">${index + 1}/${total}</span>
               </span>
               ${companyName}
+              ${register}
               ${teatmik}
           </span>
         </td>
