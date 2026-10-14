@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-14T01:48:43.417637",
+  "updated": "2026-10-14T09:26:23.925452",
   "source": {
     "emtaOpenDataPage": "https://www.emta.ee/en/private-client/board-news-and-contacts/news-press-information-statistics/statistics-and-open-data",
     "files": [
@@ -34,9 +34,9 @@
         "taxableTurnoverPerEmployee": 165691.75,
         "projectedTurnover": null,
         "projectedLabourProductivity": null,
-        "labourProductivity": null,
+        "labourProductivity": 165692.0,
         "profitPerEmployee": null,
-        "averageGrossWage": null,
+        "averageGrossWage": 1540.0,
         "sourceName": "LÜMICO OÜ"
       },
       "history": [
@@ -51,9 +51,9 @@
           "taxableTurnoverPerEmployee": 165691.75,
           "projectedTurnover": null,
           "projectedLabourProductivity": null,
-          "labourProductivity": null,
+          "labourProductivity": 165692.0,
           "profitPerEmployee": null,
-          "averageGrossWage": null,
+          "averageGrossWage": 1540.0,
           "sourceName": "LÜMICO OÜ"
         },
         {
@@ -555,9 +555,9 @@
         "taxableTurnoverPerEmployee": 1026521.0,
         "projectedTurnover": null,
         "projectedLabourProductivity": null,
-        "labourProductivity": null,
+        "labourProductivity": 1026521.0,
         "profitPerEmployee": null,
-        "averageGrossWage": null,
+        "averageGrossWage": 9340.0,
         "sourceName": "MALMERK FASSAADID, AS"
       },
       "history": [
@@ -572,9 +572,9 @@
           "taxableTurnoverPerEmployee": 1026521.0,
           "projectedTurnover": null,
           "projectedLabourProductivity": null,
-          "labourProductivity": null,
+          "labourProductivity": 1026521.0,
           "profitPerEmployee": null,
-          "averageGrossWage": null,
+          "averageGrossWage": 9340.0,
           "sourceName": "MALMERK FASSAADID, AS"
         },
         {
@@ -1076,9 +1076,9 @@
         "taxableTurnoverPerEmployee": 31095.26984126984,
         "projectedTurnover": null,
         "projectedLabourProductivity": null,
-        "labourProductivity": null,
+        "labourProductivity": 31095.0,
         "profitPerEmployee": null,
-        "averageGrossWage": null,
+        "averageGrossWage": 2595.0,
         "sourceName": "MALMERK KLAASIUM, OÜ"
       },
       "history": [
@@ -1093,9 +1093,9 @@
           "taxableTurnoverPerEmployee": 31095.26984126984,
           "projectedTurnover": null,
           "projectedLabourProductivity": null,
-          "labourProductivity": null,
+          "labourProductivity": 31095.0,
           "profitPerEmployee": null,
-          "averageGrossWage": null,
+          "averageGrossWage": 2595.0,
           "sourceName": "MALMERK KLAASIUM, OÜ"
         },
         {
@@ -1597,9 +1597,9 @@
         "taxableTurnoverPerEmployee": 26401.56,
         "projectedTurnover": null,
         "projectedLabourProductivity": null,
-        "labourProductivity": null,
+        "labourProductivity": 26402.0,
         "profitPerEmployee": null,
-        "averageGrossWage": null,
+        "averageGrossWage": 2140.0,
         "sourceName": "FENSTER ALUMIINIUM, AS"
       },
       "history": [
@@ -1614,9 +1614,9 @@
           "taxableTurnoverPerEmployee": 26401.56,
           "projectedTurnover": null,
           "projectedLabourProductivity": null,
-          "labourProductivity": null,
+          "labourProductivity": 26402.0,
           "profitPerEmployee": null,
-          "averageGrossWage": null,
+          "averageGrossWage": 2140.0,
           "sourceName": "FENSTER ALUMIINIUM, AS"
         },
         {
@@ -2118,9 +2118,9 @@
         "taxableTurnoverPerEmployee": 109163.38095238095,
         "projectedTurnover": null,
         "projectedLabourProductivity": null,
-        "labourProductivity": null,
+        "labourProductivity": 109163.0,
         "profitPerEmployee": null,
-        "averageGrossWage": null,
+        "averageGrossWage": 2530.0,
         "sourceName": "WARMECO OÜ"
       },
       "history": [
@@ -2135,9 +2135,9 @@
           "taxableTurnoverPerEmployee": 109163.38095238095,
           "projectedTurnover": null,
           "projectedLabourProductivity": null,
-          "labourProductivity": null,
+          "labourProductivity": 109163.0,
           "profitPerEmployee": null,
-          "averageGrossWage": null,
+          "averageGrossWage": 2530.0,
           "sourceName": "WARMECO OÜ"
         },
         {
@@ -2639,9 +2639,9 @@
         "taxableTurnoverPerEmployee": 97370.94444444444,
         "projectedTurnover": null,
         "projectedLabourProductivity": null,
-        "labourProductivity": null,
+        "labourProductivity": 97371.0,
         "profitPerEmployee": null,
-        "averageGrossWage": null,
+        "averageGrossWage": 2465.0,
         "sourceName": "SEMITY OÜ"
       },
       "history": [
@@ -2656,9 +2656,9 @@
           "taxableTurnoverPerEmployee": 97370.94444444444,
           "projectedTurnover": null,
           "projectedLabourProductivity": null,
-          "labourProductivity": null,
+          "labourProductivity": 97371.0,
           "profitPerEmployee": null,
-          "averageGrossWage": null,
+          "averageGrossWage": 2465.0,
           "sourceName": "SEMITY OÜ"
         },
         {
@@ -3160,9 +3160,9 @@
         "taxableTurnoverPerEmployee": 128495.0,
         "projectedTurnover": null,
         "projectedLabourProductivity": null,
-        "labourProductivity": null,
+        "labourProductivity": 128495.0,
         "profitPerEmployee": null,
-        "averageGrossWage": null,
+        "averageGrossWage": 1920.0,
         "sourceName": "ALUTEC GROUP OÜ"
       },
       "history": [
@@ -3177,9 +3177,9 @@
           "taxableTurnoverPerEmployee": 128495.0,
           "projectedTurnover": null,
           "projectedLabourProductivity": null,
-          "labourProductivity": null,
+          "labourProductivity": 128495.0,
           "profitPerEmployee": null,
-          "averageGrossWage": null,
+          "averageGrossWage": 1920.0,
           "sourceName": "ALUTEC GROUP OÜ"
         },
         {
@@ -3681,9 +3681,9 @@
         "taxableTurnoverPerEmployee": 61861.27777777778,
         "projectedTurnover": null,
         "projectedLabourProductivity": null,
-        "labourProductivity": null,
+        "labourProductivity": 61861.0,
         "profitPerEmployee": null,
-        "averageGrossWage": null,
+        "averageGrossWage": 1845.0,
         "sourceName": "OSAÜHING KODUAKEN"
       },
       "history": [
@@ -3698,9 +3698,9 @@
           "taxableTurnoverPerEmployee": 61861.27777777778,
           "projectedTurnover": null,
           "projectedLabourProductivity": null,
-          "labourProductivity": null,
+          "labourProductivity": 61861.0,
           "profitPerEmployee": null,
-          "averageGrossWage": null,
+          "averageGrossWage": 1845.0,
           "sourceName": "OSAÜHING KODUAKEN"
         },
         {
@@ -4202,9 +4202,9 @@
         "taxableTurnoverPerEmployee": 45900.375,
         "projectedTurnover": null,
         "projectedLabourProductivity": null,
-        "labourProductivity": null,
+        "labourProductivity": 45900.0,
         "profitPerEmployee": null,
-        "averageGrossWage": null,
+        "averageGrossWage": 1845.0,
         "sourceName": "ESPAK ALUMIINIUM OÜ"
       },
       "history": [
@@ -4219,9 +4219,9 @@
           "taxableTurnoverPerEmployee": 45900.375,
           "projectedTurnover": null,
           "projectedLabourProductivity": null,
-          "labourProductivity": null,
+          "labourProductivity": 45900.0,
           "profitPerEmployee": null,
-          "averageGrossWage": null,
+          "averageGrossWage": 1845.0,
           "sourceName": "ESPAK ALUMIINIUM OÜ"
         },
         {
@@ -4723,9 +4723,9 @@
         "taxableTurnoverPerEmployee": 89813.53846153847,
         "projectedTurnover": null,
         "projectedLabourProductivity": null,
-        "labourProductivity": null,
+        "labourProductivity": 89814.0,
         "profitPerEmployee": null,
-        "averageGrossWage": null,
+        "averageGrossWage": 1690.0,
         "sourceName": "LARIAARE ALUMIINIUM OÜ"
       },
       "history": [
@@ -4740,9 +4740,9 @@
           "taxableTurnoverPerEmployee": 89813.53846153847,
           "projectedTurnover": null,
           "projectedLabourProductivity": null,
-          "labourProductivity": null,
+          "labourProductivity": 89814.0,
           "profitPerEmployee": null,
-          "averageGrossWage": null,
+          "averageGrossWage": 1690.0,
           "sourceName": "LARIAARE ALUMIINIUM OÜ"
         },
         {
@@ -5244,9 +5244,9 @@
         "taxableTurnoverPerEmployee": 82643.77777777778,
         "projectedTurnover": null,
         "projectedLabourProductivity": null,
-        "labourProductivity": null,
+        "labourProductivity": 82644.0,
         "profitPerEmployee": null,
-        "averageGrossWage": null,
+        "averageGrossWage": 2723.0,
         "sourceName": "TRADE BUILDER BALTIC OÜ"
       },
       "history": [
@@ -5261,9 +5261,9 @@
           "taxableTurnoverPerEmployee": 82643.77777777778,
           "projectedTurnover": null,
           "projectedLabourProductivity": null,
-          "labourProductivity": null,
+          "labourProductivity": 82644.0,
           "profitPerEmployee": null,
-          "averageGrossWage": null,
+          "averageGrossWage": 2723.0,
           "sourceName": "TRADE BUILDER BALTIC OÜ"
         },
         {
@@ -5278,7 +5278,7 @@
           "projectedTurnover": 1144054.0,
           "projectedLabourProductivity": 143007.0,
           "labourProductivity": 169871.0,
-          "profitPerEmployee": 5928.0,
+          "profitPerEmployee": 5172.0,
           "averageGrossWage": 2595.0,
           "sourceName": "TRADE BUILDER BALTIC OÜ"
         },
@@ -5294,7 +5294,7 @@
           "projectedTurnover": 1064405.0,
           "projectedLabourProductivity": 152058.0,
           "labourProductivity": 180622.0,
-          "profitPerEmployee": 6303.0,
+          "profitPerEmployee": 5499.0,
           "averageGrossWage": 3440.0,
           "sourceName": "TRADE BUILDER BALTIC OÜ"
         },
@@ -5717,9 +5717,9 @@
         "taxableTurnoverPerEmployee": 63547.64864864865,
         "projectedTurnover": null,
         "projectedLabourProductivity": null,
-        "labourProductivity": null,
+        "labourProductivity": 63548.0,
         "profitPerEmployee": null,
-        "averageGrossWage": null,
+        "averageGrossWage": 1920.0,
         "sourceName": "SEICOM OÜ"
       },
       "history": [
@@ -5734,9 +5734,9 @@
           "taxableTurnoverPerEmployee": 63547.64864864865,
           "projectedTurnover": null,
           "projectedLabourProductivity": null,
-          "labourProductivity": null,
+          "labourProductivity": 63548.0,
           "profitPerEmployee": null,
-          "averageGrossWage": null,
+          "averageGrossWage": 1920.0,
           "sourceName": "SEICOM OÜ"
         },
         {
@@ -6238,9 +6238,9 @@
         "taxableTurnoverPerEmployee": 66618.97183098592,
         "projectedTurnover": null,
         "projectedLabourProductivity": null,
-        "labourProductivity": null,
+        "labourProductivity": 66619.0,
         "profitPerEmployee": null,
-        "averageGrossWage": null,
+        "averageGrossWage": 2335.0,
         "sourceName": "METEK OÜ"
       },
       "history": [
@@ -6255,9 +6255,9 @@
           "taxableTurnoverPerEmployee": 66618.97183098592,
           "projectedTurnover": null,
           "projectedLabourProductivity": null,
-          "labourProductivity": null,
+          "labourProductivity": 66619.0,
           "profitPerEmployee": null,
-          "averageGrossWage": null,
+          "averageGrossWage": 2335.0,
           "sourceName": "METEK OÜ"
         },
         {
@@ -6759,9 +6759,9 @@
         "taxableTurnoverPerEmployee": 38950.87171052631,
         "projectedTurnover": null,
         "projectedLabourProductivity": null,
-        "labourProductivity": null,
+        "labourProductivity": 38951.0,
         "profitPerEmployee": null,
-        "averageGrossWage": null,
+        "averageGrossWage": 2790.0,
         "sourceName": "TAMMER OÜ"
       },
       "history": [
@@ -6776,9 +6776,9 @@
           "taxableTurnoverPerEmployee": 38950.87171052631,
           "projectedTurnover": null,
           "projectedLabourProductivity": null,
-          "labourProductivity": null,
+          "labourProductivity": 38951.0,
           "profitPerEmployee": null,
-          "averageGrossWage": null,
+          "averageGrossWage": 2790.0,
           "sourceName": "TAMMER OÜ"
         },
         {
@@ -7280,9 +7280,9 @@
         "taxableTurnoverPerEmployee": 33924.833333333336,
         "projectedTurnover": null,
         "projectedLabourProductivity": null,
-        "labourProductivity": null,
+        "labourProductivity": 33925.0,
         "profitPerEmployee": null,
-        "averageGrossWage": null,
+        "averageGrossWage": 1465.0,
         "sourceName": "MR PROFIIL OÜ"
       },
       "history": [
@@ -7297,9 +7297,9 @@
           "taxableTurnoverPerEmployee": 33924.833333333336,
           "projectedTurnover": null,
           "projectedLabourProductivity": null,
-          "labourProductivity": null,
+          "labourProductivity": 33925.0,
           "profitPerEmployee": null,
-          "averageGrossWage": null,
+          "averageGrossWage": 1465.0,
           "sourceName": "MR PROFIIL OÜ"
         },
         {
@@ -7801,9 +7801,9 @@
         "taxableTurnoverPerEmployee": 39749.54838709677,
         "projectedTurnover": null,
         "projectedLabourProductivity": null,
-        "labourProductivity": null,
+        "labourProductivity": 39750.0,
         "profitPerEmployee": null,
-        "averageGrossWage": null,
+        "averageGrossWage": 2595.0,
         "sourceName": "FERROLOQ OÜ"
       },
       "history": [
@@ -7818,9 +7818,9 @@
           "taxableTurnoverPerEmployee": 39749.54838709677,
           "projectedTurnover": null,
           "projectedLabourProductivity": null,
-          "labourProductivity": null,
+          "labourProductivity": 39750.0,
           "profitPerEmployee": null,
-          "averageGrossWage": null,
+          "averageGrossWage": 2595.0,
           "sourceName": "FERROLOQ OÜ"
         },
         {
@@ -8034,9 +8034,9 @@
         "taxableTurnoverPerEmployee": 40810.5,
         "projectedTurnover": null,
         "projectedLabourProductivity": null,
-        "labourProductivity": null,
+        "labourProductivity": 40811.0,
         "profitPerEmployee": null,
-        "averageGrossWage": null,
+        "averageGrossWage": 1465.0,
         "sourceName": "OÜ INTEXGLAS"
       },
       "history": [
@@ -8051,9 +8051,9 @@
           "taxableTurnoverPerEmployee": 40810.5,
           "projectedTurnover": null,
           "projectedLabourProductivity": null,
-          "labourProductivity": null,
+          "labourProductivity": 40811.0,
           "profitPerEmployee": null,
-          "averageGrossWage": null,
+          "averageGrossWage": 1465.0,
           "sourceName": "OÜ INTEXGLAS"
         },
         {
@@ -8555,9 +8555,9 @@
         "taxableTurnoverPerEmployee": 45693.0,
         "projectedTurnover": null,
         "projectedLabourProductivity": null,
-        "labourProductivity": null,
+        "labourProductivity": 45693.0,
         "profitPerEmployee": null,
-        "averageGrossWage": null,
+        "averageGrossWage": 2270.0,
         "sourceName": "ALUMASTER OÜ"
       },
       "history": [
@@ -8572,9 +8572,9 @@
           "taxableTurnoverPerEmployee": 45693.0,
           "projectedTurnover": null,
           "projectedLabourProductivity": null,
-          "labourProductivity": null,
+          "labourProductivity": 45693.0,
           "profitPerEmployee": null,
-          "averageGrossWage": null,
+          "averageGrossWage": 2270.0,
           "sourceName": "ALUMASTER OÜ"
         },
         {
@@ -9076,9 +9076,9 @@
         "taxableTurnoverPerEmployee": 18814.5,
         "projectedTurnover": null,
         "projectedLabourProductivity": null,
-        "labourProductivity": null,
+        "labourProductivity": 18815.0,
         "profitPerEmployee": null,
-        "averageGrossWage": null,
+        "averageGrossWage": 465.0,
         "sourceName": "ALUNORD ALUMIINIUM OÜ"
       },
       "history": [
@@ -9093,9 +9093,9 @@
           "taxableTurnoverPerEmployee": 18814.5,
           "projectedTurnover": null,
           "projectedLabourProductivity": null,
-          "labourProductivity": null,
+          "labourProductivity": 18815.0,
           "profitPerEmployee": null,
-          "averageGrossWage": null,
+          "averageGrossWage": 465.0,
           "sourceName": "ALUNORD ALUMIINIUM OÜ"
         },
         {
@@ -9293,9 +9293,9 @@
         "taxableTurnoverPerEmployee": 37829.85593220339,
         "projectedTurnover": null,
         "projectedLabourProductivity": null,
-        "labourProductivity": null,
+        "labourProductivity": 37830.0,
         "profitPerEmployee": null,
-        "averageGrossWage": null,
+        "averageGrossWage": 2595.0,
         "sourceName": "SAKU METALL UKSETEHAS, AS"
       },
       "history": [
@@ -9310,9 +9310,9 @@
           "taxableTurnoverPerEmployee": 37829.85593220339,
           "projectedTurnover": null,
           "projectedLabourProductivity": null,
-          "labourProductivity": null,
+          "labourProductivity": 37830.0,
           "profitPerEmployee": null,
-          "averageGrossWage": null,
+          "averageGrossWage": 2595.0,
           "sourceName": "SAKU METALL UKSETEHAS, AS"
         },
         {
@@ -9814,9 +9814,9 @@
         "taxableTurnoverPerEmployee": 146916.07142857142,
         "projectedTurnover": null,
         "projectedLabourProductivity": null,
-        "labourProductivity": null,
+        "labourProductivity": 146916.0,
         "profitPerEmployee": null,
-        "averageGrossWage": null,
+        "averageGrossWage": 3245.0,
         "sourceName": "ALUVER TOOTMINE OÜ"
       },
       "history": [
@@ -9831,9 +9831,9 @@
           "taxableTurnoverPerEmployee": 146916.07142857142,
           "projectedTurnover": null,
           "projectedLabourProductivity": null,
-          "labourProductivity": null,
+          "labourProductivity": 146916.0,
           "profitPerEmployee": null,
-          "averageGrossWage": null,
+          "averageGrossWage": 3245.0,
           "sourceName": "ALUVER TOOTMINE OÜ"
         },
         {
@@ -10335,9 +10335,9 @@
         "taxableTurnoverPerEmployee": 51356.0,
         "projectedTurnover": null,
         "projectedLabourProductivity": null,
-        "labourProductivity": null,
+        "labourProductivity": 51356.0,
         "profitPerEmployee": null,
-        "averageGrossWage": null,
+        "averageGrossWage": 1615.0,
         "sourceName": "JOVELD, OÜ"
       },
       "history": [
@@ -10352,9 +10352,9 @@
           "taxableTurnoverPerEmployee": 51356.0,
           "projectedTurnover": null,
           "projectedLabourProductivity": null,
-          "labourProductivity": null,
+          "labourProductivity": 51356.0,
           "profitPerEmployee": null,
-          "averageGrossWage": null,
+          "averageGrossWage": 1615.0,
           "sourceName": "JOVELD, OÜ"
         },
         {
@@ -10856,9 +10856,9 @@
         "taxableTurnoverPerEmployee": 47701.142857142855,
         "projectedTurnover": null,
         "projectedLabourProductivity": null,
-        "labourProductivity": null,
+        "labourProductivity": 47701.0,
         "profitPerEmployee": null,
-        "averageGrossWage": null,
+        "averageGrossWage": 1690.0,
         "sourceName": "ALUMION GROUP OÜ"
       },
       "history": [
@@ -10873,9 +10873,9 @@
           "taxableTurnoverPerEmployee": 47701.142857142855,
           "projectedTurnover": null,
           "projectedLabourProductivity": null,
-          "labourProductivity": null,
+          "labourProductivity": 47701.0,
           "profitPerEmployee": null,
-          "averageGrossWage": null,
+          "averageGrossWage": 1690.0,
           "sourceName": "ALUMION GROUP OÜ"
         },
         {
@@ -10936,21 +10936,37 @@
       "dataStatus": "ok",
       "latest": {
         "year": 2026,
-        "quarter": 2,
-        "period": "2026-Q2",
-        "taxableTurnover": null,
-        "stateTaxes": 178.0,
+        "quarter": 3,
+        "period": "2026-Q3",
+        "taxableTurnover": 0.0,
+        "stateTaxes": 0.0,
         "labourTaxes": 0.0,
-        "employees": null,
+        "employees": 0.0,
         "taxableTurnoverPerEmployee": null,
         "projectedTurnover": null,
         "projectedLabourProductivity": null,
         "labourProductivity": null,
         "profitPerEmployee": null,
-        "averageGrossWage": null,
-        "sourceName": "ALFACAD OÜ"
+        "averageGrossWage": 0.0,
+        "sourceName": null
       },
       "history": [
+        {
+          "year": 2026,
+          "quarter": 3,
+          "period": "2026-Q3",
+          "taxableTurnover": 0.0,
+          "stateTaxes": 0.0,
+          "labourTaxes": 0.0,
+          "employees": 0.0,
+          "taxableTurnoverPerEmployee": null,
+          "projectedTurnover": null,
+          "projectedLabourProductivity": null,
+          "labourProductivity": null,
+          "profitPerEmployee": null,
+          "averageGrossWage": 0.0,
+          "sourceName": null
+        },
         {
           "year": 2026,
           "quarter": 2,
@@ -11441,21 +11457,37 @@
       "dataStatus": "ok",
       "latest": {
         "year": 2026,
-        "quarter": 2,
-        "period": "2026-Q2",
+        "quarter": 3,
+        "period": "2026-Q3",
         "taxableTurnover": 0.0,
         "stateTaxes": 0.0,
         "labourTaxes": 0.0,
         "employees": 0.0,
         "taxableTurnoverPerEmployee": null,
-        "projectedTurnover": 0.0,
+        "projectedTurnover": null,
         "projectedLabourProductivity": null,
         "labourProductivity": null,
-        "profitPerEmployee": 0.0,
+        "profitPerEmployee": null,
         "averageGrossWage": 0.0,
-        "sourceName": "STAMPER SOLUTIONS, OÜ"
+        "sourceName": null
       },
       "history": [
+        {
+          "year": 2026,
+          "quarter": 3,
+          "period": "2026-Q3",
+          "taxableTurnover": 0.0,
+          "stateTaxes": 0.0,
+          "labourTaxes": 0.0,
+          "employees": 0.0,
+          "taxableTurnoverPerEmployee": null,
+          "projectedTurnover": null,
+          "projectedLabourProductivity": null,
+          "labourProductivity": null,
+          "profitPerEmployee": null,
+          "averageGrossWage": 0.0,
+          "sourceName": null
+        },
         {
           "year": 2026,
           "quarter": 2,
@@ -11949,15 +11981,15 @@
         "quarter": 3,
         "period": "2026-Q3",
         "taxableTurnover": 0.0,
-        "stateTaxes": null,
-        "labourTaxes": null,
-        "employees": null,
+        "stateTaxes": 0.0,
+        "labourTaxes": 0.0,
+        "employees": 0.0,
         "taxableTurnoverPerEmployee": null,
         "projectedTurnover": null,
         "projectedLabourProductivity": null,
         "labourProductivity": null,
         "profitPerEmployee": null,
-        "averageGrossWage": null,
+        "averageGrossWage": 0.0,
         "sourceName": "METUS-EST, AS"
       },
       "history": [
@@ -11966,15 +11998,15 @@
           "quarter": 3,
           "period": "2026-Q3",
           "taxableTurnover": 0.0,
-          "stateTaxes": null,
-          "labourTaxes": null,
-          "employees": null,
+          "stateTaxes": 0.0,
+          "labourTaxes": 0.0,
+          "employees": 0.0,
           "taxableTurnoverPerEmployee": null,
           "projectedTurnover": null,
           "projectedLabourProductivity": null,
           "labourProductivity": null,
           "profitPerEmployee": null,
-          "averageGrossWage": null,
+          "averageGrossWage": 0.0,
           "sourceName": "METUS-EST, AS"
         },
         {
@@ -12476,9 +12508,9 @@
         "taxableTurnoverPerEmployee": 200134.0,
         "projectedTurnover": null,
         "projectedLabourProductivity": null,
-        "labourProductivity": null,
+        "labourProductivity": 200134.0,
         "profitPerEmployee": null,
-        "averageGrossWage": null,
+        "averageGrossWage": 1240.0,
         "sourceName": "ALUCON OÜ"
       },
       "history": [
@@ -12493,9 +12525,9 @@
           "taxableTurnoverPerEmployee": 200134.0,
           "projectedTurnover": null,
           "projectedLabourProductivity": null,
-          "labourProductivity": null,
+          "labourProductivity": 200134.0,
           "profitPerEmployee": null,
-          "averageGrossWage": null,
+          "averageGrossWage": 1240.0,
           "sourceName": "ALUCON OÜ"
         },
         {
@@ -12801,13 +12833,13 @@
         "taxableTurnover": 0.0,
         "stateTaxes": 57.0,
         "labourTaxes": 0.0,
-        "employees": null,
+        "employees": 0.0,
         "taxableTurnoverPerEmployee": null,
         "projectedTurnover": null,
         "projectedLabourProductivity": null,
         "labourProductivity": null,
         "profitPerEmployee": null,
-        "averageGrossWage": null,
+        "averageGrossWage": 0.0,
         "sourceName": "ALL SOLUTIONS OÜ"
       },
       "history": [
@@ -12818,13 +12850,13 @@
           "taxableTurnover": 0.0,
           "stateTaxes": 57.0,
           "labourTaxes": 0.0,
-          "employees": null,
+          "employees": 0.0,
           "taxableTurnoverPerEmployee": null,
           "projectedTurnover": null,
           "projectedLabourProductivity": null,
           "labourProductivity": null,
           "profitPerEmployee": null,
-          "averageGrossWage": null,
+          "averageGrossWage": 0.0,
           "sourceName": "ALL SOLUTIONS OÜ"
         },
         {
@@ -13326,9 +13358,9 @@
         "taxableTurnoverPerEmployee": 218812.0,
         "projectedTurnover": null,
         "projectedLabourProductivity": null,
-        "labourProductivity": null,
+        "labourProductivity": 218812.0,
         "profitPerEmployee": null,
-        "averageGrossWage": null,
+        "averageGrossWage": 1465.0,
         "sourceName": "LUMINUM OÜ"
       },
       "history": [
@@ -13343,9 +13375,9 @@
           "taxableTurnoverPerEmployee": 218812.0,
           "projectedTurnover": null,
           "projectedLabourProductivity": null,
-          "labourProductivity": null,
+          "labourProductivity": 218812.0,
           "profitPerEmployee": null,
-          "averageGrossWage": null,
+          "averageGrossWage": 1465.0,
           "sourceName": "LUMINUM OÜ"
         },
         {
@@ -13360,7 +13392,7 @@
           "projectedTurnover": 39770.0,
           "projectedLabourProductivity": 39770.0,
           "labourProductivity": 39318.0,
-          "profitPerEmployee": 5106.0,
+          "profitPerEmployee": 5852.0,
           "averageGrossWage": 1465.0,
           "sourceName": "LUMINUM OÜ"
         },
@@ -13376,7 +13408,7 @@
           "projectedTurnover": 13887.0,
           "projectedLabourProductivity": 13887.0,
           "labourProductivity": 13729.0,
-          "profitPerEmployee": 1783.0,
+          "profitPerEmployee": 2044.0,
           "averageGrossWage": 975.0,
           "sourceName": "LUMINUM OÜ"
         },
@@ -13847,9 +13879,9 @@
         "taxableTurnoverPerEmployee": 76703.55555555556,
         "projectedTurnover": null,
         "projectedLabourProductivity": null,
-        "labourProductivity": null,
+        "labourProductivity": 76704.0,
         "profitPerEmployee": null,
-        "averageGrossWage": null,
+        "averageGrossWage": 1100.0,
         "sourceName": "FASPROF OÜ"
       },
       "history": [
@@ -13864,9 +13896,9 @@
           "taxableTurnoverPerEmployee": 76703.55555555556,
           "projectedTurnover": null,
           "projectedLabourProductivity": null,
-          "labourProductivity": null,
+          "labourProductivity": 76704.0,
           "profitPerEmployee": null,
-          "averageGrossWage": null,
+          "averageGrossWage": 1100.0,
           "sourceName": "FASPROF OÜ"
         },
         {
@@ -14362,15 +14394,15 @@
         "quarter": 3,
         "period": "2026-Q3",
         "taxableTurnover": 303.0,
-        "stateTaxes": null,
-        "labourTaxes": null,
-        "employees": null,
+        "stateTaxes": 0.0,
+        "labourTaxes": 0.0,
+        "employees": 0.0,
         "taxableTurnoverPerEmployee": null,
         "projectedTurnover": null,
         "projectedLabourProductivity": null,
         "labourProductivity": null,
         "profitPerEmployee": null,
-        "averageGrossWage": null,
+        "averageGrossWage": 0.0,
         "sourceName": "WINDOOR, AS"
       },
       "history": [
@@ -14379,15 +14411,15 @@
           "quarter": 3,
           "period": "2026-Q3",
           "taxableTurnover": 303.0,
-          "stateTaxes": null,
-          "labourTaxes": null,
-          "employees": null,
+          "stateTaxes": 0.0,
+          "labourTaxes": 0.0,
+          "employees": 0.0,
           "taxableTurnoverPerEmployee": null,
           "projectedTurnover": null,
           "projectedLabourProductivity": null,
           "labourProductivity": null,
           "profitPerEmployee": null,
-          "averageGrossWage": null,
+          "averageGrossWage": 0.0,
           "sourceName": "WINDOOR, AS"
         },
         {
@@ -14875,23 +14907,23 @@
     {
       "name": "Windoor Facades OÜ",
       "registryCode": "12581775",
-      "website": null,
+      "website": "https://www.facebook.com/p/Windoor-As-100029264757106/",
       "note": null,
       "dataStatus": "ok",
       "latest": {
         "year": 2026,
         "quarter": 3,
         "period": "2026-Q3",
-        "taxableTurnover": null,
-        "stateTaxes": null,
-        "labourTaxes": null,
+        "taxableTurnover": 0.0,
+        "stateTaxes": 0.0,
+        "labourTaxes": 0.0,
         "employees": 1.0,
-        "taxableTurnoverPerEmployee": null,
+        "taxableTurnoverPerEmployee": 0.0,
         "projectedTurnover": null,
         "projectedLabourProductivity": null,
-        "labourProductivity": null,
+        "labourProductivity": 0.0,
         "profitPerEmployee": null,
-        "averageGrossWage": null,
+        "averageGrossWage": 0.0,
         "sourceName": "WINDOOR FACADES OÜ"
       },
       "history": [
@@ -14899,16 +14931,16 @@
           "year": 2026,
           "quarter": 3,
           "period": "2026-Q3",
-          "taxableTurnover": null,
-          "stateTaxes": null,
-          "labourTaxes": null,
+          "taxableTurnover": 0.0,
+          "stateTaxes": 0.0,
+          "labourTaxes": 0.0,
           "employees": 1.0,
-          "taxableTurnoverPerEmployee": null,
+          "taxableTurnoverPerEmployee": 0.0,
           "projectedTurnover": null,
           "projectedLabourProductivity": null,
-          "labourProductivity": null,
+          "labourProductivity": 0.0,
           "profitPerEmployee": null,
-          "averageGrossWage": null,
+          "averageGrossWage": 0.0,
           "sourceName": "WINDOOR FACADES OÜ"
         },
         {
