@@ -4782,3 +4782,37 @@ right:30px;
   opacity: 0.55;
   cursor: wait;
 }
+
+/* ============================================================
+   MARKET MONITOR — CONSOLIDATED REPORT BUTTON
+============================================================ */
+
+.market-consolidated-report-action {
+  display: flex;
+  justify-content: flex-start;
+  margin-top: 16px;
+}
+
+.market-consolidated-report-action .cv-link {
+  display: flex;
+  width: 215px;
+  min-width: 215px;
+  box-sizing: border-box;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  text-decoration: none;
+}
+
+/* ============================================================
+   MARKET MONITOR — CONSOLIDATED REPORT BUTTON: MOBILE
+============================================================ */
+
+@media (max-width: 480px) {
+  .market-consolidated-report-action .cv-link {
+    width: 100%;
+    min-width: 0;
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+}
