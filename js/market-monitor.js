@@ -728,9 +728,13 @@
         ? document.documentElement.lang
         : "en";
 
+      const registerLang = document.documentElement.lang === "et"
+              ? "est"
+              : "eng";
+
       const registerUrl = registryCode
-        ? `https://ariregister.rik.ee/eng/company/${encodeURIComponent(registryCode)}`
-        : "";
+              ? `https://ariregister.rik.ee/${registerLang}/company/${encodeURIComponent(registryCode)}`
+              : "";
 
       const teatmikUrl = registryCode
         ? `https://www.teatmik.ee/${lang}/personlegal/${encodeURIComponent(registryCode)}`
