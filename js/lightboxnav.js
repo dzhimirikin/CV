@@ -229,6 +229,26 @@ document.addEventListener("DOMContentLoaded", () => {
             zIndex: "10001"
         });
 
+        // Индикатор текущей фотографии в формате 1 / N.
+        const counter = document.createElement("div");
+        counter.className = "lightbox-counter";
+        counter.setAttribute("aria-live", "polite");
+        counter.textContent = `${currentIndex + 1} / ${galleryLinks.length}`;
+        Object.assign(counter.style, {
+            position: "absolute",
+            left: "50%",
+            bottom: "44px",
+            transform: "translateX(-50%)",
+            padding: "3px 9px",
+            borderRadius: "12px",
+            background: "rgba(25,25,25,0.78)",
+            color: "#fff",
+            font: "12px/1.2 Arial, Helvetica, sans-serif",
+            whiteSpace: "nowrap",
+            zIndex: "10001",
+            display: galleryLinks.length > 1 ? "block" : "none"
+        });
+
         const dotButtons = galleryLinks.map((galleryLink, index) => {
             const dot = document.createElement("button");
             dot.type = "button";
@@ -250,6 +270,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 currentIndex = index;
                 img.src = galleryLinks[currentIndex].href;
                 updateDots();
+                updateCounter();
             });
             dots.appendChild(dot);
             return dot;
@@ -264,11 +285,16 @@ document.addEventListener("DOMContentLoaded", () => {
             });
         }
 
+        function updateCounter() {
+            counter.textContent = `${currentIndex + 1} / ${galleryLinks.length}`;
+        }
+
         overlay.append(
             img,
             closeBtn,
             prev,
             next,
+            counter,
             dots
         );
 
@@ -290,6 +316,7 @@ document.addEventListener("DOMContentLoaded", () => {
             img.src =
                 galleryLinks[currentIndex].href;
             updateDots();
+            updateCounter();
         }
 
 
@@ -304,6 +331,7 @@ document.addEventListener("DOMContentLoaded", () => {
             img.src =
                 galleryLinks[currentIndex].href;
             updateDots();
+            updateCounter();
         }
 
 
