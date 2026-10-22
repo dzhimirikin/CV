@@ -63,6 +63,19 @@ document.addEventListener("DOMContentLoaded", () => {
         const overlay =
             document.createElement("div");
 
+        // Атрибут hidden должен работать независимо от внешних CSS-правил.
+        if (!document.getElementById("lightbox-nav-hidden-style")) {
+            const style = document.createElement("style");
+            style.id = "lightbox-nav-hidden-style";
+            style.textContent = `
+                .lightbox-prev[hidden],
+                .lightbox-next[hidden] {
+                    display: none !important;
+                }
+            `;
+            document.head.appendChild(style);
+        }
+
         overlay.className =
             "lightbox-overlay";
 
@@ -137,6 +150,7 @@ document.addEventListener("DOMContentLoaded", () => {
         prev.textContent = "‹";
         prev.type = "button";
         prev.setAttribute("aria-label", "Previous photo");
+        prev.hidden = true;
 
         const next =
             document.createElement("button");
@@ -145,6 +159,7 @@ document.addEventListener("DOMContentLoaded", () => {
         next.textContent = "›";
         next.type = "button";
         next.setAttribute("aria-label", "Next photo");
+        next.hidden = true;
 
         // Стрелки оформлены в той же логике, что и крестик:
         // белый символ в круге с белой обводкой; при наведении
@@ -195,11 +210,66 @@ document.addEventListener("DOMContentLoaded", () => {
         styleArrowButton(next, "right");
 
 
+        // Стрелки показываем только тогда, когда есть что перелистывать.
+        // galleryLinks содержит актуальный список видимых изображений.
+        prev.hidden = galleryLinks.length < 2;
+        next.hidden = galleryLinks.length < 2;
+
+        const dots = document.createElement("div");
+        dots.className = "lightbox-dots";
+        Object.assign(dots.style, {
+            position: "absolute",
+            left: "50%",
+            bottom: "22px",
+            transform: "translateX(-50%)",
+            display: galleryLinks.length > 1 ? "flex" : "none",
+            alignItems: "center",
+            justifyContent: "center",
+            gap: "6px",
+            zIndex: "10001"
+        });
+
+        const dotButtons = galleryLinks.map((galleryLink, index) => {
+            const dot = document.createElement("button");
+            dot.type = "button";
+            dot.setAttribute("aria-label", `Show photo ${index + 1}`);
+            dot.setAttribute("aria-current", index === currentIndex ? "true" : "false");
+            Object.assign(dot.style, {
+                width: "9px",
+                height: "9px",
+                minWidth: "9px",
+                padding: "0",
+                border: "1px solid rgba(255,255,255,0.75)",
+                borderRadius: "50%",
+                background: index === currentIndex ? "#fff" : "transparent",
+                opacity: index === currentIndex ? "1" : "0.75",
+                cursor: "pointer",
+                boxSizing: "border-box"
+            });
+            dot.addEventListener("click", () => {
+                currentIndex = index;
+                img.src = galleryLinks[currentIndex].href;
+                updateDots();
+            });
+            dots.appendChild(dot);
+            return dot;
+        });
+
+        function updateDots() {
+            dotButtons.forEach((dot, index) => {
+                const active = index === currentIndex;
+                dot.style.background = active ? "#fff" : "transparent";
+                dot.style.opacity = active ? "1" : "0.75";
+                dot.setAttribute("aria-current", active ? "true" : "false");
+            });
+        }
+
         overlay.append(
             img,
             closeBtn,
             prev,
-            next
+            next,
+            dots
         );
 
         document.body.appendChild(overlay);
@@ -219,6 +289,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
             img.src =
                 galleryLinks[currentIndex].href;
+            updateDots();
         }
 
 
@@ -232,6 +303,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
             img.src =
                 galleryLinks[currentIndex].href;
+            updateDots();
         }
 
 

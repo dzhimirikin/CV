@@ -198,6 +198,8 @@ document.addEventListener('DOMContentLoaded', () => {
   let viewerPrevButton = null;
   let viewerNextButton = null;
   let viewerCounter = null;
+  let viewerDots = null;
+  let viewerDotButtons = [];
   let viewerPages = [];
   let viewerPageIndex = 0;
   let previousBodyOverflow = '';
@@ -263,10 +265,39 @@ document.addEventListener('DOMContentLoaded', () => {
       }
       .certificate-viewer-nav[hidden],
       .certificate-viewer-counter[hidden] { display: none !important; }
-      .certificate-viewer-counter {
+      .certificate-viewer-dots {
         position: fixed;
         left: 50%;
         bottom: 14px;
+        transform: translateX(-50%);
+        z-index: 100001;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 6px;
+      }
+      .certificate-viewer-dot {
+        width: 9px;
+        height: 9px;
+        min-width: 9px;
+        padding: 0;
+        border: 1px solid rgba(255,255,255,.75);
+        border-radius: 50%;
+        background: transparent;
+        opacity: .75;
+        cursor: pointer;
+        box-sizing: border-box;
+      }
+      .certificate-viewer-dot[aria-current="true"] {
+        background: #fff;
+        border-color: #fff;
+        opacity: 1;
+      }
+      .certificate-viewer-dots[hidden] { display: none !important; }
+      .certificate-viewer-counter {
+        position: fixed;
+        left: 50%;
+        bottom: 38px;
         transform: translateX(-50%);
         z-index: 100001;
         padding: 6px 12px;
@@ -307,7 +338,8 @@ document.addEventListener('DOMContentLoaded', () => {
         .certificate-viewer-nav { width: 42px; height: 42px; font-size: 30px; }
         .certificate-viewer-prev { left: 10px; }
         .certificate-viewer-next { right: 10px; }
-        .certificate-viewer-counter { bottom: 8px; }
+        .certificate-viewer-counter { bottom: 34px; }
+        .certificate-viewer-dots { bottom: 10px; }
       }
     `;
     document.head.appendChild(style);
@@ -352,12 +384,17 @@ document.addEventListener('DOMContentLoaded', () => {
     viewerCounter.setAttribute('aria-live', 'polite');
     viewerCounter.hidden = true;
 
+    viewerDots = document.createElement('div');
+    viewerDots.className = 'certificate-viewer-dots';
+    viewerDots.setAttribute('aria-label', 'Certificate pages');
+    viewerDots.hidden = true;
+
     closeViewerButton.addEventListener('click', closeCertificateViewer);
     certificateViewer.addEventListener('click', event => {
       if (event.target === certificateViewer) closeCertificateViewer();
     });
 
-    certificateViewer.append(viewerImage, viewerPrevButton, viewerNextButton, viewerCounter, closeViewerButton);
+    certificateViewer.append(viewerImage, viewerPrevButton, viewerNextButton, viewerCounter, viewerDots, closeViewerButton);
     document.body.appendChild(certificateViewer);
   }
 
@@ -373,6 +410,20 @@ document.addEventListener('DOMContentLoaded', () => {
     return [firstPage, ...extraPages];
   }
 
+  function buildViewerDots() {
+    viewerDots.replaceChildren();
+    viewerDotButtons = viewerPages.map((page, index) => {
+      const dot = document.createElement('button');
+      dot.type = 'button';
+      dot.className = 'certificate-viewer-dot';
+      dot.setAttribute('aria-label', `Show page ${index + 1}`);
+      dot.addEventListener('click', () => showViewerPage(index));
+      viewerDots.appendChild(dot);
+      return dot;
+    });
+    viewerDots.hidden = viewerPages.length < 2;
+  }
+
   function showViewerPage(index) {
     if (!viewerPages.length) return;
     viewerPageIndex = Math.max(0, Math.min(index, viewerPages.length - 1));
@@ -381,6 +432,10 @@ document.addEventListener('DOMContentLoaded', () => {
     viewerNextButton.hidden = viewerPages.length < 2;
     viewerCounter.hidden = viewerPages.length < 2;
     viewerCounter.textContent = `${viewerPageIndex + 1} / ${viewerPages.length}`;
+    viewerDotButtons.forEach((dot, dotIndex) => {
+      if (dotIndex === viewerPageIndex) dot.setAttribute('aria-current', 'true');
+      else dot.removeAttribute('aria-current');
+    });
     viewerPrevButton.disabled = viewerPageIndex === 0;
     viewerNextButton.disabled = viewerPageIndex === viewerPages.length - 1;
     // Нециклическая навигация по страницам документа.
@@ -393,6 +448,7 @@ document.addEventListener('DOMContentLoaded', () => {
     ensureCertificateViewer();
     previouslyFocusedElement = document.activeElement;
     viewerPages = getCertificatePages(img);
+    buildViewerDots();
     viewerImage.alt = img.alt || img.dataset.title || 'Certificate';
     previousBodyOverflow = document.body.style.overflow;
     certificateViewer.hidden = false;
@@ -406,6 +462,8 @@ document.addEventListener('DOMContentLoaded', () => {
     certificateViewer.hidden = true;
     viewerImage.removeAttribute('src');
     viewerPages = [];
+    viewerDots.replaceChildren();
+    viewerDotButtons = [];
     document.body.style.overflow = previousBodyOverflow;
     if (previouslyFocusedElement && typeof previouslyFocusedElement.focus === 'function') {
       previouslyFocusedElement.focus();
