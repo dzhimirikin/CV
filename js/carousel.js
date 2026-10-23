@@ -60,6 +60,72 @@ document.addEventListener('DOMContentLoaded', () => {
 
   dots.replaceChildren();
 
+  // Счётчик выбранного сертификата над точками навигации.
+  let carouselCounter = document.getElementById('certificateCarouselCounter');
+  if (!carouselCounter) {
+    carouselCounter = document.createElement('div');
+    carouselCounter.id = 'certificateCarouselCounter';
+    carouselCounter.className = 'certificate-carousel-counter';
+    carouselCounter.setAttribute('aria-live', 'polite');
+    dots.insertAdjacentElement('beforebegin', carouselCounter);
+  }
+
+  // Единый стиль овальной активной точки и плавного перемещения.
+  if (!document.getElementById('certificate-carousel-dot-styles')) {
+    const dotStyle = document.createElement('style');
+    dotStyle.id = 'certificate-carousel-dot-styles';
+    dotStyle.textContent = `
+      .certificate-dots {
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+      }
+      .certificate-dot-pill {
+        position: absolute;
+        left: 0;
+        top: 50%;
+        width: 22px;
+        height: 14px;
+        border-radius: 999px;
+        background: #1f2933;
+        pointer-events: none;
+        z-index: 1;
+        transform: translateY(-50%);
+        transition: transform 240ms cubic-bezier(0.2, 0.8, 0.2, 1);
+      }
+      #certificates .certificate-dot {
+        position: relative;
+        z-index: 2;
+        width: 12px;
+        height: 12px;
+        min-width: 12px;
+        min-height: 12px;
+        padding: 0;
+        border-radius: 50%;
+        background: #c7cdd2;
+        transform: none;
+      }
+      #certificates .certificate-dot[aria-current="true"] {
+        background: transparent;
+        transform: none;
+      }
+      .certificate-carousel-counter {
+        margin: 10px auto 0;
+        color: #1f2933;
+        font: 700 14px/1.2 Arial, Helvetica, sans-serif;
+        text-align: center;
+        font-variant-numeric: tabular-nums;
+      }
+    `;
+    document.head.appendChild(dotStyle);
+  }
+
+  const dotPill = document.createElement('span');
+  dotPill.className = 'certificate-dot-pill';
+  dotPill.setAttribute('aria-hidden', 'true');
+
   const dotButtons = images.map((img, index) => {
     const dot = document.createElement('button');
 
@@ -79,6 +145,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     return dot;
   });
+
+  dots.prepend(dotPill);
 
   // Кратчайшее расстояние между индексами по кругу
   function getDistance(index) {
@@ -124,6 +192,13 @@ document.addEventListener('DOMContentLoaded', () => {
         dot.removeAttribute('aria-current');
       }
     });
+
+    carouselCounter.textContent = `${currentIndex + 1} / ${count}`;
+    const activeDot = dotButtons[currentIndex];
+    if (activeDot) {
+      const pillX = activeDot.offsetLeft + (activeDot.offsetWidth - dotPill.offsetWidth) / 2;
+      dotPill.style.transform = `translate(${pillX}px, -50%)`;
+    }
 
     const currentTitle = document.getElementById(
       'certificateCurrentTitle'
@@ -209,6 +284,8 @@ document.addEventListener('DOMContentLoaded', () => {
   // Единое поведение подсветки кнопок, как в lightboxnav.js.
   // Белый фон и чёрный символ при наведении, нажатии и фокусе.
   function attachViewerButtonHighlight(button) {
+    // Белая подсветка включается только при наведении указателя,
+    // а не автоматически при получении клавиатурного фокуса.
     const activate = () => {
       button.style.backgroundColor = '#fff';
       button.style.color = '#000';
@@ -219,11 +296,7 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     button.addEventListener('mouseenter', activate);
-    button.addEventListener('mousedown', activate);
-    button.addEventListener('mouseup', activate);
     button.addEventListener('mouseleave', reset);
-    button.addEventListener('focus', activate);
-    button.addEventListener('blur', reset);
   }
 
   function ensureCertificateViewer() {
@@ -299,7 +372,7 @@ document.addEventListener('DOMContentLoaded', () => {
         left: 0;
         top: 0;
         width: 22px;
-        height: 12px;
+        height: 14px;
         border-radius: 999px;
         background: #fff;
         pointer-events: none;
@@ -607,6 +680,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     resizeFrame = requestAnimationFrame(() => {
       layoutCarousel();
+      updateCarousel();
       resizeFrame = null;
     });
   });

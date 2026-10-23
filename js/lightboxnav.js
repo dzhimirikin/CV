@@ -245,7 +245,7 @@ document.addEventListener("DOMContentLoaded", () => {
         activeDotPill.setAttribute("aria-hidden", "true");
         Object.assign(activeDotPill.style, {
             position: "absolute", left: "0", top: "0",
-            width: "22px", height: "12px", borderRadius: "999px",
+            width: "22px", height: "14px", borderRadius: "999px",
             background: "#fff", pointerEvents: "none",
             transition: "transform 240ms cubic-bezier(0.2, 0.8, 0.2, 1)",
             zIndex: "1"
@@ -262,7 +262,7 @@ document.addEventListener("DOMContentLoaded", () => {
             bottom: "44px",
             transform: "translateX(-50%)",
             padding: "3px 9px",
-            borderRadius: "12px",
+            borderRadius: "14px",
             background: "rgba(25,25,25,0.78)",
             color: "#fff",
             font: "12px/1.2 Arial, Helvetica, sans-serif",
