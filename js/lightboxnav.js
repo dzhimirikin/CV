@@ -81,7 +81,9 @@ document.addEventListener("DOMContentLoaded", () => {
                         font-size: 14px !important;
                         padding: 5px 11px !important;
                     }
-                    .lightbox-dots { bottom: 18px !important; gap: 8px !important; }
+                    .lightbox-dots { bottom: 10px !important; gap: 6px !important; }
+                    .lightbox-counter { font-size: 12px !important; padding: 3px 7px !important; bottom: 30px !important; }
+                    .lightbox-dots button { width: 8px !important; height: 8px !important; min-width: 8px !important; }
                 }
             `;
             document.head.appendChild(style);
@@ -245,7 +247,8 @@ document.addEventListener("DOMContentLoaded", () => {
         activeDotPill.setAttribute("aria-hidden", "true");
         Object.assign(activeDotPill.style, {
             position: "absolute", left: "0", top: "0",
-            width: "22px", height: "14px", borderRadius: "999px",
+            width: window.innerWidth <= 600 ? "18px" : "22px",
+            height: window.innerWidth <= 600 ? "10px" : "14px", borderRadius: "999px",
             background: "#fff", pointerEvents: "none",
             transition: "transform 240ms cubic-bezier(0.2, 0.8, 0.2, 1)",
             zIndex: "1"
@@ -277,9 +280,9 @@ document.addEventListener("DOMContentLoaded", () => {
             dot.setAttribute("aria-label", `Show photo ${index + 1}`);
             dot.setAttribute("aria-current", index === currentIndex ? "true" : "false");
             Object.assign(dot.style, {
-                width: "12px",
-                height: "12px",
-                minWidth: "12px",
+                width: window.innerWidth <= 600 ? "8px" : "12px",
+                height: window.innerWidth <= 600 ? "8px" : "12px",
+                minWidth: window.innerWidth <= 600 ? "8px" : "12px",
                 padding: "0",
                 border: "1px solid rgba(255,255,255,0.75)",
                 borderRadius: "50%",
@@ -308,8 +311,9 @@ document.addEventListener("DOMContentLoaded", () => {
                 dot.style.opacity = active ? "1" : "0.75";
                 dot.setAttribute("aria-current", active ? "true" : "false");
             });
-            activeDotPill.style.transform =
-                `translateX(${currentIndex * 20 - 5}px)`;
+            const activeDot = dotButtons[currentIndex];
+            const pillX = activeDot.offsetLeft + (activeDot.offsetWidth - activeDotPill.offsetWidth) / 2;
+            activeDotPill.style.transform = `translateX(${pillX}px)`;
         }
 
         function updateCounter() {

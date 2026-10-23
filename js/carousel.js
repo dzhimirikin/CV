@@ -118,6 +118,14 @@ document.addEventListener('DOMContentLoaded', () => {
         text-align: center;
         font-variant-numeric: tabular-nums;
       }
+      @media (max-width: 600px) {
+        .certificate-dots { gap: 6px; }
+        .certificate-dot-pill { width: 18px; height: 10px; }
+        #certificates .certificate-dot {
+          width: 8px; height: 8px; min-width: 8px; min-height: 8px;
+        }
+        .certificate-carousel-counter { font-size: 12px; }
+      }
     `;
     document.head.appendChild(dotStyle);
   }
@@ -284,19 +292,35 @@ document.addEventListener('DOMContentLoaded', () => {
   // Единое поведение подсветки кнопок, как в lightboxnav.js.
   // Белый фон и чёрный символ при наведении, нажатии и фокусе.
   function attachViewerButtonHighlight(button) {
-    // Белая подсветка включается только при наведении указателя,
-    // а не автоматически при получении клавиатурного фокуса.
-    const activate = () => {
-      button.style.backgroundColor = '#fff';
-      button.style.color = '#000';
-    };
-    const reset = () => {
-      button.style.backgroundColor = 'rgba(25,25,25,.72)';
-      button.style.color = '#fff';
+    // Сохраняем подсветку, пока кнопка наведена ИЛИ находится в фокусе.
+    // mouseleave больше не сбрасывает белый фон, если фокус остался.
+    let isHovered = false;
+    let isFocused = false;
+
+    const syncHighlight = () => {
+      const active = isHovered || isFocused;
+      button.style.backgroundColor = active ? '#fff' : 'rgba(25,25,25,.72)';
+      button.style.color = active ? '#000' : '#fff';
     };
 
-    button.addEventListener('mouseenter', activate);
-    button.addEventListener('mouseleave', reset);
+    button.addEventListener('mouseenter', () => {
+      isHovered = true;
+      syncHighlight();
+    });
+    button.addEventListener('mouseleave', () => {
+      isHovered = false;
+      syncHighlight();
+    });
+    button.addEventListener('focus', () => {
+      isFocused = true;
+      syncHighlight();
+    });
+    button.addEventListener('blur', () => {
+      isFocused = false;
+      syncHighlight();
+    });
+    button.addEventListener('mousedown', syncHighlight);
+    button.addEventListener('mouseup', syncHighlight);
   }
 
   function ensureCertificateViewer() {
@@ -440,8 +464,10 @@ document.addEventListener('DOMContentLoaded', () => {
         .certificate-viewer-nav { width: 42px; height: 42px; font-size: 30px; }
         .certificate-viewer-prev { left: 10px; }
         .certificate-viewer-next { right: 10px; }
-        .certificate-viewer-counter { bottom: 34px; }
-        .certificate-viewer-dots { bottom: 10px; }
+        .certificate-viewer-counter { bottom: 34px; font-size: 12px; padding: 4px 8px; }
+        .certificate-viewer-dots { bottom: 10px; gap: 6px; }
+        .certificate-viewer-dot-pill { width: 18px; height: 10px; }
+        .certificate-viewer-dot { width: 8px; height: 8px; min-width: 8px; padding: 0; }
       }
     `;
     document.head.appendChild(style);
@@ -546,8 +572,9 @@ document.addEventListener('DOMContentLoaded', () => {
       else dot.removeAttribute('aria-current');
     });
     if (viewerDotPill) {
-      viewerDotPill.style.transform =
-        `translateX(${viewerPageIndex * 20 - 5}px)`;
+      const activeDot = viewerDotButtons[viewerPageIndex];
+      const pillX = activeDot.offsetLeft + (activeDot.offsetWidth - viewerDotPill.offsetWidth) / 2;
+      viewerDotPill.style.transform = `translateX(${pillX}px)`;
     }
     viewerPrevButton.disabled = viewerPageIndex === 0;
     viewerNextButton.disabled = viewerPageIndex === viewerPages.length - 1;
