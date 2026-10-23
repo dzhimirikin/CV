@@ -199,11 +199,32 @@ document.addEventListener('DOMContentLoaded', () => {
   let viewerNextButton = null;
   let viewerCounter = null;
   let viewerDots = null;
+  let viewerDotPill = null;
   let viewerDotButtons = [];
   let viewerPages = [];
   let viewerPageIndex = 0;
   let previousBodyOverflow = '';
   let previouslyFocusedElement = null;
+
+  // Единое поведение подсветки кнопок, как в lightboxnav.js.
+  // Белый фон и чёрный символ при наведении, нажатии и фокусе.
+  function attachViewerButtonHighlight(button) {
+    const activate = () => {
+      button.style.backgroundColor = '#fff';
+      button.style.color = '#000';
+    };
+    const reset = () => {
+      button.style.backgroundColor = 'rgba(25,25,25,.72)';
+      button.style.color = '#fff';
+    };
+
+    button.addEventListener('mouseenter', activate);
+    button.addEventListener('mousedown', activate);
+    button.addEventListener('mouseup', activate);
+    button.addEventListener('mouseleave', reset);
+    button.addEventListener('focus', activate);
+    button.addEventListener('blur', reset);
+  }
 
   function ensureCertificateViewer() {
     if (certificateViewer) return;
@@ -227,7 +248,7 @@ document.addEventListener('DOMContentLoaded', () => {
       .certificate-viewer-image {
         display: block;
         max-width: 100%;
-        max-height: calc(100vh - 80px);
+        max-height: calc(100vh - 160px);
         width: auto;
         height: auto;
         object-fit: contain;
@@ -256,30 +277,41 @@ document.addEventListener('DOMContentLoaded', () => {
       }
       .certificate-viewer-prev { left: 22px; }
       .certificate-viewer-next { right: 22px; }
-      .certificate-viewer-nav:hover,
-      .certificate-viewer-nav:focus-visible {
+      .certificate-viewer-nav:hover {
         background: #fff;
-        color: #111;
-        outline: 2px solid #fff;
-        outline-offset: 3px;
+        color: #000;
       }
       .certificate-viewer-nav[hidden],
       .certificate-viewer-counter[hidden] { display: none !important; }
       .certificate-viewer-dots {
         position: fixed;
         left: 50%;
-        bottom: 14px;
+        bottom: 18px;
         transform: translateX(-50%);
         z-index: 100001;
         display: flex;
         align-items: center;
         justify-content: center;
-        gap: 6px;
+        gap: 8px;
+      }
+      .certificate-viewer-dot-pill {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 22px;
+        height: 12px;
+        border-radius: 999px;
+        background: #fff;
+        pointer-events: none;
+        z-index: 1;
+        transition: transform 240ms cubic-bezier(0.2, 0.8, 0.2, 1);
       }
       .certificate-viewer-dot {
-        width: 9px;
-        height: 9px;
-        min-width: 9px;
+        position: relative;
+        z-index: 2;
+        width: 12px;
+        height: 12px;
+        min-width: 12px;
         padding: 0;
         border: 1px solid rgba(255,255,255,.75);
         border-radius: 50%;
@@ -289,15 +321,15 @@ document.addEventListener('DOMContentLoaded', () => {
         box-sizing: border-box;
       }
       .certificate-viewer-dot[aria-current="true"] {
-        background: #fff;
-        border-color: #fff;
+        background: transparent;
+        border-color: rgba(255,255,255,.75);
         opacity: 1;
       }
       .certificate-viewer-dots[hidden] { display: none !important; }
       .certificate-viewer-counter {
         position: fixed;
         left: 50%;
-        bottom: 38px;
+        bottom: 54px;
         transform: translateX(-50%);
         z-index: 100001;
         padding: 6px 12px;
@@ -324,12 +356,9 @@ document.addEventListener('DOMContentLoaded', () => {
         font: 36px/1 Arial, Helvetica, sans-serif;
         cursor: pointer;
       }
-      .certificate-viewer-close:hover,
-      .certificate-viewer-close:focus-visible {
+      .certificate-viewer-close:hover {
         background: #fff;
-        color: #111;
-        outline: 2px solid #fff;
-        outline-offset: 3px;
+        color: #000;
       }
       @media (max-width: 600px) {
         .certificate-viewer-overlay { padding: 60px 10px 38px; }
@@ -362,6 +391,7 @@ document.addEventListener('DOMContentLoaded', () => {
     closeViewerButton.setAttribute('aria-label', 'Close certificate preview');
     closeViewerButton.title = 'Close';
     closeViewerButton.textContent = '×';
+    attachViewerButtonHighlight(closeViewerButton);
 
     viewerPrevButton = document.createElement('button');
     viewerPrevButton.type = 'button';
@@ -369,6 +399,7 @@ document.addEventListener('DOMContentLoaded', () => {
     viewerPrevButton.setAttribute('aria-label', 'Previous certificate page');
     viewerPrevButton.textContent = '‹';
     viewerPrevButton.hidden = true;
+    attachViewerButtonHighlight(viewerPrevButton);
     viewerPrevButton.addEventListener('click', () => showViewerPage(viewerPageIndex - 1));
 
     viewerNextButton = document.createElement('button');
@@ -377,6 +408,7 @@ document.addEventListener('DOMContentLoaded', () => {
     viewerNextButton.setAttribute('aria-label', 'Next certificate page');
     viewerNextButton.textContent = '›';
     viewerNextButton.hidden = true;
+    attachViewerButtonHighlight(viewerNextButton);
     viewerNextButton.addEventListener('click', () => showViewerPage(viewerPageIndex + 1));
 
     viewerCounter = document.createElement('div');
@@ -388,6 +420,9 @@ document.addEventListener('DOMContentLoaded', () => {
     viewerDots.className = 'certificate-viewer-dots';
     viewerDots.setAttribute('aria-label', 'Certificate pages');
     viewerDots.hidden = true;
+    viewerDotPill = document.createElement('span');
+    viewerDotPill.className = 'certificate-viewer-dot-pill';
+    viewerDotPill.setAttribute('aria-hidden', 'true');
 
     closeViewerButton.addEventListener('click', closeCertificateViewer);
     certificateViewer.addEventListener('click', event => {
@@ -421,6 +456,7 @@ document.addEventListener('DOMContentLoaded', () => {
       viewerDots.appendChild(dot);
       return dot;
     });
+    viewerDots.prepend(viewerDotPill);
     viewerDots.hidden = viewerPages.length < 2;
   }
 
@@ -436,6 +472,10 @@ document.addEventListener('DOMContentLoaded', () => {
       if (dotIndex === viewerPageIndex) dot.setAttribute('aria-current', 'true');
       else dot.removeAttribute('aria-current');
     });
+    if (viewerDotPill) {
+      viewerDotPill.style.transform =
+        `translateX(${viewerPageIndex * 20 - 5}px)`;
+    }
     viewerPrevButton.disabled = viewerPageIndex === 0;
     viewerNextButton.disabled = viewerPageIndex === viewerPages.length - 1;
     // Нециклическая навигация по страницам документа.

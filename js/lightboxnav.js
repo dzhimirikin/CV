@@ -69,8 +69,19 @@ document.addEventListener("DOMContentLoaded", () => {
             style.id = "lightbox-nav-hidden-style";
             style.textContent = `
                 .lightbox-prev[hidden],
-                .lightbox-next[hidden] {
-                    display: none !important;
+                .lightbox-next[hidden] { display: none !important; }
+                @media (min-width: 601px) {
+                    .lightbox-img {
+                        max-width: calc(100vw - 120px) !important;
+                        max-height: calc(100vh - 160px) !important;
+                        object-fit: contain;
+                    }
+                    .lightbox-counter {
+                        bottom: 54px !important;
+                        font-size: 14px !important;
+                        padding: 5px 11px !important;
+                    }
+                    .lightbox-dots { bottom: 18px !important; gap: 8px !important; }
                 }
             `;
             document.head.appendChild(style);
@@ -226,7 +237,18 @@ document.addEventListener("DOMContentLoaded", () => {
             alignItems: "center",
             justifyContent: "center",
             gap: "6px",
-            zIndex: "10001"
+            zIndex: "10001",
+            position: "absolute"
+        });
+
+        const activeDotPill = document.createElement("span");
+        activeDotPill.setAttribute("aria-hidden", "true");
+        Object.assign(activeDotPill.style, {
+            position: "absolute", left: "0", top: "0",
+            width: "22px", height: "12px", borderRadius: "999px",
+            background: "#fff", pointerEvents: "none",
+            transition: "transform 240ms cubic-bezier(0.2, 0.8, 0.2, 1)",
+            zIndex: "1"
         });
 
         // Индикатор текущей фотографии в формате 1 / N.
@@ -255,16 +277,18 @@ document.addEventListener("DOMContentLoaded", () => {
             dot.setAttribute("aria-label", `Show photo ${index + 1}`);
             dot.setAttribute("aria-current", index === currentIndex ? "true" : "false");
             Object.assign(dot.style, {
-                width: "9px",
-                height: "9px",
-                minWidth: "9px",
+                width: "12px",
+                height: "12px",
+                minWidth: "12px",
                 padding: "0",
                 border: "1px solid rgba(255,255,255,0.75)",
                 borderRadius: "50%",
-                background: index === currentIndex ? "#fff" : "transparent",
+                background: "transparent",
                 opacity: index === currentIndex ? "1" : "0.75",
                 cursor: "pointer",
-                boxSizing: "border-box"
+                boxSizing: "border-box",
+                position: "relative",
+                zIndex: "2"
             });
             dot.addEventListener("click", () => {
                 currentIndex = index;
@@ -276,13 +300,16 @@ document.addEventListener("DOMContentLoaded", () => {
             return dot;
         });
 
+        dots.prepend(activeDotPill);
+
         function updateDots() {
             dotButtons.forEach((dot, index) => {
                 const active = index === currentIndex;
-                dot.style.background = active ? "#fff" : "transparent";
                 dot.style.opacity = active ? "1" : "0.75";
                 dot.setAttribute("aria-current", active ? "true" : "false");
             });
+            activeDotPill.style.transform =
+                `translateX(${currentIndex * 20 - 5}px)`;
         }
 
         function updateCounter() {
@@ -299,6 +326,7 @@ document.addEventListener("DOMContentLoaded", () => {
         );
 
         document.body.appendChild(overlay);
+        updateDots();
 
 
         /* ========================================================
