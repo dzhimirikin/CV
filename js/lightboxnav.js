@@ -100,6 +100,12 @@ document.addEventListener("DOMContentLoaded", () => {
             "lightbox-img";
 
         img.src = src;
+        // Плавное растворение между фотографиями.
+        img.style.transition = "opacity 2700ms ease-in-out";
+        img.style.opacity = "1";
+
+        let slideshowTimer = null;
+        let slideshowRunning = false;
 
 
         const closeBtn =
@@ -153,6 +159,50 @@ document.addEventListener("DOMContentLoaded", () => {
         closeBtn.addEventListener("focus", activateCloseButton);
         closeBtn.addEventListener("blur", resetCloseButton);
 
+        // Кнопка слайд-шоу находится по центру той же верхней строки,
+        // что и крестик закрытия.
+        const slideshowBtn = document.createElement("button");
+        slideshowBtn.className = "lightbox-slideshow";
+        slideshowBtn.type = "button";
+        slideshowBtn.setAttribute("aria-label", "Start slideshow");
+        slideshowBtn.textContent = "▶";
+        Object.assign(slideshowBtn.style, {
+            position: "absolute",
+            top: "18px",
+            left: "50%",
+            transform: "translateX(-50%)",
+            zIndex: "10001",
+            width: "42px",
+            height: "42px",
+            padding: "0 0 0 2px",
+            border: "1px solid #fff",
+            borderRadius: "50%",
+            background: "transparent",
+            color: "#fff",
+            font: "17px/1 Arial, sans-serif",
+            textAlign: "center",
+            cursor: "pointer",
+            display: galleryLinks.length > 1 ? "flex" : "none",
+            alignItems: "center",
+            justifyContent: "center",
+            boxSizing: "border-box",
+            transition: "background-color 0.15s ease, color 0.15s ease"
+        });
+
+        const activateSlideshowButton = () => {
+            slideshowBtn.style.backgroundColor = "#fff";
+            slideshowBtn.style.color = "#000";
+        };
+        const resetSlideshowButton = () => {
+            slideshowBtn.style.backgroundColor = "transparent";
+            slideshowBtn.style.color = "#fff";
+        };
+        slideshowBtn.addEventListener("mouseenter", activateSlideshowButton);
+        slideshowBtn.addEventListener("mousedown", activateSlideshowButton);
+        slideshowBtn.addEventListener("mouseup", resetSlideshowButton);
+        slideshowBtn.addEventListener("mouseleave", resetSlideshowButton);
+        slideshowBtn.addEventListener("focus", activateSlideshowButton);
+        slideshowBtn.addEventListener("blur", resetSlideshowButton);
 
         const prev =
             document.createElement("button");
@@ -274,6 +324,48 @@ document.addEventListener("DOMContentLoaded", () => {
             display: galleryLinks.length > 1 ? "block" : "none"
         });
 
+        function changeImage(newSrc, useFade = true) {
+            if (img.src === new URL(newSrc, document.baseURI).href) return;
+
+            // Ручное перелистывание стрелками/клавиатурой/точками — мгновенно,
+            // без эффекта затемнения. Плавное растворение остаётся для слайд-шоу.
+            if (!useFade) {
+                img.style.transition = "none";
+                img.style.opacity = "1";
+                img.src = newSrc;
+                return;
+            }
+            img.style.transition = "opacity 2700ms ease-in-out";
+
+            const preload = new Image();
+
+            preload.onload = () => {
+                // Плавно гасим старую фотографию
+                img.style.opacity = "0";
+
+                window.setTimeout(() => {
+                    // Меняем фотографию после угасания
+                    img.src = newSrc;
+
+                    // Фиксируем прозрачное состояние
+                    img.style.opacity = "0";
+                    void img.offsetWidth;
+
+                    // Плавно проявляем новую фотографию
+                    requestAnimationFrame(() => {
+                        img.style.opacity = "1";
+                    });
+                }, 2700);
+            };
+
+            preload.onerror = () => {
+                img.src = newSrc;
+                img.style.opacity = "1";
+            };
+
+            preload.src = newSrc;
+        }
+
         const dotButtons = galleryLinks.map((galleryLink, index) => {
             const dot = document.createElement("button");
             dot.type = "button";
@@ -295,7 +387,7 @@ document.addEventListener("DOMContentLoaded", () => {
             });
             dot.addEventListener("click", () => {
                 currentIndex = index;
-                img.src = galleryLinks[currentIndex].href;
+                changeImage(galleryLinks[currentIndex].href, false);
                 updateDots();
                 updateCounter();
             });
@@ -323,6 +415,7 @@ document.addEventListener("DOMContentLoaded", () => {
         overlay.append(
             img,
             closeBtn,
+            slideshowBtn,
             prev,
             next,
             counter,
@@ -345,14 +438,13 @@ document.addEventListener("DOMContentLoaded", () => {
                 (currentIndex - 1 + galleryLinks.length)
                 % galleryLinks.length;
 
-            img.src =
-                galleryLinks[currentIndex].href;
+            changeImage(galleryLinks[currentIndex].href, false);
             updateDots();
             updateCounter();
         }
 
 
-        function showNext() {
+        function showNext(useFade = false) {
 
             if (!galleryLinks.length) return;
 
@@ -360,8 +452,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 (currentIndex + 1)
                 % galleryLinks.length;
 
-            img.src =
-                galleryLinks[currentIndex].href;
+            changeImage(galleryLinks[currentIndex].href, useFade);
             updateDots();
             updateCounter();
         }
@@ -383,6 +474,34 @@ document.addEventListener("DOMContentLoaded", () => {
             showNext();
 
         };
+
+        function stopSlideshow() {
+            if (slideshowTimer !== null) {
+                window.clearInterval(slideshowTimer);
+                slideshowTimer = null;
+            }
+            slideshowRunning = false;
+            slideshowBtn.textContent = "▶";
+            slideshowBtn.style.paddingLeft = "2px";
+            slideshowBtn.setAttribute("aria-label", "Start slideshow");
+        }
+
+        function startSlideshow() {
+            if (galleryLinks.length < 2 || slideshowRunning) return;
+            slideshowRunning = true;
+            slideshowBtn.textContent = "Ⅱ";
+            slideshowBtn.style.paddingLeft = "0";
+            slideshowBtn.setAttribute("aria-label", "Pause slideshow");
+            slideshowTimer = window.setInterval(() => showNext(true), 6400);
+        }
+
+        slideshowBtn.addEventListener("click", () => {
+            if (slideshowRunning) {
+                stopSlideshow();
+            } else {
+                startSlideshow();
+            }
+        });
 
 
         /* ========================================================
@@ -424,6 +543,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         function closeLightbox() {
 
+            stopSlideshow();
             document.removeEventListener(
                 "keydown",
                 handleKey
