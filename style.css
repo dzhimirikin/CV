@@ -2066,6 +2066,22 @@ footer {
   }
 }
 
+
+/* ============================================================
+   VIEWER BUTTON FOCUS — consistent with lightboxnav.js
+============================================================ */
+.certificate-viewer-nav,
+.certificate-viewer-close {
+  -webkit-tap-highlight-color: transparent;
+  outline: none;
+}
+
+.certificate-viewer-nav:focus-visible,
+.certificate-viewer-close:focus-visible {
+  outline: none;
+}
+
+
 /* ============================================================
    LIGHTBOX ARROWS
 ============================================================ */
