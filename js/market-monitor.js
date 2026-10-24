@@ -692,6 +692,86 @@
       .replaceAll("'", "&#039;");
   }
 
+  function setupResponsiveViewAndCsv() {
+    const panel = document.getElementById("marketMonitorAnnual");
+    const table = body.closest("table") || panel?.querySelector("table");
+    if (!panel || !table) return;
+    let style = document.getElementById("market-monitor-view-styles");
+    if (!style) {
+      style = document.createElement("style");
+      style.id = "market-monitor-view-styles";
+      style.textContent = `
+        .market-monitor-view-tools{display:flex;align-items:center;justify-content:flex-start;gap:8px;flex-wrap:wrap;margin:0 0 10px}
+        .market-monitor-view-tools button{font:inherit;cursor:pointer;border:1px solid #222;background:#fff;color:#111;padding:7px 11px;border-radius:4px}.market-monitor-view-tools .mm-csv-export{width:215px;text-align:center}
+        .market-monitor-view-tools button[aria-pressed="true"],.market-monitor-view-tools .mm-csv-export{background:#222;color:#fff}
+        .market-monitor-view-tools .mm-csv-export:disabled{opacity:.45;cursor:not-allowed}
+        .market-monitor-view-toggle{display:none;gap:4px}.market-monitor-view-toggle button{display:inline-flex;align-items:center;justify-content:center;min-width:40px;min-height:36px;padding:6px}
+        .market-monitor-table-scroll{max-width:100%;overflow-x:auto}
+        @media(max-width:700px){.market-monitor-view-toggle{display:flex}.market-monitor-view-tools{justify-content:flex-start}.market-monitor-table-scroll.mm-cards table{width:100%;min-width:0;border-collapse:separate;border-spacing:0 10px}.market-monitor-table-scroll.mm-cards thead{display:none}.market-monitor-table-scroll.mm-cards tbody tr{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:0 12px;border:1px solid #d5dbe1;border-radius:8px;overflow:hidden;background:#fff;margin-bottom:10px}.market-monitor-table-scroll.mm-cards tbody td{display:flex;flex-direction:column;min-width:0;padding:8px 10px;border:0;border-bottom:1px solid #edf0f2;overflow-wrap:anywhere}.market-monitor-table-scroll.mm-cards tbody td::before{content:attr(data-label);font-size:11px;line-height:1.35;color:#68717c;margin-bottom:3px}.market-monitor-table-scroll.mm-cards tbody td:first-child{grid-column:1/-1;display:block;background:#f5f7f9;font-weight:600}.market-monitor-table-scroll.mm-cards tbody td:first-child::before{content:none}.market-monitor-table-scroll.mm-cards tbody td:last-child{border-bottom:0}.market-monitor-table-scroll.mm-table table{display:table;width:auto;min-width:900px;border-collapse:collapse}.market-monitor-table-scroll.mm-table thead{display:table-header-group!important}.market-monitor-table-scroll.mm-table tbody{display:table-row-group!important}.market-monitor-table-scroll.mm-table tbody tr{display:table-row!important;grid-template-columns:none;border:0;border-radius:0;overflow:visible;background:transparent;margin:0}.market-monitor-table-scroll.mm-table tbody td{display:table-cell!important;padding:8px 10px;border:1px solid #ddd;overflow-wrap:normal}.market-monitor-table-scroll.mm-table tbody td::before{content:none!important;display:none!important}.market-monitor-table-scroll.mm-table table{min-width:900px}}@media(max-width:480px){.market-monitor-view-tools .mm-csv-export{width:100%;box-sizing:border-box}}
+      `;
+      document.head.appendChild(style);
+    }
+    let scroll = table.parentElement;
+    if (!scroll.classList.contains("market-monitor-table-scroll")) {
+      const wrapper = document.createElement("div");
+      wrapper.className = "market-monitor-table-scroll";
+      table.parentNode.insertBefore(wrapper, table);
+      wrapper.appendChild(table);
+      scroll = wrapper;
+    }
+    const lang = ["ru", "et", "en"].includes(document.documentElement.lang) ? document.documentElement.lang : "en";
+    const labels = {ru:{cards:"Карточки",table:"Таблица",csv:"Сохранить в CSV",none:"Отметьте компании для экспорта"},et:{cards:"Kaardid",table:"Tabel",csv:"Salvesta CSV-na",none:"Märgi eksporditavad ettevõtted"},en:{cards:"Cards",table:"Table",csv:"Save to CSV",none:"Select companies to export"}}[lang];
+    const tools = document.createElement("div");
+    tools.className = "market-monitor-view-tools";
+    tools.innerHTML = `<div class="market-monitor-view-toggle"><button type="button" data-mm-view="cards" title="${labels.cards}" aria-label="${labels.cards}" aria-pressed="false"><svg aria-hidden="true" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="8" height="8" rx="1"/><rect x="13" y="3" width="8" height="8" rx="1"/><rect x="3" y="13" width="8" height="8" rx="1"/><rect x="13" y="13" width="8" height="8" rx="1"/></svg></button><button type="button" data-mm-view="table" title="${labels.table}" aria-label="${labels.table}" aria-pressed="false"><svg aria-hidden="true" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="4" width="18" height="16" rx="1"/><path d="M3 9h18M3 14h18M9 4v16M15 4v16"/></svg></button></div><button type="button" class="mm-csv-export">${labels.csv}</button>`;
+    scroll.parentElement.insertBefore(tools, scroll);
+    const toggle = tools.querySelector(".market-monitor-view-toggle");
+    const csvButton = tools.querySelector(".mm-csv-export");
+    const key = "marketMonitorAnnualView";
+    const isMobile = () => window.matchMedia("(max-width: 700px)").matches;
+    function applyView(view) {
+      const actual = isMobile() ? view : "table";
+      scroll.classList.toggle("mm-cards", actual === "cards");
+      scroll.classList.toggle("mm-table", actual === "table");
+      toggle.querySelectorAll("button").forEach(button => button.setAttribute("aria-pressed", String(button.dataset.mmView === actual)));
+      toggle.hidden = !isMobile();
+      csvButton.hidden = isMobile() && actual !== "table";
+      if (isMobile()) localStorage.setItem(key, actual);
+    }
+    toggle.querySelectorAll("button").forEach(button => button.addEventListener("click", () => { localStorage.setItem(key, button.dataset.mmView); applyView(button.dataset.mmView); }));
+    window.addEventListener("resize", () => applyView(localStorage.getItem(key) || "cards"));
+    applyView(localStorage.getItem(key) || "cards");
+    const raw = value => value == null ? "" : String(value);
+    csvButton.addEventListener("click", () => {
+      const chosen = companies.filter(company => selectedCompanies.has(companyId(company)));
+      if (!chosen.length) { window.alert(labels.none); return; }
+      const headers = [...table.querySelectorAll("thead th")].map(th => th.textContent.trim());
+      const rows = [headers];
+      chosen.forEach(company => {
+        const record = getRecord(company, yearSelect.value);
+        const values = [company.name || "", record?.year ?? "", record?.turnover ?? "", record?.equity ?? "", record?.profit ?? "", record?.margin ?? "", record?.employees ?? "", record?.turnoverPerEmployee ?? ""];
+        rows.push(values.map(raw));
+      });
+      const csvCell = value => { const text = raw(value); return /[,;"\r\n]/u.test(text) ? `"${text.replaceAll('"', '""')}"` : text; };
+      const csv = "\uFEFF" + rows.map(row => row.map(csvCell).join(",")).join("\r\n");
+      const url = URL.createObjectURL(new Blob([csv], {type:"text/csv;charset=utf-8;"}));
+      const link = document.createElement("a"); link.href = url; link.download = `market-monitor-annual-${yearSelect.value}.csv`; document.body.appendChild(link); link.click(); link.remove(); URL.revokeObjectURL(url);
+    });
+    // Export is intentionally disabled until at least one company is selected.
+    const updateExportState = event => {
+      // Use the shared selection event payload when available. This keeps the
+      // export button in sync when selection is changed from the other report tab.
+      const ids = Array.isArray(event?.detail?.selectedCompanies)
+        ? event.detail.selectedCompanies
+        : [...selectedCompanies];
+      csvButton.disabled = ids.length === 0;
+      csvButton.title = csvButton.disabled ? labels.none : labels.csv;
+    };
+    panel.addEventListener("change", event => { if (event.target.matches(".market-company-checkbox, #marketAnnualSelectAll")) updateExportState(); });
+    window.addEventListener("market-monitor-selection-change", updateExportState);
+    updateExportState();
+  }
+
   function render() {
     const year = yearSelect.value;
     const query = searchInput.value.trim().toLowerCase();
@@ -847,6 +927,7 @@
     summaryButton.addEventListener("click", showAnnualSummary);
   }
 
+  setupResponsiveViewAndCsv();
   setupSelection();
   setupSharedSelectionSync();
   setupSelectionPresetButtons();
