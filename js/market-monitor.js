@@ -707,7 +707,7 @@
         .market-monitor-view-tools .mm-csv-export:disabled{opacity:.45;cursor:not-allowed}
         .market-monitor-view-toggle{display:none;gap:4px}.market-monitor-view-toggle button{display:inline-flex;align-items:center;justify-content:center;min-width:40px;min-height:36px;padding:6px}
         .market-monitor-table-scroll{max-width:100%;overflow-x:auto}
-        @media(max-width:700px){.market-monitor-view-toggle{display:flex}.market-monitor-view-tools{justify-content:flex-start}.market-monitor-table-scroll.mm-cards table{width:100%;min-width:0;border-collapse:separate;border-spacing:0 10px}.market-monitor-table-scroll.mm-cards thead{display:none}.market-monitor-table-scroll.mm-cards tbody tr{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:0 12px;border:1px solid #d5dbe1;border-radius:8px;overflow:hidden;background:#fff;margin-bottom:10px}.market-monitor-table-scroll.mm-cards tbody td{display:flex;flex-direction:column;min-width:0;padding:8px 10px;border:0;border-bottom:1px solid #edf0f2;overflow-wrap:anywhere}.market-monitor-table-scroll.mm-cards tbody td::before{content:attr(data-label);font-size:11px;line-height:1.35;color:#68717c;margin-bottom:3px}.market-monitor-table-scroll.mm-cards tbody td:first-child{grid-column:1/-1;display:block;background:#f5f7f9;font-weight:600}.market-monitor-table-scroll.mm-cards tbody td:first-child::before{content:none}.market-monitor-table-scroll.mm-cards tbody td:last-child{border-bottom:0}.market-monitor-table-scroll.mm-table table{display:table;width:auto;min-width:900px;border-collapse:collapse}.market-monitor-table-scroll.mm-table thead{display:table-header-group!important}.market-monitor-table-scroll.mm-table tbody{display:table-row-group!important}.market-monitor-table-scroll.mm-table tbody tr{display:table-row!important;grid-template-columns:none;border:0;border-radius:0;overflow:visible;background:transparent;margin:0}.market-monitor-table-scroll.mm-table tbody td{display:table-cell!important;padding:8px 10px;border:1px solid #ddd;overflow-wrap:normal}.market-monitor-table-scroll.mm-table tbody td::before{content:none!important;display:none!important}.market-monitor-table-scroll.mm-table table{min-width:900px}}@media(max-width:480px){.market-monitor-view-tools .mm-csv-export{width:100%;box-sizing:border-box}}
+        @media(max-width:700px){.market-monitor-view-toggle{display:flex}.market-monitor-view-tools{justify-content:flex-start}.market-monitor-table-scroll.mm-cards table{width:100%;min-width:0;border-collapse:separate;border-spacing:0 10px}.market-monitor-table-scroll.mm-cards thead{display:none}.market-monitor-table-scroll.mm-cards tbody tr{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:0 12px;border:1px solid #d5dbe1;border-radius:8px;overflow:hidden;background:#fff;margin-bottom:10px}.market-monitor-table-scroll.mm-cards tbody td{display:flex;flex-direction:column;min-width:0;padding:8px 10px;border:0;border-bottom:1px solid #edf0f2;overflow-wrap:anywhere}.market-monitor-table-scroll.mm-cards tbody td::before{content:attr(data-label);font-size:11px;line-height:1.35;color:#68717c;margin-bottom:3px}.market-monitor-table-scroll.mm-cards tbody td:first-child{grid-column:1/-1;display:block;background:#f5f7f9;font-weight:600}.market-monitor-table-scroll.mm-cards tbody td:first-child::before{content:none}.market-monitor-table-scroll.mm-cards tbody td:last-child{border-bottom:0}.market-monitor-table-scroll.mm-table{overflow-x:hidden}.market-monitor-table-scroll.mm-table table{display:table!important;table-layout:auto!important;width:147%!important;min-width:0!important;max-width:none!important;zoom:.68;border-collapse:collapse!important;border-spacing:0!important;font-size:12px!important;line-height:1.25!important}.market-monitor-table-scroll.mm-table thead{display:table-header-group!important}.market-monitor-table-scroll.mm-table tbody{display:table-row-group!important}.market-monitor-table-scroll.mm-table tr{display:table-row!important;grid-template-columns:none!important;border:0!important;border-radius:0!important;overflow:visible!important;background:transparent!important;margin:0!important}.market-monitor-table-scroll.mm-table th,.market-monitor-table-scroll.mm-table td{display:table-cell!important;box-sizing:border-box!important;padding:5px 6px!important;border:1px solid #ddd!important;vertical-align:middle!important;white-space:nowrap!important;overflow-wrap:normal!important;word-break:normal!important;font-size:12px!important;line-height:1.25!important}.market-monitor-table-scroll.mm-table td::before{content:none!important;display:none!important}.market-monitor-table-scroll.mm-table td:nth-child(2){white-space:normal!important;min-width:95px!important;max-width:150px!important;overflow-wrap:normal!important;word-break:normal!important}.market-monitor-table-scroll.mm-table td:first-child{white-space:nowrap!important}.market-monitor-table-scroll.mm-table input{transform:scale(.85);transform-origin:center}}@media(max-width:480px){.market-monitor-view-tools .mm-csv-export{width:100%;box-sizing:border-box}}
       `;
       document.head.appendChild(style);
     }
@@ -728,31 +728,15 @@
     const toggle = tools.querySelector(".market-monitor-view-toggle");
     const csvButton = tools.querySelector(".mm-csv-export");
     const key = "marketMonitorAnnualView";
-        const viewportMeta = document.querySelector('meta[name="viewport"]');
-    if (viewportMeta && !viewportMeta.dataset.mmOriginalContent) {
-      viewportMeta.dataset.mmOriginalContent = viewportMeta.getAttribute("content") || "width=device-width, initial-scale=1.0";
-    }
-    const isMobileDevice = () => window.screen.width <= 700;
-    function setDesktopTableViewport(enabled) {
-      if (!viewportMeta || !isMobileDevice()) return;
-      const original = viewportMeta.dataset.mmOriginalContent || "width=device-width, initial-scale=1.0";
-      viewportMeta.setAttribute("content", enabled ? "width=980, initial-scale=1.0" : original);
-      document.documentElement.classList.toggle("mm-desktop-table-viewport", enabled);
-    }
-    const isMobile = isMobileDevice;
+    const isMobile = () => window.matchMedia("(max-width: 700px)").matches;
     function applyView(view) {
-      const mobile = isMobile();
-      const actual = mobile ? view : "table";
-      // On a phone, table mode switches the page viewport to desktop width, like
-      // Chrome's desktop-site mode. Cards mode restores the original viewport.
-      setDesktopTableViewport(mobile && actual === "table");
+      const actual = isMobile() ? view : "table";
       scroll.classList.toggle("mm-cards", actual === "cards");
       scroll.classList.toggle("mm-table", actual === "table");
       toggle.querySelectorAll("button").forEach(button => button.setAttribute("aria-pressed", String(button.dataset.mmView === actual)));
-      toggle.hidden = !mobile;
-      toggle.style.display = mobile ? "flex" : "";
-      csvButton.hidden = mobile && actual !== "table";
-      if (mobile) localStorage.setItem(key, actual);
+      toggle.hidden = !isMobile();
+      csvButton.hidden = isMobile() && actual !== "table";
+      if (isMobile()) localStorage.setItem(key, actual);
     }
     toggle.querySelectorAll("button").forEach(button => button.addEventListener("click", () => { localStorage.setItem(key, button.dataset.mmView); applyView(button.dataset.mmView); }));
     window.addEventListener("resize", () => applyView(localStorage.getItem(key) || "cards"));
