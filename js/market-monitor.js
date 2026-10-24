@@ -758,7 +758,15 @@
       const link = document.createElement("a"); link.href = url; link.download = `market-monitor-annual-${yearSelect.value}.csv`; document.body.appendChild(link); link.click(); link.remove(); URL.revokeObjectURL(url);
     });
     // Export is intentionally disabled until at least one company is selected.
-    const updateExportState = () => { csvButton.disabled = selectedCompanies.size === 0; csvButton.title = csvButton.disabled ? labels.none : labels.csv; };
+    const updateExportState = event => {
+      // Use the shared selection event payload when available. This keeps the
+      // export button in sync when selection is changed from the other report tab.
+      const ids = Array.isArray(event?.detail?.selectedCompanies)
+        ? event.detail.selectedCompanies
+        : [...selectedCompanies];
+      csvButton.disabled = ids.length === 0;
+      csvButton.title = csvButton.disabled ? labels.none : labels.csv;
+    };
     panel.addEventListener("change", event => { if (event.target.matches(".market-company-checkbox, #marketAnnualSelectAll")) updateExportState(); });
     window.addEventListener("market-monitor-selection-change", updateExportState);
     updateExportState();
