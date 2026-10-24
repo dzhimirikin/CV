@@ -701,7 +701,7 @@
       style = document.createElement("style");
       style.id = "market-monitor-view-styles";
       style.textContent = `
-        .market-monitor-view-tools{display:flex;align-items:center;justify-content:flex-start;gap:8px;flex-wrap:wrap;margin:10px 0}
+        .market-monitor-view-tools{display:flex;align-items:center;justify-content:flex-start;gap:8px;flex-wrap:wrap;margin:0 0 10px}
         .market-monitor-view-tools button{font:inherit;cursor:pointer;border:1px solid #222;background:#fff;color:#111;padding:7px 11px;border-radius:4px}.market-monitor-view-tools .mm-csv-export{width:215px;text-align:center}
         .market-monitor-view-tools button[aria-pressed="true"],.market-monitor-view-tools .mm-csv-export{background:#222;color:#fff}
         .market-monitor-view-tools .mm-csv-export:disabled{opacity:.45;cursor:not-allowed}
