@@ -701,13 +701,13 @@
       style = document.createElement("style");
       style.id = "market-monitor-view-styles";
       style.textContent = `
-        .market-monitor-view-tools{display:flex;align-items:center;justify-content:flex-end;gap:8px;flex-wrap:wrap;margin:10px 0}
-        .market-monitor-view-tools button{font:inherit;cursor:pointer;border:1px solid #222;background:#fff;color:#111;padding:7px 11px;border-radius:4px}
+        .market-monitor-view-tools{display:flex;align-items:center;justify-content:flex-start;gap:8px;flex-wrap:wrap;margin:10px 0}
+        .market-monitor-view-tools button{font:inherit;cursor:pointer;border:1px solid #222;background:#fff;color:#111;padding:7px 11px;border-radius:4px}.market-monitor-view-tools .mm-csv-export{width:215px;text-align:center}
         .market-monitor-view-tools button[aria-pressed="true"],.market-monitor-view-tools .mm-csv-export{background:#222;color:#fff}
         .market-monitor-view-tools .mm-csv-export:disabled{opacity:.45;cursor:not-allowed}
         .market-monitor-view-toggle{display:none;gap:4px}
         .market-monitor-table-scroll{max-width:100%;overflow-x:auto}
-        @media(max-width:700px){.market-monitor-view-toggle{display:flex}.market-monitor-view-tools{justify-content:space-between}.market-monitor-table-scroll.mm-cards table{width:100%;min-width:0;border-collapse:separate;border-spacing:0 10px}.market-monitor-table-scroll.mm-cards thead{display:none}.market-monitor-table-scroll.mm-cards tbody tr{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:0 12px;border:1px solid #d5dbe1;border-radius:8px;overflow:hidden;background:#fff;margin-bottom:10px}.market-monitor-table-scroll.mm-cards tbody td{display:flex;flex-direction:column;min-width:0;padding:8px 10px;border:0;border-bottom:1px solid #edf0f2;overflow-wrap:anywhere}.market-monitor-table-scroll.mm-cards tbody td::before{content:attr(data-label);font-size:11px;line-height:1.35;color:#68717c;margin-bottom:3px}.market-monitor-table-scroll.mm-cards tbody td:first-child{grid-column:1/-1;display:block;background:#f5f7f9;font-weight:600}.market-monitor-table-scroll.mm-cards tbody td:first-child::before{content:none}.market-monitor-table-scroll.mm-cards tbody td:last-child{border-bottom:0}.market-monitor-table-scroll.mm-table table{min-width:900px}}
+        @media(max-width:700px){.market-monitor-view-toggle{display:flex}.market-monitor-view-tools{justify-content:flex-start}.market-monitor-table-scroll.mm-cards table{width:100%;min-width:0;border-collapse:separate;border-spacing:0 10px}.market-monitor-table-scroll.mm-cards thead{display:none}.market-monitor-table-scroll.mm-cards tbody tr{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:0 12px;border:1px solid #d5dbe1;border-radius:8px;overflow:hidden;background:#fff;margin-bottom:10px}.market-monitor-table-scroll.mm-cards tbody td{display:flex;flex-direction:column;min-width:0;padding:8px 10px;border:0;border-bottom:1px solid #edf0f2;overflow-wrap:anywhere}.market-monitor-table-scroll.mm-cards tbody td::before{content:attr(data-label);font-size:11px;line-height:1.35;color:#68717c;margin-bottom:3px}.market-monitor-table-scroll.mm-cards tbody td:first-child{grid-column:1/-1;display:block;background:#f5f7f9;font-weight:600}.market-monitor-table-scroll.mm-cards tbody td:first-child::before{content:none}.market-monitor-table-scroll.mm-cards tbody td:last-child{border-bottom:0}.market-monitor-table-scroll.mm-table table{min-width:900px}}
       `;
       document.head.appendChild(style);
     }
@@ -720,7 +720,7 @@
       scroll = wrapper;
     }
     const lang = ["ru", "et", "en"].includes(document.documentElement.lang) ? document.documentElement.lang : "en";
-    const labels = {ru:{cards:"Карточки",table:"Таблица",csv:"Экспорт в CSV",none:"Отметьте компании для экспорта"},et:{cards:"Kaardid",table:"Tabel",csv:"Ekspordi CSV-sse",none:"Märgi eksporditavad ettevõtted"},en:{cards:"Cards",table:"Table",csv:"Export to CSV",none:"Select companies to export"}}[lang];
+    const labels = {ru:{cards:"Карточки",table:"Таблица",csv:"Сохранить в CSV",none:"Отметьте компании для экспорта"},et:{cards:"Kaardid",table:"Tabel",csv:"Salvesta CSV-na",none:"Märgi eksporditavad ettevõtted"},en:{cards:"Cards",table:"Table",csv:"Save to CSV",none:"Select companies to export"}}[lang];
     const tools = document.createElement("div");
     tools.className = "market-monitor-view-tools";
     tools.innerHTML = `<div class="market-monitor-view-toggle"><button type="button" data-mm-view="cards">${labels.cards}</button><button type="button" data-mm-view="table">${labels.table}</button></div><button type="button" class="mm-csv-export">${labels.csv}</button>`;
