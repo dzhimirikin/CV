@@ -728,15 +728,31 @@
     const toggle = tools.querySelector(".market-monitor-view-toggle");
     const csvButton = tools.querySelector(".mm-csv-export");
     const key = "marketMonitorAnnualView";
-    const isMobile = () => window.matchMedia("(max-width: 700px)").matches;
+        const viewportMeta = document.querySelector('meta[name="viewport"]');
+    if (viewportMeta && !viewportMeta.dataset.mmOriginalContent) {
+      viewportMeta.dataset.mmOriginalContent = viewportMeta.getAttribute("content") || "width=device-width, initial-scale=1.0";
+    }
+    const isMobileDevice = () => window.screen.width <= 700;
+    function setDesktopTableViewport(enabled) {
+      if (!viewportMeta || !isMobileDevice()) return;
+      const original = viewportMeta.dataset.mmOriginalContent || "width=device-width, initial-scale=1.0";
+      viewportMeta.setAttribute("content", enabled ? "width=980, initial-scale=1.0" : original);
+      document.documentElement.classList.toggle("mm-desktop-table-viewport", enabled);
+    }
+    const isMobile = isMobileDevice;
     function applyView(view) {
-      const actual = isMobile() ? view : "table";
+      const mobile = isMobile();
+      const actual = mobile ? view : "table";
+      // On a phone, table mode switches the page viewport to desktop width, like
+      // Chrome's desktop-site mode. Cards mode restores the original viewport.
+      setDesktopTableViewport(mobile && actual === "table");
       scroll.classList.toggle("mm-cards", actual === "cards");
       scroll.classList.toggle("mm-table", actual === "table");
       toggle.querySelectorAll("button").forEach(button => button.setAttribute("aria-pressed", String(button.dataset.mmView === actual)));
-      toggle.hidden = !isMobile();
-      csvButton.hidden = isMobile() && actual !== "table";
-      if (isMobile()) localStorage.setItem(key, actual);
+      toggle.hidden = !mobile;
+      toggle.style.display = mobile ? "flex" : "";
+      csvButton.hidden = mobile && actual !== "table";
+      if (mobile) localStorage.setItem(key, actual);
     }
     toggle.querySelectorAll("button").forEach(button => button.addEventListener("click", () => { localStorage.setItem(key, button.dataset.mmView); applyView(button.dataset.mmView); }));
     window.addEventListener("resize", () => applyView(localStorage.getItem(key) || "cards"));
