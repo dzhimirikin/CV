@@ -818,6 +818,74 @@
     return "";
   }
 
+  function setupResponsiveViewAndCsv() {
+    const panel = document.getElementById("marketMonitorQuarterly");
+    const table = body.closest("table") || panel?.querySelector("table");
+    if (!panel || !table) return;
+
+    if (!document.getElementById("market-monitor-view-styles")) {
+      const style = document.createElement("style");
+      style.id = "market-monitor-view-styles";
+      style.textContent = `
+        .market-monitor-view-tools{display:flex;align-items:center;justify-content:flex-start;gap:8px;flex-wrap:wrap;margin:0 0 10px}
+        .market-monitor-view-tools .mm-csv-export{font:inherit;cursor:pointer;border:1px solid #222;background:#222;color:#fff;padding:7px 11px;border-radius:4px;width:215px;text-align:center}
+        .market-monitor-view-tools .mm-csv-export:disabled{opacity:.45;cursor:not-allowed}
+        .market-monitor-table-scroll{max-width:100%;overflow-x:auto}
+      `;
+      document.head.appendChild(style);
+    }
+
+    let scroll = table.parentElement;
+    if (!scroll.classList.contains("market-monitor-table-scroll")) {
+      const wrapper = document.createElement("div");
+      wrapper.className = "market-monitor-table-scroll";
+      table.parentNode.insertBefore(wrapper, table);
+      wrapper.appendChild(table);
+      scroll = wrapper;
+    }
+
+    const labels = {
+      ru: {csv:"Сохранить в CSV", none:"Отметьте компании для экспорта"},
+      et: {csv:"Salvesta CSV-na", none:"Märgi eksporditavad ettevõtted"},
+      en: {csv:"Save to CSV", none:"Select companies to export"}
+    }[lang];
+    const tools = document.createElement("div");
+    tools.className = "market-monitor-view-tools";
+    tools.innerHTML = `<button type="button" class="mm-csv-export">${labels.csv}</button>`;
+    scroll.parentElement.insertBefore(tools, scroll);
+    const csvButton = tools.querySelector(".mm-csv-export");
+    const raw = value => value == null ? "" : String(value);
+
+    csvButton.addEventListener("click", () => {
+      const chosen = companies.filter(company => selectedCompanies.has(companyId(company)));
+      if (!chosen.length) { window.alert(labels.none); return; }
+      const headers = [...table.querySelectorAll("thead th")].map(th => th.textContent.trim());
+      const rows = [headers];
+      chosen.forEach(company => {
+        const record = getRecord(company, Number(yearSelect.value), Number(quarterSelect.value));
+        rows.push([company.name||"",record?.period??"",record?.taxableTurnover??"",record?.projectedTurnover??"",record?.stateTaxes??"",record?.labourTaxes??"",record?.employees??"",record?.taxableTurnoverPerEmployee??"",record?.projectedLabourProductivity??"",record?.labourProductivity??"",record?.profitPerEmployee??"",record?.averageGrossWage??""].map(raw));
+      });
+      const cell = value => { const text = raw(value); return /[,;"\r\n]/u.test(text) ? `"${text.replaceAll('"','""')}"` : text; };
+      const csv = "\uFEFF" + rows.map(row => row.map(cell).join(",")).join("\r\n");
+      const url = URL.createObjectURL(new Blob([csv], {type:"text/csv;charset=utf-8;"}));
+      const link = document.createElement("a");
+      link.href = url;
+      link.download = `market-monitor-quarterly-${yearSelect.value}-Q${quarterSelect.value}.csv`;
+      document.body.appendChild(link); link.click(); link.remove(); URL.revokeObjectURL(url);
+    });
+
+    const updateExportState = event => {
+      const ids = Array.isArray(event?.detail?.selectedCompanies) ? event.detail.selectedCompanies : [...selectedCompanies];
+      csvButton.disabled = ids.length === 0;
+      csvButton.title = csvButton.disabled ? labels.none : labels.csv;
+    };
+    panel.addEventListener("change", event => {
+      if (event.target.matches(".market-company-checkbox, #marketQuarterlySelectAll")) updateExportState();
+    });
+    window.addEventListener("market-monitor-selection-change", updateExportState);
+    updateExportState();
+  }
+
   function render() {
     const year = Number(yearSelect.value);
     const quarter = Number(quarterSelect.value);
@@ -1001,6 +1069,7 @@
     summaryButton.addEventListener("click", showQuarterlySummary);
   }
 
+  setupResponsiveViewAndCsv();
   setupSelection();
   setupSharedSelectionSync();
   setupSelectionPresetButtons();
