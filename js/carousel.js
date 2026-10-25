@@ -22,9 +22,9 @@ document.addEventListener('DOMContentLoaded', () => {
   const SIDE_SCALE = 0.80;
   const FAR_SCALE = 0.65;
 
-  // Радиус 3D-карусели — оставляем прежним
+  // Радиус 3D-карусели — увеличен, чтобы сертификаты не слипались
   function getRadius() {
-    return window.innerWidth < 768 ? 300 : 420;
+    return window.innerWidth < 768 ? 360 : 500;
   }
 
   // Подготовка изображений
