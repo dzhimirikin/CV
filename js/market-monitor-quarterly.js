@@ -830,6 +830,7 @@
         .market-monitor-view-tools{display:flex;align-items:center;justify-content:flex-start;gap:8px;flex-wrap:wrap;margin:0 0 10px}
         .market-monitor-view-tools .mm-csv-export{font:inherit;cursor:pointer;border:1px solid #222;background:#222;color:#fff;padding:7px 11px;border-radius:4px;width:215px;text-align:center}
         .market-monitor-view-tools .mm-csv-export:disabled{opacity:.45;cursor:not-allowed}
+        @media (max-width:480px){.market-monitor-view-tools .mm-csv-export{width:100%;box-sizing:border-box}}
         .market-monitor-table-scroll{max-width:100%;overflow-x:auto}
       `;
       document.head.appendChild(style);
