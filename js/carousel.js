@@ -18,7 +18,7 @@ document.addEventListener('DOMContentLoaded', () => {
   let rotation = 0;
 
   // Масштаб центрального и боковых сертификатов
-  const CENTER_SCALE = 1;
+  const CENTER_SCALE = 0.90;
   const SIDE_SCALE = 0.80;
   const FAR_SCALE = 0.65;
 
