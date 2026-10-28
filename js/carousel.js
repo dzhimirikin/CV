@@ -289,38 +289,18 @@ document.addEventListener('DOMContentLoaded', () => {
   let previousBodyOverflow = '';
   let previouslyFocusedElement = null;
 
-  // Единое поведение подсветки кнопок, как в lightboxnav.js.
-  // Белый фон и чёрный символ при наведении, нажатии и фокусе.
+  // Подсветка только при наведении мыши — автоматический focus()
+  // при открытии окна не должен делать кнопку белой.
   function attachViewerButtonHighlight(button) {
-    // Сохраняем подсветку, пока кнопка наведена ИЛИ находится в фокусе.
-    // mouseleave больше не сбрасывает белый фон, если фокус остался.
-    let isHovered = false;
-    let isFocused = false;
-
-    const syncHighlight = () => {
-      const active = isHovered || isFocused;
-      button.style.backgroundColor = active ? '#fff' : 'rgba(25,25,25,.72)';
-      button.style.color = active ? '#000' : '#fff';
-    };
-
     button.addEventListener('mouseenter', () => {
-      isHovered = true;
-      syncHighlight();
+      button.style.backgroundColor = '#fff';
+      button.style.color = '#000';
     });
+
     button.addEventListener('mouseleave', () => {
-      isHovered = false;
-      syncHighlight();
+      button.style.backgroundColor = 'rgba(25,25,25,.72)';
+      button.style.color = '#fff';
     });
-    button.addEventListener('focus', () => {
-      isFocused = true;
-      syncHighlight();
-    });
-    button.addEventListener('blur', () => {
-      isFocused = false;
-      syncHighlight();
-    });
-    button.addEventListener('mousedown', syncHighlight);
-    button.addEventListener('mouseup', syncHighlight);
   }
 
   function ensureCertificateViewer() {

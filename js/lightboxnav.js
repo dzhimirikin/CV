@@ -104,6 +104,84 @@ document.addEventListener("DOMContentLoaded", () => {
         img.style.transition = "opacity 2700ms ease-in-out";
         img.style.opacity = "1";
 
+        // Масштабирование фотографии кнопками + / − в левом верхнем углу.
+        let imageZoom = 1;
+        const MIN_ZOOM = 1;
+        const MAX_ZOOM = 4;
+        const ZOOM_STEP = 0.25;
+
+        const zoomControls = document.createElement("div");
+        zoomControls.className = "lightbox-zoom-controls";
+        Object.assign(zoomControls.style, {
+            position: "absolute",
+            top: "18px",
+            left: "18px",
+            zIndex: "10002",
+            display: "flex",
+            gap: "8px"
+        });
+
+        function makeZoomButton(label, ariaLabel) {
+            const button = document.createElement("button");
+            button.type = "button";
+            button.textContent = label;
+            button.setAttribute("aria-label", ariaLabel);
+            Object.assign(button.style, {
+                width: "42px",
+                height: "42px",
+                padding: "0",
+                border: "1px solid #fff",
+                borderRadius: "50%",
+                background: "transparent",
+                color: "#fff",
+                font: "28px/1 Arial, sans-serif",
+                cursor: "pointer",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                boxSizing: "border-box",
+                transition: "background-color 0.15s ease, color 0.15s ease"
+            });
+            const activate = () => {
+                button.style.backgroundColor = "#fff";
+                button.style.color = "#000";
+            };
+            const reset = () => {
+                button.style.backgroundColor = "transparent";
+                button.style.color = "#fff";
+            };
+            button.addEventListener("mouseenter", activate);
+            button.addEventListener("mousedown", activate);
+            button.addEventListener("mouseup", reset);
+            button.addEventListener("mouseleave", reset);
+            button.addEventListener("focus", activate);
+            button.addEventListener("blur", reset);
+            return button;
+        }
+
+        const zoomInBtn = makeZoomButton("+", "Zoom in");
+        const zoomOutBtn = makeZoomButton("−", "Zoom out");
+
+        function applyZoom() {
+            img.style.transform = `scale(${imageZoom})`;
+            img.style.transformOrigin = "center center";
+            zoomInBtn.disabled = imageZoom >= MAX_ZOOM;
+            zoomOutBtn.disabled = imageZoom <= MIN_ZOOM;
+            zoomInBtn.style.opacity = zoomInBtn.disabled ? "0.45" : "1";
+            zoomOutBtn.style.opacity = zoomOutBtn.disabled ? "0.45" : "1";
+        }
+
+        zoomInBtn.addEventListener("click", () => {
+            imageZoom = Math.min(MAX_ZOOM, +(imageZoom + ZOOM_STEP).toFixed(2));
+            applyZoom();
+        });
+        zoomOutBtn.addEventListener("click", () => {
+            imageZoom = Math.max(MIN_ZOOM, +(imageZoom - ZOOM_STEP).toFixed(2));
+            applyZoom();
+        });
+        zoomControls.append(zoomInBtn, zoomOutBtn);
+        applyZoom();
+
         let slideshowTimer = null;
         let slideshowRunning = false;
 
@@ -329,6 +407,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
             // Ручное перелистывание стрелками/клавиатурой/точками — мгновенно,
             // без эффекта затемнения. Плавное растворение остаётся для слайд-шоу.
+            imageZoom = 1;
+            applyZoom();
+
             if (!useFade) {
                 img.style.transition = "none";
                 img.style.opacity = "1";
@@ -414,6 +495,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         overlay.append(
             img,
+            zoomControls,
             closeBtn,
             slideshowBtn,
             prev,
@@ -522,6 +604,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
             }
 
+            else if (e.key === "+" || e.key === "=") {
+                imageZoom = Math.min(MAX_ZOOM, +(imageZoom + ZOOM_STEP).toFixed(2));
+                applyZoom();
+            }
+            else if (e.key === "-") {
+                imageZoom = Math.max(MIN_ZOOM, +(imageZoom - ZOOM_STEP).toFixed(2));
+                applyZoom();
+            }
             else if (e.key === "Escape") {
 
                 closeLightbox();
