@@ -4001,7 +4001,7 @@ right:30px;
 
 @media (max-width: 480px) {
     #market-monitor .market-summary-action {
-        margin-top: 10px;
+        margin-top: 2px;
     }
 
     #market-monitor .market-selection-file-actions {
