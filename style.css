@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;500;600;700&display=swap');
+
 /* ============================================================
    ROOT VARIABLES
 ============================================================ */
@@ -23,7 +25,7 @@ input[type="radio"] {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: 'Raleway', Arial, Helvetica, sans-serif;
 }
 
 
@@ -4831,4 +4833,77 @@ right:30px;
     max-width: 100%;
     box-sizing: border-box;
   }
+}
+
+
+/* ============================================================
+   TYPOGRAPHY UPDATE — RALEWAY / SITE-WIDE
+   Stage 2: typography only; layout, colors and behavior unchanged
+============================================================ */
+
+/* Main section headings: light architectural style */
+h1,
+section h2,
+#gallery > .card > h2,
+.modal-content h2,
+.company-warning-box h2,
+.market-summary-window h3 {
+  font-family: 'Raleway', Arial, Helvetica, sans-serif;
+  font-weight: 300;
+}
+
+/* Keep the personal name prominent in the header */
+.logo {
+  font-family: 'Raleway', Arial, Helvetica, sans-serif;
+  font-weight: 600;
+}
+
+/* Hero name remains stronger than the light editorial headings */
+.hero h1 {
+  font-family: 'Raleway', Arial, Helvetica, sans-serif;
+  font-weight: 600;
+}
+
+/* Subheadings and project/certificate titles */
+h3,
+#skills h3,
+.project h3,
+.carousel img + h3 {
+  font-family: 'Raleway', Arial, Helvetica, sans-serif;
+  font-weight: 500;
+}
+
+/* Normal reading text */
+body,
+p,
+li,
+label,
+input,
+select,
+textarea,
+table,
+th,
+td {
+  font-family: 'Raleway', Arial, Helvetica, sans-serif;
+  font-weight: 400;
+}
+
+/* Controls and buttons: readable without looking overly heavy */
+button,
+.cv-link,
+.access-btn,
+.password-entry button[type="submit"],
+.carousel-controls button,
+.market-monitor-tab,
+.hero-cv {
+  font-family: 'Raleway', Arial, Helvetica, sans-serif;
+  font-weight: 500;
+}
+
+/* Small metadata and secondary labels stay regular */
+small,
+.caption,
+.source-note,
+.market-meta {
+  font-weight: 400;
 }
