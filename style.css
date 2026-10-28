@@ -526,7 +526,8 @@ html[lang="ru"] {
 @media (min-width: 769px) {
 
   .company-row .cv-link {
-    flex: 0 0 200px;
+    flex: 0 0 215px;
+    width: 215px;
     justify-content: center;
   }
 
