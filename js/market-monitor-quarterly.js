@@ -821,16 +821,16 @@
   function setupResponsiveViewAndCsv() {
     const panel = document.getElementById("marketMonitorQuarterly");
     const table = body.closest("table") || panel?.querySelector("table");
+    const csvButton = document.getElementById("marketQuarterlyCsvExportButton");
     if (!panel || !table) return;
 
-    if (!document.getElementById("market-monitor-view-styles")) {
-      const style = document.createElement("style");
+    // Keep only the responsive table wrapper here. The CSV button is defined in HTML
+    // and uses the shared .cv-link styling from style.css.
+    let style = document.getElementById("market-monitor-view-styles");
+    if (!style) {
+      style = document.createElement("style");
       style.id = "market-monitor-view-styles";
       style.textContent = `
-        .market-monitor-view-tools{display:flex;align-items:center;justify-content:flex-start;gap:8px;flex-wrap:wrap;margin:0 0 10px}
-        .market-monitor-view-tools .mm-csv-export{width:215px}
-        .market-monitor-view-tools .mm-csv-export:disabled{opacity:.45;cursor:not-allowed}
-        @media (max-width:480px){.market-monitor-view-tools .mm-csv-export{width:100%;box-sizing:border-box}}
         .market-monitor-table-scroll{max-width:100%;overflow-x:auto}
       `;
       document.head.appendChild(style);
@@ -845,16 +845,15 @@
       scroll = wrapper;
     }
 
+    if (!csvButton || csvButton.dataset.ready === "1") return;
+    csvButton.dataset.ready = "1";
+
     const labels = {
       ru: {csv:"Сохранить в CSV", none:"Отметьте компании для экспорта"},
       et: {csv:"Salvesta CSV-na", none:"Märgi eksporditavad ettevõtted"},
       en: {csv:"Save to CSV", none:"Select companies to export"}
     }[lang];
-    const tools = document.createElement("div");
-    tools.className = "market-monitor-view-tools";
-    tools.innerHTML = `<button type="button" class="cv-link mm-csv-export">${labels.csv}</button>`;
-    scroll.parentElement.insertBefore(tools, scroll);
-    const csvButton = tools.querySelector(".mm-csv-export");
+    csvButton.textContent = labels.csv;
     const raw = value => value == null ? "" : String(value);
 
     csvButton.addEventListener("click", () => {
