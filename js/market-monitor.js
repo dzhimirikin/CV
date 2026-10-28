@@ -403,9 +403,9 @@
 
     const lang = document.documentElement.lang || "en";
     const labels = {
-      en: ["Save to CSV", "Choose the period to export", "Save current period", "Choose a year range", "From", "To", "Download CSV", "Cancel"],
-      et: ["Salvesta CSV-na", "Vali ekspordi periood", "Salvesta praegune periood", "Vali aastate vahemik", "Alates", "Kuni", "Laadi CSV alla", "Tühista"],
-      ru: ["Сохранить в CSV", "Выберите период для экспорта", "Сохранить текущий период", "Выбрать интервал лет", "С года", "По год", "Скачать CSV", "Отмена"]
+    en: ["OK", "Choose the period to export", "Save current period", "Choose a year range", "From", "To", "Save to CSV", "Cancel"],
+    et: ["OK", "Vali ekspordi periood", "Salvesta praegune periood", "Vali aastate vahemik", "Alates", "Kuni", "Salvesta CSV-na", "Tühista"],
+    ru: ["OK", "Выберите период для экспорта", "Сохранить текущий период", "Выбрать интервал лет", "С года", "По год", "Сохранить в CSV", "Отмена"]
     }[lang] || ["Save to CSV", "Choose the period to export", "Save current period", "Choose a year range", "From", "To", "Download CSV", "Cancel"];
 
     saveButton.textContent = labels[0];
