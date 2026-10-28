@@ -828,7 +828,7 @@
       style.id = "market-monitor-view-styles";
       style.textContent = `
         .market-monitor-view-tools{display:flex;align-items:center;justify-content:flex-start;gap:8px;flex-wrap:wrap;margin:0 0 10px}
-        .market-monitor-view-tools .mm-csv-export{font:inherit;cursor:pointer;border:1px solid #222;background:#222;color:#fff;padding:7px 11px;border-radius:4px;width:215px;text-align:center}
+        .market-monitor-view-tools .mm-csv-export{width:215px}
         .market-monitor-view-tools .mm-csv-export:disabled{opacity:.45;cursor:not-allowed}
         @media (max-width:480px){.market-monitor-view-tools .mm-csv-export{width:100%;box-sizing:border-box}}
         .market-monitor-table-scroll{max-width:100%;overflow-x:auto}
@@ -852,7 +852,7 @@
     }[lang];
     const tools = document.createElement("div");
     tools.className = "market-monitor-view-tools";
-    tools.innerHTML = `<button type="button" class="mm-csv-export">${labels.csv}</button>`;
+    tools.innerHTML = `<button type="button" class="cv-link mm-csv-export">${labels.csv}</button>`;
     scroll.parentElement.insertBefore(tools, scroll);
     const csvButton = tools.querySelector(".mm-csv-export");
     const raw = value => value == null ? "" : String(value);
