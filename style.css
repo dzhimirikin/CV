@@ -442,9 +442,9 @@ nav a:hover {
     text-align: center;
     align-items: center;
     gap: 12px;
-    /* Уменьшаем верхний отступ вдвое: поднимаем фото и всю композицию */
+    /* Мобильная версия: уменьшаем верхний отступ вдвое */
     margin: 0 auto;
-    padding: 58px 20px 0;
+    padding: 29px 20px 0;
     transform: none;
   }
 
@@ -456,12 +456,13 @@ nav a:hover {
   }
 
   .hero-text {
+    height: auto;
     font-size: 16px;
     line-height: normal;
     text-align: left;
     hyphens: none;
     overflow-wrap: normal;
-    margin-top: initial;
+    margin-top: 0;
   }
 
   .hero h1 {
