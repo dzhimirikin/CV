@@ -441,7 +441,9 @@ nav a:hover {
     text-align: center;
     align-items: center;
     gap: 12px;
-    transform: translateY(-55px);
+    /* Центрируем весь блок по вертикали; без искусственного смещения */
+    margin: auto;
+    transform: none;
   }
 
   .hero-photo {
