@@ -425,7 +425,9 @@ nav a:hover {
 /* Mobile — stacked photo and text */
 @media (max-width: 768px) {
   .hero {
-    min-height: 100vh;
+    /* Дополнительная высота сохраняет место для ссылки резюме после смещения */
+    min-height: calc(100vh + 70px);
+    min-height: calc(100svh + 70px);
     margin-top: 0;
   }
 
@@ -439,6 +441,7 @@ nav a:hover {
     text-align: center;
     align-items: center;
     gap: 12px;
+    transform: translateY(-55px);
   }
 
   .hero-photo {
