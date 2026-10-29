@@ -244,10 +244,6 @@ nav a:hover {
     display: none;
   }
 
-  .hero-cv {
-    margin-top: 28px;
-    align-self: center;
-  }
 }
 
 
@@ -283,60 +279,22 @@ nav a:hover {
     flex-shrink: 0;
     font-size: 11px;
   }
-
-
-  /* HERO — компактный вариант для небольших мониторов */
-  .hero-inner {
-    max-width: 1000px;
-    gap: 20px;
-    padding-left: 24px;
-    padding-right: 24px;
-  }
-
-  .hero-photo {
-    flex: 0 0 180px;
-    width: 180px;
-    height: 180px;
-  }
-
-  .hero-text {
-    height: auto;
-    min-height: 180px;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-  }
-
-  .hero h1 {
-    font-size: 30px;
-    margin-bottom: 8px;
-  }
-
-  .hero-text p {
-    font-size: 12px;
-    line-height: 1.4;
-    text-align: left;
-  }
-
- .hero-cv {
-   font-size: 16px;
-   margin-top: auto;
- }
 }
 
 
 
 /* ============================================================
-   HERO SECTION WITH PHOTO LEFT & TEXT RIGHT
+   HERO — ОСНОВНЫЕ СТИЛИ И АДАПТАЦИЯ
+   Порядок: базовые стили → компактный desktop → mobile
 ============================================================ */
 
-/* --- Переменные для десктопа --- */
 :root {
-  --hero-height: clamp(480px, calc(100vh - var(--header-h)), 820px);  /* высота блока HERO */
-  --hero-photo-gap-top: 70px;      /* верхний отступ фото */
-  --hero-photo-gap-bottom: 20px;   /* нижний отступ фото */
+  --hero-height: clamp(480px, calc(100vh - var(--header-h)), 820px);
+  --hero-photo-gap-top: 70px;
+  --hero-photo-gap-bottom: 20px;
 }
 
+/* Базовая структура HERO — desktop */
 .hero {
   position: relative;
   overflow: hidden;
@@ -357,57 +315,50 @@ nav a:hover {
   z-index: -1;
 }
 
-.hero-overlay{
-  position:absolute;
-  inset:0;
-  background:rgba(0,0,0,0.35);
-
-  display:flex;
-  justify-content:center;
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.35);
+  display: flex;
+  justify-content: center;
 }
 
 .hero-inner {
   max-width: 1100px;
   margin: auto;
-
-  padding-top: 50px;
-  padding-bottom: 50px;
-  padding-left: 20px;
-  padding-right: 20px;
-
+  padding: 50px 20px;
   display: flex;
   gap: 40px;
   color: #fff;
   align-items: flex-start;
 }
 
-/* Фото */
 .hero-photo {
   flex: 0 0 240px;
   width: 240px;
   height: 240px;
-  object-fit:cover;
-  border:2px solid rgba(255,255,255,0.6);
-  border-radius:4px;
-  background:#ccc;
+  object-fit: cover;
+  border: 2px solid rgba(255, 255, 255, 0.6);
+  border-radius: 4px;
+  background: #ccc;
   margin-top: 0;
-  margin-bottom:var(--hero-photo-gap-bottom);
+  margin-bottom: var(--hero-photo-gap-bottom);
 }
 
-/* Текст справа от фото */
 .hero-text {
   margin-top: 0;
   flex: 1 1 0;
   min-width: 0;
   height: 240px;
-
   display: flex;
   flex-direction: column;
   align-items: flex-start;
 }
 
 .hero h1 {
+  font-family: 'Raleway', Arial, Helvetica, sans-serif;
   font-size: 36px;
+  font-weight: 600;
   margin-bottom: 10px;
   white-space: normal;
   letter-spacing: -0.5px;
@@ -417,28 +368,61 @@ nav a:hover {
   max-width: none;
   font-size: 17px;
   line-height: 1.5;
+  text-align: justify;
+  hyphens: auto;
 }
 
 .hero-cv {
+  display: inline-block;
   margin-top: auto;
+  padding: 0;
+  font: inherit;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 1.4;
+  color: #fff;
+  text-decoration: none;
+  flex-shrink: 0;
 }
 
-/* ---------------- TEXT ALIGNMENT ---------------- */
+/* Компактный desktop — небольшие мониторы */
+@media (min-width: 769px) and (max-width: 1200px) {
+  .hero-inner {
+    max-width: 1000px;
+    gap: 20px;
+    padding-left: 24px;
+    padding-right: 24px;
+  }
 
-.hero-text p {
-  text-align: justify;
-  hyphens: auto;
+  .hero-photo {
+    flex: 0 0 180px;
+    width: 180px;
+    height: 180px;
+  }
+
+  .hero-text {
+    height: auto;
+    min-height: 180px;
+  }
+
+  .hero h1 {
+    font-size: 30px;
+    margin-bottom: 8px;
+  }
+
+  .hero-text p {
+    font-size: 12px;
+    line-height: 1.4;
+    text-align: left;
+  }
+
+  .hero-cv {
+    font-size: 16px;
+    margin-top: auto;
+  }
 }
 
-.card p {
-  text-align: justify;
-  hyphens: auto;
-}
-
-
-
-
-/* ---------------- HERO MOBILE ---------------- */
+/* Mobile — stacked photo and text */
 @media (max-width: 768px) {
   .hero {
     min-height: 100vh;
@@ -454,42 +438,7 @@ nav a:hover {
     flex-direction: column;
     text-align: center;
     align-items: center;
-    gap: 12px; /* уменьшаем зазор между фото и именем */
-  }
-
-  /* Имя по центру — размер как в старой мобильной версии */
-  .hero h1 {
-    font-size: 28px;
-    line-height: 1.15;
-    letter-spacing: -0.8px; /* слегка сужаем буквы только на мобильных */
-    text-align: center;
-    width: 100%;
-    margin-bottom: 18px;
-  }
-
-  /* Основной текст — размер как в старой мобильной версии */
-  .hero-text {
-    font-size: 16px;
-    line-height: normal;
-    text-align: left;
-    hyphens: none;
-    overflow-wrap: normal;
-  }
-
-  .hero-text p {
-    font-size: 16px;
-    line-height: normal;
-  }
-
-  /* Ссылка на скачивание резюме */
-  .hero-cv {
-    margin-top: 20px;
-    align-self: center;
-  }
-
-  .hero::before {
-    animation: none;
-    transform: scale(1);
+    gap: 12px;
   }
 
   .hero-photo {
@@ -499,13 +448,42 @@ nav a:hover {
     margin: 0 auto 12px;
   }
 
-  .hero-photo,
   .hero-text {
+    font-size: 16px;
+    line-height: normal;
+    text-align: left;
+    hyphens: none;
+    overflow-wrap: normal;
     margin-top: initial;
+  }
+
+  .hero h1 {
+    width: 100%;
+    margin-bottom: 18px;
+    text-align: center;
+    white-space: nowrap;
+    font-size: clamp(24px, 6.2vw, 32px);
+    line-height: 1.15;
+    letter-spacing: -1px;
+  }
+
+  .hero-text p {
+    font-size: 16px;
+    line-height: normal;
+    text-align: left;
+  }
+
+  .hero-cv {
+    margin-top: 28px;
+    align-self: center;
+  }
+
+  .hero::before {
+    animation: none;
+    transform: scale(1);
   }
 }
 
-/* ---------------- REDUCED MOTION ---------------- */
 @media (prefers-reduced-motion: reduce) {
   .hero::before {
     animation: none;
@@ -513,6 +491,17 @@ nav a:hover {
   }
 }
 
+/* Hover for the HERO CV link */
+.logo:hover,
+.hero-cv:hover {
+  text-decoration: underline;
+}
+
+/* Keep paragraph justification for cards outside HERO */
+.card p {
+  text-align: justify;
+  hyphens: auto;
+}
 
 
 /* ============================================================
@@ -561,44 +550,6 @@ section h3 {
 
 #about p + p {
   margin-top: 0.65em;
-}
-
-
-/* ============================================================
-   HERO LINK STYLE
-============================================================ */
-
-/* языковые отступы */
-html[lang="en"] {
-  --hero-cv-gap: 60px;
-}
-
-html[lang="et"] {
-  --hero-cv-gap: 60px;
-}
-
-html[lang="ru"] {
-  --hero-cv-gap: 60px;
-}
-
-.hero-cv {
-  display: inline-block;
-  margin-top: auto;
-  padding: 0;
-
-  font: inherit;
-  font-weight: bold;
-  font-size: 18px;
-  line-height: 1.4;
-  color: #fff;
-  text-decoration: none;
-  flex-shrink: 0;
-}
-
-/* общий hover как у логотипа */
-.logo:hover,
-.hero-cv:hover {
-  text-decoration: underline;
 }
 
 
@@ -4988,12 +4939,6 @@ section h2,
   font-weight: 600;
 }
 
-/* Hero name remains stronger than the light editorial headings */
-.hero h1 {
-  font-family: 'Raleway', Arial, Helvetica, sans-serif;
-  font-weight: 600;
-}
-
 /* Subheadings and project/certificate titles */
 h3,
 #skills h3,
@@ -5038,21 +4983,4 @@ small,
   font-weight: 400;
 }
 
-/* HERO — Отступ перед ссылкой на мобильных устройствах */
-@media (max-width: 768px) {
-  .hero-cv {
-    margin-top: 28px;
-    align-self: center;
-  }
-}
-
-/* HERO — имя и фамилия в одну строку на мобильных */
-@media (max-width: 768px) {
-  .hero h1 {
-    white-space: nowrap;
-    font-size: clamp(24px, 6.2vw, 32px);
-    letter-spacing: -1px;
-    line-height: 1.15;
-  }
-}
 
