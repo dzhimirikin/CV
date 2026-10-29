@@ -431,7 +431,7 @@ nav a:hover {
 
   .hero-overlay {
     flex-direction: column;
-    padding: 14px 20px 32px; /* фото и текст на 10px выше на мобильных */
+    padding: 10px 20px 28px; /* фото и текст на 10px выше на мобильных */
   }
 
   .hero-inner {
