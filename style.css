@@ -333,8 +333,10 @@ nav a:hover {
   letter-spacing: -0.5px;
 }
 
-.hero p {
+.hero-text p {
   max-width: none;
+  font-size: 17px;
+  line-height: 1.5;
 }
 
 /* ---------------- TEXT ALIGNMENT ---------------- */
