@@ -243,7 +243,87 @@ nav a:hover {
   nav ul:not(#menu) {
     display: none;
   }
+
+  .hero-cv {
+    margin-top: 28px;
+    align-self: center;
+  }
 }
+
+
+/* ============================================================
+   COMPACT DESKTOP — небольшие мониторы
+============================================================ */
+@media (min-width: 769px) and (max-width: 1200px) {
+
+  /* Шапка */
+  .header-inner {
+    padding: 10px 14px;
+    gap: 12px;
+  }
+
+  /* Название сайта */
+  .logo {
+    flex-shrink: 0;
+    font-size: 15px;
+  }
+
+  /* Горизонтальное меню */
+  nav ul {
+    gap: 10px;
+  }
+
+  nav a {
+    font-size: 12px;
+    white-space: nowrap;
+  }
+
+  /* Переключатель языков */
+  .lang {
+    flex-shrink: 0;
+    font-size: 11px;
+  }
+
+
+  /* HERO — компактный вариант для небольших мониторов */
+  .hero-inner {
+    max-width: 1000px;
+    gap: 20px;
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+
+  .hero-photo {
+    flex: 0 0 180px;
+    width: 180px;
+    height: 180px;
+  }
+
+  .hero-text {
+    height: auto;
+    min-height: 180px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .hero h1 {
+    font-size: 30px;
+    margin-bottom: 8px;
+  }
+
+  .hero-text p {
+    font-size: 12px;
+    line-height: 1.4;
+    text-align: left;
+  }
+
+ .hero-cv {
+   font-size: 16px;
+   margin-top: auto;
+ }
+}
+
 
 
 /* ============================================================
@@ -339,6 +419,10 @@ nav a:hover {
   line-height: 1.5;
 }
 
+.hero-cv {
+  margin-top: auto;
+}
+
 /* ---------------- TEXT ALIGNMENT ---------------- */
 
 .hero-text p {
@@ -369,6 +453,18 @@ nav a:hover {
     flex-direction: column;
     text-align: center;
     align-items: center;
+  }
+
+  /* Имя по центру */
+  .hero h1 {
+    text-align: center;
+    width: 100%;
+  }
+
+  /* Ссылка на скачивание резюме */
+  .hero-cv {
+    margin-top: 28px;
+    align-self: center;
   }
 
   .hero::before {
@@ -461,13 +557,15 @@ html[lang="ru"] {
 .hero-cv {
   display: inline-block;
   margin-top: auto;
-  padding-top: var(--hero-cv-gap, 43px);
+  padding: 0;
 
   font: inherit;
   font-weight: bold;
   font-size: 18px;
+  line-height: 1.4;
   color: #fff;
   text-decoration: none;
+  flex-shrink: 0;
 }
 
 /* общий hover как у логотипа */
@@ -4911,4 +5009,12 @@ small,
 .source-note,
 .market-meta {
   font-weight: 400;
+}
+
+/* Отступ перед ссылкой на мобильных устройствах */
+@media (max-width: 768px) {
+  .hero-cv {
+    margin-top: 28px;
+    align-self: center;
+  }
 }
