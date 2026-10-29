@@ -437,6 +437,7 @@ nav a:hover {
 
 
 
+
 /* ---------------- HERO MOBILE ---------------- */
 @media (max-width: 768px) {
   .hero {
@@ -446,7 +447,7 @@ nav a:hover {
 
   .hero-overlay {
     flex-direction: column;
-    padding: 40px 20px;
+    padding: 24px 20px 32px;
   }
 
   .hero-inner {
@@ -457,13 +458,25 @@ nav a:hover {
 
   /* Имя по центру */
   .hero h1 {
+    font-size: 36px;
+    line-height: 1.15;
     text-align: center;
     width: 100%;
+    margin-bottom: 18px;
+  }
+
+  /* Основной текст */
+  .hero-text {
+    font-size: 18px;
+    line-height: 1.5;
+    text-align: left;
+    hyphens: none;
+    overflow-wrap: normal;
   }
 
   /* Ссылка на скачивание резюме */
   .hero-cv {
-    margin-top: 28px;
+    margin-top: 20px;
     align-self: center;
   }
 
@@ -472,10 +485,16 @@ nav a:hover {
     transform: scale(1);
   }
 
+  .hero-photo {
+    width: 82%;
+    max-width: 320px;
+    height: auto;
+    margin: 0 auto 24px;
+  }
+
   .hero-photo,
   .hero-text {
     margin-top: initial;
-    margin-bottom: initial;
   }
 }
 
@@ -486,6 +505,7 @@ nav a:hover {
     transform: scale(1.08);
   }
 }
+
 
 
 /* ============================================================
