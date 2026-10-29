@@ -454,12 +454,14 @@ nav a:hover {
     flex-direction: column;
     text-align: center;
     align-items: center;
+    gap: 12px; /* уменьшаем зазор между фото и именем */
   }
 
   /* Имя по центру — размер как в старой мобильной версии */
   .hero h1 {
     font-size: 28px;
     line-height: 1.15;
+    letter-spacing: -0.8px; /* слегка сужаем буквы только на мобильных */
     text-align: center;
     width: 100%;
     margin-bottom: 18px;
@@ -494,7 +496,7 @@ nav a:hover {
     width: 82%;
     max-width: 320px;
     height: auto;
-    margin: 0 auto 24px;
+    margin: 0 auto 12px;
   }
 
   .hero-photo,
