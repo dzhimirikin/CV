@@ -65,7 +65,7 @@ body {
 .password-entry button[type="submit"],
 .carousel-controls button {
   display: flex;               /* flex для вертикального центрирования текста */
-  align-items: center;         /* центр по вертикали */
+  align-items: flex-start;     
   justify-content: center;     /* центр по горизонтали */
   height: 42px;                /* фиксированная высота */
   padding: 0 20px;             /* только горизонтальный padding */
@@ -252,7 +252,7 @@ nav a:hover {
 
 /* --- Переменные для десктопа --- */
 :root {
-  --hero-height: 300px;            /* высота блока HERO */
+  --hero-height: clamp(480px, calc(100vh - var(--header-h)), 820px);  /* высота блока HERO */
   --hero-photo-gap-top: 70px;      /* верхний отступ фото */
   --hero-photo-gap-bottom: 20px;   /* нижний отступ фото */
 }
@@ -260,7 +260,8 @@ nav a:hover {
 .hero {
   position: relative;
   overflow: hidden;
-  min-height: var(--hero-height);
+  min-height: calc(100vh - var(--header-h));
+  min-height: calc(100svh - var(--header-h));
 }
 
 .hero::before {
@@ -272,8 +273,7 @@ nav a:hover {
   background: url("hero.jpg") center center no-repeat;
   background-size: cover;
   transform: scale(1);
-  animation: heroZoom 8s ease-in-out infinite alternate;
-  will-change: transform;
+  animation: none;
   z-index: -1;
 }
 
@@ -303,27 +303,33 @@ nav a:hover {
 
 /* Фото */
 .hero-photo {
-  flex:0 0 200px;
-  width:200px;
-  height:200px;
+  flex: 0 0 240px;
+  width: 240px;
+  height: 240px;
   object-fit:cover;
   border:2px solid rgba(255,255,255,0.6);
   border-radius:4px;
   background:#ccc;
-  margin-top:var(--hero-photo-gap-top);
+  margin-top: 0;
   margin-bottom:var(--hero-photo-gap-bottom);
 }
 
 /* Текст справа от фото */
 .hero-text {
-  margin-top: var(--hero-photo-gap-top); /* выравнивание по верхнему краю фото */
-  flex: 1; /* занимает всё свободное место до правой границы */
+  margin-top: 0;
+  flex: 1 1 0;
+  min-width: 0;
+  height: 240px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
 }
 
 .hero h1 {
-  font-size: 28px;
+  font-size: 36px;
   margin-bottom: 10px;
-  white-space: nowrap;
+  white-space: normal;
   letter-spacing: -0.5px;
 }
 
@@ -345,12 +351,6 @@ nav a:hover {
 
 
 
-/* Анимация фона */
-@keyframes heroZoom {
-  from { transform: scale(1) translate(0,0); }
-  to { transform: scale(1.22) translate(-4%,-4%); }
-}
-
 /* ---------------- HERO MOBILE ---------------- */
 @media (max-width: 768px) {
   .hero {
@@ -370,7 +370,8 @@ nav a:hover {
   }
 
   .hero::before {
-    animation: heroZoom 10s ease-in-out infinite alternate;
+    animation: none;
+    transform: scale(1);
   }
 
   .hero-photo,
@@ -457,7 +458,8 @@ html[lang="ru"] {
 
 .hero-cv {
   display: inline-block;
-  margin-top: var(--hero-cv-gap, 43px); /* регулируемый зазор */
+  margin-top: auto;
+  padding-top: var(--hero-cv-gap, 43px);
 
   font: inherit;
   font-weight: bold;
