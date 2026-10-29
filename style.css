@@ -434,6 +434,7 @@ nav a:hover {
 
   .hero-overlay {
     flex-direction: column;
+    justify-content: flex-start; /* фиксируем начало композиции независимо от высоты текста */
     padding: 10px 20px 38px; /* фото и текст на 10px выше на мобильных */
   }
 
@@ -442,9 +443,9 @@ nav a:hover {
     text-align: center;
     align-items: center;
     gap: 12px;
-    /* Мобильная версия: уменьшаем верхний отступ вдвое */
+    /* Уменьшаем верхний отступ вдвое: поднимаем фото и всю композицию */
     margin: 0 auto;
-    padding: 29px 20px 0;
+    padding: 58px 20px 0;
     transform: none;
   }
 
@@ -457,6 +458,7 @@ nav a:hover {
 
   .hero-text {
     height: auto;
+    min-height: 0;
     font-size: 16px;
     line-height: normal;
     text-align: left;
