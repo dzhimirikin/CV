@@ -425,9 +425,10 @@ nav a:hover {
 /* Mobile — stacked photo and text */
 @media (max-width: 768px) {
   .hero {
-    /* Дополнительная высота сохраняет место для ссылки резюме после смещения */
-    min-height: calc(100vh + 70px);
-    min-height: calc(100svh + 70px);
+    /* Русская версия — эталон: сохраняем положение фото и добавляем место снизу,
+       чтобы зазоры вокруг всей композиции были примерно равными. */
+    min-height: calc(100vh + 130px);
+    min-height: calc(100svh + 130px);
     margin-top: 0;
   }
 
@@ -441,8 +442,9 @@ nav a:hover {
     text-align: center;
     align-items: center;
     gap: 12px;
-    /* Центрируем весь блок по вертикали; без искусственного смещения */
-    margin: auto;
+    /* Верхнее положение фото одинаково на всех языках */
+    margin: 0 auto;
+    padding: 50px 20px 0;
     transform: none;
   }
 
