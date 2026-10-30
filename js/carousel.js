@@ -93,7 +93,8 @@ document.addEventListener('DOMContentLoaded', () => {
         pointer-events: none;
         z-index: 1;
         transform: translateY(-50%);
-        transition: transform 240ms cubic-bezier(0.2, 0.8, 0.2, 1);
+        width: 22px;
+        will-change: transform, width;
       }
       #certificates .certificate-dot {
         position: relative;
@@ -189,8 +190,89 @@ document.addEventListener('DOMContentLoaded', () => {
     updateCarousel();
   }
 
+  // Двухфазная анимация овала: сначала к новой позиции движется одна
+  // граница, затем вторая граница догоняет её и возвращает овалу обычную ширину.
+  let dotPillAnimation = null;
+
+  function getBasePillWidth() {
+    return window.matchMedia('(max-width: 600px)').matches ? 18 : 22;
+  }
+
+  function getPillPosition(dot) {
+    const baseWidth = getBasePillWidth();
+    return dot.offsetLeft + (dot.offsetWidth - baseWidth) / 2;
+  }
+
+  function animateDotPill(previousIndex, nextIndex) {
+    const activeDot = dotButtons[nextIndex];
+    if (!activeDot) return;
+
+    const baseWidth = getBasePillWidth();
+    const targetX = activeDot.offsetLeft + (activeDot.offsetWidth - baseWidth) / 2;
+    const dotsRect = dots.getBoundingClientRect();
+    const currentRect = dotPill.getBoundingClientRect();
+    const fromX = currentRect.left - dotsRect.left;
+    const fromWidth = currentRect.width;
+
+    if (dotPillAnimation) {
+      dotPillAnimation.cancel();
+      dotPillAnimation = null;
+    }
+
+    if (previousIndex === nextIndex || !Number.isFinite(fromX) || !fromWidth) {
+      dotPill.style.width = `${baseWidth}px`;
+      dotPill.style.transform = `translate(${targetX}px, -50%)`;
+      return;
+    }
+
+    const movingRight = targetX >= fromX;
+    const stretchedWidth = movingRight
+      ? targetX + baseWidth - fromX
+      : fromX + fromWidth - targetX;
+
+    const start = {
+      transform: `translate(${fromX}px, -50%)`,
+      width: `${fromWidth}px`
+    };
+    const middle = movingRight
+      ? {
+          transform: `translate(${fromX}px, -50%)`,
+          width: `${stretchedWidth}px`
+        }
+      : {
+          transform: `translate(${targetX}px, -50%)`,
+          width: `${stretchedWidth}px`
+        };
+    const finish = {
+      transform: `translate(${targetX}px, -50%)`,
+      width: `${baseWidth}px`
+    };
+
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      dotPill.style.width = finish.width;
+      dotPill.style.transform = finish.transform;
+      return;
+    }
+
+    dotPillAnimation = dotPill.animate(
+      [
+        { ...start, offset: 0, easing: 'cubic-bezier(0.22, 1, 0.36, 1)' },
+        { ...middle, offset: 0.52, easing: 'cubic-bezier(0.22, 1, 0.36, 1)' },
+        { ...finish, offset: 1 }
+      ],
+      { duration: 560, fill: 'forwards' }
+    );
+
+    dotPillAnimation.onfinish = () => {
+      dotPill.style.width = finish.width;
+      dotPill.style.transform = finish.transform;
+      dotPillAnimation.cancel();
+      dotPillAnimation = null;
+    };
+  }
+
   // Обновление поворота, точек и заголовка
-  function updateCarousel() {
+  function updateCarousel(previousIndex = null) {
     carousel.style.transform = `rotateY(${rotation}deg)`;
 
     dotButtons.forEach((dot, index) => {
@@ -204,8 +286,13 @@ document.addEventListener('DOMContentLoaded', () => {
     carouselCounter.textContent = `${currentIndex + 1} / ${count}`;
     const activeDot = dotButtons[currentIndex];
     if (activeDot) {
-      const pillX = activeDot.offsetLeft + (activeDot.offsetWidth - dotPill.offsetWidth) / 2;
-      dotPill.style.transform = `translate(${pillX}px, -50%)`;
+      if (previousIndex !== null && previousIndex !== currentIndex) {
+        animateDotPill(previousIndex, currentIndex);
+      } else {
+        const pillX = getPillPosition(activeDot);
+        dotPill.style.width = `${getBasePillWidth()}px`;
+        dotPill.style.transform = `translate(${pillX}px, -50%)`;
+      }
     }
 
     const currentTitle = document.getElementById(
@@ -261,10 +348,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Переход к определённому сертификату
   function goToCertificate(index) {
+    const previousIndex = currentIndex;
     currentIndex = (index + count) % count;
     rotation = -currentIndex * angle;
 
-    updateCarousel();
+    updateCarousel(previousIndex);
   }
 
   // Совместимость с существующими кнопками-стрелками
@@ -381,7 +469,7 @@ document.addEventListener('DOMContentLoaded', () => {
         background: #fff;
         pointer-events: none;
         z-index: 1;
-        transition: transform 240ms cubic-bezier(0.2, 0.8, 0.2, 1);
+        will-change: transform, width;
       }
       .certificate-viewer-dot {
         position: relative;
@@ -539,23 +627,135 @@ document.addEventListener('DOMContentLoaded', () => {
     viewerDots.hidden = viewerPages.length < 2;
   }
 
-  function showViewerPage(index) {
+  // Двухфазная анимация овала в навигации многостраничного сертификата.
+  // Сначала одна граница растягивает овал до новой страницы,
+  // затем вторая граница догоняет её и возвращает исходную ширину.
+  let viewerDotPillAnimation = null;
+
+  function getViewerPillBaseWidth() {
+    return window.matchMedia('(max-width: 600px)').matches ? 18 : 22;
+  }
+
+  function getViewerPillX(dot) {
+    const baseWidth = getViewerPillBaseWidth();
+    return dot.offsetLeft + (dot.offsetWidth - baseWidth) / 2;
+  }
+
+  function resetViewerDotPillAnimation() {
+    if (viewerDotPillAnimation) {
+      viewerDotPillAnimation.cancel();
+      viewerDotPillAnimation = null;
+    }
+  }
+
+  function animateViewerDotPill(previousIndex, nextIndex) {
+    const activeDot = viewerDotButtons[nextIndex];
+    if (!activeDot || !viewerDotPill || !viewerDots) return;
+
+    const baseWidth = getViewerPillBaseWidth();
+    const dotsRect = viewerDots.getBoundingClientRect();
+    const pillRect = viewerDotPill.getBoundingClientRect();
+
+    // Считываем фактическое положение до отмены предыдущей анимации:
+    // это позволяет корректно обрабатывать быстрые повторные нажатия.
+    const fromX = pillRect.left - dotsRect.left;
+    const fromWidth = pillRect.width || baseWidth;
+    const targetX = getViewerPillX(activeDot);
+
+    resetViewerDotPillAnimation();
+
+    const finish = {
+      transform: `translateX(${targetX}px)`,
+      width: `${baseWidth}px`
+    };
+
+    if (previousIndex === nextIndex ||
+        !Number.isFinite(fromX) ||
+        !fromWidth ||
+        Math.abs(targetX - fromX) < 0.5) {
+      viewerDotPill.style.width = finish.width;
+      viewerDotPill.style.transform = finish.transform;
+      return;
+    }
+
+    const movingRight = targetX > fromX;
+    const stretchedWidth = movingRight
+      ? targetX + baseWidth - fromX
+      : fromX + fromWidth - targetX;
+
+    const start = {
+      transform: `translateX(${fromX}px)`,
+      width: `${fromWidth}px`
+    };
+
+    // Вправо сначала фиксируется левая граница,
+    // влево — правая граница.
+    const middle = movingRight
+      ? {
+          transform: `translateX(${fromX}px)`,
+          width: `${stretchedWidth}px`
+        }
+      : {
+          transform: `translateX(${targetX}px)`,
+          width: `${stretchedWidth}px`
+        };
+
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      viewerDotPill.style.width = finish.width;
+      viewerDotPill.style.transform = finish.transform;
+      return;
+    }
+
+    viewerDotPillAnimation = viewerDotPill.animate(
+      [
+        { ...start, offset: 0, easing: 'cubic-bezier(0.22, 1, 0.36, 1)' },
+        { ...middle, offset: 0.52, easing: 'cubic-bezier(0.22, 1, 0.36, 1)' },
+        { ...finish, offset: 1 }
+      ],
+      {
+        duration: 560,
+        fill: 'forwards'
+      }
+    );
+
+    viewerDotPillAnimation.onfinish = () => {
+      viewerDotPill.style.width = finish.width;
+      viewerDotPill.style.transform = finish.transform;
+      viewerDotPillAnimation.cancel();
+      viewerDotPillAnimation = null;
+    };
+  }
+
+  function showViewerPage(index, animatePill = true) {
     if (!viewerPages.length) return;
+
+    const previousIndex = viewerPageIndex;
     viewerPageIndex = Math.max(0, Math.min(index, viewerPages.length - 1));
+
     viewerImage.src = viewerPages[viewerPageIndex];
     viewerPrevButton.hidden = viewerPages.length < 2;
     viewerNextButton.hidden = viewerPages.length < 2;
     viewerCounter.hidden = viewerPages.length < 2;
     viewerCounter.textContent = `${viewerPageIndex + 1} / ${viewerPages.length}`;
+
     viewerDotButtons.forEach((dot, dotIndex) => {
       if (dotIndex === viewerPageIndex) dot.setAttribute('aria-current', 'true');
       else dot.removeAttribute('aria-current');
     });
+
     if (viewerDotPill) {
-      const activeDot = viewerDotButtons[viewerPageIndex];
-      const pillX = activeDot.offsetLeft + (activeDot.offsetWidth - viewerDotPill.offsetWidth) / 2;
-      viewerDotPill.style.transform = `translateX(${pillX}px)`;
+      if (animatePill && previousIndex !== viewerPageIndex) {
+        animateViewerDotPill(previousIndex, viewerPageIndex);
+      } else {
+        resetViewerDotPillAnimation();
+        const activeDot = viewerDotButtons[viewerPageIndex];
+        if (activeDot) {
+          viewerDotPill.style.width = `${getViewerPillBaseWidth()}px`;
+          viewerDotPill.style.transform = `translateX(${getViewerPillX(activeDot)}px)`;
+        }
+      }
     }
+
     viewerPrevButton.disabled = viewerPageIndex === 0;
     viewerNextButton.disabled = viewerPageIndex === viewerPages.length - 1;
     // Нециклическая навигация по страницам документа.
@@ -573,7 +773,7 @@ document.addEventListener('DOMContentLoaded', () => {
     previousBodyOverflow = document.body.style.overflow;
     certificateViewer.hidden = false;
     document.body.style.overflow = 'hidden';
-    showViewerPage(0);
+    showViewerPage(0, false);
     closeViewerButton.focus();
   }
 
@@ -581,6 +781,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!certificateViewer || certificateViewer.hidden) return;
     certificateViewer.hidden = true;
     viewerImage.removeAttribute('src');
+    resetViewerDotPillAnimation();
     viewerPages = [];
     viewerDots.replaceChildren();
     viewerDotButtons = [];

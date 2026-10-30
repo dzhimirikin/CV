@@ -378,7 +378,7 @@ document.addEventListener("DOMContentLoaded", () => {
             width: window.innerWidth <= 600 ? "18px" : "22px",
             height: window.innerWidth <= 600 ? "10px" : "14px", borderRadius: "999px",
             background: "#fff", pointerEvents: "none",
-            transition: "transform 240ms cubic-bezier(0.2, 0.8, 0.2, 1)",
+            willChange: "transform, width",
             zIndex: "1"
         });
 
@@ -467,9 +467,10 @@ document.addEventListener("DOMContentLoaded", () => {
                 zIndex: "2"
             });
             dot.addEventListener("click", () => {
+                const previousIndex = currentIndex;
                 currentIndex = index;
                 changeImage(galleryLinks[currentIndex].href, false);
-                updateDots();
+                updateDots(previousIndex);
                 updateCounter();
             });
             dots.appendChild(dot);
@@ -478,15 +479,117 @@ document.addEventListener("DOMContentLoaded", () => {
 
         dots.prepend(activeDotPill);
 
-        function updateDots() {
+        let activeDotPillAnimation = null;
+
+        function getActivePillX(dot) {
+            return dot.offsetLeft + (dot.offsetWidth - activeDotPill.offsetWidth) / 2;
+        }
+
+        // Двухфазное перемещение активного овала:
+        // сначала одна граница растягивает его к новой точке,
+        // затем вторая граница догоняет и возвращает исходную ширину.
+        function animateActiveDotPill(previousIndex, nextIndex) {
+            const activeDot = dotButtons[nextIndex];
+            if (!activeDot) return;
+
+            const baseWidth = window.innerWidth <= 600 ? 18 : 22;
+            const dotsRect = dots.getBoundingClientRect();
+            const pillRect = activeDotPill.getBoundingClientRect();
+            const fromX = pillRect.left - dotsRect.left;
+            const fromWidth = pillRect.width || baseWidth;
+            const targetX = getActivePillX(activeDot);
+
+            if (activeDotPillAnimation) {
+                activeDotPillAnimation.cancel();
+                activeDotPillAnimation = null;
+            }
+
+            const finish = {
+                transform: `translateX(${targetX}px)`,
+                width: `${baseWidth}px`
+            };
+
+            if (previousIndex === nextIndex ||
+                !Number.isFinite(fromX) ||
+                Math.abs(targetX - fromX) < 0.5) {
+                activeDotPillPillReset();
+                activeDotPill.style.transform = finish.transform;
+                activeDotPill.style.width = finish.width;
+                return;
+            }
+
+            const movingRight = targetX > fromX;
+            const stretchedWidth = movingRight
+                ? targetX + baseWidth - fromX
+                : fromX + fromWidth - targetX;
+
+            const start = {
+                transform: `translateX(${fromX}px)`,
+                width: `${fromWidth}px`
+            };
+
+            // При движении вправо фиксируется левая граница,
+            // при движении влево — правая.
+            const middle = movingRight
+                ? {
+                    transform: `translateX(${fromX}px)`,
+                    width: `${stretchedWidth}px`
+                }
+                : {
+                    transform: `translateX(${targetX}px)`,
+                    width: `${stretchedWidth}px`
+                };
+
+            if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+                activeDotPill.style.transform = finish.transform;
+                activeDotPill.style.width = finish.width;
+                return;
+            }
+
+            activeDotPillAnimation = activeDotPill.animate(
+                [
+                    { ...start, offset: 0, easing: "cubic-bezier(0.22, 1, 0.36, 1)" },
+                    { ...middle, offset: 0.52, easing: "cubic-bezier(0.22, 1, 0.36, 1)" },
+                    { ...finish, offset: 1 }
+                ],
+                {
+                    duration: 560,
+                    fill: "forwards"
+                }
+            );
+
+            activeDotPillAnimation.onfinish = () => {
+                activeDotPill.style.transform = finish.transform;
+                activeDotPill.style.width = finish.width;
+                activeDotPillAnimation.cancel();
+                activeDotPillAnimation = null;
+            };
+        }
+
+        function activeDotPillPillReset() {
+            if (activeDotPillAnimation) {
+                activeDotPillAnimation.cancel();
+                activeDotPillAnimation = null;
+            }
+        }
+
+        function updateDots(previousIndex = null) {
             dotButtons.forEach((dot, index) => {
                 const active = index === currentIndex;
                 dot.style.opacity = active ? "1" : "0.75";
                 dot.setAttribute("aria-current", active ? "true" : "false");
             });
+
             const activeDot = dotButtons[currentIndex];
-            const pillX = activeDot.offsetLeft + (activeDot.offsetWidth - activeDotPill.offsetWidth) / 2;
-            activeDotPill.style.transform = `translateX(${pillX}px)`;
+            if (!activeDot) return;
+
+            if (previousIndex !== null && previousIndex !== currentIndex) {
+                animateActiveDotPill(previousIndex, currentIndex);
+            } else {
+                activeDotPillPillReset();
+                activeDotPill.style.width = `${window.innerWidth <= 600 ? 18 : 22}px`;
+                activeDotPill.style.transform = `translateX(${getActivePillX(activeDot)}px)`;
+            }
         }
 
         function updateCounter() {
@@ -516,12 +619,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
             if (!galleryLinks.length) return;
 
+            const previousIndex = currentIndex;
             currentIndex =
                 (currentIndex - 1 + galleryLinks.length)
                 % galleryLinks.length;
 
             changeImage(galleryLinks[currentIndex].href, false);
-            updateDots();
+            updateDots(previousIndex);
             updateCounter();
         }
 
@@ -530,12 +634,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
             if (!galleryLinks.length) return;
 
+            const previousIndex = currentIndex;
             currentIndex =
                 (currentIndex + 1)
                 % galleryLinks.length;
 
             changeImage(galleryLinks[currentIndex].href, useFade);
-            updateDots();
+            updateDots(previousIndex);
             updateCounter();
         }
 
