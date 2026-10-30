@@ -836,12 +836,27 @@ section h3 {
 
 
 /* заполнение бара */
-.skill-progress{
-  height:100%;
-  width:0;
-  background:#2c3640;
-  border-radius:6px;
-  transition:width 1.2s ease;
+.skill-progress {
+    position: relative;
+    height: 100%;
+    width: 0;
+    background: #2c3640;
+    border-radius: 6px;
+    transition: width 1.2s ease;
+}
+
+/* тонкая белая линия по центру */
+.skill-progress::after {
+    content: "";
+    position: absolute;
+    left: 8px;
+    right: 8px;
+    top: 50%;
+    height: 1px;
+    background: rgba(255, 255, 255, 0.75);
+    transform: translateY(-50%);
+    border-radius: 2px;
+    pointer-events: none;
 }
 
 
