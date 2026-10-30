@@ -23,7 +23,7 @@ jobs:
           import os
           import subprocess
 
-          folder = "CV/MarketMonitor/archive"
+          folder = "MarketMonitor/archive"
 
           files = []
 
@@ -60,7 +60,7 @@ jobs:
 
       - name: Commit changes
         run: |
-          git add -A CV/MarketMonitor/archive
+          git add -A MarketMonitor/archive
 
           if git diff --cached --quiet; then
             echo "No cleanup required"
