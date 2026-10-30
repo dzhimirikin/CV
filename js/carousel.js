@@ -440,6 +440,21 @@ document.addEventListener('DOMContentLoaded', () => {
         box-sizing: border-box;
         transition: background-color 0.15s ease, color 0.15s ease;
       }
+      /* Треугольники вместо текстовых символов; геометрия кнопок не меняется. */
+      .certificate-viewer-nav::before {
+        content: "";
+        display: block;
+        width: 12px;
+        height: 16px;
+        background: currentColor;
+        flex: 0 0 auto;
+      }
+      .certificate-viewer-prev::before {
+        clip-path: polygon(0 50%, 100% 0, 100% 100%);
+      }
+      .certificate-viewer-next::before {
+        clip-path: polygon(0 0, 100% 50%, 0 100%);
+      }
       .certificate-viewer-prev { left: 22px; }
       .certificate-viewer-next { right: 22px; }
       .certificate-viewer-nav:hover {
@@ -564,7 +579,7 @@ document.addEventListener('DOMContentLoaded', () => {
     viewerPrevButton.type = 'button';
     viewerPrevButton.className = 'certificate-viewer-nav certificate-viewer-prev';
     viewerPrevButton.setAttribute('aria-label', 'Previous certificate page');
-    viewerPrevButton.textContent = '‹';
+    viewerPrevButton.textContent = '';
     viewerPrevButton.hidden = true;
     attachViewerButtonHighlight(viewerPrevButton);
     viewerPrevButton.addEventListener('click', () => showViewerPage(viewerPageIndex - 1));
@@ -573,7 +588,7 @@ document.addEventListener('DOMContentLoaded', () => {
     viewerNextButton.type = 'button';
     viewerNextButton.className = 'certificate-viewer-nav certificate-viewer-next';
     viewerNextButton.setAttribute('aria-label', 'Next certificate page');
-    viewerNextButton.textContent = '›';
+    viewerNextButton.textContent = '';
     viewerNextButton.hidden = true;
     attachViewerButtonHighlight(viewerNextButton);
     viewerNextButton.addEventListener('click', () => showViewerPage(viewerPageIndex + 1));

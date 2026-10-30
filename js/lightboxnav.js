@@ -70,6 +70,24 @@ document.addEventListener("DOMContentLoaded", () => {
             style.textContent = `
                 .lightbox-prev[hidden],
                 .lightbox-next[hidden] { display: none !important; }
+
+                /* Solid triangle arrows, matching the certificate viewer. */
+                .lightbox-prev::before,
+                .lightbox-next::before {
+                    content: "";
+                    display: block;
+                    width: 12px;
+                    height: 16px;
+                    flex: 0 0 auto;
+                    background: currentColor;
+                }
+                .lightbox-prev::before {
+                    clip-path: polygon(0 50%, 100% 0, 100% 100%);
+                }
+                .lightbox-next::before {
+                    clip-path: polygon(0 0, 100% 50%, 0 100%);
+                }
+
                 @media (min-width: 601px) {
                     .lightbox-img {
                         max-width: calc(100vw - 120px) !important;
@@ -288,7 +306,7 @@ document.addEventListener("DOMContentLoaded", () => {
         prev.className =
             "lightbox-prev";
 
-        prev.textContent = "‹";
+        prev.textContent = "";
         prev.type = "button";
         prev.setAttribute("aria-label", "Previous photo");
         prev.hidden = true;
@@ -297,7 +315,7 @@ document.addEventListener("DOMContentLoaded", () => {
             document.createElement("button");
 
         next.className = "lightbox-next";
-        next.textContent = "›";
+        next.textContent = "";
         next.type = "button";
         next.setAttribute("aria-label", "Next photo");
         next.hidden = true;
