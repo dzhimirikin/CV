@@ -86,6 +86,25 @@ body {
   background: #11171a;         /* hover фон */
 }
 
+/* WHITE SOLID TRIANGLE ARROWS */
+
+.carousel-controls button::before {
+  content: "";
+  display: block;
+  width: 12px;
+  height: 16px;
+  flex: 0 0 auto;
+  background: #fff;
+}
+
+.carousel-controls button:first-child::before {
+  clip-path: polygon(0 50%, 100% 0, 100% 100%);
+}
+
+.carousel-controls button:last-child::before {
+  clip-path: polygon(0 0, 100% 50%, 0 100%);
+}
+
 /* ---------------- Show All / Show Filtered — disabled ----------------- */
 
 button#showAllProjectsBtn:disabled {
