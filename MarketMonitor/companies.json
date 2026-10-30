@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-30T02:31:55.123825",
+  "updated": "2026-10-30T09:00:43.846443",
   "source": {
     "generalReports": "https://avaandmed.ariregister.rik.ee/sites/default/files/1.aruannete_yldandmed_kuni_31082026_0.zip",
     "keyIndicators": [
@@ -2718,6 +2718,48 @@
           "employees": 0.0,
           "margin": -210.96447351545464,
           "turnoverPerEmployee": null
+        }
+      ]
+    },
+    {
+      "name": "Glass Expert OÜ",
+      "registryCode": "16852030",
+      "website": "https://glassexpert.ee/",
+      "note": null,
+      "dataStatus": "ok",
+      "latest": {
+        "reportId": "3662821",
+        "year": 2025,
+        "submitted": "2025-12-31T00:00:00.000",
+        "turnover": 192057.0,
+        "equity": 28037.0,
+        "profit": 9880.0,
+        "employees": 4.0,
+        "margin": 5.144306117454714,
+        "turnoverPerEmployee": 48014.25
+      },
+      "history": [
+        {
+          "reportId": "3662821",
+          "year": 2025,
+          "submitted": "2025-12-31T00:00:00.000",
+          "turnover": 192057.0,
+          "equity": 28037.0,
+          "profit": 9880.0,
+          "employees": 4.0,
+          "margin": 5.144306117454714,
+          "turnoverPerEmployee": 48014.25
+        },
+        {
+          "reportId": "3164837",
+          "year": 2024,
+          "submitted": "2024-12-31T00:00:00.000",
+          "turnover": 102122.0,
+          "equity": 18157.0,
+          "profit": 18147.0,
+          "employees": 1.0,
+          "margin": 17.769922249858013,
+          "turnoverPerEmployee": 102122.0
         }
       ]
     }
