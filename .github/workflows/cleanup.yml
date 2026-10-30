@@ -1,0 +1,72 @@
+
+name: Archive Cleanup
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  cleanup:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Keep two newest files
+        run: |
+          python3 <<'PY'
+          import os
+          import subprocess
+
+          folder = "CV/MarketMonitor/archive"
+
+          files = []
+
+          for root, dirs, names in os.walk(folder):
+              for name in names:
+                  path = os.path.join(root, name)
+                  relative = os.path.relpath(path)
+
+                  result = subprocess.run(
+                      ["git", "log", "-1", "--format=%ct",
+                       "--", relative],
+                      capture_output=True,
+                      text=True
+                  )
+
+                  date = int(result.stdout.strip() or 0)
+                  files.append((date, relative))
+
+          files.sort(key=lambda x: (x[0], x[1]), reverse=True)
+
+          keep = files[:2]
+          delete = files[2:]
+
+          print("Files retained:")
+          for date, path in keep:
+              print(path, date)
+
+          print("Files deleted:")
+          for date, path in delete:
+              print(path)
+              os.remove(path)
+
+          PY
+
+      - name: Commit changes
+        run: |
+          git add -A CV/MarketMonitor/archive
+
+          if git diff --cached --quiet; then
+            echo "No cleanup required"
+          else
+            git config user.name "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git commit -m "Archive cleanup: keep latest 2 files"
+            git push
+          fi
