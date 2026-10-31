@@ -29,7 +29,7 @@ jobs:
       - name: Install Pillow
         run: pip install Pillow
 
-      - name: Convert PNG and JPG to WebP
+      - name: Convert and delete originals
         env:
           FOLDER: ${{ inputs.folder }}
         run: |
@@ -53,6 +53,7 @@ jobs:
 
           converted = 0
           errors = 0
+          deleted = 0
 
           for path in files:
               output = path.with_suffix('.webp')
@@ -75,8 +76,15 @@ jobs:
                           method=6
                       )
 
-                  print(f"OK: {path} -> {output}")
+                  if not output.exists() or output.stat().st_size == 0:
+                      raise RuntimeError("WebP file was not created")
+
                   converted += 1
+                  print(f"OK: {path} -> {output}")
+
+                  path.unlink()
+                  deleted += 1
+                  print(f"DELETED: {path}")
 
               except Exception as e:
                   print(f"ERROR: {path}: {e}")
@@ -85,15 +93,18 @@ jobs:
           print("--------------------------------")
           print(f"Found: {len(files)}")
           print(f"Converted: {converted}")
+          print(f"Deleted originals: {deleted}")
           print(f"Errors: {errors}")
           PY
 
-      - name: Commit WebP files
+      - name: Commit changes
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
           git add -A
+
           git diff --cached --quiet || (
-            git commit -m "Convert PNG and JPG to WebP" &&
+            git commit -m "Convert images to WebP and remove originals" &&
             git push
           )
