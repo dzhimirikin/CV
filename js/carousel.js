@@ -91,7 +91,7 @@ document.addEventListener('DOMContentLoaded', () => {
         border-radius: 999px;
         background: #1f2933;
         pointer-events: none;
-        z-index: 1;
+        z-index: 3;
         transform: translateY(-50%);
         width: 22px;
         will-change: transform, width;
