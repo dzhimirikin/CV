@@ -1283,7 +1283,7 @@ footer {
 }
 
 .gallery-wrapper::-webkit-scrollbar-thumb {
-  background-color: #aaa;
+  background-color: #000;
   border-radius: 4px;
 }
 
