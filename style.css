@@ -215,8 +215,56 @@ nav a:hover {
   opacity: 0;
 }
 
+/* ---------------- BURGER ICON ---------------- */
+.burger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+    z-index: 1100;
+
+    transform: rotate(0deg);
+    transition: transform 0.3s ease;
+}
+
+.burger div {
+    width: 25px;
+    height: 3px;
+    background: #fff;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+/* OPEN: сначала формируем крестик */
+.burger.active div {
+    transition-delay: 0s;
+}
+
+.burger.active div:nth-child(1) {
+    transform: translateY(8px) rotate(45deg);
+}
+
+.burger.active div:nth-child(2) {
+    opacity: 0;
+}
+
 .burger.active div:nth-child(3) {
-  transform: translateY(-8px) rotate(-45deg);
+    transform: translateY(-8px) rotate(-45deg);
+}
+
+/* Затем поворачиваем готовый крестик */
+.burger.active {
+    transform: rotate(90deg);
+    transition-delay: 0.5s;
+}
+
+/* CLOSE: сначала возвращаем крестик */
+.burger:not(.active) {
+    transition-delay: 0s;
+}
+
+/* Затем складываем крестик в полоски */
+.burger:not(.active) div {
+    transition-delay: 0.5s;
 }
 
 
