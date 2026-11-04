@@ -254,7 +254,7 @@ nav a:hover {
 /* Затем поворачиваем готовый крестик */
 .burger.active {
     transform: rotate(90deg);
-    transition-delay: 0.5s;
+    transition-delay: 0.3s;
 }
 
 /* CLOSE: сначала возвращаем крестик */
@@ -287,16 +287,18 @@ nav a:hover {
 
     opacity: 0;
     pointer-events: none;
-    transition: right 0.45s ease, opacity 0.45s ease;
+    transition: right 0.5s ease,
+                opacity 0.5s ease;
 
     box-shadow: -3px 6px 14px rgba(0,0,0,0.28);
     z-index: 1050;
   }
 
   #menu.active {
-    right: 0;
-    opacity: 1;
-    pointer-events: auto;
+      right: 0;
+      opacity: 1;
+      pointer-events: auto;
+      transition-delay: 0.3s;
   }
 
   .burger {
