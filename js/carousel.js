@@ -190,8 +190,7 @@ document.addEventListener('DOMContentLoaded', () => {
     updateCarousel();
   }
 
-  // Двухфазная анимация овала: сначала к новой позиции движется одна
-  // граница, затем вторая граница догоняет её и возвращает овалу обычную ширину.
+  // Перемещение овала с коротким пружинным откликом Material Design.
   let dotPillAnimation = null;
 
   function getBasePillWidth() {
@@ -234,6 +233,7 @@ document.addEventListener('DOMContentLoaded', () => {
       transform: `translate(${fromX}px, -50%)`,
       width: `${fromWidth}px`
     };
+
     const middle = movingRight
       ? {
           transform: `translate(${fromX}px, -50%)`,
@@ -243,6 +243,7 @@ document.addEventListener('DOMContentLoaded', () => {
           transform: `translate(${targetX}px, -50%)`,
           width: `${stretchedWidth}px`
         };
+
     const finish = {
       transform: `translate(${targetX}px, -50%)`,
       width: `${baseWidth}px`
@@ -254,14 +255,40 @@ document.addEventListener('DOMContentLoaded', () => {
       return;
     }
 
-    dotPillAnimation = dotPill.animate(
-      [
-        { ...start, offset: 0, easing: 'cubic-bezier(0.22, 1, 0.36, 1)' },
-        { ...middle, offset: 0.52, easing: 'cubic-bezier(0.22, 1, 0.36, 1)' },
-        { ...finish, offset: 1 }
-      ],
-      { duration: 560, fill: 'forwards' }
-    );
+    // После перемещения ширина слегка колеблется вокруг базового значения.
+    // Центр овала при этом остаётся на месте.
+    const frames = [
+      { ...start, offset: 0, easing: 'cubic-bezier(0.22, 1, 0.36, 1)' },
+      { ...middle, offset: 0.42, easing: 'cubic-bezier(0.22, 1, 0.36, 1)' },
+      { ...finish, offset: 0.46 }
+    ];
+
+    const springDuration = 550;
+    const springSteps = 34;
+    const amplitude = 7; // пикселей: более заметное растяжение и сжатие
+    const damping = 5.5;
+    const frequency = 2 * Math.PI * 4.5;
+
+    for (let i = 1; i <= springSteps; i++) {
+      const t = (i / springSteps) * (springDuration / 1000);
+      const oscillation = amplitude *
+        Math.exp(-damping * t) *
+        Math.sin(frequency * t);
+
+      const width = baseWidth + oscillation;
+      const x = targetX + (baseWidth - width) / 2;
+
+      frames.push({
+        transform: `translate(${x}px, -50%)`,
+        width: `${width}px`,
+        offset: 0.46 + (i / springSteps) * 0.54
+      });
+    }
+
+    dotPillAnimation = dotPill.animate(frames, {
+      duration: 850,
+      fill: 'forwards'
+    });
 
     dotPillAnimation.onfinish = () => {
       dotPill.style.width = finish.width;
@@ -642,9 +669,8 @@ document.addEventListener('DOMContentLoaded', () => {
     viewerDots.hidden = viewerPages.length < 2;
   }
 
-  // Двухфазная анимация овала в навигации многостраничного сертификата.
-  // Сначала одна граница растягивает овал до новой страницы,
-  // затем вторая граница догоняет её и возвращает исходную ширину.
+  // Перемещение овала в просмотрщике с таким же пружинным откликом,
+  // как у основного индикатора карусели.
   let viewerDotPillAnimation = null;
 
   function getViewerPillBaseWidth() {
@@ -671,8 +697,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const dotsRect = viewerDots.getBoundingClientRect();
     const pillRect = viewerDotPill.getBoundingClientRect();
 
-    // Считываем фактическое положение до отмены предыдущей анимации:
-    // это позволяет корректно обрабатывать быстрые повторные нажатия.
+    // Берём текущее фактическое положение до отмены предыдущей анимации.
     const fromX = pillRect.left - dotsRect.left;
     const fromWidth = pillRect.width || baseWidth;
     const targetX = getViewerPillX(activeDot);
@@ -703,8 +728,7 @@ document.addEventListener('DOMContentLoaded', () => {
       width: `${fromWidth}px`
     };
 
-    // Вправо сначала фиксируется левая граница,
-    // влево — правая граница.
+    // Вправо сначала фиксируется левая граница, влево — правая.
     const middle = movingRight
       ? {
           transform: `translateX(${fromX}px)`,
@@ -721,17 +745,38 @@ document.addEventListener('DOMContentLoaded', () => {
       return;
     }
 
-    viewerDotPillAnimation = viewerDotPill.animate(
-      [
-        { ...start, offset: 0, easing: 'cubic-bezier(0.22, 1, 0.36, 1)' },
-        { ...middle, offset: 0.52, easing: 'cubic-bezier(0.22, 1, 0.36, 1)' },
-        { ...finish, offset: 1 }
-      ],
-      {
-        duration: 560,
-        fill: 'forwards'
-      }
-    );
+    // После перемещения овал пружинит по ширине, сохраняя центр на месте.
+    const frames = [
+      { ...start, offset: 0, easing: 'cubic-bezier(0.22, 1, 0.36, 1)' },
+      { ...middle, offset: 0.42, easing: 'cubic-bezier(0.22, 1, 0.36, 1)' },
+      { ...finish, offset: 0.46 }
+    ];
+
+    const springDuration = 550;
+    const springSteps = 34;
+    const amplitude = 7;
+    const damping = 5.5;
+    const frequency = 2 * Math.PI * 4.5;
+
+    for (let i = 1; i <= springSteps; i++) {
+      const t = (i / springSteps) * (springDuration / 1000);
+      const oscillation = amplitude *
+        Math.exp(-damping * t) *
+        Math.sin(frequency * t);
+      const width = baseWidth + oscillation;
+      const x = targetX + (baseWidth - width) / 2;
+
+      frames.push({
+        transform: `translateX(${x}px)`,
+        width: `${width}px`,
+        offset: 0.46 + (i / springSteps) * 0.54
+      });
+    }
+
+    viewerDotPillAnimation = viewerDotPill.animate(frames, {
+      duration: 850,
+      fill: 'forwards'
+    });
 
     viewerDotPillAnimation.onfinish = () => {
       viewerDotPill.style.width = finish.width;

@@ -530,7 +530,6 @@ document.addEventListener("DOMContentLoaded", () => {
             if (previousIndex === nextIndex ||
                 !Number.isFinite(fromX) ||
                 Math.abs(targetX - fromX) < 0.5) {
-                activeDotPillPillReset();
                 activeDotPill.style.transform = finish.transform;
                 activeDotPill.style.width = finish.width;
                 return;
@@ -564,17 +563,39 @@ document.addEventListener("DOMContentLoaded", () => {
                 return;
             }
 
-            activeDotPillAnimation = activeDotPill.animate(
-                [
-                    { ...start, offset: 0, easing: "cubic-bezier(0.22, 1, 0.36, 1)" },
-                    { ...middle, offset: 0.52, easing: "cubic-bezier(0.22, 1, 0.36, 1)" },
-                    { ...finish, offset: 1 }
-                ],
-                {
-                    duration: 560,
-                    fill: "forwards"
-                }
-            );
+            // Пружинный отклик после перемещения: овал колеблется
+            // вокруг базовой ширины, сохраняя центр на месте.
+            const frames = [
+                { ...start, offset: 0, easing: "cubic-bezier(0.22, 1, 0.36, 1)" },
+                { ...middle, offset: 0.42, easing: "cubic-bezier(0.22, 1, 0.36, 1)" },
+                { ...finish, offset: 0.46 }
+            ];
+
+            const springDuration = 550;
+            const springSteps = 34;
+            const amplitude = 7;
+            const damping = 5.5;
+            const frequency = 2 * Math.PI * 4.5;
+
+            for (let i = 1; i <= springSteps; i++) {
+                const t = (i / springSteps) * (springDuration / 1000);
+                const oscillation =
+                    amplitude * Math.exp(-damping * t) * Math.sin(frequency * t);
+
+                const width = baseWidth + oscillation;
+                const x = targetX + (baseWidth - width) / 2;
+
+                frames.push({
+                    transform: `translateX(${x}px)`,
+                    width: `${width}px`,
+                    offset: 0.46 + (i / springSteps) * 0.54
+                });
+            }
+
+            activeDotPillAnimation = activeDotPill.animate(frames, {
+                duration: 850,
+                fill: "forwards"
+            });
 
             activeDotPillAnimation.onfinish = () => {
                 activeDotPill.style.transform = finish.transform;
