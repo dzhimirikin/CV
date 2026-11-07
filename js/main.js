@@ -3,6 +3,7 @@
 ============================== */
 document.addEventListener('DOMContentLoaded', () => {
 
+
   /* ==============================
      SCROLL SPEED SETTINGS
   ============================== */
@@ -56,6 +57,74 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+
+  /* ==============================
+     HERO — RANDOM CHARACTER REVEAL
+     Анимация применяется только к описанию .hero-desc.
+     Фото, заголовок и ссылка CV отображаются сразу.
+  ============================== */
+    const hero = document.querySelector('.hero');
+    const heroDesc = hero?.querySelector('.hero-desc');
+
+    const reduceMotion = window.matchMedia(
+      '(prefers-reduced-motion: reduce)'
+    ).matches;
+
+    // Если анимация отключена настройками браузера,
+    // сразу показываем обычный текст.
+    if (heroDesc && reduceMotion) {
+      heroDesc.classList.add('hero-desc-ready');
+    }
+
+    if (hero && heroDesc && !reduceMotion) {
+
+    const characters = [];
+    const walker = document.createTreeWalker(heroDesc, NodeFilter.SHOW_TEXT);
+    const textNodes = [];
+
+    while (walker.nextNode()) textNodes.push(walker.currentNode);
+
+    textNodes.forEach(textNode => {
+      const value = textNode.nodeValue;
+      if (!value || !value.trim()) return;
+
+      const fragment = document.createDocumentFragment();
+
+      for (const character of value) {
+        if (/\s/.test(character)) {
+          fragment.appendChild(document.createTextNode(character));
+        } else {
+          const span = document.createElement('span');
+          span.className = 'hero-reveal-char';
+          span.textContent = character;
+          span.setAttribute('aria-hidden', 'true');
+          fragment.appendChild(span);
+          characters.push(span);
+        }
+      }
+
+      textNode.parentNode.replaceChild(fragment, textNode);
+    });
+
+    heroDesc.setAttribute('aria-label', heroDesc.textContent);
+
+    // Разрешаем показ текста после подготовки символов
+    heroDesc.classList.add('hero-desc-ready');
+
+    if (characters.length) {
+      for (let i = characters.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [characters[i], characters[j]] = [characters[j], characters[i]];
+      }
+
+      const totalRevealTime = 2700;
+      const interval = totalRevealTime / characters.length;
+
+      characters.forEach((character, index) => {
+        character.style.animationDelay = `${Math.round(index * interval)}ms`;
+      });
+    }
+  }
 
   // Burger menu
   const burger = document.querySelector('.burger');
