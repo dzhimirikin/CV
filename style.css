@@ -480,9 +480,10 @@ nav a:hover {
   }
 
   .hero-text p {
-    font-size: 12px;
-    line-height: 1.4;
-    text-align: left;
+      font-size: 12px;
+      line-height: 1.4;
+      text-align: justify;
+      text-align-last: left;
   }
 
   .hero-cv {
@@ -545,9 +546,10 @@ nav a:hover {
   }
 
   .hero-text p {
-    font-size: 16px;
-    line-height: normal;
-    text-align: left;
+      font-size: 16px;
+      line-height: normal;
+      text-align: justify;
+      text-align-last: left;
   }
 
   .hero-cv {
@@ -5074,3 +5076,36 @@ small,
 .market-meta {
   font-weight: 400;
 }
+
+
+/* ============================================================
+   HERO — RANDOM CHARACTER REVEAL
+   Символы появляются на своих местах в случайной очередности.
+============================================================ */
+
+/* HERO: скрываем описание до подготовки анимации */
+.hero-reveal-enabled .hero-desc:not(.hero-desc-ready) {
+  visibility: hidden;
+}
+
+.hero-reveal-char {
+  display: inline;
+  opacity: 0;
+  animation: heroCharacterAppear 130ms ease-out forwards;
+  will-change: opacity;
+}
+
+@keyframes heroCharacterAppear {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-reveal-char {
+    opacity: 1;
+    animation: none;
+    will-change: auto;
+  }
+}
+
