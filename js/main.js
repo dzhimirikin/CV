@@ -59,45 +59,66 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
   /* ==============================
-     HERO — RANDOM CHARACTER REVEAL
-     Анимация применяется только к описанию .hero-desc.
-     Фото, заголовок и ссылка CV отображаются сразу.
+     HERO — CHARACTER REVEAL + FLIP
   ============================== */
-    const hero = document.querySelector('.hero');
-    const heroDesc = hero?.querySelector('.hero-desc');
 
-    const reduceMotion = window.matchMedia(
-      '(prefers-reduced-motion: reduce)'
-    ).matches;
+  const hero = document.querySelector('.hero');
+  const heroDesc = hero?.querySelector('.hero-desc');
+  const heroFlip = hero?.querySelector('.hero-flip');
 
-    // Если анимация отключена настройками браузера,
-    // сразу показываем обычный текст.
-    if (heroDesc && reduceMotion) {
+  const reduceMotion = window.matchMedia(
+    '(prefers-reduced-motion: reduce)'
+  ).matches;
+
+  // При отключённой анимации сразу показываем нормальную композицию
+  if (reduceMotion) {
+    if (heroDesc) {
       heroDesc.classList.add('hero-desc-ready');
     }
+  }
 
-    if (hero && heroDesc && !reduceMotion) {
+  if (hero && heroDesc && heroFlip && !reduceMotion) {
+
+    // Сначала зеркально отображаем всю композицию
+    heroFlip.classList.add('hero-flip-pending');
 
     const characters = [];
-    const walker = document.createTreeWalker(heroDesc, NodeFilter.SHOW_TEXT);
+    const walker = document.createTreeWalker(
+      heroDesc,
+      NodeFilter.SHOW_TEXT
+    );
+
     const textNodes = [];
 
-    while (walker.nextNode()) textNodes.push(walker.currentNode);
+    while (walker.nextNode()) {
+      textNodes.push(walker.currentNode);
+    }
 
+    // Разбиваем текст на отдельные символы
     textNodes.forEach(textNode => {
+
       const value = textNode.nodeValue;
+
       if (!value || !value.trim()) return;
 
       const fragment = document.createDocumentFragment();
 
       for (const character of value) {
+
         if (/\s/.test(character)) {
-          fragment.appendChild(document.createTextNode(character));
+
+          fragment.appendChild(
+            document.createTextNode(character)
+          );
+
         } else {
+
           const span = document.createElement('span');
+
           span.className = 'hero-reveal-char';
           span.textContent = character;
           span.setAttribute('aria-hidden', 'true');
+
           fragment.appendChild(span);
           characters.push(span);
         }
@@ -108,21 +129,45 @@ document.addEventListener('DOMContentLoaded', () => {
 
     heroDesc.setAttribute('aria-label', heroDesc.textContent);
 
-    // Разрешаем показ текста после подготовки символов
+    // Показываем подготовленный текст
     heroDesc.classList.add('hero-desc-ready');
 
     if (characters.length) {
+
+      // Случайный порядок появления символов
       for (let i = characters.length - 1; i > 0; i--) {
+
         const j = Math.floor(Math.random() * (i + 1));
-        [characters[i], characters[j]] = [characters[j], characters[i]];
+
+        [characters[i], characters[j]] =
+          [characters[j], characters[i]];
       }
 
-      const totalRevealTime = 2700;
+      const totalRevealTime = 5400;
       const interval = totalRevealTime / characters.length;
 
       characters.forEach((character, index) => {
-        character.style.animationDelay = `${Math.round(index * interval)}ms`;
+
+        character.style.animationDelay =
+          `${Math.round(index * interval)}ms`;
+
       });
+
+      // Последний символ завершает появление текста.
+      // После этого разворачиваем всю композицию.
+      const lastCharacter = characters[characters.length - 1];
+
+      lastCharacter.addEventListener('animationend', () => {
+
+        heroFlip.classList.add('is-flipped');
+
+      }, { once: true });
+
+    } else {
+
+      // Если текста нет — разворачиваем сразу
+      heroFlip.classList.add('is-flipped');
+
     }
   }
 
