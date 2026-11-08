@@ -5109,3 +5109,64 @@ small,
   }
 }
 
+/* ============================================================
+   HERO — ЕДИНЫЙ ПОВОРОТ КОМПОЗИЦИИ
+============================================================ */
+
+.hero-overlay {
+  perspective: 1400px;
+}
+
+.hero-flip {
+  width: 100%;
+  max-width: 1100px;
+  margin: auto;
+
+  /* Исходное положение — сразу зеркальное */
+  transform: rotateY(180deg);
+  transform-origin: center center;
+
+  /* Поворот вдвое медленнее */
+  transition:
+    transform 2400ms cubic-bezier(0.22, 0.68, 0.22, 1);
+}
+
+.hero-flip > .hero-inner {
+  width: 100%;
+  max-width: 1100px;
+  box-sizing: border-box;
+}
+
+/* Начальное зеркальное положение */
+.hero-flip.hero-flip-pending {
+  transform: rotateY(180deg);
+}
+
+/* Финальное положение */
+.hero-flip.hero-flip-pending.is-flipped {
+  transform: rotateY(0deg);
+}
+
+.hero-flip > .hero-inner {
+  width: 100%;
+  max-width: 1100px;
+  box-sizing: border-box;
+}
+
+/* Начальное зеркальное положение */
+.hero-flip.hero-flip-pending {
+  transform: rotateY(180deg);
+}
+
+/* Финальное положение */
+.hero-flip.hero-flip-pending.is-flipped {
+  transform: rotateY(0deg);
+}
+
+/* Уважение системной настройки уменьшения движения */
+@media (prefers-reduced-motion: reduce) {
+  .hero-flip {
+    transform: none !important;
+    transition: none !important;
+  }
+}
