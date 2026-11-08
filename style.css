@@ -405,11 +405,15 @@ nav a:hover {
 .hero-photo {
   flex: 0 0 240px;
   width: 240px;
-  height: 240px;
-  object-fit: cover;
-  border: 2px solid rgba(255, 255, 255, 0.6);
-  border-radius: 4px;
-  background: #ccc;
+  height: auto;
+  object-fit: contain;
+
+  border: none;
+  border-radius: 0;
+  background: transparent;
+
+  box-shadow: none;
+
   margin-top: 0;
   margin-bottom: var(--hero-photo-gap-bottom);
 }
@@ -463,11 +467,11 @@ nav a:hover {
     padding-right: 24px;
   }
 
-  .hero-photo {
-    flex: 0 0 180px;
-    width: 180px;
-    height: 180px;
-  }
+.hero-photo {
+  flex: 0 0 180px;
+  width: 180px;
+  height: auto;
+}
 
   .hero-text {
     height: auto;
@@ -518,12 +522,18 @@ nav a:hover {
     transform: translateY(-18px);
   }
 
-  .hero-photo {
-    width: 82%;
-    max-width: 320px;
-    height: auto;
-    margin: 0 auto 12px;
-  }
+.hero-photo {
+  width: 82%;
+  max-width: 320px;
+  height: auto;
+  object-fit: contain;
+
+  border: none;
+  background: transparent;
+  box-shadow: none;
+
+  margin: 0 auto 12px;
+}
 
   .hero-text {
     height: auto;
