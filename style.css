@@ -1095,7 +1095,7 @@ footer {
   content: "";
   position: absolute;
   z-index: -1;
-  inset: -2px -3px;
+  inset: -5px -3px;
   background: rgba(255, 255, 255, 0.25);
   border-radius: 5px;
   pointer-events: none;
