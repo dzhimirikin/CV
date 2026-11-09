@@ -193,4 +193,71 @@ document.addEventListener('DOMContentLoaded', () => {
 
   }
 
+  /* ==============================
+     MENU — SCROLL SPY
+     Подсветка раздела по фактической позиции прокрутки.
+     В Hero активного пункта нет.
+  ============================== */
+  if (menu) {
+    const sectionLinks = Array.from(
+      menu.querySelectorAll('a[href^="#"]')
+    ).map(link => ({
+      link,
+      section: document.getElementById(
+        decodeURIComponent(link.getAttribute('href').slice(1))
+      )
+    })).filter(item => item.section);
+
+    let scrollSpyFrame = null;
+
+    function updateActiveMenuItem() {
+      scrollSpyFrame = null;
+
+      const scrollPosition = window.scrollY || window.pageYOffset;
+      const headerHeight = parseFloat(
+        getComputedStyle(document.documentElement)
+          .getPropertyValue('--header-h')
+      ) || 66;
+      const activationLine = scrollPosition + headerHeight + 36;
+      const pageBottom =
+        window.innerHeight + scrollPosition >=
+        document.documentElement.scrollHeight - 2;
+
+      let currentSection = null;
+
+      if (pageBottom && sectionLinks.length) {
+        currentSection = sectionLinks[sectionLinks.length - 1];
+      } else {
+        for (const item of sectionLinks) {
+          if (item.section.getBoundingClientRect().top + scrollPosition <= activationLine) {
+            currentSection = item;
+          } else {
+            break;
+          }
+        }
+      }
+
+      sectionLinks.forEach(item => {
+        const isCurrent = item === currentSection;
+        item.link.classList.toggle('is-current', isCurrent);
+
+        if (isCurrent) {
+          item.link.setAttribute('aria-current', 'location');
+        } else {
+          item.link.removeAttribute('aria-current');
+        }
+      });
+    }
+
+    function requestMenuUpdate() {
+      if (scrollSpyFrame !== null) return;
+      scrollSpyFrame = requestAnimationFrame(updateActiveMenuItem);
+    }
+
+    window.addEventListener('scroll', requestMenuUpdate, { passive: true });
+    window.addEventListener('resize', requestMenuUpdate);
+    window.addEventListener('load', requestMenuUpdate);
+    requestMenuUpdate();
+  }
+
 });
