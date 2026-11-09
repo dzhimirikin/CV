@@ -1045,6 +1045,7 @@ footer {
 /* ============================================================
    LANGUAGE MENU
 ============================================================ */
+
 .lang {
   font-size: 13px;
   color: #ccc;
@@ -1053,6 +1054,8 @@ footer {
 .lang a {
   text-decoration: none;
   color: #ccc;
+  padding: 4px 9px;
+  border-radius: 5px;
 }
 
 .lang a:hover {
@@ -1060,7 +1063,11 @@ footer {
 }
 
 .lang strong {
+  display: inline-block;
+  padding: 4px 9px;
   color: #fff;
+  background: rgba(255, 255, 255, 0.20);
+  border-radius: 5px;
   font-weight: normal;
 }
 
