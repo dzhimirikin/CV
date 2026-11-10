@@ -16,19 +16,6 @@
     })();
   </script>
 
-<script>
-(function () {
-    try {
-        if (sessionStorage.getItem('heroIntroPlayed') === 'true') {
-            document.documentElement.classList.add('hero-intro-skipped');
-        }
-    } catch (e) {
-        // Если sessionStorage недоступен,
-        // заставка работает в обычном режиме.
-    }
-})();
-</script>
-
   <!-- Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-JZH1TX3DCH"></script>
   <script>
