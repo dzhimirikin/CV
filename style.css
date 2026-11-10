@@ -5217,3 +5217,41 @@ small,
     transition: none !important;
   }
 }
+
+/* HERO PHOTO ASSEMBLY — 100 FRAGMENTS, SYNCHRONIZED WITH TEXT */
+.hero-reveal-enabled .hero-photo {
+  visibility: hidden;
+}
+
+.hero-inner {
+  position: relative;
+}
+
+.hero-photo-assembly {
+  position: absolute;
+  z-index: 2;
+  overflow: visible;
+  pointer-events: none;
+}
+
+.hero-photo-pieces {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  overflow: visible;
+}
+
+.hero-photo-piece {
+  display: block;
+  min-width: 0;
+  min-height: 0;
+  background-repeat: no-repeat;
+  opacity: 0;
+  will-change: transform, opacity;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-reveal-enabled .hero-photo {
+    visibility: visible !important;
+  }
+}
