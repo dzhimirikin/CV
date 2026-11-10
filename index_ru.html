@@ -16,6 +16,46 @@
   })();
   </script>
 
+<!DOCTYPE html>
+<html lang="en" class="hero-reveal-enabled">
+<head>
+
+  <!-- Сразу блокировка -->
+  <script>
+    (function () {
+      const blocked = ["www.tootukassa.ee", "tootukassa.ee"];
+      const ref = document.referrer.toLowerCase();
+
+      if (ref && blocked.some(d => ref.includes(d))) {
+        document.documentElement.innerHTML = "";
+        document.write("<h2>Unable to load website</h2>");
+        document.close();
+      }
+    })();
+  </script>
+
+<script>
+(function () {
+    try {
+        if (sessionStorage.getItem('heroIntroPlayed') === 'true') {
+            document.documentElement.classList.add('hero-intro-skipped');
+        }
+    } catch (e) {
+        // Если sessionStorage недоступен,
+        // заставка работает в обычном режиме.
+    }
+})();
+</script>
+
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-JZH1TX3DCH"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-JZH1TX3DCH');
+  </script>
+
   <!-- Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-JZH1TX3DCH"></script>
   <script>

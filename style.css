@@ -5255,3 +5255,26 @@ small,
     visibility: visible !important;
   }
 }
+
+
+
+/* HERO: заставка уже была показана в текущей сессии */
+
+.hero-intro-skipped .hero-desc {
+    opacity: 1;
+    visibility: visible;
+    animation: none !important;
+}
+
+.hero-intro-skipped .hero-photo {
+    opacity: 1;
+    visibility: visible;
+}
+
+.hero-intro-skipped .hero-flip,
+.hero-intro-skipped .hero-flip.hero-flip-pending,
+.hero-intro-skipped .hero-flip.hero-flip-pending.is-flipped {
+    transform: rotateY(0deg) !important;
+    transition: none !important;
+}
+
