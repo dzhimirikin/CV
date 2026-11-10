@@ -59,115 +59,221 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
   /* ==============================
-     HERO — CHARACTER REVEAL + FLIP
+     HERO — PHOTO ASSEMBLY + CHARACTER REVEAL + FLIP
   ============================== */
 
   const hero = document.querySelector('.hero');
   const heroDesc = hero?.querySelector('.hero-desc');
   const heroFlip = hero?.querySelector('.hero-flip');
+  const heroPhoto = hero?.querySelector('.hero-photo');
 
   const reduceMotion = window.matchMedia(
     '(prefers-reduced-motion: reduce)'
   ).matches;
 
-  // При отключённой анимации сразу показываем нормальную композицию
   if (reduceMotion) {
-    if (heroDesc) {
-      heroDesc.classList.add('hero-desc-ready');
-    }
+    if (heroDesc) heroDesc.classList.add('hero-desc-ready');
+    if (heroPhoto) heroPhoto.style.visibility = 'visible';
   }
 
   if (hero && heroDesc && heroFlip && !reduceMotion) {
+    const TOTAL_REVEAL_TIME = 5400;
+    const PHOTO_COLUMNS = 10;
+    const PHOTO_ROWS = 10;
+    const PHOTO_PIECE_DURATION = 400;
+    const PHOTO_MAX_DELAY = TOTAL_REVEAL_TIME - PHOTO_PIECE_DURATION;
+    const CHARACTER_DURATION = 130;
 
-    // Сначала зеркально отображаем всю композицию
+    // Исходное положение — зеркальное. Поворот будет только после двух сборок.
     heroFlip.classList.add('hero-flip-pending');
 
-    const characters = [];
-    const walker = document.createTreeWalker(
-      heroDesc,
-      NodeFilter.SHOW_TEXT
-    );
+    let textFinished = false;
+    let photoFinished = false;
+    let flipStarted = false;
 
-    const textNodes = [];
-
-    while (walker.nextNode()) {
-      textNodes.push(walker.currentNode);
+    function finishWhenBothReady() {
+      if (textFinished && photoFinished && !flipStarted) {
+        flipStarted = true;
+        heroFlip.classList.add('is-flipped');
+      }
     }
 
-    // Разбиваем текст на отдельные символы
-    textNodes.forEach(textNode => {
+    // Фото собирается поверх исходного элемента, не меняя структуру HERO.
+    function assembleHeroPhoto() {
+      if (!heroPhoto || !heroPhoto.complete || !heroPhoto.naturalWidth) {
+        photoFinished = true;
+        finishWhenBothReady();
+        return;
+      }
 
-      const value = textNode.nodeValue;
+      const heroInner = heroPhoto.parentElement;
+      if (!heroInner) {
+        photoFinished = true;
+        finishWhenBothReady();
+        return;
+      }
 
-      if (!value || !value.trim()) return;
+      const imageLeft = heroPhoto.offsetLeft;
+      const imageTop = heroPhoto.offsetTop;
+      const imageWidth = heroPhoto.offsetWidth;
+      const imageHeight = heroPhoto.offsetHeight;
 
-      const fragment = document.createDocumentFragment();
+      if (!imageWidth || !imageHeight) {
+        photoFinished = true;
+        heroPhoto.style.visibility = 'visible';
+        finishWhenBothReady();
+        return;
+      }
 
-      for (const character of value) {
+      const assembly = document.createElement('div');
+      assembly.className = 'hero-photo-assembly';
+      Object.assign(assembly.style, {
+        left: `${imageLeft}px`,
+        top: `${imageTop}px`,
+        width: `${imageWidth}px`,
+        height: `${imageHeight}px`
+      });
 
-        if (/\s/.test(character)) {
+      const pieces = document.createElement('div');
+      pieces.className = 'hero-photo-pieces';
+      pieces.style.gridTemplateColumns = `repeat(${PHOTO_COLUMNS}, 1fr)`;
+      pieces.style.gridTemplateRows = `repeat(${PHOTO_ROWS}, 1fr)`;
+      assembly.appendChild(pieces);
 
-          fragment.appendChild(
-            document.createTextNode(character)
-          );
+      const pieceAnimations = [];
+      const totalPieces = PHOTO_COLUMNS * PHOTO_ROWS;
+      const imageUrl = heroPhoto.currentSrc || heroPhoto.src;
 
-        } else {
+      // Сначала помещаем мозаику в DOM и только потом запускаем анимации.
+      // Иначе браузер может завершить WAAPI-анимации ещё до вставки фрагментов.
+      heroPhoto.style.visibility = 'hidden';
+      heroInner.appendChild(assembly);
+      pieces.getBoundingClientRect();
 
-          const span = document.createElement('span');
+      let pieceIndex = 0;
+      for (let row = 0; row < PHOTO_ROWS; row++) {
+        for (let column = 0; column < PHOTO_COLUMNS; column++) {
+          const piece = document.createElement('span');
+          piece.className = 'hero-photo-piece';
+          piece.style.backgroundImage = `url("${imageUrl}")`;
+          piece.style.backgroundSize = `${PHOTO_COLUMNS * 100}% ${PHOTO_ROWS * 100}%`;
+          piece.style.backgroundPosition =
+            `${column / (PHOTO_COLUMNS - 1) * 100}% ${row / (PHOTO_ROWS - 1) * 100}%`;
+          pieces.appendChild(piece);
 
-          span.className = 'hero-reveal-char';
-          span.textContent = character;
-          span.setAttribute('aria-hidden', 'true');
+          const delay = pieceIndex === totalPieces - 1
+            ? PHOTO_MAX_DELAY
+            : Math.round(Math.random() * PHOTO_MAX_DELAY);
+          const fromX = (Math.random() - 0.5) * Math.max(window.innerWidth, 500) * 0.9;
+          const fromY = (Math.random() - 0.5) * Math.max(window.innerHeight, 500) * 0.9;
+          const fromRotate = (Math.random() - 0.5) * 100;
 
-          fragment.appendChild(span);
-          characters.push(span);
+          const animation = piece.animate([
+            {
+              opacity: 0,
+              transform: `translate3d(${fromX}px, ${fromY}px, 0) rotate(${fromRotate}deg) scale(.55)`
+            },
+            {
+              opacity: 1,
+              transform: 'translate3d(0, 0, 0) rotate(-2deg) scale(1.025)',
+              offset: 0.72
+            },
+            {
+              opacity: 1,
+              transform: 'translate3d(0, 0, 0) rotate(0deg) scale(1)'
+            }
+          ], {
+            duration: PHOTO_PIECE_DURATION,
+            delay,
+            easing: 'cubic-bezier(.16,.72,.22,1)',
+            fill: 'both'
+          });
+
+          pieceAnimations.push(animation.finished.catch(() => {}));
+          pieceIndex++;
         }
       }
 
-      textNode.parentNode.replaceChild(fragment, textNode);
-    });
+      Promise.all(pieceAnimations).then(() => {
+        assembly.remove();
+        heroPhoto.style.visibility = 'visible';
+        photoFinished = true;
+        finishWhenBothReady();
+      });
+    }
 
-    heroDesc.setAttribute('aria-label', heroDesc.textContent);
+    // Текст и фото запускаются в одном цикле после готовности изображения.
+    function startHeroReveal() {
+      const characters = [];
+      const walker = document.createTreeWalker(heroDesc, NodeFilter.SHOW_TEXT);
+      const textNodes = [];
 
-    // Показываем подготовленный текст
-    heroDesc.classList.add('hero-desc-ready');
+      while (walker.nextNode()) textNodes.push(walker.currentNode);
 
-    if (characters.length) {
+      textNodes.forEach(textNode => {
+        const value = textNode.nodeValue;
+        if (!value || !value.trim()) return;
 
-      // Случайный порядок появления символов
-      for (let i = characters.length - 1; i > 0; i--) {
-
-        const j = Math.floor(Math.random() * (i + 1));
-
-        [characters[i], characters[j]] =
-          [characters[j], characters[i]];
-      }
-
-      const totalRevealTime = 5400;
-      const interval = totalRevealTime / characters.length;
-
-      characters.forEach((character, index) => {
-
-        character.style.animationDelay =
-          `${Math.round(index * interval)}ms`;
-
+        const fragment = document.createDocumentFragment();
+        for (const character of value) {
+          if (/\s/.test(character)) {
+            fragment.appendChild(document.createTextNode(character));
+          } else {
+            const span = document.createElement('span');
+            span.className = 'hero-reveal-char';
+            span.textContent = character;
+            span.setAttribute('aria-hidden', 'true');
+            fragment.appendChild(span);
+            characters.push(span);
+          }
+        }
+        textNode.parentNode.replaceChild(fragment, textNode);
       });
 
-      // Последний символ завершает появление текста.
-      // После этого разворачиваем всю композицию.
-      const lastCharacter = characters[characters.length - 1];
+      heroDesc.setAttribute('aria-label', heroDesc.textContent);
+      heroDesc.classList.add('hero-desc-ready');
 
-      lastCharacter.addEventListener('animationend', () => {
+      if (characters.length) {
+        // Случайный порядок появления символов.
+        for (let i = characters.length - 1; i > 0; i--) {
+          const j = Math.floor(Math.random() * (i + 1));
+          [characters[i], characters[j]] = [characters[j], characters[i]];
+        }
 
-        heroFlip.classList.add('is-flipped');
+        // С учётом 130 мс самой анимации последний символ завершится на 5400 мс.
+        const interval = characters.length > 1
+          ? (TOTAL_REVEAL_TIME - CHARACTER_DURATION) / (characters.length - 1)
+          : 0;
 
+        characters.forEach((character, index) => {
+          character.style.animationDelay = `${Math.round(index * interval)}ms`;
+        });
+
+        characters[characters.length - 1].addEventListener('animationend', () => {
+          textFinished = true;
+          finishWhenBothReady();
+        }, { once: true });
+      } else {
+        textFinished = true;
+        finishWhenBothReady();
+      }
+
+      assembleHeroPhoto();
+    }
+
+    if (heroPhoto && !heroPhoto.complete) {
+      heroPhoto.addEventListener('load', startHeroReveal, { once: true });
+      heroPhoto.addEventListener('error', () => {
+        startHeroReveal = () => {
+          heroDesc.classList.add('hero-desc-ready');
+          textFinished = true;
+          photoFinished = true;
+          finishWhenBothReady();
+        };
+        startHeroReveal();
       }, { once: true });
-
     } else {
-
-      // Если текста нет — разворачиваем сразу
-      heroFlip.classList.add('is-flipped');
-
+      startHeroReveal();
     }
   }
 
