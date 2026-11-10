@@ -67,40 +67,16 @@ document.addEventListener('DOMContentLoaded', () => {
   const heroFlip = hero?.querySelector('.hero-flip');
   const heroPhoto = hero?.querySelector('.hero-photo');
 
-  const HERO_INTRO_KEY = 'heroIntroPlayed';
-
-  // Проверяем, была ли заставка полностью показана в этой вкладке.
-  let introAlreadyPlayed = false;
-  try {
-    introAlreadyPlayed = sessionStorage.getItem(HERO_INTRO_KEY) === 'true';
-  } catch (e) {
-    // Если sessionStorage недоступен, заставка работает обычно.
-  }
-
   const reduceMotion = window.matchMedia(
     '(prefers-reduced-motion: reduce)'
   ).matches;
 
-  // Повторный вход в этой вкладке: сразу показываем готовую композицию.
-  if (introAlreadyPlayed) {
-    if (heroDesc) heroDesc.classList.add('hero-desc-ready');
-    if (heroPhoto) heroPhoto.style.visibility = 'visible';
-  }
-
-  // При системном отключении анимации сразу показываем готовую композицию.
   if (reduceMotion) {
     if (heroDesc) heroDesc.classList.add('hero-desc-ready');
     if (heroPhoto) heroPhoto.style.visibility = 'visible';
-    if (hero) {
-      try {
-        sessionStorage.setItem(HERO_INTRO_KEY, 'true');
-      } catch (e) {
-        // Ничего не делаем, если sessionStorage недоступен.
-      }
-    }
   }
 
-  if (hero && heroDesc && heroFlip && !reduceMotion && !introAlreadyPlayed) {
+  if (hero && heroDesc && heroFlip && !reduceMotion) {
     const TOTAL_REVEAL_TIME = 5400;
     const PHOTO_COLUMNS = 10;
     const PHOTO_ROWS = 10;
@@ -118,33 +94,6 @@ document.addEventListener('DOMContentLoaded', () => {
     function finishWhenBothReady() {
       if (textFinished && photoFinished && !flipStarted) {
         flipStarted = true;
-
-        // Сессия считается завершённой только после окончания CSS-поворота.
-        let introCompleted = false;
-        let flipFallbackTimer = null;
-
-        function completeHeroIntro() {
-          if (introCompleted) return;
-          introCompleted = true;
-          if (flipFallbackTimer !== null) clearTimeout(flipFallbackTimer);
-          heroFlip.removeEventListener('transitionend', onFlipTransitionEnd);
-
-          try {
-            sessionStorage.setItem(HERO_INTRO_KEY, 'true');
-          } catch (e) {
-            // Если хранилище недоступно, при следующей загрузке заставка повторится.
-          }
-        }
-
-        function onFlipTransitionEnd(event) {
-          if (event.target === heroFlip && event.propertyName === 'transform') {
-            completeHeroIntro();
-          }
-        }
-
-        heroFlip.addEventListener('transitionend', onFlipTransitionEnd);
-        // Запасной вариант, если transitionend не придёт.
-        flipFallbackTimer = window.setTimeout(completeHeroIntro, 2600);
         heroFlip.classList.add('is-flipped');
       }
     }
