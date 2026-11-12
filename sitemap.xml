@@ -1,47 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset
-      xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-      xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
-            http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
-<!-- created with Free Online Sitemap Generator www.xml-sitemaps.com -->
+    xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+    xmlns:xhtml="http://www.w3.org/1999/xhtml">
 
+  <url>
+    <loc>https://dzhimirikin.eu/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://dzhimirikin.eu/"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://dzhimirikin.eu/index_ru.html"/>
+    <xhtml:link rel="alternate" hreflang="et" href="https://dzhimirikin.eu/index_ee.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://dzhimirikin.eu/"/>
+  </url>
 
-<url>
-  <loc>https://dzhimirikin.github.io/CV/</loc>
-  <lastmod>2026-01-27T20:34:45+00:00</lastmod>
-  <priority>1.00</priority>
-</url>
-<url>
-  <loc>https://dzhimirikin.github.io/CV/index_ru.html</loc>
-  <lastmod>2026-01-27T20:34:45+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://dzhimirikin.github.io/CV/index_ee.html</loc>
-  <lastmod>2026-01-27T20:34:45+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://dzhimirikin.github.io/CV/Dmitry%20Zhimirikin_EU_ENG_05.2025.pdf</loc>
-  <lastmod>2026-01-27T20:34:45+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://dzhimirikin.github.io/CV/index.html</loc>
-  <lastmod>2026-01-27T20:34:45+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://dzhimirikin.github.io/CV/Dmitry%20Zhimirikin_RUSSIA_05.2025.pdf</loc>
-  <lastmod>2026-01-27T20:34:45+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://dzhimirikin.github.io/CV/Dmitry%20Zhimirikin_ESTONIA_EST_05.2025.pdf</loc>
-  <lastmod>2026-01-27T20:34:45+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
+  <url>
+    <loc>https://dzhimirikin.eu/index_ru.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://dzhimirikin.eu/"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://dzhimirikin.eu/index_ru.html"/>
+    <xhtml:link rel="alternate" hreflang="et" href="https://dzhimirikin.eu/index_ee.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://dzhimirikin.eu/"/>
+  </url>
 
+  <url>
+    <loc>https://dzhimirikin.eu/index_ee.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://dzhimirikin.eu/"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://dzhimirikin.eu/index_ru.html"/>
+    <xhtml:link rel="alternate" hreflang="et" href="https://dzhimirikin.eu/index_ee.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://dzhimirikin.eu/"/>
+  </url>
 
 </urlset>
