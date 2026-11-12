@@ -706,6 +706,7 @@
       style.id = "market-monitor-view-styles";
       style.textContent = `
         .market-monitor-table-scroll{max-width:100%;overflow-x:auto}
+        .market-turnover-value{color:#0080BA}
       `;
       document.head.appendChild(style);
     }
@@ -849,7 +850,7 @@
         </span>
         </td>
         <td data-label="${label(1)}">${record?.year ?? "—"}</td>
-        <td data-label="${label(2)}">${euro(record?.turnover)}</td>
+        <td class="market-turnover-value" data-label="${label(2)}">${euro(record?.turnover)}</td>
         <td data-label="${label(3)}">${euro(record?.equity)}</td>
         <td class="${profitClass}" data-label="${label(4)}">${euro(record?.profit)}</td>
         <td class="${marginClass}" data-label="${label(5)}">${percent(record?.margin)}</td>

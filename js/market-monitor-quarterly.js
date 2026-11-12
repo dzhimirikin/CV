@@ -724,7 +724,7 @@
         euro(profitPerEmployee),
         profitPerEmployee > 0
           ? "market-summary-positive"
-          : profitPerEmployee < 0
+          : profitPerEmployee != null
             ? "market-summary-negative"
             : ""
       ],
@@ -811,11 +811,9 @@
     }
   }
 
-  function turnoverClass(value) {
+  function profitPerEmployeeClass(value) {
     if (value == null) return "quarterly-muted";
-    if (Number(value) > 0) return "quarterly-positive";
-    if (Number(value) < 0) return "quarterly-negative";
-    return "";
+    return Number(value) > 0 ? "quarterly-positive" : "quarterly-negative";
   }
 
   function setupResponsiveViewAndCsv() {
@@ -832,6 +830,7 @@
       style.id = "market-monitor-view-styles";
       style.textContent = `
         .market-monitor-table-scroll{max-width:100%;overflow-x:auto}
+        .quarterly-turnover{color:#0080BA}
       `;
       document.head.appendChild(style);
     }
@@ -995,7 +994,7 @@
           </span>
         </td>
         <td data-label="${label(1)}">${record?.period ?? "—"}</td>
-        <td class="${turnoverClass(record?.taxableTurnover)}" data-label="${label(2)}">${euro(record?.taxableTurnover)}</td>
+        <td class="quarterly-turnover" data-label="${label(2)}">${euro(record?.taxableTurnover)}</td>
         <td data-label="${label(3)}">${euro(record?.projectedTurnover)}</td>
         <td data-label="${label(4)}">${euro(record?.stateTaxes)}</td>
         <td data-label="${label(5)}">${euro(record?.labourTaxes)}</td>
@@ -1003,7 +1002,7 @@
         <td data-label="${label(7)}">${euro(record?.taxableTurnoverPerEmployee)}</td>
         <td data-label="${label(8)}">${euro(record?.projectedLabourProductivity)}</td>
         <td data-label="${label(9)}">${euro(record?.labourProductivity)}</td>
-        <td data-label="${label(10)}">${euro(record?.profitPerEmployee)}</td>
+        <td class="${profitPerEmployeeClass(record?.profitPerEmployee)}" data-label="${label(10)}">${euro(record?.profitPerEmployee)}</td>
         <td data-label="${label(11)}">${euro(record?.averageGrossWage)}</td>
       </tr>`;
     }).join("");
