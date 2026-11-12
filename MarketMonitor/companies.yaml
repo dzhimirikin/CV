@@ -132,3 +132,11 @@ companies:
   - name: "Glass Expert OÜ"
     registry_code: "16852030"
     website: "https://glassexpert.ee/"
+
+  - name: "Special Work OÜ"
+    registry_code: "12524903"
+    website: "https://glasaken.ee/"
+
+  - name: "GlasCon OÜ"
+    registry_code: "14066289"
+    website: null
