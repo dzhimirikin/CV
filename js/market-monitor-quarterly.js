@@ -824,13 +824,13 @@
 
     // Keep only the responsive table wrapper here. The CSV button is defined in HTML
     // and uses the shared .cv-link styling from style.css.
-    let style = document.getElementById("market-monitor-view-styles");
+    let style = document.getElementById("market-monitor-quarterly-view-styles");
     if (!style) {
       style = document.createElement("style");
-      style.id = "market-monitor-view-styles";
+      style.id = "market-monitor-quarterly-view-styles";
       style.textContent = `
         .market-monitor-table-scroll{max-width:100%;overflow-x:auto}
-        .quarterly-turnover{color:#0080BA}
+        #marketMonitorQuarterly td.quarterly-turnover{color:#0080BA !important}
       `;
       document.head.appendChild(style);
     }
