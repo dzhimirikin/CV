@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-12T03:44:58.653971",
+  "updated": "2026-11-12T06:50:22.205695",
   "source": {
     "generalReports": "https://avaandmed.ariregister.rik.ee/sites/default/files/1.aruannete_yldandmed_kuni_31082026_0.zip",
     "keyIndicators": [
@@ -2762,6 +2762,112 @@
           "turnoverPerEmployee": 102122.0
         }
       ]
+    },
+    {
+      "name": "Special Work OÜ",
+      "registryCode": "12524903",
+      "website": "https://glasaken.ee/",
+      "note": null,
+      "dataStatus": "ok",
+      "latest": {
+        "reportId": "3634750",
+        "year": 2025,
+        "submitted": "2025-12-31T00:00:00.000",
+        "turnover": 2796829.0,
+        "equity": 362814.0,
+        "profit": 47895.0,
+        "employees": 12.0,
+        "margin": 1.7124750923277754,
+        "turnoverPerEmployee": 233069.08333333334
+      },
+      "history": [
+        {
+          "reportId": "3634750",
+          "year": 2025,
+          "submitted": "2025-12-31T00:00:00.000",
+          "turnover": 2796829.0,
+          "equity": 362814.0,
+          "profit": 47895.0,
+          "employees": 12.0,
+          "margin": 1.7124750923277754,
+          "turnoverPerEmployee": 233069.08333333334
+        },
+        {
+          "reportId": "3275931",
+          "year": 2024,
+          "submitted": "2024-12-31T00:00:00.000",
+          "turnover": 1831700.0,
+          "equity": 314919.0,
+          "profit": 25374.0,
+          "employees": 10.0,
+          "margin": 1.3852705137304144,
+          "turnoverPerEmployee": 183170.0
+        },
+        {
+          "reportId": "2970001",
+          "year": 2023,
+          "submitted": "2023-12-31T00:00:00.000",
+          "turnover": 2056398.0,
+          "equity": 289545.0,
+          "profit": 24275.0,
+          "employees": 9.0,
+          "margin": 1.1804621478916046,
+          "turnoverPerEmployee": 228488.66666666666
+        },
+        {
+          "reportId": "2653719",
+          "year": 2022,
+          "submitted": "2022-12-31T00:00:00.000",
+          "turnover": 2310443.0,
+          "equity": 265270.0,
+          "profit": 85553.0,
+          "employees": 9.0,
+          "margin": 3.702882953615389,
+          "turnoverPerEmployee": 256715.88888888888
+        },
+        {
+          "reportId": "2390650",
+          "year": 2021,
+          "submitted": "2021-12-31T00:00:00.000",
+          "turnover": 1978106.0,
+          "equity": 179717.0,
+          "profit": 68450.0,
+          "employees": 9.0,
+          "margin": 3.4603807884916176,
+          "turnoverPerEmployee": 219789.55555555556
+        },
+        {
+          "reportId": "2079488",
+          "year": 2020,
+          "submitted": "2020-12-31T00:00:00.000",
+          "turnover": 1807076.0,
+          "equity": 111267.0,
+          "profit": 44688.0,
+          "employees": 12.0,
+          "margin": 2.4729452441402575,
+          "turnoverPerEmployee": 150589.66666666666
+        },
+        {
+          "reportId": "1768861",
+          "year": 2019,
+          "submitted": "2019-12-31T00:00:00.000",
+          "turnover": 1511743.0,
+          "equity": 66579.0,
+          "profit": 40373.0,
+          "employees": 10.0,
+          "margin": 2.670625893422361,
+          "turnoverPerEmployee": 151174.3
+        }
+      ]
+    },
+    {
+      "name": "GlasCon OÜ",
+      "registryCode": "14066289",
+      "website": null,
+      "note": null,
+      "dataStatus": "no_report",
+      "latest": null,
+      "history": []
     }
   ]
 }
