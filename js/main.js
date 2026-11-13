@@ -17,6 +17,114 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
   /* ==============================
+     LANGUAGE SWITCHER — MOVE + 360° SPIN
+     Плашка перемещается к выбранному языку,
+     затем делает полный оборот в плоскости экрана.
+  ============================== */
+  const languageBar = document.querySelector('.lang');
+
+  if (languageBar) {
+    const activeLanguage = languageBar.querySelector('strong');
+    const languageLinks = languageBar.querySelectorAll('a[href]');
+
+    if (activeLanguage && languageLinks.length) {
+      const indicator = document.createElement('span');
+      indicator.className = 'lang-indicator';
+      indicator.setAttribute('aria-hidden', 'true');
+      languageBar.appendChild(indicator);
+
+      const placeIndicator = (element) => {
+        const barRect = languageBar.getBoundingClientRect();
+        const targetRect = element.getBoundingClientRect();
+
+        indicator.style.left = `${targetRect.left - barRect.left - 3}px`;
+        indicator.style.top = `${targetRect.top - barRect.top - 5}px`;
+        indicator.style.width = `${targetRect.width + 6}px`;
+        indicator.style.height = `${targetRect.height + 10}px`;
+      };
+
+      // Начальное положение точно совпадает с активным языком.
+      placeIndicator(activeLanguage);
+
+      languageLinks.forEach((link) => {
+        link.addEventListener('click', async (event) => {
+          // Не перехватываем открытие в новой вкладке и системные комбинации.
+          if (
+            event.button !== 0 ||
+            event.metaKey || event.ctrlKey || event.shiftKey || event.altKey
+          ) return;
+
+          event.preventDefault();
+
+          if (indicator.dataset.animating === 'true') return;
+          indicator.dataset.animating = 'true';
+
+          const barRect = languageBar.getBoundingClientRect();
+          const targetRect = link.getBoundingClientRect();
+
+          const targetLeft = targetRect.left - barRect.left - 3;
+          const targetTop = targetRect.top - barRect.top - 5;
+          const moveX = targetLeft - parseFloat(indicator.style.left);
+          const moveY = targetTop - parseFloat(indicator.style.top);
+          const destination = link.href;
+
+          const reducedMotion = window.matchMedia(
+            '(prefers-reduced-motion: reduce)'
+          ).matches;
+
+          if (reducedMotion || typeof indicator.animate !== 'function') {
+            window.location.href = destination;
+            return;
+          }
+
+          try {
+            // Этап 1: плашка скользит к выбранному языку.
+            const moveAnimation = indicator.animate(
+              [
+                { transform: 'translate(0, 0)' },
+                { transform: `translate(${moveX}px, ${moveY}px)` }
+              ],
+              {
+                duration: 300,
+                easing: 'cubic-bezier(.22,.75,.25,1)',
+                fill: 'forwards'
+              }
+            );
+
+            await moveAnimation.finished;
+            moveAnimation.cancel();
+
+            // Фиксируем новую позицию, чтобы вращение шло уже на месте.
+            indicator.style.left = `${targetLeft}px`;
+            indicator.style.top = `${targetTop}px`;
+            indicator.style.transform = 'none';
+
+            // Этап 2: полный оборот вокруг центра в плоскости экрана.
+            const spinAnimation = indicator.animate(
+              [
+                { transform: 'rotate(0deg)' },
+                { transform: 'rotate(360deg)' }
+              ],
+              {
+                duration: 600,
+                easing: 'cubic-bezier(.45,0,.2,1)',
+                fill: 'forwards'
+              }
+            );
+
+            await spinAnimation.finished;
+            window.location.href = destination;
+          } catch (error) {
+            // Если анимация была прервана браузером, всё равно выполняем переход.
+            window.location.href = destination;
+          }
+        });
+      });
+    }
+  }
+
+
+  /* ==============================
      Smooth Scroll
   ============================== */
   function smoothScroll(targetY, duration = 800) {
