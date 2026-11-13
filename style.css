@@ -1064,8 +1064,19 @@ footer {
 ============================================================ */
 
 .lang {
+  position: relative;
+  display: inline-block;
+  white-space: nowrap;
   font-size: 13px;
   color: #ccc;
+  isolation: isolate;
+}
+
+/* Языковые обозначения остаются поверх перемещаемой плашки. */
+.lang a,
+.lang strong {
+  position: relative;
+  z-index: 1;
 }
 
 .lang a {
@@ -1080,25 +1091,24 @@ footer {
 }
 
 .lang strong {
-  position: relative;
   display: inline;
   padding: 0;
   margin: 0;
   color: #fff;
   font-weight: normal;
   background: none;
-  z-index: 0;
-  isolation: isolate;
 }
 
-.lang strong::before {
-  content: "";
+/* Отдельная плашка, которую JS перемещает между языками. */
+.lang-indicator {
   position: absolute;
-  z-index: -1;
-  inset: -5px -3px;
+  z-index: 0;
+  display: block;
+  pointer-events: none;
   background: rgba(255, 255, 255, 0.25);
   border-radius: 5px;
-  pointer-events: none;
+  transform-origin: center center;
+  will-change: transform, left, top;
 }
 
 
