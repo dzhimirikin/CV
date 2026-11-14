@@ -436,6 +436,10 @@ document.addEventListener('DOMContentLoaded', () => {
         justify-content: center;
         padding: 56px 24px 24px;
         background: rgba(0, 0, 0, 0.92);
+        /* Сертификатный просмотрщик не должен запускать pinch-zoom страницы.
+           Касания остаются доступны кнопкам и ссылкам, но жесты браузера отключены. */
+        touch-action: none;
+        overscroll-behavior: none;
       }
       .certificate-viewer-image {
         display: block;
@@ -446,6 +450,10 @@ document.addEventListener('DOMContentLoaded', () => {
         object-fit: contain;
         box-shadow: 0 8px 32px rgba(0, 0, 0, 0.45);
         border-radius: 2px;
+        touch-action: none;
+        user-select: none;
+        -webkit-user-select: none;
+        -webkit-user-drag: none;
       }
       .certificate-viewer-nav {
         position: fixed;
