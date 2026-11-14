@@ -180,14 +180,109 @@ document.addEventListener("DOMContentLoaded", () => {
         const zoomInBtn = makeZoomButton("+", "Zoom in");
         const zoomOutBtn = makeZoomButton("−", "Zoom out");
 
+        // Панорамирование увеличенного изображения мышью и пальцем.
+        // Координаты хранятся в экранных пикселях, поэтому перемещение
+        // остаётся предсказуемым при любом масштабе.
+        let panX = 0;
+        let panY = 0;
+        let dragPointerId = null;
+        let dragStartX = 0;
+        let dragStartY = 0;
+        let dragOriginX = 0;
+        let dragOriginY = 0;
+        const activePointers = new Map();
+        let pinchStartDistance = 0;
+        let pinchStartZoom = 1;
+
+        function clampPan() {
+            const maxX = Math.max(0, (img.offsetWidth * imageZoom - overlay.clientWidth) / 2);
+            const maxY = Math.max(0, (img.offsetHeight * imageZoom - overlay.clientHeight) / 2);
+            panX = Math.max(-maxX, Math.min(maxX, panX));
+            panY = Math.max(-maxY, Math.min(maxY, panY));
+        }
+
         function applyZoom() {
-            img.style.transform = `scale(${imageZoom})`;
+            imageZoom = Math.max(MIN_ZOOM, Math.min(MAX_ZOOM, imageZoom));
+            if (imageZoom <= MIN_ZOOM) {
+                imageZoom = MIN_ZOOM;
+                panX = 0;
+                panY = 0;
+            }
+            clampPan();
+            img.style.transform = `translate(${panX}px, ${panY}px) scale(${imageZoom})`;
             img.style.transformOrigin = "center center";
+            img.style.cursor = imageZoom > 1 ? (dragPointerId === null ? "grab" : "grabbing") : "default";
             zoomInBtn.disabled = imageZoom >= MAX_ZOOM;
             zoomOutBtn.disabled = imageZoom <= MIN_ZOOM;
             zoomInBtn.style.opacity = zoomInBtn.disabled ? "0.45" : "1";
             zoomOutBtn.style.opacity = zoomOutBtn.disabled ? "0.45" : "1";
         }
+
+        function pointerDistance(a, b) {
+            return Math.hypot(a.x - b.x, a.y - b.y);
+        }
+
+        img.addEventListener("dragstart", event => event.preventDefault());
+        img.addEventListener("pointerdown", event => {
+            if (event.pointerType === "mouse" && event.button !== 0) return;
+            event.preventDefault();
+            activePointers.set(event.pointerId, { x: event.clientX, y: event.clientY });
+            img.setPointerCapture(event.pointerId);
+
+            if (activePointers.size === 2) {
+                const points = [...activePointers.values()];
+                pinchStartDistance = pointerDistance(points[0], points[1]);
+                pinchStartZoom = imageZoom;
+                dragPointerId = null;
+            } else if (activePointers.size === 1 && imageZoom > 1) {
+                dragPointerId = event.pointerId;
+                dragStartX = event.clientX;
+                dragStartY = event.clientY;
+                dragOriginX = panX;
+                dragOriginY = panY;
+                applyZoom();
+            }
+        });
+
+        img.addEventListener("pointermove", event => {
+            if (!activePointers.has(event.pointerId)) return;
+            activePointers.set(event.pointerId, { x: event.clientX, y: event.clientY });
+
+            if (activePointers.size >= 2) {
+                const points = [...activePointers.values()];
+                const distance = pointerDistance(points[0], points[1]);
+                if (pinchStartDistance > 0) {
+                    imageZoom = Math.max(MIN_ZOOM, Math.min(MAX_ZOOM,
+                        pinchStartZoom * distance / pinchStartDistance));
+                    applyZoom();
+                }
+            } else if (event.pointerId === dragPointerId && imageZoom > 1) {
+                panX = dragOriginX + event.clientX - dragStartX;
+                panY = dragOriginY + event.clientY - dragStartY;
+                applyZoom();
+            }
+        });
+
+        function finishPointer(event) {
+            activePointers.delete(event.pointerId);
+            if (event.pointerId === dragPointerId) dragPointerId = null;
+            if (activePointers.size < 2) pinchStartDistance = 0;
+            applyZoom();
+        }
+        img.addEventListener("pointerup", finishPointer);
+        img.addEventListener("pointercancel", finishPointer);
+        img.addEventListener("lostpointercapture", finishPointer);
+
+        // Колесо мыши также управляет масштабом, когда курсор над фото.
+        img.addEventListener("wheel", event => {
+            event.preventDefault();
+            const direction = event.deltaY < 0 ? 1 : -1;
+            imageZoom = Math.max(MIN_ZOOM, Math.min(MAX_ZOOM,
+                +(imageZoom + direction * ZOOM_STEP).toFixed(2)));
+            applyZoom();
+        }, { passive: false });
+
+        window.addEventListener("resize", applyZoom);
 
         zoomInBtn.addEventListener("click", () => {
             imageZoom = Math.min(MAX_ZOOM, +(imageZoom + ZOOM_STEP).toFixed(2));
@@ -426,6 +521,10 @@ document.addEventListener("DOMContentLoaded", () => {
             // Ручное перелистывание стрелками/клавиатурой/точками — мгновенно,
             // без эффекта затемнения. Плавное растворение остаётся для слайд-шоу.
             imageZoom = 1;
+            panX = 0;
+            panY = 0;
+            activePointers.clear();
+            dragPointerId = null;
             applyZoom();
 
             if (!useFade) {
@@ -782,6 +881,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 "keydown",
                 handleKey
             );
+            window.removeEventListener("resize", applyZoom);
 
             overlay.remove();
 
