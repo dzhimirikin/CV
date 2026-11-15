@@ -409,6 +409,16 @@ projectCards.forEach(card => {
                     showProjectCards ? '' : 'none';
             }
         });
+
+        // Показываем Gallery только при наличии хотя бы одной
+        // фактически отображаемой карточки проекта.
+        const hasVisibleProjects = Array.from(projectCards)
+            .some(card => card.style.display !== 'none');
+
+        if (gallerySection) {
+            gallerySection.style.display =
+                hasVisibleProjects ? '' : 'none';
+        }
     }
 
 
