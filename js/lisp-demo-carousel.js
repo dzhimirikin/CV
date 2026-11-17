@@ -22,6 +22,8 @@ document.addEventListener('DOMContentLoaded', () => {
   const counter = root.querySelector('#lispCarouselCounter');
   const dotsContainer = root.querySelector('#lispDots');
 
+
+
   // Add vertical space between the workspace description and current command title.
   if (title) title.style.marginTop = '32px';
 
@@ -103,25 +105,36 @@ document.addEventListener('DOMContentLoaded', () => {
   let dotPill = null;
   let dotPillAnimation = null;
 
-  if (dotsContainer && dots.length) {
-    dotsContainer.style.position = 'relative';
-    dotsContainer.style.display = 'flex';
-    dotsContainer.style.alignItems = 'center';
-    dotsContainer.style.justifyContent = 'center';
-    dotsContainer.style.gap = '8px';
+  function applyDotSizes() {
+    const mobile = window.matchMedia('(max-width: 600px)').matches;
+    const dotSize = mobile ? 8 : 12;
+
+    dotsContainer.style.gap = mobile ? '9px' : '8px';
 
     dots.forEach(dot => {
       dot.style.position = 'relative';
       dot.style.zIndex = '2';
-      dot.style.width = '12px';
-      dot.style.height = '12px';
-      dot.style.minWidth = '12px';
-      dot.style.minHeight = '12px';
+      dot.style.width = `${dotSize}px`;
+      dot.style.height = `${dotSize}px`;
+      dot.style.minWidth = `${dotSize}px`;
+      dot.style.minHeight = `${dotSize}px`;
       dot.style.padding = '0';
       dot.style.borderRadius = '50%';
       dot.style.background = '#c7cdd2';
       dot.style.transform = 'none';
     });
+
+    if (dotPill) {
+      dotPill.style.width = mobile ? '18px' : '22px';
+      dotPill.style.height = mobile ? '10px' : '14px';
+    }
+  }
+
+  if (dotsContainer && dots.length) {
+    dotsContainer.style.position = 'relative';
+    dotsContainer.style.display = 'flex';
+    dotsContainer.style.alignItems = 'center';
+    dotsContainer.style.justifyContent = 'center';
 
     dotPill = document.createElement('span');
     dotPill.className = 'lisp-dot-pill';
@@ -140,6 +153,7 @@ document.addEventListener('DOMContentLoaded', () => {
       willChange: 'transform, width'
     });
     dotsContainer.prepend(dotPill);
+    applyDotSizes();
   }
 
   const getPillWidth = () =>
@@ -343,7 +357,17 @@ document.addEventListener('DOMContentLoaded', () => {
   // Click and keyboard navigation
   slides.forEach((slide, index) => {
 
-    slide.addEventListener('click', () => goTo(index));
+    function activateSlide() {
+
+if (index === currentIndex && slide.dataset.video) {
+    window.openVideoModal(slide.dataset.video);
+} else {
+    goTo(index);
+}
+
+    }
+
+    slide.addEventListener('click', activateSlide);
 
     slide.addEventListener('keydown', event => {
 
@@ -351,7 +375,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         event.preventDefault();
 
-        goTo(index);
+        activateSlide();
       }
     });
   });
@@ -359,7 +383,10 @@ document.addEventListener('DOMContentLoaded', () => {
   // Initial state
   update();
 
-  // Recalculate positions on window resize
-  window.addEventListener('resize', update);
+  // Recalculate dot sizes and positions on window resize.
+  window.addEventListener('resize', () => {
+    if (dotsContainer && dots.length) applyDotSizes();
+    update();
+  });
 
 });

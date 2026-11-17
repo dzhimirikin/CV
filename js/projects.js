@@ -656,14 +656,8 @@ projectCards.forEach(card => {
 
         link.textContent = video.title;
 
-        link.onclick = () => {
-
-    window.open(
-        video.url,
-        '_blank',
-        'width=800,height=450,resizable=yes'
-    );
-
+link.onclick = () => {
+    window.openVideoModal(video.url);
 };
 
 videoMenu.appendChild(link);
