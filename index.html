@@ -138,6 +138,19 @@ window.Hyphenopoly = {
             Skills
           </a>
         </li>
+
+<!--
+       <li>
+         <a href="#lisp-demo">
+           <svg xmlns="http://www.w3.org/2000/svg" class="icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                   d="M8 8l-4 4 4 4m8-8 4 4-4 4m-3-10-2 12" />
+           </svg>
+           LISP
+         </a>
+       </li>
+-->
+
         <li>
           <a href="#projects">
             <!-- Heroicon: briefcase -->
@@ -353,6 +366,26 @@ window.Hyphenopoly = {
 </div>
 
 
+<!-- BPS -->
+<h3>BPS</h3>
+
+<div class="skill">
+  <span class="skill-name">WINDOW</span>
+  <div class="skill-bar">
+    <div class="skill-progress" data-width="70"></div>
+  </div>
+  <span class="skill-percent">0%</span>
+</div>
+
+<div class="skill">
+  <span class="skill-name">THERM</span>
+  <div class="skill-bar">
+    <div class="skill-progress" data-width="70"></div>
+  </div>
+  <span class="skill-percent">0%</span>
+</div>
+
+
 <!-- FEM -->
 <h3>FEM</h3>
 
@@ -459,6 +492,131 @@ window.Hyphenopoly = {
 
 </div>
 </section>
+
+
+
+<!-- LISP DEMO -->
+<section id="lisp-demo">
+  <div class="card">
+    <h2>LISP Demo</h2>
+
+    <div class="lisp-intro lisp-gallery">
+      <a href="LISP_Demo/WORKPLACE_01.webp"
+         data-viewer-image>
+        View my workspace
+      </a>
+      <a href="LISP_Demo/WORKPLACE_02.webp"></a>
+
+      <br><br>
+
+      <p>
+        LISP functions make it possible to automate resource-intensive and repetitive tasks, such as preparing and adapting architectural drawings and LogiKAL diagrams to the AutoCAD template in use, preparing general arrangement drawings of transparent structures and light-gauge steel structures (LGS), detailing structural connections, and much more.
+      </p>
+
+      <p>
+        LISP functions are continuously extended to meet new requirements, gradually forming an extensive library. They are managed through a separate control panel, where commands are clearly organised by purpose.
+      </p>
+
+      <p>
+        This creates a basic hardware and software workstation for transparent-structure design. It increases drawing production speed and enables a quick transition to producing drawings that comply with the documentation and language requirements of different markets. LISP functions are integrated with the AutoCAD template in use.
+      </p>
+    </div>
+
+    <div class="lisp-current-title" id="lispCurrentTitle"></div>
+
+    <div class="lisp-current-description" id="lispCurrentDescription"></div>
+
+    <div class="lisp-carousel-container">
+      <div class="lisp-carousel" id="lispCarousel">
+
+        <img src="LISP_Demo/001_LISP_CLEANFRAG.gif"
+             alt="CLEANFRAG"
+             data-title="CLEANFRAG"
+             data-description="AutoLISP function: cleans LogiKal graphics and adapts them to the AutoCAD template"
+             data-video="LISP_Demo/001_VIDEO_CLEANFRAG.mp4">
+
+        <img src="LISP_Demo/002_LISP_HYDRO.gif"
+             alt="HYDRO"
+             data-title="HYDRO"
+             data-description="AutoLISP function: draws a membrane based on a polyline, with or without a position mark. Includes a bilingual material reference for preparing drawings in languages other than the native language"
+             data-video="LISP_Demo/002_VIDEO_HYDRO.mp4">
+
+        <img src="LISP_Demo/003_LISP_FOAM.gif"
+             alt="FOAM"
+             data-title="FOAM"
+             data-description="AutoLISP function: draws foam and other materials in a detail, with or without a position mark. Includes a bilingual material reference for preparing drawings in languages other than the native language"
+             data-video="LISP_Demo/003_VIDEO_FOAM.mp4">
+
+        <img src="LISP_Demo/004_LISP_NASCH.gif"
+             alt="NASCH"
+             data-title="NASCH"
+             data-description="AutoLISP function: draws a cover strip based on a polyline, with or without a position mark. Includes a bilingual material reference for preparing drawings in languages other than the native language"
+             data-video="LISP_Demo/004_VIDEO_NASCH.mp4">
+
+        <img src="LISP_Demo/005_LISP_METIZ.gif"
+             alt="METIZ"
+             data-title="METIZ"
+             data-description="AutoLISP function: inserts fasteners, with or without a position mark. Includes a bilingual material reference for preparing drawings in languages other than the native language"
+             data-video="LISP_Demo/005_VIDEO_METIZ.mp4">
+
+        <img src="LISP_Demo/006_LISP_GETBLOCKN.gif"
+             alt="GETBLOCKN"
+             data-title="GETBLOCKN"
+             data-description="AutoLISP function: creates a position mark using the block name"
+             data-video="LISP_Demo/006_VIDEO_GETBLOCKN.mp4">
+
+      </div>
+    </div>
+
+      <span id="lispCarouselCounter">1 / 6</span>    
+      <div class="lisp-dots" id="lispDots"
+         aria-label="Choose demonstration"></div>
+
+    <div class="lisp-carousel-controls">
+      <button type="button"
+              onclick="lispRotateCarousel(-1)"
+              aria-label="Previous demonstration"></button>
+
+      <button type="button"
+              onclick="lispRotateCarousel(1)"
+              aria-label="Next demonstration"></button>
+    </div>
+
+  </div>
+
+<!-- VIDEO MODAL -->
+<div id="videoModal" class="video-modal">
+
+  <div class="video-modal-content">
+
+    <button class="video-close"
+            id="videoClose"
+            aria-label="Close video">
+      &times;
+    </button>
+
+<div class="video-player-container">
+
+  <video id="videoPlayer"
+         controls
+         playsinline
+         preload="metadata">
+  </video>
+
+  <iframe id="videoFrame"
+          allow="autoplay; fullscreen"
+          allowfullscreen
+          style="display: none;">
+  </iframe>
+
+</div>
+
+  </div>
+
+</div>
+</section>
+
+
 
 
 <!-- PROJECTS -->
@@ -1380,6 +1538,7 @@ window.Hyphenopoly = {
       <a href="014_KASTANI/014_KASTANI_09.webp" target="_blank"><img src="014_KASTANI/014_KASTANI_09_Preview.webp" alt="Kastani Kolmnurk Office Building, Kastani St. 92, Tartu, Estonia" loading="lazy" decoding="async"></a>
       <a href="014_KASTANI/014_KASTANI_10.webp" target="_blank"><img src="014_KASTANI/014_KASTANI_10_Preview.webp" alt="Kastani Kolmnurk Office Building, Kastani St. 92, Tartu, Estonia" loading="lazy" decoding="async"></a>
       <a href="014_KASTANI/014_KASTANI_11.webp" target="_blank"><img src="014_KASTANI/014_KASTANI_11_Preview.webp" alt="Kastani Kolmnurk Office Building, Kastani St. 92, Tartu, Estonia" loading="lazy" decoding="async"></a>
+      <a href="014_KASTANI/014_KASTANI_12.webp" target="_blank"><img src="014_KASTANI/014_KASTANI_12_Preview.webp" alt="Kastani Kolmnurk Office Building, Kastani St. 92, Tartu, Estonia" loading="lazy" decoding="async"></a>
 
       <!-- 015_TLT -->
       <a href="015_TLT/015_TLT_01.webp" target="_blank"><img src="015_TLT/015_TLT_01_Preview.webp" alt="Tulesäde Kindergarten, Kambja Parish, Estonia" loading="lazy" decoding="async"></a>
@@ -2103,6 +2262,7 @@ window.Hyphenopoly = {
 <!-- Основные скрипты -->
 <script src="js/main.js" defer></script>
 <script src="js/skills.js" defer></script>
+<script src="js/video-modal.js" defer></script>
 <script src="js/projects.js" defer></script>
 <script src="js/carousel.js" defer></script>
 <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
@@ -2115,6 +2275,7 @@ window.Hyphenopoly = {
 <script src="js/market-monitor.js" defer></script>
 <script src="js/market-monitor-quarterly.js" defer></script>
 <script src="js/market-monitor-tabs.js" defer></script>
+<script src="js/lisp-demo-carousel.js" defer></script>
 
 
     <div id="companyWarningModal" class="company-warning-modal">

@@ -66,8 +66,8 @@
   </script>
 
   <!-- SEO Meta Tags (RU) -->
-  <meta name="description" content="Дмитрий Жимирикин — инженер по светопрозрачным и фасадным конструкциям с более чем 10-летним опытом проектирования и реализации фасадов жилых, коммерческих и промышленных зданий. Алюминиевые фасадные системы, КМ и КМД, рабочая документация, расчёты конструкций, сопровождение строительства. Опыт работы в Эстонии и России.">
-  <meta name="keywords" content="Дмитрий Жимирикин, инженер по фасадам, инженер по светопрозрачным конструкциям, фасадные системы, алюминиевые фасады, витражи, вентфасады, проектирование фасадов, КМ, КМД, рабочая документация, расчёт конструкций, AutoCAD, LogiKAL, SCAD, Archicad, Revit, Reynaers, Schüco, Aluprof, Alutech, фасадный инженер Эстония, фасадный инженер Россия">
+  <meta name="description" content="Дмитрий Жимирикин — инженер по светопрозрачным и фасадным конструкциям с опытом более 10 лет. Проектирование алюминиевых и стеклянных фасадов, КМ и КМД, расчёты конструкций и сопровождение строительства. Опыт работы в Эстонии и России.">
+  <meta name="keywords" content="Дмитрий Жимирикин, инженер по фасадам, инженер по светопрозрачным конструкциям, фасадные системы, алюминиевые фасады, витражи, вентфасады, проектирование фасадов, КМ, КМД, рабочая документация, расчёт конструкций, AutoCAD, LogiKAL, SCAD, Archicad, Revit, Reynaers, Schüco, Aluprof, Alutech, фасадный инженер Эстония">
   <meta name="robots" content="index, follow">
 
   <link rel="canonical" href="https://dzhimirikin.eu/index_ru.html">
@@ -242,6 +242,19 @@ window.Hyphenopoly = {
             Навыки
           </a>
         </li>
+
+<!--
+        <li>
+          <a href="#lisp-demo">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M8 8l-4 4 4 4m8-8 4 4-4 4m-3-10-2 12" />
+            </svg>
+            LISP
+          </a>
+        </li>
+-->
+
         <li>
           <a href="#projects">
             <!-- Heroicon: briefcase -->
@@ -462,6 +475,26 @@ window.Hyphenopoly = {
     </div>
 
 
+    <!-- BPS -->
+    <h3>BPS</h3>
+
+    <div class="skill">
+      <span class="skill-name">WINDOW</span>
+      <div class="skill-bar">
+        <div class="skill-progress" data-width="70"></div>
+      </div>
+      <span class="skill-percent">0%</span>
+    </div>
+
+    <div class="skill">
+      <span class="skill-name">THERM</span>
+      <div class="skill-bar">
+        <div class="skill-progress" data-width="70"></div>
+      </div>
+      <span class="skill-percent">0%</span>
+    </div>
+
+
     <!-- FEM -->
     <h3>FEM</h3>
 
@@ -567,8 +600,133 @@ window.Hyphenopoly = {
     </div>
 
   </div>
-
 </section>
+
+
+<!-- ДЕМОНСТРАЦИЯ LISP -->
+<section id="lisp-demo">
+  <div class="card">
+    <h2>
+      Демонстрация LISP
+    </h2>
+
+    <div class="lisp-intro lisp-gallery">
+      <a href="LISP_Demo/WORKPLACE_01.webp"
+         data-viewer-image>
+        Моё рабочее место
+      </a>
+      <a href="LISP_Demo/WORKPLACE_02.webp"></a>
+
+      <br><br>
+
+      <p>
+        Функции LISP позволяют автоматизировать ресурсоемкие и повторяющиеся операции, такие как подготовка и адаптация к используемому шаблону AutoCAD архитектурных чертежей и схем LogiKal, оформление чертежей общего вида светопрозрачных конструкций, ЛСТК, оформление конструктивных узлов и многое другое.
+      </p>
+
+      <p>
+        LISP оперативно дописываются под новые задачи, формируя обширную библиотеку. Управление LISP осуществляется с выносной консоли, где команды четко структурированы по назначению.
+      </p>
+
+      <p>
+        Таким образом формируется простейший аппаратно-программный комплекс АРМ проектировщика светопрозрачных конструкций, что позволяет как увеличить скорость выпуска чертежей, так и оперативно переходить на выпуск чертежей для рынков с разными языковыми требованиями по оформлению. Функции LISP интегрированы с используемым шаблоном AutoCAD.
+      </p>
+    </div>
+
+    <div class="lisp-current-title" id="lispCurrentTitle"></div>
+
+    <div class="lisp-current-description" id="lispCurrentDescription"></div>
+
+    <div class="lisp-carousel-container">
+      <div class="lisp-carousel" id="lispCarousel">
+
+        <img src="LISP_Demo/001_LISP_CLEANFRAG.gif"
+             alt="CLEANFRAG"
+             data-title="CLEANFRAG"
+             data-description="Функция AutoLISP: очистка графики LogiKal и адаптация под шаблон AutoCAD"
+             data-video="LISP_Demo/001_VIDEO_CLEANFRAG.mp4">
+
+
+        <img src="LISP_Demo/002_LISP_HYDRO.gif"
+             alt="HYDRO"
+             data-title="HYDRO"
+             data-description="Функция AutoLISP: рисует мембрану на основе полилинии c обозначением позиции или без него. Двуязычный справочник материалов для выпуска чертежей на отличных от родного языках"
+             data-video="LISP_Demo/002_VIDEO_HYDRO.mp4">
+
+        <img src="LISP_Demo/003_LISP_FOAM.gif"
+             alt="FOAM"
+             data-title="FOAM"
+             data-description="Функция AutoLISP: рисует пену и др.материалы в узле c обозначением позиции или без него. Двуязычный справочник материалов для выпуска чертежей на отличных от родного языках"
+             data-video="LISP_Demo/003_VIDEO_FOAM.mp4">
+
+        <img src="LISP_Demo/004_LISP_NASCH.gif"
+             alt="NASCH"
+             data-title="NASCH"
+             data-description="Функция AutoLISP: рисует нащельник на основе полилинии c обозначением позиции или без него. Двуязычный справочник материалов для выпуска чертежей на отличных от родного языках"
+             data-video="LISP_Demo/004_VIDEO_NASCH.mp4">
+
+        <img src="LISP_Demo/005_LISP_METIZ.gif"
+             alt="METIZ"
+             data-title="METIZ"
+             data-description="Функция AutoLISP: устанавливает элементы крепежа c обозначением позиции или без него. Двуязычный справочник материалов для выпуска чертежей на отличных от родного языках "
+             data-video="LISP_Demo/005_VIDEO_METIZ.mp4">
+
+        <img src="LISP_Demo/006_LISP_GETBLOCKN.gif"
+             alt="GETBLOCKN"
+             data-title="GETBLOCKN"
+             data-description="Функция AutoLISP: создает обозначение позиции с именем блока"
+             data-video="LISP_Demo/006_VIDEO_GETBLOCKN.mp4">
+
+      </div>
+    </div>
+
+    <span id="lispCarouselCounter">1 / 6</span>
+    <div class="lisp-dots" id="lispDots"
+         aria-label="Выбор демонстрации"></div>
+
+    <div class="lisp-carousel-controls">
+      <button type="button"
+              onclick="lispRotateCarousel(-1)"
+              aria-label="Предыдущая демонстрация"></button>
+
+      <button type="button"
+              onclick="lispRotateCarousel(1)"
+              aria-label="Следующая демонстрация"></button>
+    </div>
+
+  </div>
+
+<!-- VIDEO MODAL -->
+<div id="videoModal" class="video-modal">
+
+  <div class="video-modal-content">
+
+    <button class="video-close"
+            id="videoClose"
+            aria-label="Close video">
+      &times;
+    </button>
+
+<div class="video-player-container">
+
+  <video id="videoPlayer"
+         controls
+         playsinline
+         preload="metadata">
+  </video>
+
+  <iframe id="videoFrame"
+          allow="autoplay; fullscreen"
+          allowfullscreen
+          style="display: none;">
+  </iframe>
+
+</div>
+
+  </div>
+
+</div>
+</section>
+
 
 <!-- PROJECTS -->
 <section id="projects">
@@ -1491,6 +1649,7 @@ window.Hyphenopoly = {
       <a href="014_KASTANI/014_KASTANI_09.webp" target="_blank"><img src="014_KASTANI/014_KASTANI_09_Preview.webp" alt="Деловое здание Kastani Kolmnurk, ул. Кастани, 92, Тарту, Эстония" loading="lazy" decoding="async"></a>
       <a href="014_KASTANI/014_KASTANI_10.webp" target="_blank"><img src="014_KASTANI/014_KASTANI_10_Preview.webp" alt="Деловое здание Kastani Kolmnurk, ул. Кастани, 92, Тарту, Эстония" loading="lazy" decoding="async"></a>
       <a href="014_KASTANI/014_KASTANI_11.webp" target="_blank"><img src="014_KASTANI/014_KASTANI_11_Preview.webp" alt="Деловое здание Kastani Kolmnurk, ул. Кастани, 92, Тарту, Эстония" loading="lazy" decoding="async"></a>
+      <a href="014_KASTANI/014_KASTANI_12.webp" target="_blank"><img src="014_KASTANI/014_KASTANI_12_Preview.webp" alt="Деловое здание Kastani Kolmnurk, ул. Кастани, 92, Тарту, Эстония" loading="lazy" decoding="async"></a>
 
       <!-- 015_TLT -->
       <a href="015_TLT/015_TLT_01.webp" target="_blank"><img src="015_TLT/015_TLT_01_Preview.webp" alt="Детский сад Tulesäde, волость Камбья, Эстония" loading="lazy" decoding="async"></a>
@@ -2211,6 +2370,7 @@ window.Hyphenopoly = {
 <!-- Основные скрипты -->
 <script src="js/main.js" defer></script>
 <script src="js/skills.js" defer></script>
+<script src="js/video-modal.js" defer></script>
 <script src="js/projects.js" defer></script>
 <script src="js/carousel.js" defer></script>
 <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
@@ -2224,6 +2384,7 @@ window.Hyphenopoly = {
 <script src="js/market-monitor.js" defer></script>
 <script src="js/market-monitor-quarterly.js" defer></script>
 <script src="js/market-monitor-tabs.js" defer></script>
+<script src="js/lisp-demo-carousel.js" defer></script>
 
 
     <div id="companyWarningModal" class="company-warning-modal">
