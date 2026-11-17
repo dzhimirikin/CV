@@ -3,6 +3,9 @@ document.addEventListener("DOMContentLoaded", () => {
     const allGalleryLinks =
         Array.from(document.querySelectorAll("#gallery .gallery a"));
 
+    const lispGalleryContainers =
+        Array.from(document.querySelectorAll("#lisp-demo .lisp-gallery"));
+
     let galleryLinks = [];
     let currentIndex = 0;
 
@@ -24,6 +27,70 @@ document.addEventListener("DOMContentLoaded", () => {
         });
 
     }
+
+
+    /* ============================================================
+       ОТКРЫТИЕ ГАЛЕРЕЙ LISP DEMO
+    ============================================================ */
+
+    lispGalleryContainers.forEach(container => {
+
+        const links = Array.from(container.querySelectorAll("a[href]"));
+
+        if (!links.length) return;
+
+        // Первая ссылка — видимая точка входа в галерею.
+        // Остальные ссылки содержат фотографии и не отображаются на странице.
+        const triggerLink = links[0];
+
+        links.slice(1).forEach(link => {
+            link.hidden = true;
+        });
+
+        triggerLink.addEventListener("click", e => {
+
+            e.preventDefault();
+
+            // Все ссылки блока входят в одну галерею,
+            // даже если у дополнительных ссылок нет элементов <img>.
+            galleryLinks = links;
+            currentIndex = 0;
+
+            const old = document.querySelector(".lightbox-overlay");
+            if (old) old.remove();
+
+            openLightbox(galleryLinks[currentIndex].href);
+
+        });
+
+    });
+
+
+    /* ============================================================
+       СОВМЕСТИМОСТЬ СО СТАРОЙ ОДИНОЧНОЙ ССЫЛКОЙ LISP DEMO
+    ============================================================ */
+
+    document.querySelectorAll("#lisp-demo [data-viewer-image]").forEach(link => {
+
+        // Ссылки внутри .lisp-gallery обрабатываются общим механизмом выше.
+        if (link.closest(".lisp-gallery")) return;
+
+        link.addEventListener("click", e => {
+
+            e.preventDefault();
+
+            galleryLinks = [link];
+            currentIndex = 0;
+
+            const old = document.querySelector(".lightbox-overlay");
+            if (old) old.remove();
+
+            openLightbox(link.href);
+
+        });
+
+    });
+
 
 
     /* ============================================================
