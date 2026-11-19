@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-18T04:09:45.216818",
+  "updated": "2026-11-19T04:06:27.762129",
   "source": {
     "emtaOpenDataPage": "https://www.emta.ee/en/private-client/board-news-and-contacts/news-press-information-statistics/statistics-and-open-data",
     "files": [
@@ -15440,10 +15440,10 @@
         "labourTaxes": 5934.0,
         "employees": 3.0,
         "taxableTurnoverPerEmployee": 14798.666666666666,
-        "projectedTurnover": 46827.0,
-        "projectedLabourProductivity": 15609.0,
+        "projectedTurnover": 46349.0,
+        "projectedLabourProductivity": 15450.0,
         "labourProductivity": 14799.0,
-        "profitPerEmployee": 393.0,
+        "profitPerEmployee": 233.0,
         "averageGrossWage": 1100.0,
         "sourceName": "KLAASIMEISTRID OÜ"
       },
@@ -15457,10 +15457,10 @@
           "labourTaxes": 5934.0,
           "employees": 3.0,
           "taxableTurnoverPerEmployee": 14798.666666666666,
-          "projectedTurnover": 46827.0,
-          "projectedLabourProductivity": 15609.0,
+          "projectedTurnover": 46349.0,
+          "projectedLabourProductivity": 15450.0,
           "labourProductivity": 14799.0,
-          "profitPerEmployee": 393.0,
+          "profitPerEmployee": 233.0,
           "averageGrossWage": 1100.0,
           "sourceName": "KLAASIMEISTRID OÜ"
         },
@@ -15473,10 +15473,10 @@
           "labourTaxes": 4397.0,
           "employees": 5.0,
           "taxableTurnoverPerEmployee": 6800.4,
-          "projectedTurnover": 35864.0,
-          "projectedLabourProductivity": 7173.0,
+          "projectedTurnover": 35498.0,
+          "projectedLabourProductivity": 7100.0,
           "labourProductivity": 6800.0,
-          "profitPerEmployee": 181.0,
+          "profitPerEmployee": 107.0,
           "averageGrossWage": 780.0,
           "sourceName": "KLAASIMEISTRID OÜ"
         },
@@ -15489,10 +15489,10 @@
           "labourTaxes": 4202.0,
           "employees": 4.0,
           "taxableTurnoverPerEmployee": 14160.75,
-          "projectedTurnover": 59744.0,
-          "projectedLabourProductivity": 14936.0,
+          "projectedTurnover": 59135.0,
+          "projectedLabourProductivity": 14784.0,
           "labourProductivity": 14161.0,
-          "profitPerEmployee": 376.0,
+          "profitPerEmployee": 223.0,
           "averageGrossWage": 840.0,
           "sourceName": "KLAASIMEISTRID OÜ"
         },
