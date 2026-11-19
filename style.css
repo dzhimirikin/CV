@@ -1,4 +1,4 @@
-ЫЫ@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;500;600;700&display=swap');
 
 /* ============================================================
    ROOT VARIABLES
@@ -5349,7 +5349,7 @@ small,
 
 #lisp-demo .lisp-carousel-container {
   width: 100%;
-  height: 240px;
+  height: 300px;
   margin: 20px 0;
   position: relative;
   perspective: 3000px;
@@ -5460,7 +5460,7 @@ small,
 @media (max-width: 768px) {
 
   #lisp-demo .lisp-carousel-container {
-    height: 180px;
+    height: 340px;
     perspective: 800px;
     align-items: center;
   }
