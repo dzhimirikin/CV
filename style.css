@@ -5314,6 +5314,18 @@ small,
    Independent from Certificates carousel
 ============================================================ */
 
+/* ============================================================
+   LISP DEMO — TEXT PARAGRAPH SPACING
+============================================================ */
+
+#lisp-demo .lisp-intro p {
+  line-height: 1.55;
+}
+
+#lisp-demo .lisp-intro p + p {
+  margin-top: 0.65em;
+}
+
 #lisp-demo .lisp-current-title {
   margin: 0 0 8px;
   color: #1f2933;
