@@ -25,7 +25,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
   // Add vertical space between the workspace description and current command title.
-  if (title) title.style.marginTop = '32px';
+  if (title) title.style.marginTop = '12px';
 
   // Move counter above navigation dots
   if (counter && dotsContainer) {
