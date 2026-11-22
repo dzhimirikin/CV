@@ -35,7 +35,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
     lispGalleryContainers.forEach(container => {
 
-        const links = Array.from(container.querySelectorAll("a[href]"));
+        const links = Array.from(
+    container.querySelectorAll("a[data-viewer-image][href]")
+);
 
         if (!links.length) return;
 
