@@ -432,17 +432,9 @@ nav a.is-current::before {
   align-items: flex-start;
 }
 
-/* Единый контейнер фотографии и фасадных сечений */
-.hero-visual {
-  position: relative;
+.hero-photo {
   flex: 0 0 240px;
   width: 240px;
-}
-
-.hero-photo {
-  display: block;
-  flex: none;
-  width: 100%;
   height: auto;
   object-fit: contain;
 
@@ -505,14 +497,9 @@ nav a.is-current::before {
     padding-right: 24px;
   }
 
-.hero-visual {
+.hero-photo {
   flex: 0 0 180px;
   width: 180px;
-}
-
-.hero-photo {
-  flex: none;
-  width: 100%;
   height: auto;
 }
 
@@ -564,11 +551,6 @@ nav a.is-current::before {
     padding: 29px 20px 0;
     transform: translateY(-18px);
   }
-
-.hero-visual {
-  width: 100%;
-  flex: none;
-}
 
 .hero-photo {
   width: 82%;
@@ -638,81 +620,6 @@ nav a.is-current::before {
 .card p {
   text-align: justify;
   hyphens: auto;
-}
-
-
-/* ============================================================
-   HERO — FACADE SECTION OVERLAYS
-============================================================ */
-
-.hero-inner {
-  position: relative;
-}
-
-.hero-sections {
-  position: absolute;
-  inset: 0;
-  z-index: auto;
-  pointer-events: none;
-  overflow: visible;
-  visibility: hidden;
-}
-
-.hero-sections.is-visible {
-  visibility: visible;
-}
-
-.hero-section {
-  position: absolute;
-  opacity: 0;
-  transition: opacity 1100ms ease;
-  display: block;
-  width: var(--section-width, 520px);
-  height: auto;
-  max-width: none;
-  object-fit: contain;
-  filter: drop-shadow(0 1px 3px rgba(0,0,0,.35));
-}
-
-.hero-sections.is-visible .hero-section {
-  opacity: 1;
-}
-
-/* Левое сечение за фотографией, правое — перед ней */
-.hero-section-left {
-  z-index: 1;
-}
-
-.hero-photo {
-  position: relative;
-  z-index: 2;
-}
-
-.hero-section-right {
-  z-index: 3;
-}
-
-.hero-text {
-  position: relative;
-  z-index: 4;
-}
-
-@media (max-width: 700px) {
-  .hero-section {
-    width: var(--section-width, 300px);
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .hero-sections,
-  .hero-sections.is-visible {
-    transition: none;
-  }
-}
-
-/* При повторном открытии страницы сечения появляются мгновенно */
-.hero-sections.no-transition .hero-section {
-  transition: none !important;
 }
 
 
@@ -5399,7 +5306,6 @@ small,
     transform: rotateY(0deg) !important;
     transition: none !important;
 }
-
 
 
 
