@@ -174,121 +174,6 @@ document.addEventListener('DOMContentLoaded', () => {
   const heroDesc = hero?.querySelector('.hero-desc');
   const heroFlip = hero?.querySelector('.hero-flip');
   const heroPhoto = hero?.querySelector('.hero-photo');
-  const heroSections = hero?.querySelector('.hero-sections');
-  const heroSectionLeft = hero?.querySelector('.hero-section-left');
-  const heroSectionRight = hero?.querySelector('.hero-section-right');
-
-  // Keep both technical sections registered to the portrait at every viewport size.
-  function positionHeroSections() {
-    if (!heroPhoto || !heroSections || !heroSectionLeft || !heroSectionRight) return;
-    const photoLeft = heroPhoto.offsetLeft;
-    const photoTop = heroPhoto.offsetTop;
-    const photoWidth = heroPhoto.offsetWidth;
-    const photoHeight = heroPhoto.offsetHeight;
-    if (!photoWidth || !photoHeight) return;
-
-    const sectionWidth = Math.max(110, photoWidth * (window.innerWidth <= 700 ? 0.575 : 0.725));
-    const sectionHeight = sectionWidth * 730 / 1156;
-    const topLeft = photoTop + photoHeight * 0.60 - sectionHeight * 0.1;
-    const topRight = photoTop + photoHeight * 0.60 - sectionHeight * 0.1;
-
-    heroSections.style.setProperty('--section-width', `${sectionWidth}px`);
-    
-    // LEFT SECTION
-    heroSectionLeft.style.left = `${photoLeft - sectionWidth * 0.20}px`;
-    heroSectionLeft.style.top = `${topLeft}px`;
-    
-    // RIGHT SECTION
-    const isMobile = window.innerWidth <= 700;
-    const rightOffset = isMobile ? 0.50 : 0.40;
-
-    heroSectionRight.style.left = `${photoLeft + photoWidth * rightOffset}px`;
-    heroSectionRight.style.top = `${topRight}px`;
-  }
-
-
-function revealHeroSections() {
-    if (!heroSections) return Promise.resolve();
-
-    // Сначала устанавливаем окончательные координаты.
-    positionHeroSections();
-
-    // Если сечения уже показаны, повторная анимация не нужна.
-    if (heroSections.classList.contains('is-visible')) {
-        return Promise.resolve();
-    }
-
-    const sections = [
-        heroSectionLeft,
-        heroSectionRight
-    ].filter(Boolean);
-
-    if (!sections.length) return Promise.resolve();
-
-    return new Promise((resolve) => {
-        let completedSections = 0;
-        let finished = false;
-
-        // Запасной таймер на случай отсутствия transitionend.
-        const fallbackTimer = setTimeout(finish, 1300);
-
-        function finish() {
-            if (finished) return;
-            finished = true;
-
-            clearTimeout(fallbackTimer);
-
-            sections.forEach(section => {
-                section.removeEventListener(
-                    'transitionend',
-                    onSectionTransitionEnd
-                );
-            });
-
-            resolve();
-        }
-
-        function onSectionTransitionEnd(event) {
-            if (event.propertyName !== 'opacity') return;
-
-            completedSections++;
-
-            if (completedSections === sections.length) {
-                finish();
-            }
-        }
-
-        // Регистрируем ожидание завершения обоих сечений.
-        sections.forEach(section => {
-            section.addEventListener(
-                'transitionend',
-                onSectionTransitionEnd
-            );
-        });
-
-        // Одновременно запускаем проявление.
-        requestAnimationFrame(() => {
-            heroSections.classList.add('is-visible');
-        });
-    });
-}
-
-
-// Мгновенно показываем сечения при повторном открытии страницы
-// в рамках уже начатого сеанса.
-function showHeroSectionsImmediately() {
-    if (!heroSections) return;
-
-    // Пересчитываем координаты относительно фотографии.
-    positionHeroSections();
-
-    // Отключаем переходы, чтобы сечения не появлялись заново.
-    heroSections.classList.add('no-transition');
-
-    // Сразу показываем оба сечения.
-    heroSections.classList.add('is-visible');
-}
-
 
   const HERO_INTRO_KEY = 'heroIntroPlayed';
 
@@ -304,25 +189,16 @@ function showHeroSectionsImmediately() {
     '(prefers-reduced-motion: reduce)'
   ).matches;
 
-// Повторный вход в этой вкладке:
-// фото и сечения показываем сразу, текст — отдельно.
-if (introAlreadyPlayed) {
-    if (heroPhoto) {
-        heroPhoto.style.visibility = 'visible';
-    }
-
-    showHeroSectionsImmediately();
-
-    if (heroDesc) {
-        heroDesc.classList.add('hero-desc-ready');
-    }
-}
+  // Повторный вход в этой вкладке: сразу показываем готовую композицию.
+  if (introAlreadyPlayed) {
+    if (heroDesc) heroDesc.classList.add('hero-desc-ready');
+    if (heroPhoto) heroPhoto.style.visibility = 'visible';
+  }
 
   // При системном отключении анимации сразу показываем готовую композицию.
   if (reduceMotion) {
     if (heroDesc) heroDesc.classList.add('hero-desc-ready');
     if (heroPhoto) heroPhoto.style.visibility = 'visible';
-    showHeroSectionsImmediately();
     if (hero) {
       try {
         sessionStorage.setItem(HERO_INTRO_KEY, 'true');
@@ -355,35 +231,18 @@ if (introAlreadyPlayed) {
         let introCompleted = false;
         let flipFallbackTimer = null;
 
+        function completeHeroIntro() {
+          if (introCompleted) return;
+          introCompleted = true;
+          if (flipFallbackTimer !== null) clearTimeout(flipFallbackTimer);
+          heroFlip.removeEventListener('transitionend', onFlipTransitionEnd);
 
-function completeHeroIntro() {
-    if (introCompleted) return;
-
-    introCompleted = true;
-
-    if (flipFallbackTimer !== null) {
-        clearTimeout(flipFallbackTimer);
-    }
-
-    heroFlip.removeEventListener(
-        'transitionend',
-        onFlipTransitionEnd
-    );
-
-    // Запускаем проявление сечений
-    // и ждём завершения обоих переходов.
-    revealHeroSections().then(() => {
-
-        // Только теперь считаем весь HERO построенным.
-        try {
+          try {
             sessionStorage.setItem(HERO_INTRO_KEY, 'true');
-        } catch (e) {
-            // При недоступности хранилища заставка повторится.
+          } catch (e) {
+            // Если хранилище недоступно, при следующей загрузке заставка повторится.
+          }
         }
-
-    });
-}
-
 
         function onFlipTransitionEnd(event) {
           if (event.target === heroFlip && event.propertyName === 'transform') {
@@ -575,13 +434,6 @@ function completeHeroIntro() {
     } else {
       startHeroReveal();
     }
-  }
-
-  // Recalculate section placement when the hero layout changes.
-  window.addEventListener('resize', positionHeroSections, { passive: true });
-  if (heroPhoto) {
-    if (heroPhoto.complete) positionHeroSections();
-    else heroPhoto.addEventListener('load', positionHeroSections, { once: true });
   }
 
   // Burger menu
