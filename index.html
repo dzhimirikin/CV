@@ -83,8 +83,7 @@ window.Hyphenopoly = {
 
 <script src="Hyphenopoly/Hyphenopoly_Loader.js"></script>
 
-
-</head>
+\n</head>
 <body>
 
 <!-- WHATSAPP FLOAT BUTTON -->
@@ -235,10 +234,22 @@ window.Hyphenopoly = {
 <div class="hero" data-effects>
   <div class="hero-overlay">
     <div class="hero-flip">
-      <div class="container hero-inner">
+    <div class="container hero-inner">
+
+      <!-- Единая визуальная группа: фотография и фасадные сечения -->
+      <div class="hero-visual">
+
+        <div class="hero-sections" aria-hidden="true">
+          <img src="Section_L.webp" alt="" class="hero-section hero-section-left">
+          <img src="Section_R.webp" alt="" class="hero-section hero-section-right">
+        </div>
+
         <img src="photo.webp" alt="Dmitry Zhimirikin" class="hero-photo">
 
-        <div class="hero-text">
+      </div>
+
+      <!-- Текстовая часть остаётся отдельным элементом -->
+      <div class="hero-text">
           <h1>Dmitry Zhimirikin</h1>
 
           <p class="hero-desc">
