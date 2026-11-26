@@ -175,14 +175,6 @@ document.addEventListener('DOMContentLoaded', () => {
   const heroFlip = hero?.querySelector('.hero-flip');
   const heroPhoto = hero?.querySelector('.hero-photo');
 
-  // Финальная фотография после поворота.
-  function showFinalHeroPhoto() {
-    if (!heroPhoto || heroPhoto.dataset.finalPhoto === 'true') return;
-
-    heroPhoto.dataset.finalPhoto = 'true';
-    heroPhoto.src = 'photo_02.webp';
-  }
-
   const HERO_INTRO_KEY = 'heroIntroPlayed';
 
   // Проверяем, была ли заставка полностью показана в этой вкладке.
@@ -200,26 +192,18 @@ document.addEventListener('DOMContentLoaded', () => {
   // Повторный вход в этой вкладке: сразу показываем готовую композицию.
   if (introAlreadyPlayed) {
     if (heroDesc) heroDesc.classList.add('hero-desc-ready');
-
-    if (heroPhoto) {
-      heroPhoto.src = 'photo_02.webp';
-      heroPhoto.style.visibility = 'visible';
-    }
+    if (heroPhoto) heroPhoto.style.visibility = 'visible';
   }
 
   // При системном отключении анимации сразу показываем готовую композицию.
   if (reduceMotion) {
     if (heroDesc) heroDesc.classList.add('hero-desc-ready');
-    showFinalHeroPhoto();
-    if (heroPhoto) {
-  heroPhoto.src = 'photo_02.webp';
-  heroPhoto.style.visibility = 'visible';
-}
+    if (heroPhoto) heroPhoto.style.visibility = 'visible';
     if (hero) {
       try {
         sessionStorage.setItem(HERO_INTRO_KEY, 'true');
       } catch (e) {
-        // Ничего не делаем, если хранилище недоступно.
+        // Ничего не делаем, если sessionStorage недоступен.
       }
     }
   }
@@ -250,14 +234,8 @@ document.addEventListener('DOMContentLoaded', () => {
         function completeHeroIntro() {
           if (introCompleted) return;
           introCompleted = true;
-          showFinalHeroPhoto();
           if (flipFallbackTimer !== null) clearTimeout(flipFallbackTimer);
           heroFlip.removeEventListener('transitionend', onFlipTransitionEnd);
-
-          // После полного завершения поворота меняем фотографию.
-          if (heroPhoto) {
-            heroPhoto.src = 'photo_02.webp';
-          }
 
           try {
             sessionStorage.setItem(HERO_INTRO_KEY, 'true');
