@@ -427,16 +427,14 @@ nav a.is-current::before {
   margin: auto;
   padding: 50px 20px;
   display: flex;
-  gap: 0px;
+  gap: 40px;
   color: #fff;
   align-items: flex-start;
-
-  transform: translateX(-45px);
 }
 
 .hero-photo {
-  flex: 0 0 331px;
-  width: 331px;
+  flex: 0 0 240px;
+  width: 240px;
   height: auto;
   object-fit: contain;
 
@@ -494,25 +492,20 @@ nav a.is-current::before {
 @media (min-width: 769px) and (max-width: 1200px) {
   .hero-inner {
     max-width: 1000px;
-    gap: 0px;
+    gap: 20px;
     padding-left: 24px;
-    padding-right: 0;
+    padding-right: 24px;
   }
 
-  .hero-photo {
-    flex: 0 0 248px;
-    width: 248px;
-    height: auto;
-
-    transform: translateX(24px);
-  }
+.hero-photo {
+  flex: 0 0 180px;
+  width: 180px;
+  height: auto;
+}
 
   .hero-text {
     height: auto;
     min-height: 180px;
-    width: 100%;
-    transform: translateX(20px);
-    margin-right: -20px;
   }
 
   .hero h1 {
@@ -521,11 +514,10 @@ nav a.is-current::before {
   }
 
   .hero-text p {
-    font-size: 12px;
-    line-height: 1.4;
-    text-align: justify;
-    text-align-last: left;
-    width: 100%;
+      font-size: 12px;
+      line-height: 1.4;
+      text-align: justify;
+      text-align-last: left;
   }
 
   .hero-cv {
@@ -553,31 +545,25 @@ nav a.is-current::before {
     flex-direction: column;
     text-align: center;
     align-items: center;
-    gap: 0px;
+    gap: 12px;
     /* Мобильная версия: уменьшаем верхний отступ вдвое */
     margin: 0 auto;
     padding: 29px 20px 0;
     transform: translateY(-18px);
   }
 
-  .hero-photo {
-    flex: 0 0 auto;
-    width: 100%;
-    max-width: 331px;
-    height: auto;
+.hero-photo {
+  width: 82%;
+  max-width: 320px;
+  height: auto;
+  object-fit: contain;
 
-    object-fit: contain;
-    display: block;
+  border: none;
+  background: transparent;
+  box-shadow: none;
 
-    border: none;
-    border-radius: 0;
-    background: transparent;
-    box-shadow: none;
-
-    align-self: center;
-    margin: 0 auto 26px;
-    transform: none;
-  }
+  margin: 0 auto 12px;
+}
 
   .hero-text {
     height: auto;
@@ -5624,3 +5610,4 @@ small,
     }
 
 }
+
