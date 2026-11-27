@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-26T04:55:18.155659",
+  "updated": "2026-11-27T04:56:20.960709",
   "source": {
     "emtaOpenDataPage": "https://www.emta.ee/en/private-client/board-news-and-contacts/news-press-information-statistics/statistics-and-open-data",
     "files": [
@@ -15443,7 +15443,7 @@
         "projectedTurnover": 46827.0,
         "projectedLabourProductivity": 15609.0,
         "labourProductivity": 14799.0,
-        "profitPerEmployee": 393.0,
+        "profitPerEmployee": 233.0,
         "averageGrossWage": 1100.0,
         "sourceName": "KLAASIMEISTRID OÜ"
       },
@@ -15460,7 +15460,7 @@
           "projectedTurnover": 46827.0,
           "projectedLabourProductivity": 15609.0,
           "labourProductivity": 14799.0,
-          "profitPerEmployee": 393.0,
+          "profitPerEmployee": 233.0,
           "averageGrossWage": 1100.0,
           "sourceName": "KLAASIMEISTRID OÜ"
         },
@@ -15476,7 +15476,7 @@
           "projectedTurnover": 35864.0,
           "projectedLabourProductivity": 7173.0,
           "labourProductivity": 6800.0,
-          "profitPerEmployee": 181.0,
+          "profitPerEmployee": 107.0,
           "averageGrossWage": 780.0,
           "sourceName": "KLAASIMEISTRID OÜ"
         },
@@ -15492,7 +15492,7 @@
           "projectedTurnover": 59744.0,
           "projectedLabourProductivity": 14936.0,
           "labourProductivity": 14161.0,
-          "profitPerEmployee": 376.0,
+          "profitPerEmployee": 223.0,
           "averageGrossWage": 840.0,
           "sourceName": "KLAASIMEISTRID OÜ"
         },
